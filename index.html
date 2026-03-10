@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenergy | Chocolatería Adaptógena</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
+        .chocolate-card { transition: all 0.3s ease; }
+        .chocolate-card:hover { transform: translateY(-10px); }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <nav class="py-6 px-8 flex justify-center border-b border-gray-100">
+        <img src="img/zenergylogo.png" alt="Zenergy Logo" class="h-12 object-contain">
+    </nav>
+
+    <header class="hero-gradient py-16 px-6 text-center">
+        <h1 class="text-4xl font-extrabold tracking-tight mb-4 uppercase">Eleva tu energía</h1>
+        <p class="text-lg text-gray-600 max-w-xl mx-auto font-light">
+            Sinergia perfecta entre cacao premium y hongos adaptógenos cultivados en Santa Elena.
+        </p>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div class="chocolate-card bg-gray-50 rounded-3xl overflow-hidden shadow-xl">
+                <img src="img/chocolatina.jpg" alt="Chocolatina Adaptógena" class="w-full h-auto object-cover">
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <span class="text-sm font-bold text-amber-600 tracking-widest uppercase">Lanzamiento</span>
+                    <h2 class="text-3xl font-bold mt-2">Chocolatina Funcional</h2>
+                    <p class="text-2xl font-light text-gray-800 mt-1">$5.000 COP</p>
+                </div>
+
+                <p class="text-gray-500 leading-relaxed">
+                    Nuestra barra contiene **200mg** de una mezcla exclusiva de hongos funcionales, diseñada para mejorar tu enfoque y reducir el estrés sin perder el placer de un buen chocolate.
+                </p>
+
+                <ul class="space-y-3">
+                    <li class="flex items-center text-sm text-gray-700">
+                        <span class="w-2 h-2 bg-black rounded-full mr-3"></span> Cacao de origen 
+                    </li>
+                    <li class="flex items-center text-sm text-gray-700">
+                        <span class="w-2 h-2 bg-black rounded-full mr-3"></span> 200mg de Adaptógenos por barra
+                    </li>
+                    <li class="flex items-center text-sm text-gray-700">
+                        <span class="w-2 h-2 bg-black rounded-full mr-3"></span> Sin azúcares refinados
+                    </li>
+                </ul>
+
+                <button onclick="orderZenergy()" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-5 rounded-2xl shadow-2xl transition-all flex items-center justify-center space-x-3">
+                    <span>Comprar por WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center text-gray-400 text-xs border-t mt-12">
+        Zenergy Store | Cultivado y procesado en Santa Elena, Antioquia.
+    </footer>
+
+    <script>
+        function orderZenergy() {
+            const phone = "573025333130"; // Tu número actual para Zenergy
+            const message = encodeURIComponent("¡Hola Zenergy! ✨\n\nQuiero probar la chocolatina de hongos adaptógenos ($5.000). ¿Cómo puedo realizar el pedido?");
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
