@@ -3,74 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenergy | Chocolatería Adaptógena</title>
+    <title>Zenergy | Z-Box: Bio-Hardware Inteligente</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
-        .chocolate-card { transition: all 0.3s ease; }
-        .chocolate-card:hover { transform: translateY(-10px); }
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #0a0a0a; color: #f4f4f4; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .gradient-text { background: linear-gradient(90deg, #94fbab 0%, #13d47e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(19, 212, 126, 0.15) 0%, rgba(10, 10, 10, 0) 70%); z-index: -1; }
     </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="antialiased">
 
-    <nav class="py-6 px-8 flex justify-center border-b border-gray-100">
-        <img src="img/zenergylogo.png" alt="Zenergy Logo" class="h-12 object-contain">
+    <div class="hero-glow"></div>
+
+    <nav class="py-8 px-6 flex justify-between items-center max-w-6xl mx-auto">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-[#13d47e] rounded-full flex items-center justify-center">
+                <span class="text-black font-bold text-xs">Z</span>
+            </div>
+            <span class="text-xl font-bold tracking-tighter">ZENERGY</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-gray-400">
+            <a href="#" class="hover:text-[#13d47e] transition">Z-Box</a>
+            <a href="#" class="hover:text-[#13d47e] transition">Tecnología</a>
+            <a href="#" class="hover:text-[#13d47e] transition">Refill</a>
+        </div>
     </nav>
 
-    <header class="hero-gradient py-16 px-6 text-center">
-        <h1 class="text-4xl font-extrabold tracking-tight mb-4 uppercase">Activa tu potencial</h1>
-        <p class="text-lg text-gray-600 max-w-xl mx-auto font-light">
-            Sinergia perfecta entre cacao y hongos adaptógenos cultivados en Santa Elena.
-        </p>
-    </header>
-
-    <main class="max-w-4xl mx-auto p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            
-            <div class="chocolate-card bg-gray-50 rounded-3xl overflow-hidden shadow-xl">
-                <img src="img/chocolatina.png" alt="Chocolatina Adaptógena" class="w-full h-auto object-cover">
-            </div>
-
-            <div class="space-y-6">
-                <div>
-                    <span class="text-sm font-bold text-amber-600 tracking-widest uppercase">Lanzamiento</span>
-                    <h2 class="text-3xl font-bold mt-2">Chocolatina Funcional</h2>
-                    <p class="text-2xl font-light text-gray-800 mt-1">$5.000 COP</p>
-                </div>
-
-                <p class="text-gray-500 leading-relaxed">
-                    Nuestra barra contiene 2grs de una mezcla exclusiva de hongos funcionales (Cordyceps, Melena de León, Reishi y Cola de Pavo) diseñada para mejorar tu enfoque y reducir el estrés sin perder el placer de un buen chocolate.
-                </p>
-
-                <ul class="space-y-3">
-                    <li class="flex items-center text-sm text-gray-700">
-                        <span class="w-2 h-2 bg-black rounded-full mr-3"></span> Cacao de origen 
-                    </li>
-                    <li class="flex items-center text-sm text-gray-700">
-                        <span class="w-2 h-2 bg-black rounded-full mr-3"></span> 2000mg de Adaptógenos por barra
-                    </li>
-                    <li class="flex items-center text-sm text-gray-700">
-                        <span class="w-2 h-2 bg-black rounded-full mr-3"></span> Sin azúcares refinados
-                    </li>
-                </ul>
-
-                <button onclick="orderZenergy()" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-5 rounded-2xl shadow-2xl transition-all flex items-center justify-center space-x-3">
-                    <span>Comprar por WhatsApp</span>
+    <header class="max-w-6xl mx-auto px-6 pt-12 pb-24 text-center md:text-left grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+            <span class="inline-block px-3 py-1 rounded-full border border-[#13d47e]/30 text-[#13d47e] text-[10px] uppercase tracking-[0.2em] mb-6">Fase 1: Smart-Cultivation</span>
+            <h1 class="text-6xl md:text-7xl font-bold leading-tight mb-8">
+                Cultiva tu propia <span class="gradient-text">biotecnología.</span>
+            </h1>
+            <p class="text-xl text-gray-400 font-light max-w-lg mb-10 leading-relaxed">
+                Presentamos la <strong>Z-Box</strong>: El ecosistema modular que automatiza el cultivo de hongos adaptógenos mediante IoT y datos.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="contactSales()" class="bg-[#13d47e] text-black font-bold px-8 py-4 rounded-xl hover:scale-105 transition shadow-lg shadow-[#13d47e]/20">
+                    Reservar Z-Box
                 </button>
+                <a href="#specs" class="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 transition flex items-center justify-center">
+                    Ver Especificaciones
+                </a>
             </div>
         </div>
-    </main>
+        <div class="relative">
+            <div class="glass p-4 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                <div class="absolute top-4 right-4 flex space-x-2">
+                    <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                    <span class="text-[10px] text-gray-500 uppercase">Live Sensor Data</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1591261730799-ee4e6c2d16d7?auto=format&fit=crop&q=80&w=800" alt="Z-Box Preview" class="rounded-[2rem] w-full grayscale-[0.2] hover:grayscale-0 transition duration-700">
+            </div>
+        </div>
+    </header>
 
-    <footer class="py-12 text-center text-gray-400 text-xs border-t mt-12">
-        Zenergy Store | Cultivado y procesado en Santa Elena, Antioquia.
+    <section id="specs" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass p-10 rounded-3xl">
+                <h3 class="text-[#13d47e] font-bold mb-4">01. Smart Control</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Sensores de alta precisión monitorean temperatura y humedad 24/7. Ventiladores automáticos gestionan el intercambio gaseoso sin intervención manual.</p>
+            </div>
+            <div class="glass p-10 rounded-3xl">
+                <h3 class="text-[#13d47e] font-bold mb-4">02. Modularidad Total</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Equipada con 10 tubulares de vidrio y bandejas de acero inoxidable. Diseñada para una asepsia total y escalabilidad inmediata.</p>
+            </div>
+            <div class="glass p-10 rounded-3xl">
+                <h3 class="text-[#13d47e] font-bold mb-4">03. App Sync</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Visualiza el progreso de tu cultivo en tiempo real. Recibe notificaciones push sobre el estado de salud de tu Melena de León.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="max-w-6xl mx-auto px-6 py-20 text-center border-t border-white/5">
+        <p class="text-xs text-gray-600 tracking-widest uppercase mb-4">Zenergy World | Santa Elena, Antioquia</p>
+        <div class="flex justify-center space-x-6">
+            <a href="#" class="text-gray-500 hover:text-[#13d47e]">Instagram</a>
+            <a href="#" class="text-gray-500 hover:text-[#13d47e]">GitHub</a>
+            <a href="#" class="text-gray-500 hover:text-[#13d47e]">WhatsApp</a>
+        </div>
     </footer>
 
     <script>
-        function orderZenergy() {
-            const phone = "573025333130"; // Tu número actual para Zenergy
-            const message = encodeURIComponent("¡Hola Zenergy! ✨\n\nQuiero probar la chocolatina de hongos adaptógenos ($5.000). ¿Cómo puedo realizar el pedido?");
+        function contactSales() {
+            const phone = "573025333130"; 
+            const message = encodeURIComponent("¡Hola Zenergy! ✨\n\nEstoy interesado en adquirir la Z-Box. ¿Podrían darme más información sobre los tiempos de entrega?");
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
     </script>
