@@ -22,6 +22,7 @@ Plataforma integral de biohacking e IoT para la optimización del rendimiento hu
 
 zenergy-world/
 ├── manage.py
+├── index.html
 ├── .gitignore
 ├── requirements.txt
 ├── README.md              <-- Actualizado con la nueva visión
