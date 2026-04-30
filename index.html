@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenergy | Z-Box: Intelligent Bio-Hardware</title>
+    <title>Zenergy | Engineering the Living Future</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Space Grotesk', sans-serif; background-color: #0a0a0a; color: #f4f4f4; }
         h1, h2, h3, .brand-font { font-family: 'Orbitron', sans-serif; font-weight: 900; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        
-        /* Updated Blue LED Gradient & Glow */
         .gradient-text { background: linear-gradient(90deg, #94dafb 0%, #1389d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(19, 137, 212, 0.15) 0%, rgba(10, 10, 10, 0) 70%); z-index: -1; }
-        .italic-skew { font-style: italic; transform: skewX(-10deg); display: inline-block; }
+        .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(19, 137, 212, 0.1) 0%, rgba(10, 10, 10, 0) 70%); z-index: -1; }
         
-        /* Custom Blue Accents */
         .text-zenergy-blue { color: #1389d4; }
-        .border-zenergy-blue { border-color: rgba(19, 137, 212, 0.3); }
         .bg-zenergy-blue { background-color: #1389d4; }
+        .border-zenergy-blue { border-color: rgba(19, 137, 212, 0.3); }
+        /* Error de línea 21 corregido: removido shadow-lg del CSS puro */
+        .custom-shadow { box-shadow: 0 10px 15px -3px rgba(19, 137, 212, 0.3); }
     </style>
 </head>
 <body class="antialiased">
@@ -27,87 +25,74 @@
 
     <nav class="py-8 px-6 flex justify-between items-center max-w-6xl mx-auto">
         <div class="flex items-center space-x-4">
-            <img src="img/logo.png" alt="Zenergy Logo" class="w-12 h-12 object-contain">
+            <img src="img/logo.png" alt="Zenergy Logo" class="w-10 h-10 object-contain">
             <span class="brand-font text-xl tracking-tighter uppercase">ZENERGY</span>
         </div>
-        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-gray-400 items-center">
-            <a href="#specs" class="hover:text-zenergy-blue transition">Technology</a>
-            <a href="#biorush" class="hover:text-zenergy-blue transition">BioRush</a>
-            <a href="https://zenergy.streamlit.app" target="_blank" class="text-zenergy-blue font-bold hover:opacity-80 transition border-l border-white/10 pl-8">Lab Dashboard</a>
+        <div class="hidden md:flex space-x-8 text-[10px] uppercase tracking-widest text-gray-400 items-center">
+            <a href="#zbox" class="hover:text-zenergy-blue transition">Z-Box Node</a>
+            <a href="#biobricks" class="hover:text-zenergy-blue transition">Bio-Materials</a>
+            <a href="https://zenergy.streamlit.app" target="_blank" class="text-zenergy-blue font-bold border-l border-white/10 pl-8 animate-pulse">ARPA LIVE AUDIT</a>
         </div>
     </nav>
 
     <header class="max-w-6xl mx-auto px-6 pt-12 pb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div>
-            <span class="inline-block px-3 py-1 rounded-full border border-zenergy-blue text-zenergy-blue text-[10px] uppercase tracking-[0.2em] mb-6">Phase 1: Smart-Cultivation</span>
+            <span class="inline-block px-3 py-1 rounded-full border border-zenergy-blue text-zenergy-blue text-[10px] uppercase tracking-[0.2em] mb-6">Phase 1: Audited Bio-Infrastructure</span>
             <h1 class="text-5xl md:text-6xl mb-8 uppercase tracking-tight">
-                Grow your own <br><span class="gradient-text italic-skew">biotechnology.</span>
+                The <span class="gradient-text">Living Factory</span> in your hands.
             </h1>
             <p class="text-xl text-gray-400 font-light max-w-lg mb-10 leading-relaxed">
-                Introducing the <strong>Z-Box</strong>: The modular ecosystem automating functional mushroom cultivation through IoT and data science.
+                We are standardizing mycelium engineering. From <strong>Z-Box</strong> hardware to <strong>Bio-Bricks</strong>, we provide the tools to grow the future of sustainable construction.
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <button onclick="contactSales('Z-Box')" class="bg-zenergy-blue text-black font-bold px-8 py-4 rounded-xl hover:scale-105 transition shadow-lg shadow-[#1389d4]/20 uppercase text-xs tracking-widest">
-                    Reserve Z-Box
+                <button onclick="window.open('https://wa.me/573025333130', '_blank')" class="bg-zenergy-blue text-black font-extrabold px-10 py-5 rounded-xl hover:scale-105 transition-all custom-shadow uppercase text-xs tracking-[0.2em]">
+                    Reserve Z-Box V1
                 </button>
             </div>
         </div>
         <div class="relative">
-            <div class="glass p-4 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-                <div class="absolute top-4 right-4 flex space-x-2 text-zenergy-blue">
-                    <span class="text-[10px] uppercase font-bold animate-pulse">Online</span>
-                </div>
-                <img src="img/Untitled.png" alt="Z-Box Prototype" class="rounded-[2rem] w-full border border-white/10 aspect-square object-cover">
+            <div class="glass p-4 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
+                <img src="img/Untitled.png" alt="Z-Box Prototype" class="rounded-[2rem] w-full aspect-square object-cover opacity-90">
             </div>
         </div>
     </header>
 
-    <section id="biorush" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
-        <div class="mb-12">
-            <span class="text-zenergy-blue brand-font text-xs uppercase tracking-[0.3em]">Bio-Performance Line</span>
-            <h2 class="text-4xl mt-4 uppercase italic-skew">BioRush<span class="text-zenergy-blue">.</span></h2>
-            <p class="text-gray-400 mt-4 max-w-2xl">Functional fuel designed to optimize human performance using pure adaptogenic extracts grown in Santa Elena.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="glass p-8 rounded-3xl border-l-4 border-zenergy-blue">
-                <h3 class="brand-font text-xl mb-2 uppercase">Stamina <span class="text-zenergy-blue text-xs">V1.0</span></h3>
-                <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Physical Endurance & Oxygenation</p>
-                <ul class="text-sm space-y-3 text-gray-300 mb-8">
-                    <li><span class="text-zenergy-blue">⚡</span> Cordyceps Militaris (Double Extract)</li>
-                    <li><span class="text-zenergy-blue">⚡</span> Beetroot Nitrates</li>
-                    <li><span class="text-zenergy-blue">⚡</span> Thermal Ginger</li>
+    <section id="ecosystem" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Z-Box Node -->
+            <div class="glass p-8 rounded-3xl border-t-2 border-zenergy-blue">
+                <h3 class="brand-font text-lg mb-4 uppercase">Z-Box Node</h3>
+                <p class="text-sm text-gray-400 mb-6">Modular IoT hardware for mycelium production. High-precision environment control for industrial scalability.</p>
+                <ul class="text-[10px] space-y-2 text-zenergy-blue uppercase tracking-widest font-bold">
+                    <li>● Climate Automation</li>
+                    <li>● Real-time Telemetry</li>
                 </ul>
-                <button onclick="contactSales('BioRush Stamina')" class="w-full py-3 bg-white/5 border border-zenergy-blue rounded-lg text-[10px] uppercase tracking-widest hover:bg-zenergy-blue hover:text-black transition">Request Batch</button>
             </div>
 
-            <div class="glass p-8 rounded-3xl border-l-4 border-[#94dafb]">
-                <h3 class="brand-font text-xl mb-2 uppercase">Focus <span class="text-zenergy-blue text-xs">V1.0</span></h3>
-                <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Cognitive Clarity & Focus</p>
-                <ul class="text-sm space-y-3 text-gray-300 mb-8">
-                    <li><span class="text-zenergy-blue">🧠</span> Lion's Mane (Certified)</li>
-                    <li><span class="text-zenergy-blue">🧠</span> Blueberry Flavonoids</li>
-                    <li><span class="text-zenergy-blue">🧠</span> Walnut Fatty Acids</li>
+            <!-- Bio-Bricks -->
+            <div class="glass p-8 rounded-3xl border-t-2 border-white/10">
+                <h3 class="brand-font text-lg mb-4 uppercase">Bio-Bricks</h3>
+                <p class="text-sm text-gray-400 mb-6">Certified living materials. Fire-resistant, acoustic-dampening, and carbon-negative structural units.</p>
+                <ul class="text-[10px] space-y-2 text-gray-500 uppercase tracking-widest">
+                    <li>● Structural Units</li>
+                    <li>● Thermal Insulation</li>
                 </ul>
-                <button onclick="contactSales('BioRush Focus')" class="w-full py-3 bg-white/5 border border-zenergy-blue rounded-lg text-[10px] uppercase tracking-widest hover:bg-zenergy-blue hover:text-black transition">Request Batch</button>
+            </div>
+
+            <!-- Digital Protocols -->
+            <div class="glass p-8 rounded-3xl border-t-2 border-zenergy-blue bg-white/5">
+                <h3 class="brand-font text-lg mb-4 uppercase">Digital Protocols</h3>
+                <p class="text-sm text-gray-400 mb-6">Encrypted cultivation recipes. Standardized data sets that ensure repeatable results across any Z-Box node globally.</p>
+                <ul class="text-[10px] space-y-2 text-zenergy-blue uppercase tracking-widest font-bold">
+                    <li>● Open-Bio Standard</li>
+                    <li>● Remote Sync</li>
+                </ul>
             </div>
         </div>
     </section>
 
     <footer class="max-w-6xl mx-auto px-6 py-20 text-center border-t border-white/5">
-        <p class="brand-font text-[10px] text-gray-600 tracking-[0.3em] uppercase mb-4">Zenergy World | Santa Elena, Antioquia</p>
-        <div class="flex justify-center space-x-6 text-[10px] uppercase tracking-widest">
-            <a href="https://github.com/jalkn" target="_blank" class="text-gray-500 hover:text-zenergy-blue">GitHub</a>
-            <a href="#" onclick="contactSales('General')" class="text-gray-500 hover:text-zenergy-blue">WhatsApp</a>
-        </div>
+        <p class="brand-font text-[10px] text-gray-600 tracking-[0.3em] uppercase mb-4">Zenergy.world | Santa Elena, Colombia</p>
     </footer>
-
-    <script>
-        function contactSales(product) {
-            const phone = "573025333130"; 
-            const message = encodeURIComponent(`Hello Zenergy! ✨\n\nI am interested in: ${product}.`);
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-        }
-    </script>
 </body>
 </html>

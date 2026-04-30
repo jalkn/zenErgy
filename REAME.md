@@ -1,46 +1,28 @@
-# Zenergy World: Bio-Performance Ecosystem 🍄
+# Zenergy | Bio-Hardware & Mycelium Engineering 🍄🏗️
 
-Plataforma integral de biohacking e IoT para la optimización del rendimiento humano y el cultivo automatizado de hongos adaptógenos.
+Zenergy is an infrastructure ecosystem focused on the standardization and auditing of mycelium-based materials. We combine IoT hardware (Z-Box) with auditing protocols (ARPA) to create certified Bio-Bricks for the construction industry.
 
-## 🚀 Arquitectura
-* **Backend:** Django Rest Framework (DRF) con base de datos PostgreSQL.
-* **Mobile App (Proximamente):** Desarrollada en Flutter para iOS y Android.
-* **IoT Hardware:** Z-Box V1.1 integrada mediante protocolos MQTT.
+## 🚀 Key Components
+*   **Z-Box Node**: Domestic and industrial IoT hardware designed to automate fungal growth protocols with high precision[cite: 1, 2].
+*   **Bio-Bricks**: Structural, fire-resistant, and carbon-negative building units grown from mycelium[cite: 1, 3].
+*   **ARPA Audit**: Our proprietary "Resonance" engine that audits environmental data to certify the quality and strength of every biological batch[cite: 1, 2].
+*   **Digital Protocols**: Encrypted growth "recipes" that ensure repeatable biological results globally.
 
-## 📁 Apps Principales
-* **Biohacking App:** Bitácora de dosis, tracker de compuestos (BioRush) y registro de beneficios cognitivos.
-* **Z-Box Control:** Monitoreo en tiempo real de temperatura y humedad para usuarios con hardware.
+## 📂 Repository Structure
+*   `zbox-app/`: Streamlit dashboard for real-time lab logging and ARPA auditing[cite: 2].
+*   `img/`: Visual assets and technical blueprints of the Z-Box[cite: 1, 3].
+*   `index.html`: The gateway to the Zenergy ecosystem[cite: 1].
+*   `corte.py`: Utility script for substrate processing logic.
 
-## 🛠 Instalación para Desarrollo
-1. `python -m venv venv`
-2. `source venv/bin/activate`
-3. `pip install -r requirements.txt`
-4. `python manage.py migrate`
-5. `python manage.py runserver`
+## 🛠️ Technology Stack
+*   **Frontend**: HTML5 / Tailwind CSS (Engineering Aesthetic)[cite: 1].
+*   **Data/Audit**: Streamlit & Pandas for laboratory transparency[cite: 2].
+*   **Hardware**: ESP32 / Shelly Cloud for climate automation.
+*   **Logic**: ARPA (Auditing RPA) for heart-brain resonance synchronization.
 
-**Ubicación:** Santa Elena, Antioquia, Colombia.
+## 🌍 Vision: The Bio-Cement of the Future
+We are not just growing mushrooms; we are auditing life. Our goal is to provide companies like Argos with certified bio-materials where every brick carries a digital audit of its strength, purity, and carbon footprint.
 
-zenergy-world/
-├── manage.py
-├── index.html
-├── .gitignore
-├── requirements.txt
-├── README.md              <-- Actualizado con la nueva visión
-├── core/                  <-- Configuración del proyecto Django
-│   ├── settings.py
-│   ├── urls.py            <-- Rutas globales (API y Admin)
-│   └── wsgi.py
-├── apps/                  <-- Carpeta contenedora de tus aplicaciones
-│   ├── __init__.py
-│   ├── biohacking/        <-- App de Bitácora, Dosis y Usuarios
-│   │   ├── models.py      <-- Esquema de base de datos que diseñamos
-│   │   ├── serializers.py <-- Conversión de datos para la App móvil
-│   │   ├── views.py       <-- Lógica de negocio (API Endpoints)
-│   │   └── urls.py
-│   └── zbox/              <-- App de IoT y Hardware
-│       ├── models.py      <-- Registro de módulos y lecturas de sensores
-│       ├── consumers.py   <-- Lógica para recibir datos vía MQTT/Websockets
-│       └── views.py
-├── static/                <-- Archivos de tu Landing Page (index.html)
-├── media/                 <-- Fotos de los cultivos y perfil de usuarios
-└── templates/             <-- En caso de que uses vistas HTML desde Django
+---
+**Global Launch: June 2026 Solstice**  
+*Santa Elena, Antioquia | Zenergy.world*
