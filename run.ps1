@@ -9,10 +9,6 @@ Write-Host "Configurando el ecosistema de Zenergy..." -ForegroundColor Cyan
 New-Item -ItemType Directory -Force -Path $dataDir | Out-Null
 New-Item -ItemType Directory -Force -Path "img" | Out-Null
 
-# Instalar dependencias
-Write-Host "Instalando dependencias desde requirements.txt..." -ForegroundColor Yellow
-pip install -r requirements.txt | Out-Null
-
 # Crear o vaciar el archivo de protocolo FastAPI
 $fastApiFile = "zbox_protocol.py"
 @'
