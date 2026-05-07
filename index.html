@@ -10,16 +10,12 @@
         body { font-family: 'Space Grotesk', sans-serif; background-color: #0a0a0a; color: #f4f4f4; }
         h1, h2, h3, .brand-font { font-family: 'Orbitron', sans-serif; font-weight: 900; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        
         .gradient-text { background: linear-gradient(90deg, #94dafb 0%, #1389d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(19, 137, 212, 0.1) 0%, rgba(10, 10, 10, 0) 70%); z-index: -1; }
-        
         .text-zenergy-blue { color: #1389d4; }
         .bg-zenergy-blue { background-color: #1389d4; }
-        .border-zenergy-blue { border-color: rgba(19, 137, 212, 0.3); }
         .custom-shadow { box-shadow: 0 10px 15px -3px rgba(19, 137, 212, 0.3); }
-        
-        .symbol-font { font-family: 'Space Grotesk', sans-serif; font-size: 4rem; color: #1389d4; line-height: 1; }
+        .symbol-img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(19, 137, 212, 0.4)); opacity: 0.9; }
     </style>
 </head>
 <body class="antialiased">
@@ -31,10 +27,9 @@
             <span class="brand-font text-xl tracking-tighter uppercase">ZENERGIA</span>
         </div>
         <div class="hidden md:flex space-x-8 text-[10px] uppercase tracking-widest text-gray-400 items-center">
-            <span class="cursor-default">Mycelium tech-lab</span>
             <span class="cursor-default border-l border-white/10 pl-4">Bioladrillo</span>
             <a href="#protocol" class="text-zenergy-blue font-bold border-l border-white/10 pl-4 hover:text-white transition animate-pulse">Protocolo</a>
-            <a href="https://zenergy.streamlit.app" target="_blank" class="text-zenergy-blue font-bold border-l border-white/10 pl-4">ARPA LIVE AUDIT</a>
+            <a href="https://zenergy.streamlit.app" target="_blank" class="text-zenergy-blue font-bold border-l border-white/10 pl-4 text-[10px]">Mycelium tech-lab</a>
         </div>
     </nav>
 
@@ -44,92 +39,123 @@
                 Z-BRICK <span class="gradient-text">+</span> PROTOCOLO
             </h1>
             <p class="text-lg text-gray-400 font-light max-w-lg mb-10 leading-relaxed">
-                Nuestros bioladrillos son nodos estructurales diseñados para anclar nuestras instalaciones de Land-art. Combinando micelio y cáscara de chocolo. Cada uno de ellos contiene encriptado el protocolo de nuestro metodo de entrenamiento <strong>ZENERGIA</strong>. 
+                Nuestros bioladrillos son nodos estructurales diseñados para anclar nuestras instalaciones de Land-art. Combinando micelio y cáscara de chocolo.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <button onclick="window.open('https://wa.me/573025333130', '_blank')" class="bg-zenergy-blue text-black font-extrabold px-8 py-4 rounded-xl hover:scale-105 transition-all custom-shadow uppercase text-xs tracking-[0.2em]">
-                    Activar Nodo
-                </button>
-            </div>
+            <button onclick="window.open('https://wa.me/573025333130', '_blank')" class="bg-zenergy-blue text-black font-extrabold px-8 py-4 rounded-xl hover:scale-105 transition-all custom-shadow uppercase text-xs tracking-[0.2em]">
+                Activar Nodo
+            </button>
         </div>
         <div class="relative">
-            <div class="glass p-4 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
-                <img src="img/Untitled.png" alt="Z-Box Prototype" class="rounded-[2rem] w-full aspect-square object-cover opacity-90">
+            <div class="glass p-4 rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
+                <img src="img/Untitled.png" alt="Z-Brick Mycelium" class="rounded-[2rem] w-full aspect-square object-cover opacity-90">
             </div>
         </div>
     </header>
 
     <section id="protocol" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5">
-        <h2 class="text-3xl mb-12 tracking-tight uppercase">Protocolo de Encriptación Biocinética Zenergia</h2>
-        
+        <h2 class="text-3xl mb-4 tracking-tight uppercase">Protocolo de Encriptación Biocinética</h2>
         <p class="text-sm text-gray-400 font-light max-w-3xl mb-12 leading-relaxed">
-            Operadores de Movimiento (Funciones). Utilizaremos estos símbolos en las proyecciones de Realidad Aumentada para indicar la acción a ejecutar en los nodos:
+            Frecuencia Hexagonal 60FUWJ60. Operadores de Movimiento (Funciones) utilizados en las proyecciones de Realidad Aumentada.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-72">
+            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
                 <div>
                     <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">F</h3>
-                    <p class="text-lg font-bold mb-4">Caer</p>
-                    <p class="text-sm text-gray-400 font-light leading-relaxed">Para aprender</p>
+                    <p class="text-lg font-bold mb-2 uppercase">Caer</p>
+                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Absorber impacto / Inhala</p>
+                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
+                        <p class="font-bold text-gray-300">Alternativas:</p>
+                        <ul class="space-y-1">
+                            <li>&bull; Shoulder tap</li>
+                            <li>&bull; Push up</li>
+                            <li>&bull; Handstand push up</li>
+                            <li>&bull; Handstand walk</li>
+                            <li>&bull; Bear crawl</li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <div class="symbol-font mb-2">&cup;</div>
-                    <div class="text-[10px] uppercase text-gray-600 tracking-wider">&mdash; Inhala</div>
-                </div>
-            </div>
-            
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-72">
-                <div>
-                    <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">U</h3>
-                    <p class="text-lg font-bold mb-4">Levantarse</p>
-                    <p class="text-sm text-gray-400 font-light leading-relaxed">Para evolucionar</p>
-                </div>
-                <div>
-                    <div class="symbol-font mb-2">&cap;</div>
-                    <div class="text-[10px] uppercase text-gray-600 tracking-wider">&mdash; Imagina</div>
+                <div class="mt-6 flex justify-start">
+                    <img src="img/fall.png" alt="Fall Symbol" class="symbol-img">
                 </div>
             </div>
             
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-72">
+            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
+                <div>
+                    <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">S</h3>
+                    <p class="text-lg font-bold mb-2 uppercase">Levantarse</p>
+                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Eje vertical / Imagina</p>
+                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
+                        <p class="font-bold text-gray-300">Alternativas:</p>
+                        <ul class="space-y-1">
+                            <li>&bull; Sit ups</li>
+                            <li>&bull; Burpee</li>
+                            <li>&bull; Burpee broad jump</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-start">
+                    <img src="img/stand.png" alt="Up Symbol" class="symbol-img">
+                </div>
+            </div>
+            
+            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
                 <div>
                     <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">W</h3>
-                    <p class="text-lg font-bold mb-4">Caminar</p>
-                    <p class="text-sm text-gray-400 font-light leading-relaxed">Para avanzar</p>
+                    <p class="text-lg font-bold mb-2 uppercase">Caminar</p>
+                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Flujo / Exhala</p>
+                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
+                        <p class="font-bold text-gray-300">Alternativas:</p>
+                        <ul class="space-y-1">
+                            <li>&bull; Run / Sprint</li>
+                            <li>&bull; Lunges</li>
+                            <li>&bull; Jumping Lunges</li>
+                            <li>&bull; Jumping Lunges broad</li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <div class="symbol-font mb-2">&subset;</div>
-                    <div class="text-[10px] uppercase text-gray-600 tracking-wider">&mdash; Exhala</div>
+                <div class="mt-6 flex justify-start">
+                    <img src="img/walk.png" alt="Walk Symbol" class="symbol-img">
                 </div>
             </div>
             
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-72">
+            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
                 <div>
                     <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">J</h3>
-                    <p class="text-lg font-bold mb-4">Saltar</p>
-                    <p class="text-sm text-gray-400 font-light leading-relaxed">Para trascender</p>
+                    <p class="text-lg font-bold mb-2 uppercase">Saltar</p>
+                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Trascender / Crea</p>
+                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
+                        <p class="font-bold text-gray-300">Alternativas:</p>
+                        <ul class="space-y-1">
+                            <li>&bull; Single jump / Double Under</li>
+                            <li>&bull; Air squat</li>
+                            <li>&bull; Jumping squat</li>
+                            <li>&bull; Broad jump</li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <div class="symbol-font mb-2">&circ;</div>
-                    <div class="text-[10px] uppercase text-gray-600 tracking-wider">&mdash; Crea</div>
+                <div class="mt-6 flex justify-start">
+                    <img src="img/jump.png" alt="Jump Symbol" class="symbol-img">
                 </div>
             </div>
         </div>
-        
-        <div class="mt-12 p-8 glass rounded-2xl border border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+
+        <div class="mt-12 p-8 glass rounded-2xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-                <h3 class="text-sm uppercase tracking-widest mb-2 font-bold">Protocolo 60FUWJ60</h3>
-                <p class="text-xs text-gray-400 font-light max-w-2xl">
-                    Bloques estructurados donde cada letra se ejecuta con precisión matemática, desde la desconstrucción hasta la sincronización total con el solsticio.
-                </p>
+                <p class="text-xs text-zenergy-blue font-bold tracking-[0.3em] uppercase mb-2">Protocolo del Día</p>
+                <h3 class="brand-font text-2xl uppercase">26U13 <span class="text-gray-600 font-light ml-4">338 TRIGGERS</span></h3>
             </div>
-            <pre class="bg-black/40 border border-white/10 p-4 rounded-xl text-xs text-zenergy-blue tracking-widest font-mono">12 SETS &times; 5 REPS = 60</pre>
+            <pre class="bg-black/40 border border-white/10 p-6 rounded-xl font-mono text-[10px] text-zenergy-blue leading-relaxed">
+SET FREQUENCY = 26;
+TRIGGER_TYPE = "STAND";
+REPS_PER_SET = 13;
+            </pre>
         </div>
     </section>
 
     <footer class="max-w-6xl mx-auto px-6 py-20 text-center border-t border-white/5 flex flex-col items-center">
         <p class="brand-font text-[10px] text-gray-600 tracking-[0.3em] uppercase mb-4">Zenergia.world | Santa Elena, Colombia</p>
-        <a href="https://github.com/jalkn/zenErgy" target="_blank" class="text-xs text-zenergy-blue hover:text-white transition tracking-widest uppercase">
+        <a href="https://github.com/jalkon/zenErgy" target="_blank" class="text-xs text-zenergy-blue hover:text-white transition tracking-widest uppercase">
             &mdash; View Source Code on GitHub &mdash;
         </a>
     </footer>
