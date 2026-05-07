@@ -217,5 +217,43 @@ REPS_PER_SET = 13;
             <a href="#" class="text-[10px] text-gray-500 hover:text-zenergy-blue transition tracking-widest uppercase">Streamlit Lab</a>
         </div>
     </footer>
+    <script>
+    function updateZenergiaDial() {
+        const now = new Date();
+        const d = now.getDate();
+        const m = now.getMonth() + 1; // Enero es 0
+
+        // Lógica: Sets = Mes, Reps = Día * 10
+        // Fase: Mayo (5) es FS
+        let protocol = "FS";
+        if (m === 6) protocol = "FSW";
+        if (m >= 7) protocol = "FSWJ";
+
+        const sets = m;
+        const reps = d * 10;
+        const dial = `${sets}${protocol}${reps}`;
+
+        // Actualizar el Ticker en el UI
+        const dialElement = document.getElementById('daily-dial-trigger');
+        if (dialElement) {
+            dialElement.innerText = dial;
+        }
+
+        // También podemos actualizar el bloque de código del final
+        const codeBlock = document.getElementById('bitstream-code');
+        if (codeBlock) {
+            codeBlock.innerHTML = `
+    [SYSTEM_STATUS: ACTIVE]
+    CURRENT_CELL: ${now.toLocaleString('default', { month: 'short' }).toUpperCase()}
+    DIAL_ID: ${dial}
+    ACTIVE_PROTOCOL: ${protocol}_CODED
+    SET_FREQUENCY = ${sets};
+    REPS_PER_SET = ${reps};`;
+            }
+        }
+
+        // Ejecutar al cargar la página
+        document.addEventListener('DOMContentLoaded', updateZenergiaDial);
+    </script>
 </body>
 </html>
