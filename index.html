@@ -36,10 +36,10 @@
         <div class="hidden md:flex space-x-8 text-[9px] uppercase tracking-[0.2em] text-gray-500 items-center">
             <a href="#bioladrillo" class="hover:text-white transition">Z-Brick</a>
             <a href="#zbox" class="hover:text-white transition">Z-Box</a>
-            <a href="#protocol" class="hover:text-white transition">Protocolo FWJU</a>
+            <a href="#protocol" class="hover:text-white transition">Protocolo WAVE</a>
             <a href="#z-dial-sandwatch" class="text-zenergy-blue font-bold border-l border-white/10 pl-6 flex items-center gap-2">
                 <span class="w-2 h-2 bg-zenergy-blue rounded-full animate-ping"></span>
-                Z-DIAL: <span id="z-dial-menu">5FS70</span>
+                Z-DIAL: <span id="z-dial-menu">5AV70</span>
             </a>
         </div>
     </nav>
@@ -94,99 +94,56 @@
         </div>
     </header>
 
-    <section id="z-dial-sandwatch" class="max-w-4xl mx-auto px-6 py-24 text-center">
+<section id="z-dial-sandwatch" class="max-w-4xl mx-auto px-6 py-24 text-center">
         <div class="glass rounded-[3rem] border border-zenergy-blue/30 p-12 relative overflow-hidden">
             
+            <!-- Visualización de Resonancia WAVE -->
             <div class="mb-12">
-                <p class="text-[10px] tracking-[0.4em] text-zenergy-blue uppercase mb-6">Upper Face: Drop Wave Resonance</p>
+                <p class="text-[10px] tracking-[0.4em] text-zenergy-blue uppercase mb-6">Upper Face: WAVE Resonance Pattern</p>
                 <div class="flex justify-center items-center h-32 relative">
                     <div class="w-8 h-8 rounded-full border border-zenergy-blue bg-zenergy-blue/10 flex items-center justify-center opacity-70">
                         <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
                     </div>
+                    <!-- Animación de onda de gota sincronizada con el protocolo -->
                     <div class="absolute w-20 h-20 rounded-full border-2 border-zenergy-blue animate-[drop-wave_2s_ease-out_infinite]"></div>
                 </div>
             </div>
 
+            <!-- Display Dinámico del Z-Dial -->
             <div class="relative z-10">
-                <h2 id="main-z-dial" class="brand-font text-7xl md:text-9xl gradient-text tracking-tighter">5FS70</h2>
-                <p class="text-gray-500 tracking-[0.5em] uppercase text-[10px] mt-4">Daily Biokinetic Seed</p>
+                <h2 id="main-z-dial" class="brand-font text-7xl md:text-9xl gradient-text tracking-tighter">5AV70</h2>
+                <p class="text-gray-500 tracking-[0.5em] uppercase text-[10px] mt-4">WAVE Biokinetic Seed</p>
             </div>
 
+            <!-- Interfaz de Activación QR y Bitstream -->
             <div class="mt-16 pt-12 border-t border-white/5 flex flex-col items-center">
                 <div class="w-32 h-32 bg-white p-2 rounded-xl mb-6 relative overflow-hidden">
-                    <img src="img/Untit.png" alt="Z-Dial QR" class="w-full h-full object-cover">
+                    <img src="img/Untit.png" alt="Z-Dial WAVE QR" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-[8px] text-center px-2">
-                        SCAN: ACTIVATE Z-DIAL
-                    </div>
+                        SCAN: ACTIVATE WAVE PROTOCOL
+                    </div>[cite: 18]
                 </div>
+                <!-- Log de sistema compacto (actualizado vía JavaScript) -->
                 <pre id="bitstream-compact" class="font-mono text-[9px] text-zenergy-blue/60 text-left"></pre>
             </div>
         </div>
 
+        <!-- Consola de Telemetría Biocinética -->
         <div class="mt-16 p-10 glass rounded-3xl border border-zenergy-blue/20">
             <pre id="bitstream-code" class="font-mono text-[10px] text-zenergy-blue/80 leading-relaxed overflow-x-auto"></pre>
         </div>
 
     </section>
-
-<section id="protocol" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+    
+    <section id="protocol" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
         <div class="text-center mb-16">
-            <h2 class="text-3xl mb-2 tracking-tighter uppercase">Encriptación Biocinética FSWS</h2>
-            <p class="text-zenergy-blue text-[10px] tracking-[0.5em] uppercase font-bold mb-4">Drop Wave Resonance</p>
-            <p class="text-sm text-gray-500 font-light tracking-widest uppercase">Fortaleciendo el vínculo entre el cuerpo humano y el planeta</p>
+            <h2 class="text-3xl mb-2 tracking-tighter uppercase font-black">Protocolo WAVE</h2>
+            <p class="text-zenergy-blue text-[10px] tracking-[0.5em] uppercase font-bold mb-4">Encriptación Biocinética</p>
+            <p class="text-sm text-gray-500 font-light tracking-widest uppercase">Sincronizando el pulso humano con la resonancia del micelio</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div onclick="playBeat('Fbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
-                <div>
-                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
-                        F — Fall 
-                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
-                    </h3>
-                    <p class="text-xl font-bold mb-2 uppercase">Caer</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Inhala</p>
-                    
-                    <img src="img/fall.gif" alt="Fall Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
-
-                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
-                        <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
-                        <ul class="space-y-1">
-                            <li>&bull; Shoulder tap / Handstand Walk</li>
-                            <li>&bull; Push up / Handstand</li>
-                            <li>&bull; Bear crawl</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-8 flex justify-center">
-                    <img src="img/fall.png" alt="Fall Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
-                </div>
-            </div>
-
-            <div onclick="playBeat('Sbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
-                <div>
-                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
-                        S — Stand 
-                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
-                    </h3>
-                    <p class="text-xl font-bold mb-2 uppercase">Levantarse</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Imagina</p>
-                    
-                    <img src="img/stand.gif" alt="Stand Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
-
-                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
-                        <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
-                        <ul class="space-y-1">
-                            <li>&bull; Sit ups</li>
-                            <li>&bull; Burpee</li>
-                            <li>&bull; Plank Hold</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-8 flex justify-center">
-                    <img src="img/stand.png" alt="Stand Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
-                </div>
-            </div>
-            
+            <!-- W - WALK -->
             <div onclick="playBeat('Wbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
@@ -194,7 +151,7 @@
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
                     </h3>
                     <p class="text-xl font-bold mb-2 uppercase">Caminar</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Exhala</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">exhala</p>
                     
                     <img src="img/walk.gif" alt="Walk Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
@@ -211,17 +168,70 @@
                     <img src="img/walk.png" alt="Walk Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
-            
-            <div onclick="playBeat('Jbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
+
+            <!-- A - ABSORB (Reemplaza Fall) -->
+            <div onclick="playBeat('Abeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
-                        J — Jump 
+                        A — Absorb 
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
                     </h3>
-                    <p class="text-xl font-bold mb-2 uppercase">Saltar</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Crea</p>
+                    <p class="text-xl font-bold mb-2 uppercase">Caer</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Inhala</p>
                     
-                    <img src="img/jump.gif" alt="Jump Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+                    <img src="img/fall.gif" alt="Absorb Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+
+                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
+                        <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
+                        <ul class="space-y-1">
+                            <li>&bull; Shoulder tap / Handstand Walk</li>
+                            <li>&bull; Push up / Handstand</li>
+                            <li>&bull; Bear crawl</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <img src="img/fall.png" alt="Absorb Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
+                </div>
+            </div>
+
+            <!-- V - VERTICALITY (Reemplaza Stand) -->
+            <div onclick="playBeat('Vbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
+                <div>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
+                        V — Verticality 
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
+                    </h3>
+                    <p class="text-xl font-bold mb-2 uppercase">Levantarse</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Imagina</p>
+                    
+                    <img src="img/stand.gif" alt="Verticality Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+
+                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
+                        <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
+                        <ul class="space-y-1">
+                            <li>&bull; Sit ups</li>
+                            <li>&bull; Burpee</li>
+                            <li>&bull; Plank Hold</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <img src="img/stand.png" alt="Verticality Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
+                </div>
+            </div>
+            
+            <!-- E - EXPLODE (Reemplaza Jump) -->
+            <div onclick="playBeat('Ebeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
+                <div>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
+                        E — Explode 
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
+                    </h3>
+                    <p class="text-xl font-bold mb-2 uppercase">SALTAR</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Crear</p>
+                    
+                    <img src="img/jump.gif" alt="Explode Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
@@ -233,7 +243,7 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/jump.png" alt="Jump Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
+                    <img src="img/jump.png" alt="Explode Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
         </div>
@@ -309,51 +319,75 @@
     </footer>
 
 <script>
+    /**
+     * Z-DIAL ENGINE: WAVE ENCRYPTION
+     * Sincroniza la telemetría biocinética con el ciclo solar y el protocolo WAVE.
+     */
     function updateZenergiaSystem() {
         const now = new Date();
         const d = now.getDate();
-        const m = now.getMonth() + 1; // Mayo = 5
+        const m = now.getMonth() + 1; // Ene = 1, Mayo = 5
 
-        // Lógica Hexagonal Unificada
-        let protocol = "FS"; // Mayo
-        if (m === 6) protocol = "FSW";
-        if (m >= 7) protocol = "FSWJ";
+        // Lógica de Encriptación WAVE
+        // Mayo (5): AV (Absorb + Verticality)
+        // Junio (6): WAV (Walk + Absorb + Verticality)
+        // Julio+ (7): WAVE (Protocolo Completo)
+        let protocol = "AV"; 
+        if (m === 6) protocol = "WAV";
+        if (m >= 7) protocol = "WAVE";
 
-        const sets = m;
-        const reps = d * 10;
-        const dial = `${sets}${protocol}${reps}`;
+        const sets = m; // Los sets se basan en el mes actual
+        const reps = d * 10; // Las repeticiones se basan en el día del mes
+        const dial = `${sets}${protocol}${reps}`; // Ejemplo: 5AV70
 
-        // 1. Inyectar en el Menú
+        // 1. Sincronización con el Menú (UI Global)
         const menuDial = document.getElementById('z-dial-menu');
         if (menuDial) menuDial.innerText = dial;
 
-        // 2. Inyectar en la Obra Sandwatch (Centro)
+        // 2. Inyectar en el Core del Sandwatch (Centro de la Obra)
         const mainDial = document.getElementById('main-z-dial');
         if (mainDial) mainDial.innerText = dial;
 
-        // 3. Inyectar en el Bitstream de la Base
+        // 3. Bitstream Compacto (Capa de Datos Superior)
         const compactLog = document.getElementById('bitstream-compact');
         if (compactLog) {
-            compactLog.innerText = `[CELL: ${now.toLocaleString('default', { month: 'short' }).toUpperCase()}] [FREQ: ${dial}] [STATUS: SYNCED]`;
+            compactLog.innerText = `[CELL_WAVE: ${now.toLocaleString('default', { month: 'short' }).toUpperCase()}] [FREQ_DIAL: ${dial}] [STATUS: SYNCED]`;
         }
 
-        // 4. Inyectar en el bloque de código final
+        // 4. Consola de Telemetría Biocinética (Bloque de Código)
         const codeBlock = document.getElementById('bitstream-code');
         if (codeBlock) {
             codeBlock.innerHTML = `
 [SYSTEM_STATUS: ACTIVE]
-CURRENT_CELL: ${now.toLocaleString('es-ES', { month: 'short' }).toUpperCase()}
-DIAL_ID: ${dial}
-ACTIVE_PROTOCOL: ${protocol}_CODED
+CURRENT_WAVE_CELL: ${now.toLocaleString('es-ES', { month: 'short' }).toUpperCase()}
+DIAL_ENCRYPTION: ${dial}
+ACTIVE_PROTOCOL: ${protocol}_PROTOCOL_SYNC
 SET_FREQUENCY = ${sets};
 REPS_PER_SET = ${reps};
-RESONANCE_TARGET: 1000Hz;
-CHRONO_GOLDEN_HOUR: 16:00;`;
+RESONANCE_TARGET: WAVE_RESONANCE_1.0;
+CHRONO_GOLDEN_HOUR: 16:00;
+NODE: SANTA_ELENA_ANTIOQUIA;`;
         }
     }
 
-    // Ejecutar al cargar la página
+    // Inicialización del motor Z-Dial al cargar el DOM
     document.addEventListener('DOMContentLoaded', updateZenergiaSystem);
+
+    /**
+     * AUDIO ENGINE: SINGLE INSTANCE CONTROL
+     * Evita el solapamiento de z-Beats durante la ejecución del protocolo.
+     */
+    let activeAudio = null; 
+
+    function playBeat(fileName) {
+        if (activeAudio) {
+            activeAudio.pause();
+            activeAudio.currentTime = 0;
+        }
+        activeAudio = new Audio('img/' + fileName);
+        activeAudio.volume = 0.6;
+        activeAudio.play().catch(e => console.log("Interacción requerida para audio biocinético"));
+    }
 </script>
 </body>
 </html>
