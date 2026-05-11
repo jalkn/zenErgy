@@ -15,10 +15,10 @@
         .text-zenergy-blue { color: #1389d4; }
         .bg-zenergy-blue { background-color: #1389d4; }
         .symbol-img { width: 70px; height: 70px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(19, 137, 212, 0.5)); opacity: 0.9; }
-        .z-box-glow { box-shadow: 0 0 30px rgba(148, 218, 251, 0.1); }
+        .z-strum-glow { box-shadow: 0 0 30px rgba(148, 218, 251, 0.1); }
         
-        /* Drop Wave Animation */
-        @keyframes drop-wave {
+        /* Drop puls Animation */
+        @keyframes drop-puls {
             0% { transform: scale(1); opacity: 0.1; }
             50% { transform: scale(3.5); opacity: 0.5; }
             100% { transform: scale(5); opacity: 0.0; }
@@ -35,8 +35,8 @@
         </div>
         <div class="hidden md:flex space-x-8 text-[9px] uppercase tracking-[0.2em] text-gray-500 items-center">
             <a href="#bioladrillo" class="hover:text-white transition">Z-Brick</a>
-            <a href="#zbox" class="hover:text-white transition">Z-Box</a>
-            <a href="#protocol" class="hover:text-white transition">Protocolo WAVE</a>
+            <a href="#zStrum" class="hover:text-white transition">Z-Strum</a>
+            <a href="#protocol" class="hover:text-white transition">Protocolo PULS</a>
             <a href="#z-dial-sandwatch" class="text-zenergy-blue font-bold border-l border-white/10 pl-6 flex items-center gap-2">
                 <span class="w-2 h-2 bg-zenergy-blue rounded-full animate-ping"></span>
                 Z-DIAL: <span id="z-dial-menu">5AV70</span>
@@ -79,7 +79,7 @@
                 Z-Brick v1.0 // AR Ready
             </div>
             
-            <div class="glass p-2 rounded-[3rem] border border-white/10 shadow-2xl overflow-hidden z-box-glow">
+            <div class="glass p-2 rounded-[3rem] border border-white/10 shadow-2xl overflow-hidden z-strum-glow">
                 <img src="img/Untitled.png" alt="Z-Brick Mycelium Structure" class="rounded-[2.8rem] w-full aspect-square object-cover opacity-80 group-hover:scale-110 transition-transform duration-[2000ms] ease-out">
             </div>
 
@@ -97,30 +97,30 @@
 <section id="z-dial-sandwatch" class="max-w-4xl mx-auto px-6 py-24 text-center">
         <div class="glass rounded-[3rem] border border-zenergy-blue/30 p-12 relative overflow-hidden">
             
-            <!-- Visualización de Resonancia WAVE -->
+            <!-- Visualización de Resonancia PULS -->
             <div class="mb-12">
-                <p class="text-[10px] tracking-[0.4em] text-zenergy-blue uppercase mb-6">Upper Face: WAVE Resonance Pattern</p>
+                <p class="text-[10px] tracking-[0.4em] text-zenergy-blue uppercase mb-6">Upper Face: PULS Resonance Pattern</p>
                 <div class="flex justify-center items-center h-32 relative">
                     <div class="w-8 h-8 rounded-full border border-zenergy-blue bg-zenergy-blue/10 flex items-center justify-center opacity-70">
                         <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
                     </div>
                     <!-- Animación de onda de gota sincronizada con el protocolo -->
-                    <div class="absolute w-20 h-20 rounded-full border-2 border-zenergy-blue animate-[drop-wave_2s_ease-out_infinite]"></div>
+                    <div class="absolute w-20 h-20 rounded-full border-2 border-zenergy-blue animate-[drop-puls_2s_ease-out_infinite]"></div>
                 </div>
             </div>
 
             <!-- Display Dinámico del Z-Dial -->
             <div class="relative z-10">
                 <h2 id="main-z-dial" class="brand-font text-7xl md:text-9xl gradient-text tracking-tighter">5AV70</h2>
-                <p class="text-gray-500 tracking-[0.5em] uppercase text-[10px] mt-4">WAVE Biokinetic Seed</p>
+                <p class="text-gray-500 tracking-[0.5em] uppercase text-[10px] mt-4">PULS Biokinetic Seed</p>
             </div>
 
             <!-- Interfaz de Activación QR y Bitstream -->
             <div class="mt-16 pt-12 border-t border-white/5 flex flex-col items-center">
                 <div class="w-32 h-32 bg-white p-2 rounded-xl mb-6 relative overflow-hidden">
-                    <img src="img/Untit.png" alt="Z-Dial WAVE QR" class="w-full h-full object-cover">
+                    <img src="img/Untit.png" alt="Z-Dial PULS QR" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-[8px] text-center px-2">
-                        SCAN: ACTIVATE WAVE PROTOCOL
+                        SCAN: ACTIVATE PULS PROTOCOL
                     </div>[cite: 18]
                 </div>
                 <!-- Log de sistema compacto (actualizado vía JavaScript) -->
@@ -137,17 +137,17 @@
     
     <section id="protocol" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
         <div class="text-center mb-16">
-            <h2 class="text-3xl mb-2 tracking-tighter uppercase font-black">Protocolo WAVE</h2>
+            <h2 class="text-3xl mb-2 tracking-tighter uppercase font-black">Protocolo PULS</h2>
             <p class="text-zenergy-blue text-[10px] tracking-[0.5em] uppercase font-bold mb-4">Encriptación Biocinética</p>
             <p class="text-sm text-gray-500 font-light tracking-widest uppercase">Sincronizando el pulso humano con la resonancia del micelio</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <!-- W - WALK -->
+            <!-- P - PACE -->
             <div onclick="playBeat('Wbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
-                        W — Walk 
+                        P - Pace
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
                     </h3>
                     <p class="text-xl font-bold mb-2 uppercase">Caminar</p>
@@ -173,7 +173,7 @@
             <div onclick="playBeat('Abeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
-                        A — Absorb 
+                        U — Under
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
                     </h3>
                     <p class="text-xl font-bold mb-2 uppercase">Caer</p>
@@ -199,7 +199,7 @@
             <div onclick="playBeat('Vbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
-                        V — Verticality 
+                        L — Lift 
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
                     </h3>
                     <p class="text-xl font-bold mb-2 uppercase">Levantarse</p>
@@ -225,7 +225,7 @@
             <div onclick="playBeat('Ebeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
-                        E — Explode 
+                        S — Surge 
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
                     </h3>
                     <p class="text-xl font-bold mb-2 uppercase">SALTAR</p>
@@ -249,11 +249,11 @@
         </div>
     </section>
 
-    <section id="zbox" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+    <section id="zStrum" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <div class="order-2 md:order-1 glass p-12 rounded-[3rem] border border-zenergy-blue/10 relative overflow-hidden">
                 <div class="absolute inset-0 bg-zenergy-blue/5 animate-pulse"></div>
-                <h3 class="text-zenergy-blue brand-font text-xs tracking-[0.4em] mb-8 uppercase">Z-Box: Protocolos de Interfaz</h3>
+                <h3 class="text-zenergy-blue brand-font text-xs tracking-[0.4em] mb-8 uppercase">Z-Strum: Protocolos de Interfaz</h3>
                 <div class="space-y-6 relative z-10">
                     <div class="flex gap-4">
                         <div class="w-1 h-12 bg-zenergy-blue"></div>
@@ -282,7 +282,7 @@
             <div class="order-1 md:order-2">
                 <h2 class="text-4xl mb-6 uppercase tracking-tight">Hardware <br><span class="text-zenergy-blue">Asíncrono</span></h2>
                 <p class="text-gray-400 font-light leading-relaxed mb-8">
-                    La Z-Box renuncia a la saturación visual para operar mediante el lenguaje de la frecuencia. Es un bioreactor de manufactura distribuida diseñado para orquestar la unión entre el pulso del planeta y el movimiento del cuerpo.
+                    La Z-Strum renuncia a la saturación visual para operar mediante el lenguaje de la frecuencia. Es un bioreactor de manufactura distribuida diseñado para orquestar la unión entre el pulso del planeta y el movimiento del cuerpo.
                 </p>
                 <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-zenergy-blue/30 text-[10px] tracking-[0.2em] uppercase text-zenergy-blue">
                     <span class="relative flex h-2 w-2">
@@ -297,7 +297,7 @@
 
     <footer class="max-w-6xl mx-auto px-6 py-24 text-center border-t border-white/5">
         <img src="img/logo.png" alt="Zenergia" class="w-8 h-8 mx-auto mb-8 opacity-20">
-        <p class="brand-font text-[9px] text-gray-600 tracking-[0.5em] uppercase mb-6">Zenergia.world &bull; Linking body and planet&bull; 2026</p>
+        <p class="brand-font text-[9px] text-gray-600 tracking-[0.5em] uppercase mb-6">Zenergia.world &bull; Mycelium tech-lab&bull; 2026</p>
         <div class="flex justify-center space-x-12">
             <a href="https://github.com/jalkon" target="_blank" class="text-[10px] text-gray-500 hover:text-zenergy-blue transition tracking-widest uppercase">GitHub</a>
             <a href="#" class="text-[10px] text-gray-500 hover:text-zenergy-blue transition tracking-widest uppercase">Streamlit Lab</a>
@@ -306,21 +306,21 @@
 
 <script>
     /**
-     * Z-DIAL ENGINE: WAVE ENCRYPTION
-     * Sincroniza la telemetría biocinética con el ciclo solar y el protocolo WAVE.
+     * Z-DIAL ENGINE: PULS ENCRYPTION
+     * Sincroniza la telemetría biocinética con el ciclo solar y el protocolo PULS.
      */
     function updateZenergiaSystem() {
         const now = new Date();
         const d = now.getDate();
         const m = now.getMonth() + 1; // Ene = 1, Mayo = 5
 
-        // Lógica de Encriptación WAVE
+        // Lógica de Encriptación PULS
         // Mayo (5): AV (Absorb + Verticality)
         // Junio (6): WAV (Walk + Absorb + Verticality)
-        // Julio+ (7): WAVE (Protocolo Completo)
+        // Julio+ (7): PULS (Protocolo Completo)
         let protocol = "AV"; 
         if (m === 6) protocol = "WAV";
-        if (m >= 7) protocol = "WAVE";
+        if (m >= 7) protocol = "PULS";
 
         const sets = m; // Los sets se basan en el mes actual
         const reps = d * 10; // Las repeticiones se basan en el día del mes
@@ -337,7 +337,7 @@
         // 3. Bitstream Compacto (Capa de Datos Superior)
         const compactLog = document.getElementById('bitstream-compact');
         if (compactLog) {
-            compactLog.innerText = `[CELL_WAVE: ${now.toLocaleString('default', { month: 'short' }).toUpperCase()}] [FREQ_DIAL: ${dial}] [STATUS: SYNCED]`;
+            compactLog.innerText = `[CELL_PULS: ${now.toLocaleString('default', { month: 'short' }).toUpperCase()}] [FREQ_DIAL: ${dial}] [STATUS: SYNCED]`;
         }
 
         // 4. Consola de Telemetría Biocinética (Bloque de Código)
@@ -345,12 +345,12 @@
         if (codeBlock) {
             codeBlock.innerHTML = `
 [SYSTEM_STATUS: ACTIVE]
-CURRENT_WAVE_CELL: ${now.toLocaleString('es-ES', { month: 'short' }).toUpperCase()}
+CURRENT_PULS_CELL: ${now.toLocaleString('es-ES', { month: 'short' }).toUpperCase()}
 DIAL_ENCRYPTION: ${dial}
 ACTIVE_PROTOCOL: ${protocol}_PROTOCOL_SYNC
 SET_FREQUENCY = ${sets};
 REPS_PER_SET = ${reps};
-RESONANCE_TARGET: WAVE_RESONANCE_1.0;
+RESONANCE_TARGET: PULS_RESONANCE_1.0;
 CHRONO_GOLDEN_HOUR: 16:00;
 NODE: SANTA_ELENA_ANTIOQUIA;`;
         }
