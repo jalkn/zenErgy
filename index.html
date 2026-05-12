@@ -68,8 +68,8 @@
                 </div>
             </div>
             <div class="flex items-center gap-10">
-                <a href="#z-brick" class="hover:text-zenergy-blue transition font-medium hidden md:block">Z-BRICK</a>
-                <a href="#protocol" class="hover:text-zenergy-blue transition font-medium hidden md:block">PULS_PROTOCOL</a>
+                <a href="#z-brick" class="hover:text-zenergy-blue transition font-medium hidden md:block">Z_BRICK</a>
+                <a href="#protocol" class="hover:text-zenergy-blue transition font-medium hidden md:block">PULS.PROT</a>
                 <div id="z-dial" class="text-zenergy-blue font-bold cursor-pointer hover:text-white transition border border-zenergy-blue/30 px-4 py-1 rounded-sm" onclick="scrollToDial()">...</div>
             </div>
         </div>
@@ -77,25 +77,38 @@
 
     <main class="max-w-7xl mx-auto px-8 pt-40">
         
-        <section id="z-brick" class="grid md:grid-cols-2 gap-16 items-center min-h-[70vh] py-10">
-            <div class="z-10">
-                <div class="inline-block bg-zenergy-blue/10 border border-zenergy-blue/20 px-4 py-1 rounded-full mb-6">
-                    <span class="text-zenergy-blue text-[9px] font-bold tracking-[0.4em]">SISTEMA DE BIOCONSTRUCCIÓN</span>
-                </div>
-                <h1 class="text-6xl md:text-8xl leading-none mb-8 font-black tracking-[0.1em] text-white uppercase">Z-BRICK</h1>
-                <p class="text-gray-500 max-w-md mb-12 text-[11px] tracking-widest font-light leading-loose uppercase">
-                    Módulos de manufactura distribuida bajo la resonancia del tiempo vertical. Micelio sintetizado con residuos de amero.
-                </p>
-                <div class="flex gap-6">
-                    <button class="bg-zenergy-blue text-white font-black px-12 py-5 rounded-sm text-[10px] tracking-[0.6em] hover:bg-white hover:text-black transition-all duration-500">ACTIVAR_NODO</button>
-                    <button class="border border-white/10 text-white px-12 py-5 rounded-sm text-[10px] tracking-[0.6em] hover:bg-white/5 transition-all uppercase">Documentación</button>
-                </div>
+    <section id="z-brick" class="group/hero grid md:grid-cols-2 gap-16 items-center min-h-[80vh] py-20">
+        <div class="z-10">
+            <div class="inline-block bg-zenergy-blue/10 border border-zenergy-blue/20 px-4 py-1 rounded-full mb-6">
+                <span class="text-zenergy-blue text-[9px] font-bold tracking-[0.4em]">SISTEMA DE BIOCONSTRUCCIÓN</span>
             </div>
-            <div class="relative group">
-                <div class="absolute -inset-4 bg-zenergy-blue/5 blur-3xl group-hover:bg-zenergy-blue/10 transition duration-1000"></div>
-                <img src="img/Untitled.png" class="relative w-full grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition duration-1000 rounded-sm border border-white/10">
+            <h1 class="text-6xl md:text-8xl leading-none mb-8 font-black tracking-[0.1em] text-white uppercase">Z_BRICK</h1>
+            <p class="text-gray-500 max-w-md mb-12 text-[11px] tracking-widest font-light leading-loose uppercase">
+                Módulos de manufactura distribuida bajo la resonancia del tiempo vertical. Micelio sintetizado con residuos de amero.
+            </p>
+            
+            <div class="flex gap-6">
+                <button class="peer/btn-active bg-zenergy-blue text-white font-black px-12 py-5 rounded-sm text-[10px] tracking-[0.6em] hover:bg-white hover:text-black transition-all duration-500 uppercase">
+                    ACTIVAR NODO
+                </button>
+                <button class="border border-white/10 text-white px-12 py-5 rounded-sm text-[10px] tracking-[0.6em] hover:bg-white/5 transition-all uppercase">
+                    Documentación
+                </button>
             </div>
-        </section>
+        </div>
+
+        <div class="relative flex justify-center items-center">
+            <div class="absolute inset-0 bg-zenergy-blue/10 blur-[120px] rounded-full opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000"></div>
+            
+            <div class="relative w-full max-w-[70%] overflow-visible">
+                <img src="img/Untitled.png" 
+                    alt="Z-Brick Mycelium"
+                    class="w-full h-auto grayscale opacity-30 scale-75 
+                            transition-all duration-[1000ms] ease-out
+                            group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-110">
+            </div>
+        </div>
+    </section>
 
         <section id="protocol" class="py-32 border-t border-white/5">
             <div class="text-center mb-24">
@@ -237,6 +250,61 @@
         const $ = (id) => document.getElementById(id);
         let currentZAudio = null;
 
+        // CONSTANTES DE RESONANCIA
+        const PHI = 1.618033;
+
+        /**
+        * MOTOR DE TELEMETRÍA ZENERGIA
+        * Calcula: [Sets] [Protocolo] [Reps]
+        * Basado en Fusión Áurea y Posición Solar
+        */
+        const calculateZResonance = () => {
+            const now = new Date();
+            const h = now.getHours();
+            const m = now.getMinutes();
+            const d = now.getDate();
+
+            // 1. ÁNGULO SOLAR (Posición del sol en grados)
+            const sunAngle = (h * 15) + (m * 0.25); 
+
+            // 2. FASES DEL PROTOCOLO (Dependiente del Sol)
+            let phase = 'ULS';
+            if (sunAngle >= 90 && sunAngle < 255) phase = 'PSL';
+            else if (sunAngle >= 255 || sunAngle < 90) phase = 'SU';
+
+            // 3. SETS (Factor Lunar Áureo)
+            const sets = Math.floor((d * PHI) % 28);
+
+            // 4. REPETICIONES (Ángulo de Acción + Condición de 2 dígitos)
+            let actionAngle = Math.abs(180 - sunAngle).toFixed(0);
+            let reps = actionAngle.toString();
+
+            // REGLA CRÍTICA: Si tiene más de 2 dígitos, eliminamos el del centro
+            if (reps.length > 2) {
+                reps = reps[0] + reps[reps.length - 1];
+            }
+
+            return `${sets}${phase}${reps}`;
+        };
+
+        /**
+        * ACTUALIZACIÓN DE INTERFAZ
+        */
+        const updateData = () => {
+            const resonanceValue = calculateZResonance();
+            
+            const zDialElement = $('z-dial');
+            const bigDialElement = $('big-dial');
+
+            if (zDialElement) zDialElement.innerText = resonanceValue;
+            if (bigDialElement) bigDialElement.innerText = resonanceValue;
+            
+            console.log(`Z-SYNC: ${resonanceValue} | PHI_REF: ${PHI}`);
+        };
+
+        /**
+        * SISTEMA DE AUDIO BIOCINÉTICO
+        */
         function playBeat(fileName) {
             if (currentZAudio) {
                 currentZAudio.pause();
@@ -248,25 +316,21 @@
             vibrateDial();
         }
 
-        const updateData = () => {
-            const now = new Date();
-            const h = now.getHours();
-            const d = now.getDate();
-            const phase = h < 11 ? 'SU' : h < 17 ? 'PSL' : 'ULS';
-            const val = `${d % 5 + 3}${phase}${Math.abs(180 - d)}`;
-            if ($('z-dial')) $('z-dial').innerText = val;
-            if ($('big-dial')) $('big-dial').innerText = val;
-        };
-
+        /**
+        * NAVEGACIÓN Y HÁPTICOS
+        */
         const scrollToDial = () => $('dial-monitor').scrollIntoView({ behavior: 'smooth' });
 
         const vibrateDial = () => {
             if (!("vibrate" in navigator)) return;
+            
+            // Patrón rítmico basado en el pulso del sistema
             navigator.vibrate([100, 30, 100]);
         };
 
+        // INICIALIZACIÓN DEL CICLO
         updateData();
-        setInterval(updateData, 60000);
+        setInterval(updateData, 60000); // Sincronización cada minuto
     </script>
 </body>
 </html>
