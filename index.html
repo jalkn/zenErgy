@@ -79,24 +79,50 @@
     <main class="max-w-7xl mx-auto px-8 pt-40">
 
 
-    <section id="seasonal-node" class="py-24 border-t border-white/5">
+    <section id="seasonal-node" class="py-32 border-t border-white/5 bg-[#0a0a0a]">
         <div class="flex flex-col items-center">
-            <div class="mb-12 text-center">
-                <p class="text-zenergy-blue text-[9px] tracking-[0.8em] font-black uppercase mb-2">Active_Cycle: Summer_Solstice_Approach</p>
-                <p class="text-gray-600 text-[8px] tracking-[0.4em] uppercase">Status: Ascending_to_Zenith</p>
+            <div class="mb-20 text-center">
+                <p class="text-zenergy-blue text-[9px] tracking-[0.8em] font-black uppercase mb-4 animate-pulse">
+                    Ciclo_Activo: Rumbo_al_Solsticio_de_Junio
+                </p>
+                <p class="text-gray-600 text-[8px] tracking-[0.4em] uppercase">
+                    Estado del Organismo: Ascenso_hacia_el_Cénit
+                </p>
             </div>
 
-            <div class="relative w-80 h-80 group">
-                <svg viewBox="0 0 100 100" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
-                    <path d="M50 5 L90 35 L75 85 L25 85 L10 35 Z" class="stroke-zenergy-blue/10" />
+            <div class="relative w-96 h-[500px] group flex justify-center items-center">
+                <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
+                    <path d="M50 10 L90 45 L75 110 L25 110 L10 45 Z" class="stroke-zenergy-blue/5 transition-all duration-[3s] group-hover:stroke-zenergy-blue/20" />
                     
-                    <line x1="50" y1="85" x2="50" y2="15" class="stroke-zenergy-blue opacity-30 group-hover:opacity-100 transition-opacity duration-[2s]" />
-                    <path d="M10 35 Q50 45 90 35" class="stroke-zenergy-blue/40 group-hover:stroke-zenergy-blue transition-all duration-[2s]" />
+                    <line x1="50" y1="130" x2="50" y2="20" class="stroke-zenergy-blue/30 group-hover:stroke-zenergy-blue transition-all duration-[2s]" stroke-dasharray="2 2" />
                     
-                    <circle cx="50" cy="85" r="1.5" class="fill-zenergy-blue animate-pulse" /> <circle cx="50" cy="15" r="1.5" class="fill-zenergy-blue/20" /> </svg>
+                    <path d="M20 110 Q50 115 80 110" class="stroke-white/10" /> <path d="M15 65 Q50 70 85 65" class="stroke-zenergy-blue/40 group-hover:stroke-zenergy-blue transition-all duration-[2s]" /> <circle cx="50" cy="130" r="2" class="fill-zenergy-blue animate-pulse" /> <circle cx="50" cy="65" r="1.5" class="fill-zenergy-blue/40" /> <circle cx="50" cy="20" r="2" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> </svg>
                 
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 text-[7px] text-zenergy-blue/50 tracking-[0.5em] font-bold">ZENITH_90°</div>
-                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-[7px] text-zenergy-blue/50 tracking-[0.5em] font-bold">ROOT_ST_ELENA</div>
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                    <span class="text-[8px] text-white tracking-[0.8em] font-black uppercase">Cénit</span>
+                    <span class="text-[6px] text-zenergy-blue/50 tracking-[0.4em] mt-1 uppercase">Máxima_Expansión</span>
+                </div>
+
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <span class="text-[8px] text-zenergy-blue tracking-[0.8em] font-black uppercase">Cristalización</span>
+                    <span class="text-[6px] text-gray-600 tracking-[0.4em] mt-1 uppercase">Transformación_Materia</span>
+                </div>
+
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                    <span class="text-[8px] text-gray-500 tracking-[0.8em] font-black uppercase">Origen</span>
+                    <span class="text-[6px] text-zenergy-blue/30 tracking-[0.4em] mt-1 uppercase">Raíz_Santa_Elena</span>
+                </div>
+
+                <div class="absolute right-0 top-1/4 h-1/2 border-r border-white/5 pr-4 flex flex-col justify-center gap-8">
+                    <div class="text-right">
+                        <p class="text-[7px] text-gray-700 tracking-[0.3em] uppercase">Fase_Solar</p>
+                        <p class="text-[9px] text-zenergy-blue font-bold">Ascendente</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[7px] text-gray-700 tracking-[0.3em] uppercase">Densidad_Bio</p>
+                        <p class="text-[9px] text-zenergy-blue font-bold">Concentrada</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
