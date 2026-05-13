@@ -3,55 +3,50 @@
 Orquestamos la transición hacia una arquitectura regenerativa mediante la producción de materiales vivos y validación biocinética por resonancia. 
 
 ## 🧬 Protocolo PULS: Verticalidad del Tiempo
-El sistema elimina la dependencia de pantallas para priorizar el feedback háptico y sonoro. El tiempo se mide en columnas de profundidad (Verticalidad) y se sincroniza con el Sol y la Luna:
+El sistema elimina la dependencia de pantallas convencionales para priorizar el feedback háptico y sonoro. El tiempo no es una línea, sino una columna de frecuencia sincronizada con los ciclos astronómicos:
 
-- **Sets (Fibonacci Lunar):** El volumen de trabajo fluctúa con la iluminación de la luna.
-- **Acciones (Fusión Áurea):** Combinaciones de movimientos (P, U, L, S) generadas por la posición solar y la proporción áurea.
+- **Sets (Fibonacci Lunar):** El volumen de trabajo fluctúa según la iluminación de la luna.
+- **Acciones (Fusión Áurea):** Verbos de acción pura (P, U, L, S) generados por la posición solar y la proporción áurea.
 - **Reps (Deriva Solar):** El ángulo del sol restado al día del mes genera la vibración específica de la sesión.
 
 ## 🏗️ La Filarmónica Zenergia
 1. **Z-Strum (El Instrumento):** Hardware de cultivo (Bioreactor) donde la materia orgánica resuena.
-2. **Z-Pulse (El Metrónomo):** Interfaz háptica para watchOS que marca el ritmo del protocolo PULS.
-3. **Z-Brick (La Obra):** Hardware biológico cristalizado y validado.
+2. **Z-Pulse (El Metrónomo):** Interfaz háptica que marca el ritmo del protocolo biocinético.
+3. **Z-Brick (La Obra):** Hardware biológico cristalizado, validado y listo para la bioconstrucción.
 
 ---
 
-## 🧠 System Architecture & Conceptual Maps
+## 🧠 System Architecture: El Organismo de Resonancia
 
-### 1. Resonance Organism (System Dynamics)
-Zenergia breathes through a continuous feedback loop between astronomical data, human movement, and biological growth.
+### 1. Protocolo de Encriptación Biocinética (_PULS)
+Basado en el **Principio de Verticalidad**, el movimiento humano se traduce en metadatos para la afinación del micelio. Cada esfera de movimiento tiene una intención poética y técnica:
 
-* **Inflow:** Astronomical positions, Z-Box telemetry, agricultural residues, and mycelium strains.
-* **Processing:** Biokinetic validation via the WAVE protocol and resonance tuning through Z-ARPA.
-* **Outflow:** Validated Z-Bricks, zenBeats (generative audio), and global node activation via Zenergia.world.
+* **P_CAMINAR (Pace):** Ritmo base y progreso lineal. 
+    * *Alternativas:* **Impulso, Surco, Vibración.**
+* **U_CAER (Under):** Inmersión y profundidad. 
+    * *Alternativas:* **Empuje, Raíz, Equilibrio.**
+* **L_LEVANTARSE (Lift):** Resiliencia y retorno al eje. 
+    * *Alternativas:* **Ascenso, Núcleo, Tensión.**
+* **S_SALTAR (Surge):** Explosión y expansión del nodo. 
+    * *Alternativas:* **Carga, Proyección, Destello.**
 
-### 2. WAVE Protocol (Biokinetic Encryption)
-The system is built upon the **Verticality Principle**, where time is a depth of frequency.
+### 2. Flujo de Datos (Feedback Loop)
+Zenergia respira a través de un ciclo continuo entre datos astronómicos, movimiento humano y crecimiento biológico:
 
-* **W (Walk/Pace):** Base rhythm and progression.
-* **A (Absorb/Under):** Depth and immersion.
-* **V (Verticality/Lift):** Resilience and elevation.
-* **E (Explode/Surge):** Power and creation.
-
-### 3. Database Schema (Resonance Lineage)
-Every physical manifestation is recorded as a "living record" in a JSON/Graph architecture.
-
-| Registry | Key Metrics | Purpose |
-| :--- | :--- | :--- |
-| `z-brick-registry` | UUID, Lineage, Substrate, Dial Status | Tracks the biological origin and resonance at inoculation. |
-| `environmental-logs` | Temp, Humidity, CO2, Frequency | Real-time Z-Box telemetry. |
-| `biokinetic-audits` | Audit Score, Protocol Ver, Validation Hash | Ensures alignment with the Golden Ratio via Z-ARPA. |
+* **Inflow (Absorción):** Posiciones astronómicas, telemetría de la Z-Box y sustratos de amero.
+* **Processing (Cristalización):** Validación biocinética vía protocolo PULS y auditoría de resonancia mediante **Z-ARPA**.
+* **Outflow (Manifestación):** Z-Bricks validados, **zenBeats** (audio generativo) y activación de nodos globales.
 
 ---
 
 ### 🛡️ Z-ARPA (Director & Auditor)
-*Automatización Robótica de Procesos de Auditoría.* Z-ARPA is the intelligent log (Streamlit App) that supervises the biological lineage: from strain cloning to the final density of the Z-Brick. If it does not pass the ARPA audit, the instrument is not tuned.
+*Automatización Robótica de Procesos de Auditoría.* Z-ARPA es la bitácora inteligente (Streamlit App) que supervisa el linaje biológico. Si el movimiento humano (resonancia) no alcanza el umbral de validación, el instrumento no se considera "afinado" y el material se recicla en el flujo inicial.
 
 ---
 
 ### 🛠️ Technical Symmetry
-* **Backend:** Operates in `zCamelCase` for scientific and code rigor.
-* **Frontend:** Communicates in `Z_UPPER_CASE` for manifesto and impact.
+* **Backend (`zarpa.py`):** Lógica científica en `zCamelCase` para auditoría de base de datos.
+* **Frontend (`index.html`):** Manifiesto visual en `Z_UPPER_CASE` para máxima resonancia y claridad.
 
 ---
-**ZENERGIA MYCELIUM TECH-LAB // ANTIOQUIA_COL // 2026**
+**ZENERGIA MYCELIUM TECH-LAB // SANTA ELENA, ANTIOQUIA // 2026**
