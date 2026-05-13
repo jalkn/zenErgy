@@ -109,91 +109,105 @@
             </div>
         </div>
     </section>
-
-        <section id="protocol" class="py-32 border-t border-white/5">
-            <div class="text-center mb-24">
-                <h2 class="text-5xl mb-6 tracking-widest uppercase font-black text-white">PROTO_PULSOR</h2>
-                <p class="text-zenergy-blue text-[10px] tracking-[1em] uppercase font-bold mb-4">Protocolo de Encriptación Biocinética _PULS</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">P_PACE</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caminar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Exhala / Tensión</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> RUN_SPRINT</li>
-                                <li>> LUNGES</li>
-                                <li>> JUMPING_LUNGES</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Pbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/pace.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
-                    </div>
+    <section id="protocol" class="py-32 border-t border-white/5">
+                <div class="text-center mb-24">
+                    <h2 class="text-5xl mb-6 tracking-widest uppercase font-black text-white">PROTO_PULSOR</h2>
+                    <p class="text-zenergy-blue text-[10px] tracking-[1em] uppercase font-bold mb-4">Protocolo de Encriptación Biocinética _PULS</p>
                 </div>
 
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">U_UNDER</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caer</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Inhala / Inmersión</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> PUSH_UP</li>
-                                <li>> BEAR_CRAWL</li>
-                                <li>> SHOULDER_TAP</li>
-                            </ul>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                        <div>
+                            <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">P_PACE</h3>
+                            <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caminar</p>
+                            <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Exhala / Tensión</p>
+                            <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
+                                <img src="img/pace.gif" class="w-full h-full object-cover">
+                            </div>
+                            <div class="mt-8 border-t border-white/5 pt-6">
+                                <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
+                                    <li>> RUN_SPRINT</li>
+                                    <li>> LUNGES</li>
+                                    <li>> JUMPING_LUNGES</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div onclick="playBeat('img/Pbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                            <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                            <img src="img/pace.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Ubeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/under.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
-                    </div>
-                </div>
 
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">L_LIFT</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Levantarse</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Resiliencia / Vertical</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> BURPEES</li>
-                                <li>> SIT_UPS</li>
-                                <li>> PLANK_HOLD</li>
-                            </ul>
+                    <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                        <div>
+                            <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">U_UNDER</h3>
+                            <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caer</p>
+                            <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Inhala / Inmersión</p>
+                            <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
+                                <img src="img/under.gif" class="w-full h-full object-cover">
+                            </div>
+                            <div class="mt-8 border-t border-white/5 pt-6">
+                                <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
+                                    <li>> PUSH_UP</li>
+                                    <li>> BEAR_CRAWL</li>
+                                    <li>> SHOULDER_TAP</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div onclick="playBeat('img/Ubeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                            <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                            <img src="img/under.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Lbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/lift.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
-                    </div>
-                </div>
 
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">S_SURGE</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Saltar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Explosión / Creación</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> JUMPING_SQUATS</li>
-                                <li>> BROAD_JUMP</li>
-                                <li>> DOUBLE_UNDERS</li>
-                            </ul>
+                    <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                        <div>
+                            <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">L_LIFT</h3>
+                            <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Levantarse</p>
+                            <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Resiliencia / Vertical</p>
+                            <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
+                                <img src="img/lift.gif" class="w-full h-full object-cover">
+                            </div>
+                            <div class="mt-8 border-t border-white/5 pt-6">
+                                <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
+                                    <li>> BURPEES</li>
+                                    <li>> SIT_UPS</li>
+                                    <li>> PLANK_HOLD</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div onclick="playBeat('img/Lbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                            <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                            <img src="img/lift.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Sbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/surge.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+
+                    <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                        <div>
+                            <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">S_SURGE</h3>
+                            <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Saltar</p>
+                            <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Explosión / Creación</p>
+                            <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
+                                <img src="img/surge.gif" class="w-full h-full object-cover">
+                            </div>
+                            <div class="mt-8 border-t border-white/5 pt-6">
+                                <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
+                                    <li>> JUMPING_SQUATS</li>
+                                    <li>> BROAD_JUMP</li>
+                                    <li>> DOUBLE_UNDERS</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div onclick="playBeat('img/Sbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                            <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                            <img src="img/surge.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+        <section id="dial-monitor" class="py-60 flex flex-col items-center relative overflow-hidden">
+
         <section id="dial-monitor" class="min-h-[40vh] flex flex-col items-center justify-center relative">
             <div class="relative z-10 flex flex-col items-center group w-full px-4">
                 <div id="big-dial" 
