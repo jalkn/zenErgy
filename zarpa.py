@@ -74,7 +74,7 @@ if module_select == "Substrate Audit (Amero)":
             st.success(f"Substrate Audit Logged: {batch_id}")
 
 elif module_select == "Media Formulation (Agar)":
-    st.header("🧬 Media Formulation: Multi-Container Allocation")
+    st.header("🧬 Media Formulation: Thermal Control Check")
     with st.form("agar_entry"):
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -86,8 +86,8 @@ elif module_select == "Media Formulation (Agar)":
             honey_mass = st.number_input("Pure Honey Mass (g)", value=12.0)
             chlorella_mass = st.number_input("Chlorella Powder Mass (g)", value=2.4)
         with col3:
-            container_count = st.number_input("Number of Jars", value=3)
-            vol_per_container = st.number_input("Volume per Jar (ml)", value=200.0)
+            boil_time_mins = st.number_input("Agar Boil Time (Minutes)", value=1.5, step=0.5)
+            chlorella_mix_temp = st.number_input("Chlorella Addition Temp (°C)", value=60.0, step=1.0)
             target_strain = st.text_input("Target Strain Lineage", value="Reishi")
 
         col4, col5 = st.columns(2)
@@ -96,9 +96,13 @@ elif module_select == "Media Formulation (Agar)":
         with col5:
             sterilization_psi = st.number_input("Sterilization Pressure (PSI)", value=15.0)
 
-        notes = st.text_area("Media Prep Notes (Jar type, lid filters, or autoclave arrangement)")
+        notes = st.text_area("Media Prep Notes (Consistency observations, optical clarity after mix)")
         
         if st.form_submit_button("Log Media Batch"):
+            # Scientific Validation Rules
+            temp_safeguard = "SAFE" if chlorella_mix_temp <= 65.0 else "NUTRIENT_DENATURED_RISK"
+            boil_safeguard = "PASSED" if boil_time_mins >= 1.0 else "UNDER_POLYMERIZED"
+            
             entry = {
                 "timestamp": datetime.now().isoformat(),
                 "type": "MEDIA",
@@ -108,15 +112,17 @@ elif module_select == "Media Formulation (Agar)":
                 "agar_g": agar_mass,
                 "honey_g": honey_mass,
                 "chlorella_g": chlorella_mass,
-                "containers": container_count,
-                "vol_per_container_ml": vol_per_container,
+                "boil_duration_min": boil_time_mins,
+                "mix_temp_c": chlorella_mix_temp,
                 "psi": sterilization_psi,
                 "duration_min": sterilization_time,
                 "strain": target_strain,
-                "status": "STERILIZED_READY"
+                "thermal_status": temp_safeguard,
+                "polymer_status": boil_safeguard,
+                "status": "STERILIZED_READY" if temp_safeguard == "SAFE" and boil_safeguard == "PASSED" else "BATCH_WARN"
             }
             save_log(entry)
-            st.success(f"Successfully logged {container_count} jars ({vol_per_container}ml each) under Batch: {media_id}")
+            st.success(f"Logged Batch {media_id}. Thermal Safeguard: {temp_safeguard} | Polymerization: {boil_safeguard}")
 
 db = load_data()
 if db:
