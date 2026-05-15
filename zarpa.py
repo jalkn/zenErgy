@@ -4,7 +4,6 @@ import os
 import pandas as pd
 from datetime import datetime
 
-# Technical Configuration
 st.set_page_config(page_title="Z-ARPA | Lab Auditor", page_icon="🛡️", layout="wide")
 
 def load_data():
@@ -21,51 +20,55 @@ def save_log(entry):
         json.dump(db, f, indent=4)
 
 st.title("🛡️ Z-ARPA: Laboratory & Resonance Auditor")
+st.header("🔬 Substrate Audit: Solar & Thermal Technification")
 
-st.header("🔬 Substrate Audit: Amero Technification")
 with st.form("lab_entry"):
     col1, col2, col3 = st.columns(3)
     with col1:
         batch_id = st.text_input("Batch ID", value=f"AMERO_{datetime.now().strftime('%m%d_%H%M')}")
-        source = st.text_input("Material Source", help="Where was this amero recycled from?")
+        dry_method = st.selectbox("Dehydration Method", ["Direct Solar", "Controlled Thermal (35°C)", "Hybrid"])
         wet_weight = st.number_input("Initial Wet Weight (g)", min_value=0.0)
     with col2:
-        moisture_start = st.number_input("Initial Moisture (%)", min_value=0.0)
-        fiber_type = st.selectbox("Fiber Orientation", ["Longitudinal", "Fragmented", "Dust"])
-        dry_weight = st.number_input("Final Dry Weight (g)", min_value=0.0, help="Fill this after the drying cycle")
+        initial_width = st.number_input("Fresh Slice Width (cm)", value=1.5, help="Width of the strip before drying")
+        fiber_type = st.selectbox("Target Orientation", ["Longitudinal", "Fragmented Grid"])
+        dry_weight = st.number_input("Final Dry Weight (g)", min_value=0.0)
     with col3:
         active_dial = st.text_input("Z-Dial Resonance")
         resonance_root = st.number_input("Daily Root", min_value=1, max_value=9)
-        drying_temp = st.number_input("Drying Temp (°C)", value=35.0)
+        est_moisture = st.number_input("Estimated Final Moisture (%)", value=12.0)
 
-    uploaded_file = st.file_uploader("Attach Substrate Photo", type=['jpg', 'jpeg', 'png'])
-    notes = st.text_area("Observations (Lignin state / Ambient Humidity / Color)")
+    uploaded_file = st.file_uploader("Upload Substrate State Image", type=['jpg', 'jpeg', 'png'])
+    notes = st.text_area("Observations (Shrinkage rate, fiber brittleness scale 1-5, cloud cover context)")
     
-    if st.form_submit_button("Audit & Validate Batch"):
+    if st.form_submit_button("Log Substrate Metrics"):
         img_path = f"data/img/{batch_id}.jpg" if uploaded_file else "None"
         if uploaded_file:
             if not os.path.exists('data/img'): os.makedirs('data/img')
             with open(img_path, "wb") as f: f.write(uploaded_file.getbuffer())
 
+        # Data Science Metrics Calculations
+        weight_loss = wet_weight - dry_weight if dry_weight > 0 else 0
+        
         entry = {
             "timestamp": datetime.now().isoformat(),
             "batch_id": batch_id,
-            "source": source,
+            "method": dry_method,
+            "fresh_width_cm": initial_width,
             "wet_weight_g": wet_weight,
             "dry_weight_g": dry_weight,
-            "moisture_pct": moisture_start,
-            "temp_c": drying_temp,
+            "water_lost_g": weight_loss,
+            "moisture_pct": est_moisture,
             "fiber": fiber_type,
             "resonance": active_dial,
             "root": resonance_root,
             "image_ref": img_path,
-            "status": "DRY_VALIDATED" if dry_weight > 0 and moisture_start < 15.0 else "DEHYDRATING"
+            "status": "READY_FOR_AGAR" if est_moisture <= 15.0 and dry_weight > 0 else "DEHYDRATING"
         }
         save_log(entry)
-        st.success(f"Audit Complete: {batch_id} logged. Status: {entry['status']}")
+        st.success(f"Batch {batch_id} logged via {dry_method}. Status: {entry['status']}")
 
-# System History
+# Render History Pipeline
 db = load_data()
 if db:
-    st.subheader("📜 Resonance Lineage & Substrate History")
+    st.subheader("📜 Material Lineage Ledger")
     st.dataframe(pd.DataFrame(db).sort_values(by="timestamp", ascending=False), use_container_width=True)
