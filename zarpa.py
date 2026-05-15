@@ -21,7 +21,6 @@ def save_log(entry):
 
 st.title("🛡️ Z-ARPA: Laboratory & Resonance Auditor")
 
-# --- Form Selection Switcher ---
 module_select = st.sidebar.radio("Select Active Module", ["Substrate Audit (Amero)", "Media Formulation (Agar)"])
 
 if module_select == "Substrate Audit (Amero)":
@@ -75,23 +74,29 @@ if module_select == "Substrate Audit (Amero)":
             st.success(f"Substrate Audit Logged: {batch_id}")
 
 elif module_select == "Media Formulation (Agar)":
-    st.header("🧬 Media Formulation: Phototrophic Cloning Core")
+    st.header("🧬 Media Formulation: Multi-Container Allocation")
     with st.form("agar_entry"):
         col1, col2, col3 = st.columns(3)
         with col1:
             media_id = st.text_input("Media Batch ID", value=f"AGAR_{datetime.now().strftime('%m%d_%H%M')}")
             water_source = st.selectbox("Water Base Source", ["Pure Distilled", "Amero Decoction Extract", "Filtered Spring"])
-            water_volume = st.number_input("Water Volume (ml)", value=500.0)
+            water_volume = st.number_input("Total Water Volume (ml)", value=600.0)
         with col2:
-            agar_mass = st.number_input("Agar-Agar Mass (g)", value=10.0)
-            honey_mass = st.number_input("Pure Honey Mass (g)", value=10.0)
-            chlorella_mass = st.number_input("Chlorella Powder Mass (g)", value=2.0)
+            agar_mass = st.number_input("Agar-Agar Mass (g)", value=12.0)
+            honey_mass = st.number_input("Pure Honey Mass (g)", value=12.0)
+            chlorella_mass = st.number_input("Chlorella Powder Mass (g)", value=2.4)
         with col3:
-            sterilization_time = st.number_input("Sterilization Duration (mins)", value=20)
-            sterilization_psi = st.number_input("Sterilization Pressure (PSI)", value=15.0)
-            target_strain = st.text_input("Target Mushroom Strain Lineage", value="Reishi")
+            container_count = st.number_input("Number of Jars", value=3)
+            vol_per_container = st.number_input("Volume per Jar (ml)", value=200.0)
+            target_strain = st.text_input("Target Strain Lineage", value="Reishi")
 
-        notes = st.text_area("Media Prep Observations (Gel consistency, optical clarity comments)")
+        col4, col5 = st.columns(2)
+        with col4:
+            sterilization_time = st.number_input("Sterilization Duration (mins)", value=20)
+        with col5:
+            sterilization_psi = st.number_input("Sterilization Pressure (PSI)", value=15.0)
+
+        notes = st.text_area("Media Prep Notes (Jar type, lid filters, or autoclave arrangement)")
         
         if st.form_submit_button("Log Media Batch"):
             entry = {
@@ -103,15 +108,16 @@ elif module_select == "Media Formulation (Agar)":
                 "agar_g": agar_mass,
                 "honey_g": honey_mass,
                 "chlorella_g": chlorella_mass,
+                "containers": container_count,
+                "vol_per_container_ml": vol_per_container,
                 "psi": sterilization_psi,
                 "duration_min": sterilization_time,
                 "strain": target_strain,
                 "status": "STERILIZED_READY"
             }
             save_log(entry)
-            st.success(f"Media Formulation Logged: {media_id}. Plates ready for inoculation matrix.")
+            st.success(f"Successfully logged {container_count} jars ({vol_per_container}ml each) under Batch: {media_id}")
 
-# Unified Data Engine Render
 db = load_data()
 if db:
     st.subheader("📜 Comprehensive Laboratory Ledger")
