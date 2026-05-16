@@ -4,7 +4,17 @@ import os
 import pandas as pd
 from datetime import datetime
 
+# Technical Configuration for Scientific Rigor
 st.set_page_config(page_title="Z-ARPA | Lab Auditor", page_icon="🛡️", layout="wide")
+
+st.markdown("""
+    <style>
+    body { background-color: #0a0a0a; color: #f4f4f4; }
+    .stMetric { border-bottom: 1px solid #3b82f6; }
+    </style>
+    """, unsafe_allow_html=True)
+
+st.title("🛡️ Z-ARPA: Laboratory & Resonance Auditor")
 
 def load_data():
     path = 'data/zenergia_db.json'
@@ -19,8 +29,7 @@ def save_log(entry):
     with open('data/zenergia_db.json', 'w') as f:
         json.dump(db, f, indent=4)
 
-st.title("🛡️ Z-ARPA: Laboratory & Resonance Auditor")
-
+# --- Navigation Architecture ---
 module_select = st.sidebar.radio("Select Active Module", ["Substrate Audit (Amero)", "Media Formulation (Agar)"])
 
 if module_select == "Substrate Audit (Amero)":
@@ -42,11 +51,13 @@ if module_select == "Substrate Audit (Amero)":
 
         uploaded_file = st.file_uploader("Upload Substrate Quality Photo", type=['jpg', 'jpeg', 'png'])
         contamination_risk = st.select_slider("Observed Raw Contamination Hazard", options=["None", "Low", "Medium", "High"])
-        notes = st.text_area("Observations")
+        notes = st.text_area("Observations (Sack status, leaf stains, cloud index)")
         
         if st.form_submit_button("Execute Quality Audit"):
             img_path = f"data/img/{batch_id}.jpg" if uploaded_file else "None"
             if uploaded_file and not os.path.exists('data/img'): os.makedirs('data/img')
+            if uploaded_file:
+                with open(img_path, "wb") as f: f.write(uploaded_file.getbuffer())
             
             total_processed = useful_dry_weight + rejected_weight
             rejection_rate = (rejected_weight / total_processed * 100) if total_processed > 0 else 0.0
@@ -71,10 +82,13 @@ if module_select == "Substrate Audit (Amero)":
                 "status": "QC_PASSED" if est_moisture <= 15.0 and rejection_rate < 30.0 else "QC_WARNING"
             }
             save_log(entry)
-            st.success(f"Substrate Audit Logged: {batch_id}")
+            st.success(f"Substrate Audit Logged: {batch_id} ({efficiency}% Clean Yield)")
 
 elif module_select == "Media Formulation (Agar)":
-    st.header("🧬 Media Formulation: Thermal Control Check")
+    st.header("🧬 Media Formulation & Batch Rectification")
+    
+    is_rectification = st.checkbox("Is this a Batch Rectification? (Re-cooking a liquid agar error)")
+    
     with st.form("agar_entry"):
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -82,48 +96,50 @@ elif module_select == "Media Formulation (Agar)":
             water_source = st.selectbox("Water Base Source", ["Pure Distilled", "Amero Decoction Extract", "Filtered Spring"])
             water_volume = st.number_input("Total Water Volume (ml)", value=600.0)
         with col2:
-            agar_mass = st.number_input("Agar-Agar Mass (g)", value=12.0)
-            honey_mass = st.number_input("Pure Honey Mass (g)", value=12.0)
-            chlorella_mass = st.number_input("Chlorella Powder Mass (g)", value=2.4)
+            agar_mass = st.number_input("Agar-Agar Mass Added (g)", value=12.0 if not is_rectification else 7.0)
+            honey_mass = st.number_input("Pure Honey Mass (g)", value=12.0 if not is_rectification else 0.0)
+            chlorella_mass = st.number_input("Chlorella Powder Mass (g)", value=2.4 if not is_rectification else 0.0)
         with col3:
-            boil_time_mins = st.number_input("Agar Boil Time (Minutes)", value=1.5, step=0.5)
-            chlorella_mix_temp = st.number_input("Chlorella Addition Temp (°C)", value=60.0, step=1.0)
+            container_count = st.number_input("Number of Jars", value=3)
+            vol_per_container = st.number_input("Volume per Jar (ml)", value=200.0)
             target_strain = st.text_input("Target Strain Lineage", value="Reishi")
 
         col4, col5 = st.columns(2)
         with col4:
-            sterilization_time = st.number_input("Sterilization Duration (mins)", value=20)
+            sterilization_time = st.number_input("Sterilization Duration (mins)", value=20 if not is_rectification else 15)
+            parent_batch_error = st.text_input("Parent Batch ID (If rectification)", value="None")
         with col5:
             sterilization_psi = st.number_input("Sterilization Pressure (PSI)", value=15.0)
+            chlorella_mix_temp = st.number_input("Chlorella Addition Temp (°C)", value=60.0)
 
-        notes = st.text_area("Media Prep Notes (Consistency observations, optical clarity after mix)")
+        notes = st.text_area("Media Prep Notes (Agar correction notes or consistency shifts)")
         
-        if st.form_submit_button("Log Media Batch"):
-            # Scientific Validation Rules
+        if st.form_submit_button("Log Media Metrics"):
             temp_safeguard = "SAFE" if chlorella_mix_temp <= 65.0 else "NUTRIENT_DENATURED_RISK"
-            boil_safeguard = "PASSED" if boil_time_mins >= 1.0 else "UNDER_POLYMERIZED"
             
             entry = {
                 "timestamp": datetime.now().isoformat(),
-                "type": "MEDIA",
+                "type": "MEDIA_RECTIFIED" if is_rectification else "MEDIA_BASE",
                 "batch_id": media_id,
+                "parent_batch": parent_batch_error,
                 "water_source": water_source,
                 "water_vol_ml": water_volume,
                 "agar_g": agar_mass,
                 "honey_g": honey_mass,
                 "chlorella_g": chlorella_mass,
-                "boil_duration_min": boil_time_mins,
-                "mix_temp_c": chlorella_mix_temp,
+                "containers": container_count,
+                "vol_per_container_ml": vol_per_container,
                 "psi": sterilization_psi,
                 "duration_min": sterilization_time,
                 "strain": target_strain,
+                "mix_temp_c": chlorella_mix_temp,
                 "thermal_status": temp_safeguard,
-                "polymer_status": boil_safeguard,
-                "status": "STERILIZED_READY" if temp_safeguard == "SAFE" and boil_safeguard == "PASSED" else "BATCH_WARN"
+                "status": "RECTIFIED_AND_STERILIZED" if is_rectification else "STERILIZED_READY"
             }
             save_log(entry)
-            st.success(f"Logged Batch {media_id}. Thermal Safeguard: {temp_safeguard} | Polymerization: {boil_safeguard}")
+            st.success(f"Logged Batch {media_id}. Status: {entry['status']} | Safeguard: {temp_safeguard}")
 
+# --- Unified Data Engine View ---
 db = load_data()
 if db:
     st.subheader("📜 Comprehensive Laboratory Ledger")
