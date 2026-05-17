@@ -196,7 +196,7 @@
         </section>
 
         <section id="protocol" class="py-24 border-t border-white/5">
-            <div class="text-center mb-16 px-6">
+            <div class="text-center mb-16 px-6 select-none">
                 <h2 class="text-2xl sm:text-3xl md:text-5xl mb-4 tracking-[0.3em] sm:tracking-[0.5em] md:tracking-[0.4em] uppercase font-black text-white leading-tight">
                     PULSOR
                 </h2>
@@ -207,79 +207,87 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
                 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">p_pace</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">caminar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">exhala / tránsito</p>
-                        <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">p_pace</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-tighter text-white normal-case">caminar</p>
+                        <p class="text-[8px] text-gray-500 tracking-[0.3em] normal-case">exhala // tránsito</p>
+                        <div class="mt-4 border-t border-white/5 pt-4">
+                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
                                 <li>> impulso</li>
                                 <li>> surco</li>
                                 <li>> vibración</li>
                             </ul>
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Pbeat.wav')" class="mt-6 flex flex-col items-center gap-3 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[7px] text-zenergy-blue tracking-[0.4em] font-black">SYNC_AUDIO</span>
-                        <img src="img/pace.png" class="w-6 md:w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                    <div onclick="playBeat('img/Pbeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
+                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
+                            [ cliquear // inocular_beat ]
+                        </span>
+                        <img src="img/pace.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Pace">
                     </div>
                 </div>
 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">u_under</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">caer</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">inhala / cimiento</p>
-                        <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">u_under</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-tighter text-white normal-case">caer</p>
+                        <p class="text-[8px] text-gray-500 tracking-[0.3em] normal-case">inhala // cimiento</p>
+                        <div class="mt-4 border-t border-white/5 pt-4">
+                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
                                 <li>> empuje</li>
                                 <li>> raíz</li>
                                 <li>> equilibrio</li>
                             </ul>
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Ubeat.wav')" class="mt-6 flex flex-col items-center gap-3 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[7px] text-zenergy-blue tracking-[0.4em] font-black">SYNC_AUDIO</span>
-                        <img src="img/under.png" class="w-6 md:w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                    <div onclick="playBeat('img/Ubeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
+                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
+                            [ cliquear // inocular_beat ]
+                        </span>
+                        <img src="img/under.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Under">
                     </div>
                 </div>
 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">l_lift</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">levantarse</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">resiliencia / rebote</p>
-                        <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">l_lift</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-tighter text-white normal-case">levantarse</p>
+                        <p class="text-[8px] text-gray-500 tracking-[0.3em] normal-case">resiliencia // rebote</p>
+                        <div class="mt-4 border-t border-white/5 pt-4">
+                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
                                 <li>> ascenso</li>
                                 <li>> núcleo</li>
                                 <li>> tensión</li>
                             </ul>
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Lbeat.wav')" class="mt-6 flex flex-col items-center gap-3 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[7px] text-zenergy-blue tracking-[0.4em] font-black">SYNC_AUDIO</span>
-                        <img src="img/lift.png" class="w-6 md:w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                    <div onclick="playBeat('img/Lbeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
+                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
+                            [ cliquear // inocular_beat ]
+                        </span>
+                        <img src="img/lift.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Lift">
                     </div>
                 </div>
 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">s_surger</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">saltar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">explosión / estallido</p>
-                        <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">s_surge</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-tighter text-white normal-case">saltar</p>
+                        <p class="text-[8px] text-gray-500 tracking-[0.3em] normal-case">explosión // estallido</p>
+                        <div class="mt-4 border-t border-white/5 pt-4">
+                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
                                 <li>> carga</li>
                                 <li>> proyección</li>
                                 <li>> destello</li>
                             </ul>
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Sbeat.wav')" class="mt-6 flex flex-col items-center gap-3 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[7px] text-zenergy-blue tracking-[0.4em] font-black">SYNC_AUDIO</span>
-                        <img src="img/surge.png" class="w-6 md:w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                    <div onclick="playBeat('img/Sbeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
+                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
+                            [ cliquear // inocular_beat ]
+                        </span>
+                        <img src="img/surge.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Surge">
                     </div>
                 </div>
                 
