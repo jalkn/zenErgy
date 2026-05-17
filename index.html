@@ -68,131 +68,133 @@
                 </div>
             </div>
             <div class="flex items-center gap-10">
-                <div id="z-dial" class="text-zenergy-blue font-bold cursor-pointer hover:text-white transition border border-zenergy-blue/30 px-4 py-1 rounded-sm" onclick="document.getElementById('dial-monitor').scrollIntoView({behavior: 'smooth'})">...</div>
+                <div id="z-dial" class="text-zenergy-blue font-bold cursor-pointer hover:text-white transition border border-zenergy-blue/30 px-4 py-1 rounded-sm" onclick="scrollToSection('dial-monitor')">...</div>
             </div>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto px-8 pt-40">
 
-<section id="installation-node" class="py-24 md:py-32 border-t border-white/5 bg-[#0a0a0a] overflow-hidden">
-        <div class="flex flex-col items-center px-4">
-            
-            <div class="mb-12 md:mb-16 text-center">
-                <p class="text-zenergy-blue text-[8px] md:text-[10px] tracking-[1em] font-black uppercase mb-2"><a href="#z-brick" class="hover:text-zenergy-blue transition font-medium hidden md:block tracking-[0.3em]">Z_BRICK</a>
-                </p>
-                <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase">CRISTAL</span>
+        <section id="installation-node" class="py-16 md:py-24 border-t border-white/5 bg-[#0a0a0a] overflow-hidden">
+            <div class="flex flex-col items-center px-4">
                 
-            </div>
-
-            <div class="relative w-full max-w-[340px] md:w-[450px] h-[450px] md:h-[500px] group flex justify-center items-center">
-                
-                <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
-                    <path d="M50 75 L10 40 L30 110 L50 130 L70 110 L90 40 Z" class="stroke-zenergy-blue/5 transition-all duration-[4s] group-hover:stroke-zenergy-blue/20" />
-                    <path d="M10 40 Q50 65 90 40" class="stroke-zenergy-blue/10 group-hover:stroke-zenergy-blue/30 transition-all duration-[3s]" />
-                    <path d="M15 55 Q50 80 85 55" class="stroke-zenergy-blue/20 group-hover:stroke-zenergy-blue/50 transition-all duration-[2s]" stroke-dasharray="1 1" />
-                    
-                    <line x1="50" y1="140" x2="50" y2="20" class="stroke-white/10 group-hover:stroke-zenergy-blue transition-all duration-[2.5s]" stroke-dasharray="2 2" />
-                    
-                    <circle cx="50" cy="75" r="12" class="stroke-zenergy-blue/20 animate-ping" style="animation-duration: 3s;" />
-                    <circle cx="50" cy="75" r="25" class="stroke-zenergy-blue/10 animate-ping" style="animation-duration: 6s;" />
-                    
-                    <circle cx="50" cy="75" r="2.5" class="fill-zenergy-blue shadow-lg animate-pulse" /> <circle cx="10" cy="40" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> <circle cx="90" cy="40" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> <circle cx="50" cy="130" r="2" class="fill-white/10 group-hover:fill-white/40 transition-colors" /> </svg>
-                
-                <div class="absolute top-[22%] left-2 md:left-4 flex flex-col items-start scale-90 md:scale-100">
-                    <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">PACE</span>
-                </div>
-
-                <div class="absolute top-[46%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
-                    <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase"><a href="#protocol" class="hover:text-zenergy-blue transition font-medium hidden md:block tracking-[0.3em]">PULSOR</a></span>
-                </div>
-
-                <div class="absolute top-[22%] right-2 md:right-4 flex flex-col items-end scale-90 md:scale-100 text-right">
-                    <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">SURGE</span>
-                </div>
-
-                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
-                    
-                    
-                    <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase">RESONANCIA</span>
-                    
-                 
-                    <span id="hologram-dial" class="text-zenergy-blue text-[8px] md:text-[10px] tracking-[1em] font-black uppercase mb-2">000000</span>
-                </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section id="dial-monitor" class="min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center relative border-t border-white/5 overflow-hidden">
-            <div class="absolute inset-0 pointer-events-none opacity-5">
-                <div class="h-full w-full bg-[linear-gradient(0deg,transparent_24%,rgba(59,130,246,0.05)_25%,rgba(59,130,246,0.05)_26%,transparent_27%,transparent_74%,rgba(59,130,246,0.05)_75%,rgba(59,130,246,0.05)_76%,transparent_77%,transparent_100%)] bg-[length:50px_50px]"></div>
-            </div>
-
-            <div class="relative z-10 flex flex-col items-center group w-full px-4">
-                <div id="big-dial" 
-                    class="text-[2.8rem] sm:text-[4rem] md:text-[8rem] font-black text-white opacity-20 group-hover:opacity-100 transition-all duration-1000 cursor-crosshair select-none tracking-[0.2em] md:tracking-[0.3em] leading-none text-center">
-                    0.0.0
-                </div>
-
-                <div class="mt-8 md:mt-12 max-w-[90%]">
-                    <p id="protocol-desc" class="text-[7px] md:text-[11px] text-zenergy-blue tracking-[0.4em] md:tracking-[0.6em] uppercase font-black text-center opacity-50 group-hover:opacity-100 transition-opacity duration-700">
-                        Awaiting_Sync...
+                <div class="mb-12 md:mb-16 text-center select-none">
+                    <p class="text-zenergy-blue text-[8px] md:text-[10px] tracking-[1em] font-black uppercase mb-2"><a href="#z-brick" class="hover:text-zenergy-blue transition font-medium hidden md:block tracking-[0.3em]">Z_BRICK</a>
                     </p>
+                    <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase">CRISTAL</span>
+                </div>
+
+                <div class="relative w-full max-w-[340px] md:w-[450px] h-[450px] md:h-[500px] group flex justify-center items-center">
                     
-                    <div class="w-24 h-[1px] bg-white/5 mx-auto mt-4 overflow-hidden">
-                        <div class="h-full bg-zenergy-blue/40 w-1/2 animate-[scan_2s_linear_infinite]"></div>
+                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3] select-none pointer-events-none">
+                        <path d="M50 75 L10 40 L30 110 L50 130 L70 110 L90 40 Z" class="stroke-zenergy-blue/5 transition-all duration-[4s] group-hover:stroke-zenergy-blue/20" />
+                        <path d="M10 40 Q50 65 90 40" class="stroke-zenergy-blue/10 group-hover:stroke-zenergy-blue/30 transition-all duration-[3s]" />
+                        <path d="M15 55 Q50 80 85 55" class="stroke-zenergy-blue/20 group-hover:stroke-zenergy-blue/50 transition-all duration-[2s]" stroke-dasharray="1 1" />
+                        
+                        <line x1="50" y1="140" x2="50" y2="20" class="stroke-white/10 group-hover:stroke-zenergy-blue transition-all duration-[2.5s]" stroke-dasharray="2 2" />
+                        
+                        <circle cx="50" cy="75" r="12" class="stroke-zenergy-blue/20 animate-ping" style="animation-duration: 3s;" />
+                        <circle cx="50" cy="75" r="25" class="stroke-zenergy-blue/10 animate-ping" style="animation-duration: 6s;" />
+                        
+                        <circle cx="50" cy="75" r="2.5" class="fill-zenergy-blue shadow-lg animate-pulse" /> 
+                        <circle cx="10" cy="40" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
+                        <circle cx="90" cy="40" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
+                        <circle cx="30" cy="110" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" />
+                        <circle cx="70" cy="110" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" />
+                        <circle cx="50" cy="130" r="2" class="fill-white/10 group-hover:fill-white/40 transition-colors" /> 
+                    </svg>
+                    
+                    <div class="absolute top-[22%] left-2 md:left-4 flex flex-col items-start scale-90 md:scale-100 cursor-pointer group/node" onclick="scrollToSection('z-brick')">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">pace</span>
+                        <span class="text-[5px] text-zenergy-blue/0 group-hover/node:opacity-100 group-hover/node:text-white transition-all duration-500 tracking-[0.1em] lowercase mt-0.5">> link_materia</span>
+                    </div>
+
+                    <div class="absolute top-[46%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/core" onclick="scrollToSection('protocol')">
+                        <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase group-hover/core:text-zenergy-blue transition-colors">pulsor</span>
+                        <span id="hologram-dial" class="text-zenergy-blue text-[8px] md:text-[9px] tracking-[0.3em] font-bold mt-1">000000</span>
+                    </div>
+
+                    <div class="absolute top-[22%] right-2 md:right-4 flex flex-col items-end scale-90 md:scale-100 text-right select-none opacity-40 group-hover:opacity-75 transition-opacity">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">surge</span>
+                        <span class="text-[4px] text-gray-700 tracking-[0.1em] uppercase mt-0.5">node_lock</span>
+                    </div>
+
+                    <div class="absolute bottom-[26%] left-[16%] md:left-[22%] flex flex-col items-start scale-90 md:scale-100 select-none opacity-40 group-hover:opacity-75 transition-opacity">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">under</span>
+                    </div>
+
+                    <div class="absolute bottom-[26%] right-[16%] md:right-[22%] flex flex-col items-end scale-90 md:scale-100 text-right select-none opacity-40 group-hover:opacity-75 transition-opacity">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">lift</span>
+                    </div>
+
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
+                        <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.6em] font-black uppercase group-hover/base:text-white transition-colors">resonancia</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="dial-monitor" class="min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center relative border-t border-white/5 overflow-hidden">
+                <div class="absolute inset-0 pointer-events-none opacity-5">
+                    <div class="h-full w-full bg-[linear-gradient(0deg,transparent_24%,rgba(59,130,246,0.05)_25%,rgba(59,130,246,0.05)_26%,transparent_27%,transparent_74%,rgba(59,130,246,0.05)_75%,rgba(59,130,246,0.05)_76%,transparent_77%,transparent_100%)] bg-[length:50px_50px]"></div>
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center group w-full px-4">
+                    <div id="big-dial" 
+                        class="text-[2.8rem] sm:text-[4rem] md:text-[8rem] font-black text-white opacity-20 group-hover:opacity-100 transition-all duration-1000 cursor-crosshair select-none tracking-[0.2em] md:tracking-[0.3em] leading-none text-center">
+                        0.0.0
+                    </div>
+
+                    <div class="mt-8 md:mt-12 max-w-[90%]">
+                        <p id="protocol-desc" class="text-[7px] md:text-[11px] text-zenergy-blue tracking-[0.4em] md:tracking-[0.6em] uppercase font-black text-center opacity-50 group-hover:opacity-100 transition-opacity duration-700">
+                            awaiting_sync...
+                        </p>
+                        
+                        <div class="w-24 h-[1px] bg-white/5 mx-auto mt-4 overflow-hidden">
+                            <div class="h-full bg-zenergy-blue/40 w-1/2 animate-[scan_2s_linear_infinite]"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-    </section>
-        
-    <section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0">
-        <div class="z-10 text-center md:text-left order-2 md:order-1">
-            <div class="inline-block bg-zenergy-blue/10 border border-zenergy-blue/20 px-4 py-1 rounded-full mb-6">
-                <span class="text-zenergy-blue text-[8px] md:text-[9px] font-bold tracking-[0.4em]">SISTEMA DE BIOCONSTRUCCIÓN</span>
-            </div>
+        </section>
             
-            <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase">Z_BRICK</h1>
-            
-            <p class="text-gray-500 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[10px] md:text-[11px] tracking-widest font-light leading-loose uppercase">
-                Bioladrillos de micelio sintetizado con residuo de amero y estimulados mediante el 
-                <span class="text-gray-300 font-bold italic">PROTO_PULSOR</span> bajo la RESONANCIA DE LOS 
-                <button onclick="scrollToDial()" class="text-zenergy-blue font-bold underline decoration-zenergy-blue/30 underline-offset-4 hover:text-white transition-colors">
-                    Z_DIALS
-                </button>.
-            </p>
-            <!--
-            <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 md:gap-6">
-                <button class="bg-zenergy-blue text-white font-black px-10 md:px-12 py-4 md:py-5 rounded-sm text-[9px] md:text-[10px] tracking-[0.5em] hover:bg-white hover:text-black transition-all duration-500 uppercase">
-                    ACTIVAR NODO
-                </button>
-            </div>-->
-        </div>
-
-        <div class="relative flex justify-center items-center order-1 md:order-2">
-            <div class="absolute inset-0 bg-zenergy-blue/10 blur-[80px] md:blur-[120px] rounded-full opacity-20 md:opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000"></div>
-            
-            <div class="relative w-full max-w-[60%] md:max-w-[80%] overflow-visible">
-                <img src="img/z-brick.png" 
-                    alt="Z-Brick Mycelium"
-                    class="w-full h-auto grayscale opacity-40 md:opacity-30 scale-90 md:scale-75 
-                            transition-all duration-[1000ms] ease-out
-                            group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-105">
+        <section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0 border-t border-white/5">
+            <div class="z-10 text-center md:text-left order-2 md:order-1">
+                <div class="inline-block bg-zenergy-blue/10 border border-zenergy-blue/20 px-4 py-1 rounded-full mb-6">
+                    <span class="text-zenergy-blue text-[8px] md:text-[9px] font-bold tracking-[0.4em]">SISTEMA DE BIOCONSTRUCCIÓN</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase">Z_BRICK</h1>
+                
+                <p class="text-gray-500 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[11px] md:text-[12px] tracking-wide font-light leading-relaxed normal-case">
+                    bioladrillos de micelio sintetizado con residuo de amero y estimulados mediante el 
+                    <button onclick="scrollToSection('protocol')" class="text-zenergy-blue font-bold underline decoration-zenergy-blue/30 underline-offset-4 hover:text-white transition-colors uppercase">
+                        proto_pulsor
+                    </button> 
+                    bajo la resonancia de los z_dials. un material con capacidades térmicas y mecánicas superiores a los polímeros estándar.
+                </p>
             </div>
-        </div>
-    </section>
 
+            <div class="relative flex justify-center items-center order-1 md:order-2">
+                <div class="absolute inset-0 bg-zenergy-blue/10 blur-[80px] md:blur-[120px] rounded-full opacity-20 md:opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000"></div>
+                
+                <div class="relative w-full max-w-[60%] md:max-w-[80%] overflow-visible">
+                    <img src="img/z-brick.png" 
+                        alt="Z-Brick Mycelium"
+                        class="w-full h-auto grayscale opacity-40 md:opacity-30 scale-90 md:scale-75 
+                                transition-all duration-[1000ms] ease-out
+                                group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-105">
+                </div>
+            </div>
+        </section>
 
-    <section id="protocol" class="py-24 border-t border-white/5">
+        <section id="protocol" class="py-24 border-t border-white/5">
             <div class="text-center mb-16 px-6">
                 <h2 class="text-2xl sm:text-3xl md:text-5xl mb-4 tracking-[0.3em] sm:tracking-[0.5em] md:tracking-[0.4em] uppercase font-black text-white leading-tight">
                     PROTO_PULSOR
                 </h2>
                 <p class="text-zenergy-blue text-[7px] sm:text-[8px] md:text-[10px] tracking-[0.5em] sm:tracking-[0.8em] md:tracking-[1em] uppercase font-bold max-w-xs sm:max-w-none mx-auto">
-                    Protocolo de Encriptación Biocinética _PULS
+                    protocolo de encriptación biocinética _puls
                 </p>
             </div>
 
@@ -200,14 +202,14 @@
                 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">P_PACE</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caminar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Exhala / Tránsito</p>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">p_pace</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">caminar</p>
+                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">exhala / tránsito</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
-                                <li>> Impulso</li>
-                                <li>> Surco</li>
-                                <li>> Vibración</li>
+                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                                <li>> impulso</li>
+                                <li>> surco</li>
+                                <li>> vibración</li>
                             </ul>
                         </div>
                     </div>
@@ -219,14 +221,14 @@
 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">U_UNDER</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caer</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Inhala / Cimiento</p>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">u_under</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">caer</p>
+                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">inhala / cimiento</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
-                                <li>> Empuje</li>
-                                <li>> Raíz</li>
-                                <li>> Equilibrio</li>
+                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                                <li>> empuje</li>
+                                <li>> raíz</li>
+                                <li>> equilibrio</li>
                             </ul>
                         </div>
                     </div>
@@ -238,14 +240,14 @@
 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">L_LIFT</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Levantarse</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Resiliencia / Rebote</p>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">l_lift</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">levantarse</p>
+                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">resiliencia / rebote</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
-                                <li>> Ascenso</li>
-                                <li>> Núcleo</li>
-                                <li>> Tensión</li>
+                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                                <li>> ascenso</li>
+                                <li>> núcleo</li>
+                                <li>> tensión</li>
                             </ul>
                         </div>
                     </div>
@@ -257,14 +259,14 @@
 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">S_SURGER</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Saltar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Explosión / Estallido</p>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">s_surger</h3>
+                        <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white normal-case">saltar</p>
+                        <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em] normal-case">explosión / estallido</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
-                                <li>> Carga</li>
-                                <li>> Proyección</li>
-                                <li>> Destello</li>
+                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
+                                <li>> carga</li>
+                                <li>> proyección</li>
+                                <li>> destello</li>
                             </ul>
                         </div>
                     </div>
@@ -286,7 +288,7 @@
         </a> ANT_COL <br> 2026
     </footer>
 
-<script>
+    <script>
         /**
         * Z-Dial Resonance Engine v7.0 - Mythological Matrix
         * Purified Lowercase Architecture | Temporada 01: Z_BRICK
@@ -346,7 +348,6 @@
 
         /**
         * Interacción Háptica y Lanzamiento de Ondas de Audio (Zenbeats)
-        * @param {string} url - Ruta de la frecuencia de inoculación (ej: caer_10jw100.wav)
         */
         function playBeat(url) {
             const audio = new Audio(url);
@@ -357,18 +358,20 @@
         }
 
         /**
-        * Navegación por Resonancia: Ancla el texto al monitor activo
+        * Enrutador Universal del Laboratorio (Navegación Suave entre Nodos)
         */
-        function scrollToDial() {
-            const target = $('dial-monitor');
+        function scrollToSection(sectionId) {
+            const target = $(sectionId);
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });
-                // Opcional: Feedback visual al llegar
-                $('big-dial').classList.add('animate-pulse');
-                setTimeout(() => $('big-dial').classList.remove('animate-pulse'), 2000);
+                if(sectionId === 'dial-monitor') {
+                    $('big-dial').classList.add('animate-pulse');
+                    setTimeout(() => $('big-dial').classList.remove('animate-pulse'), 2000);
+                }
+            } else {
+                console.warn(`z-router: el nodo objetivo [${sectionId}] no se encuentra en el dom.`);
             }
         }
     </script>
-
 </body>
 </html>
