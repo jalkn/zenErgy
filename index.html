@@ -76,23 +76,24 @@
 
     <main class="max-w-7xl mx-auto px-8 pt-40">
 
-        <section id="installation-node" class="py-16 md:py-24 bg-[#0a0a0a] overflow-hidden">
-            <div class="flex flex-col items-center px-4">
-                
-                <div class="mb-12 md:mb-16 text-center select-none">
-                    <p class="text-zenergy-blue text-[9px] md:text-[11px] tracking-[0.5em] font-black uppercase mb-2">
-                        <span onclick="scrollToSection('z-brick')" class="cursor-pointer hover:text-white transition duration-500">
-                            Z_BRICK
-                        </span>
-                    </p>
-                    <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.6em] font-black uppercase">
-                        ESFERA // CRISTAL
+    <section id="installation-node" class="py-16 md:py-24 bg-[#0a0a0a] overflow-hidden">
+        <div class="flex flex-col items-center px-4">
+            
+            <div class="mb-12 md:mb-16 text-center select-none">
+                <p class="text-zenergy-blue text-[9px] md:text-[11px] tracking-[0.5em] font-black uppercase mb-2">
+                    <span onclick="scrollToSection('z-brick')" class="cursor-pointer hover:text-white transition duration-500">
+                        Z_BRICK
                     </span>
-                </div>
+                </p>
+                <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.6em] font-black uppercase">
+                    ESFERA // CRISTAL
+                </span>
+            </div>
 
-                <div class="relative w-full max-w-[340px] md:w-[450px] h-[450px] md:h-[500px] group flex justify-center items-center">
-                    
-                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3] select-none pointer-events-none">
+            <div class="relative w-full max-w-[300px] md:max-w-[360px] aspect-[2/3] group select-none">
+                
+                <div class="absolute inset-0 pointer-events-none z-0">
+                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
                         <path d="M50 75 L10 40 L30 110 L50 130 L70 110 L90 40 Z" class="stroke-zenergy-blue/5 transition-all duration-[4s] group-hover:stroke-zenergy-blue/20" />
                         <path d="M10 40 Q50 65 90 40" class="stroke-zenergy-blue/10 group-hover:stroke-zenergy-blue/30 transition-all duration-[3s]" />
                         <path d="M15 55 Q50 80 85 55" class="stroke-zenergy-blue/20 group-hover:stroke-zenergy-blue/50 transition-all duration-[2s]" stroke-dasharray="1 1" />
@@ -109,35 +110,40 @@
                         <circle cx="70" cy="110" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" />
                         <circle cx="50" cy="130" r="2" class="fill-white/10 group-hover:fill-white/40 transition-colors" /> 
                     </svg>
-                    
-                    <div class="absolute top-[22%] left-2 md:left-4 flex flex-col items-start scale-90 md:scale-100 cursor-pointer group/node" onclick="scrollToSection('protocol')">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">PACE</span>
+                </div>
+                
+                <div class="absolute inset-0 z-10">
+
+                    <div class="absolute top-[24%] left-[7%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <img src="img/pace.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Pace">
                     </div>
 
-                    <div class="absolute top-[46%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/core" onclick="scrollToSection('protocol')">
+                    <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full cursor-pointer group/core" onclick="scrollToSection('protocol')">
                         <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase group-hover/core:text-zenergy-blue transition-colors">PULSOR</span>
                         <span id="hologram-dial" class="text-zenergy-blue text-[8px] md:text-[9px] tracking-[0.3em] font-bold mt-1">000000</span>
                     </div>
 
-                    <div class="absolute top-[22%] right-2 md:right-4 flex flex-col items-end scale-90 md:scale-100 text-right cursor-pointer group/node" onclick="scrollToSection('protocol')">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">SURGE</span>
+                    <div class="absolute top-[24%] right-[7%] translate-x-1/2 -translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <img src="img/surge.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Surge">
                     </div>
 
-                    <div class="absolute bottom-[26%] left-[16%] md:left-[22%] flex flex-col items-start scale-90 md:scale-100 cursor-pointer group/node" onclick="scrollToSection('protocol')">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">UNDER</span>
+                    <div class="absolute bottom-[24%] left-[28%] -translate-x-1/2 translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <img src="img/under.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Under">
                     </div>
 
-                    <div class="absolute bottom-[26%] right-[16%] md:right-[22%] flex flex-col items-end scale-90 md:scale-100 text-right cursor-pointer group/node" onclick="scrollToSection('protocol')">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">LIFT</span>
+                    <div class="absolute bottom-[24%] right-[28%] translate-x-1/2 translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <img src="img/lift.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Lift">
                     </div>
 
-                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
+                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
                         <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.6em] font-black uppercase group-hover/base:text-white transition-colors">RESONANCIA</span>
                     </div>
 
                 </div>
+
             </div>
-        </section>
+        </div>
+    </section>
 
         <section id="dial-monitor" class="min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center relative border-t border-white/5 overflow-hidden">
                 <div class="absolute inset-0 pointer-events-none opacity-5">
@@ -301,7 +307,7 @@
     </footer>
 
     <script>
-/**
+        /**
         * Z-Dial Resonance Engine v8.0 - Solar Drift Matrix
         * Purified Time Realignment & Biokinetic Partiture Map
         */
@@ -335,20 +341,14 @@
             }
 
             // 3. Parámetros Biokinéticos Puros (Saliendo del Tiempo Horizontal)
-            // Sets calculados mediante una reducción fractal de los minutos basada en PHI
             const s = Math.floor(((now.getMinutes() + 1) * PHI) % (f.length > 2 ? 6 : 9)) || 2;
-            
-            // Repeticiones dependientes exclusivamente del ángulo del sol escalado limpiamente (Rango: 6 a 24)
             let reps = Math.floor((Math.abs(180 - deg) % 18) + 6); 
 
             // 4. Compilación del Sello Alfanumérico Industrial (UPPERCASE)
             const res = `${s}${f}${reps}`;
             
-            // Inyección en Monitores de Interfaz
             if ($('big-dial')) $('big-dial').innerText = res;
             if ($('z-dial')) $('z-dial').innerText = res;
-            
-            // Inyección en la Esfera del Cristal dentro de la Cartografía
             if ($('hologram-dial')) $('hologram-dial').innerText = res;
             
             // 5. Inyección del Data Dump en Minúsculas Fluidas (Bitácora Humana)
@@ -357,13 +357,9 @@
             }
         };
 
-        // Inicialización y Loop de Sincronización Solar (Ciclo de 1 minuto)
         updateZ();
         setInterval(updateZ, 60000);
 
-        /**
-        * Interacción Háptica y Lanzamiento de Ondas de Audio (Zenbeats)
-        */
         function playBeat(url) {
             const audio = new Audio(url);
             audio.play().catch(() => {
@@ -372,9 +368,6 @@
             if ("vibrate" in navigator) navigator.vibrate(50);
         }
 
-        /**
-        * Enrutador Universal del Laboratorio (Navegación Suave entre Nodos)
-        */
         function scrollToSection(sectionId) {
             const target = $(sectionId);
             if (target) {
