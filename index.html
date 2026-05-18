@@ -94,27 +94,28 @@
                 
                 <div class="absolute inset-0 pointer-events-none z-0">
                     <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
-                        <path d="M50 75 L10 40 L30 110 L50 130 L70 110 L90 40 Z" class="stroke-zenergy-blue/5 transition-all duration-[4s] group-hover:stroke-zenergy-blue/20" />
-                        <path d="M10 40 Q50 65 90 40" class="stroke-zenergy-blue/10 group-hover:stroke-zenergy-blue/30 transition-all duration-[3s]" />
-                        <path d="M15 55 Q50 80 85 55" class="stroke-zenergy-blue/20 group-hover:stroke-zenergy-blue/50 transition-all duration-[2s]" stroke-dasharray="1 1" />
+                        <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-zenergy-blue/30 transition-all duration-[4s] group-hover:stroke-zenergy-blue/60" />
                         
-                        <line x1="50" y1="140" x2="50" y2="20" class="stroke-white/10 group-hover:stroke-zenergy-blue transition-all duration-[2.5s]" stroke-dasharray="2 2" />
+                        <path d="M10 36 Q50 65 90 36" class="stroke-zenergy-blue/10 group-hover:stroke-zenergy-blue/30 transition-all duration-[3s]" />
+                        <path d="M10 114 Q50 85 90 114" class="stroke-zenergy-blue/20 group-hover:stroke-zenergy-blue/50 transition-all duration-[2s]" stroke-dasharray="1 1" />
+                        
+                        <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/10 group-hover:stroke-zenergy-blue transition-all duration-[2.5s]" stroke-dasharray="2 2" />
                         
                         <circle cx="50" cy="75" r="12" class="stroke-zenergy-blue/20 animate-ping" style="animation-duration: 3s;" />
                         <circle cx="50" cy="75" r="25" class="stroke-zenergy-blue/10 animate-ping" style="animation-duration: 6s;" />
                         
                         <circle cx="50" cy="75" r="2.5" class="fill-zenergy-blue shadow-lg animate-pulse" /> 
-                        <circle cx="10" cy="40" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
-                        <circle cx="90" cy="40" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
-                        <circle cx="30" cy="110" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" />
-                        <circle cx="70" cy="110" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" />
-                        <circle cx="50" cy="130" r="2" class="fill-white/10 group-hover:fill-white/40 transition-colors" /> 
+                        <circle cx="10" cy="36" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
+                        <circle cx="90" cy="36" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
+                        <circle cx="10" cy="114" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" />
+                        <circle cx="90" cy="114" r="1.5" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" />
+                        <circle cx="50" cy="135" r="2" class="fill-white/10 group-hover:fill-white/40 transition-colors" /> 
                     </svg>
                 </div>
                 
                 <div class="absolute inset-0 z-10">
 
-                    <div class="absolute top-[24%] left-[7%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                    <div class="absolute top-[24%] left-[10%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
                         <img src="img/pace.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Pace">
                     </div>
 
@@ -123,15 +124,15 @@
                         <span id="hologram-dial" class="text-zenergy-blue text-[8px] md:text-[9px] tracking-[0.3em] font-bold mt-1">000000</span>
                     </div>
 
-                    <div class="absolute top-[24%] right-[7%] translate-x-1/2 -translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                    <div class="absolute top-[24%] right-[10%] translate-x-1/2 -translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
                         <img src="img/surge.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Surge">
                     </div>
 
-                    <div class="absolute bottom-[24%] left-[28%] -translate-x-1/2 translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                    <div class="absolute bottom-[24%] left-[10%] -translate-x-1/2 translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
                         <img src="img/under.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Under">
                     </div>
 
-                    <div class="absolute bottom-[24%] right-[28%] translate-x-1/2 translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                    <div class="absolute bottom-[24%] right-[10%] translate-x-1/2 translate-y-1/2 cursor-pointer group/node" onclick="scrollToSection('protocol')">
                         <img src="img/lift.png" class="w-5 md:w-6 h-auto opacity-25 group-hover/node:opacity-100 group-hover/node:scale-110 transition-all duration-500" alt="Glifo Lift">
                     </div>
 
