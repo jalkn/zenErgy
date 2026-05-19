@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" class="bg-[#0a0a0a] text-[#f4f4f4] scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iGNite // zenergia mycelium tech-lab: archivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'zenergy-blue': '#3b82f6' },
+                    fontFamily: { 'sans': ['Orbitron', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Orbitron', sans-serif; letter-spacing: 0.05em; }
+        .glass { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+        .z-active-word { color: #3b82f6; text-shadow: 0 0 12px rgba(59,130,246,0.5); font-weight: 700; }
+        /* Ocultar scrollbar pero mantener funcionalidad */
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-6 md:p-12 overflow-x-hidden selection:bg-zenergy-blue selection:text-[#0a0a0a]">
+
+    <header class="w-full flex justify-between items-start border-b border-white/5 pb-6">
+        <div>
+            <h1 class="text-sm font-black tracking-[0.2em] text-white">IGNITE // CADA UNO UN LIBRO</h1>
+            <p class="text-[10px] text-zinc-500 mt-1 normal-case">bitácora satélite de deconstrucción teórica // santa elena, antioquia</p>
+        </div>
+        <div class="text-right">
+            <span class="text-[10px] bg-white/5 px-2 py-1 text-zinc-400 font-mono tracking-widest border border-white/10 uppercase">SYS_STATUS: DECONSTRUCT</span>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center my-12 max-w-4xl mx-auto w-full">
+        
+        <div class="w-full glass p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-4 border border-white/5">
+            <div class="flex items-center gap-4">
+                <div class="w-3 h-3 bg-zenergy-blue rounded-full animate-pulse"></div>
+                <div>
+                    <p class="text-xs text-white uppercase tracking-wider">ep_1: la transmutación del pulso (audio-ensayo)</p>
+                    <p class="text-[10px] text-zinc-500 normal-case">frecuencia base: 2hz + santa_elena.wav (15% gain)</p>
+                </div>
+            </div>
+            <audio id="audio-player" src="audio/ep1_transmutacion.wav" controls class="opacity-30 hover:opacity-100 transition-opacity duration-300 w-full md:w-64 h-8"></audio>
+        </div>
+
+        <div class="w-full flex justify-between items-center mb-4 px-2">
+            <span class="text-[10px] text-zinc-500 tracking-wider">Z_READ // INTERFAZ BIOCINÉTICA</span>
+            <div class="flex gap-4">
+                <button onclick="changeSpeed(100)" class="text-[10px] text-zinc-400 hover:text-white border border-white/10 px-2 py-1 bg-white/5 font-mono">++ VELOCIDAD</button>
+                <button onclick="changeSpeed(-100)" class="text-[10px] text-zinc-400 hover:text-white border border-white/10 px-2 py-1 bg-white/5 font-mono">-- VELOCIDAD</button>
+                <button id="btn-trigger" onclick="toggleZRead()" class="text-[10px] text-zenergy-blue border border-zenergy-blue/20 px-3 py-1 bg-zenergy-blue/5 tracking-widest font-bold">INICIAR ABSORCIÓN</button>
+            </div>
+        </div>
+
+        <div id="z-read-monitor" class="w-full h-64 glass flex items-center justify-center px-8 border border-white/10 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+            <div id="z-word-display" class="text-2xl md:text-5xl font-normal tracking-wide text-zinc-600 normal-case transition-all duration-75 text-center">
+                esperando_señal...
+            </div>
+        </div>
+
+        <div class="w-full mt-12 border-t border-white/5 pt-8">
+            <p class="text-[10px] text-zinc-500 tracking-widest mb-6 uppercase">registro analógico de lectura biónica (absorción vertical)</p>
+            <div id="bionic-text-container" class="text-zinc-400 text-xs md:text-sm leading-relaxed text-justify normal-case space-y-4 font-light tracking-wide max-w-2xl mx-auto">
+                </div>
+        </div>
+    </main>
+
+    <footer class="w-full flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-6 text-[10px] text-zinc-600 font-mono">
+        <div>ZENERGIA MYCELIUM TECH-LAB // PROTOCOLO DE TRANSMISIÓN EXTERNA</div>
+        <div class="mt-2 md:mt-0 tracking-widest">S_QUAD: ARCHIVE_MODE // PHI_VALIDATED</div>
+    </footer>
+
+    <script>
+        // Manifiesto crudo mapeado en minúsculas poéticas y fluidas
+        const manifiestoText = "este audio-ensayo no es para ser consumido; es para ser inhalado. lo que vas a escuchar es el registro sónico de una desobediencia temporal. desplazamos la voz de la plataforma biológica principal para no contaminar el crecimiento de la hifa con la lógica de la prosa humana. iGNite es el archivo crudo. la deconstrucción de un cuerpo que aprendió a transmutar el pulso mecánico del dolor y el hospital en la frecuencia armónica del caer. el laboratorio no nació en el código; nació en el peso de los pies regresando a la tierra. aquí en santa elena, donde la niebla borra los límites del horizonte, fundamos un lenguaje sin pantallas. una encriptación biocinética que responde a cuatro pulsos universales que todo ser humano lleva grabados en los huesos: p_pace caminar, u_under caer, l_lift levantarse y s_surge saltar. el hongo escucha la fatiga del cuerpo. el micelio no entiende de minutos ni de horas; entiende de frecuencias de presión. cuando el sub-bajo a 2hz vibra a través del biocemento, la hifa responde, se tensa, se endurece. el z-brick se sintoniza con la rotación absoluta de la tierra. apaga el monitor. sal de la pantalla. camina, cae, levántate, estalla. la arquitectura del futuro no se va a construir con planos de concreto; se va a cultivar con los pulsos de los cuerpos que se atrevieron a detener el tiempo.";
+
+        const wordsArray = manifiestoText.split(" ");
+        let wordIndex = 0;
+        let isReading = false;
+        let readSpeed = 250; // milisegundos por palabra (ajustable)
+        let intervalId = null;
+
+        // Función 1: Formateador para Lectura Biónica (Fijación Óptica)
+        function generateBionicReading(text) {
+            return text.split(" ").map(word => {
+                if (word.length <= 3) {
+                    return `**${word}**`;
+                } else {
+                    const mid = Math.ceil(word.length / 2);
+                    return `**${word.substring(0, mid)}**${word.substring(mid)}`;
+                }
+            }).join(" ")
+            .replace(/\*\*/g, '<b class="text-zinc-200 font-medium">') // Reemplazo limpio a tags HTML
+            .replace(/\*\*/g, '</b>');
+        }
+
+        // Inyectar texto biónico al cargar la interfaz
+        document.getElementById('bionic-text-container').innerHTML = `<p>${generateBionicReading(manifiestoText)}</p>`;
+
+        // Función 2: Motor RSVP (Presentación Visual Serial Rápida Palabra por Palabra)
+        function toggleZRead() {
+            const display = document.getElementById('z-word-display');
+            const btn = document.getElementById('btn-trigger');
+            
+            if (isReading) {
+                clearInterval(intervalId);
+                isReading = false;
+                btn.innerText = "REANUDAR ABSORCIÓN";
+                display.classList.add('text-zinc-600');
+                display.classList.remove('z-active-word');
+            } else {
+                isReading = true;
+                btn.innerText = "PAUSAR ENFOQUE";
+                display.classList.remove('text-zinc-600');
+                display.classList.add('z-active-word');
+                
+                intervalId = setInterval(() => {
+                    if (wordIndex < wordsArray.length) {
+                        display.innerText = wordsArray[wordIndex];
+                        wordIndex++;
+                    } else {
+                        clearInterval(intervalId);
+                        isReading = false;
+                        wordIndex = 0;
+                        btn.innerText = "REINICIAR TRANSMISIÓN";
+                        display.innerText = "absorción_completada.";
+                        display.classList.add('text-zinc-600');
+                        display.classList.remove('z-active-word');
+                    }
+                }, readSpeed);
+            }
+        }
+
+        // Función 3: Modificador de Frecuencia de Lectura
+        function changeSpeed(delta) {
+            readSpeed = Math.max(100, readSpeed - delta); // Límite de velocidad máxima de 100ms
+            if (isReading) {
+                clearInterval(intervalId);
+                isReading = false;
+                toggleZRead();
+            }
+        }
+    </script>
+</body>
+</html>
