@@ -45,6 +45,8 @@
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
             100% { top: 100%; opacity: 0; }
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
         }
 
         .scan-line {
@@ -154,7 +156,7 @@
                     </div>
 
                     <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full cursor-pointer group/core" onclick="scrollToSection('protocol')">
-                        <span class="text-[10px] md:text-[12px] text-white/80 tracking-[0.6em] font-black uppercase drop-shadow-[0_2px_6px_rgba(0,0,0,1)] group-hover/core:text-white group-hover/core:drop-shadow-[0_0_12px_rgba(255,255,255,1)] transition-all duration-300">
+                        <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/core:text-white group-hover/core:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
                             PULSOR
                         </span>
                         <span id="hologram-dial" class="text-white text-base md:text-lg tracking-[0.4em] font-black mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,1)] transition-all duration-300 group-hover/core:drop-shadow-[0_0_15px_rgba(255,255,255,1)]">
@@ -175,7 +177,7 @@
                     </div>
 
                     <div class="absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
-                        <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/20 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/base:text-white group-hover/base:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
+                        <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/base:text-white group-hover/base:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
                             RESONANCIA
                         </span>
                     </div>
@@ -184,171 +186,197 @@
         </div>
     </section>
 
-    <section id="dial-monitor" class="py-16 md:py-24 bg-transparent">
-        <div class="max-w-4xl mx-auto px-4 text-center">
+<section id="dial-monitor" class="min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
             
-            <div class="relative bg-black/40 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-sm inline-block w-full max-w-xl group transition-all duration-500 hover:border-white/50 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] select-none">
+            <div class="relative z-10 flex flex-col items-center w-full px-4 text-center">
                 
-                <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/30 group-hover:border-white transition-colors duration-500"></div>
-                <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/30 group-hover:border-white transition-colors duration-500"></div>
-                <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/30 group-hover:border-white transition-colors duration-500"></div>
-                <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/30 group-hover:border-white transition-colors duration-500"></div>
-                
-                <p class="text-white/50 text-[10px] md:text-[11px] tracking-[0.5em] font-black uppercase mb-4 transition-colors duration-500 group-hover:text-white/90">
-                    SISTEMA DE MONITOREO CENTRAL
-                </p>
-                
-                <h2 id="big-dial" class="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-[0.3em] pl-[0.3em] transition-all duration-500 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.85)]">
-                    000000
-                </h2>
-                
-                <div class="mt-6 inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full border border-white/10 text-[9px] tracking-widest font-bold text-white/70 uppercase">
-                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                    Z_CORE // LIVE FEED
+                <div class="relative bg-black/50 backdrop-blur-md border border-white/10 p-6 sm:p-10 md:p-14 rounded-sm flex flex-col items-center justify-center w-full max-w-2xl group transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] select-none">
+                    
+                    <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-white/20 group-hover:border-white/50 transition-colors duration-500"></div>
+                    <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/20 group-hover:border-white/50 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/20 group-hover:border-white/50 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white/20 group-hover:border-white/50 transition-colors duration-500"></div>
+                    
+                    <div id="big-dial" 
+                        class="w-full text-[1.8rem] sm:text-[3.2rem] md:text-[4.8rem] font-black text-white opacity-40 group-hover:opacity-100 group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.85)] transition-all duration-700 cursor-crosshair tracking-[0.2em] md:tracking-[0.25em] leading-none uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] pl-[0.2em] md:pl-[0.25em] text-center whitespace-nowrap">
+                        000000
+                    </div>
+
+                    <div class="mt-6 md:mt-8 w-full max-w-[90%] mx-auto">
+                        <p id="protocol-desc" class="text-[10px] md:text-[12px] text-white tracking-[0.15em] md:tracking-[0.25em] font-light text-center opacity-40 group-hover:opacity-90 transition-opacity duration-700 normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] break-words">
+                            sincronizando_frecuencias...
+                        </p>
+                        
+                        <div class="w-24 h-[1px] bg-white/10 mx-auto mt-4 overflow-hidden">
+                            <div class="h-full bg-white/40 w-1/2 animate-[scan_2s_linear_infinite]"></div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
-            
-        </div>
     </section>
-            
-        <section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0 border-t border-white/5">
+
+<section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0 bg-transparent">
             
             <div class="z-10 text-center md:text-left order-2 md:order-1 select-none">
-                <div class="inline-block bg-zenergy-blue/10 border border-zenergy-blue/20 px-4 py-1 rounded-full mb-6">
-                    <span class="text-zenergy-blue text-[8px] md:text-[9px] font-black tracking-[0.4em] uppercase">SISTEMA DE BIOCONSTRUCCIÓN</span>
+                
+                <div class="inline-block bg-black/40 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-sm mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <span class="text-white/80 text-[9px] md:text-[10px] font-black tracking-[0.4em] uppercase">
+                        SISTEMA DE BIOCONSTRUCCIÓN
+                    </span>
                 </div>
                 
-                <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase">Z_BRICK</h1>
+                <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]">
+                    Z_BRICK
+                </h1>
                 
-                <p class="text-gray-500 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[10px] md:text-[11px] tracking-widest font-light leading-relaxed normal-case">
+                <p class="text-white/75 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[11px] md:text-[12px] tracking-widest font-light leading-relaxed normal-case drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
                     Bioladrillos de micelio sintetizado con residuo de amero y estimulados mediante el 
-                    <button onclick="scrollToSection('protocol')" class="text-zenergy-blue font-bold underline decoration-zenergy-blue/30 underline-offset-4 hover:text-white transition-colors uppercase">
+                    <button onclick="scrollToSection('protocol')" class="text-white font-black underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all uppercase">
                         PROTO_PULSOR
                     </button> 
                     bajo la resonancia de los 
-                    <button onclick="scrollToSection('dial-monitor')" class="text-zenergy-blue font-bold underline decoration-zenergy-blue/30 underline-offset-4 hover:text-white transition-colors uppercase">
+                    <button onclick="scrollToSection('dial-monitor')" class="text-white font-black underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all uppercase">
                         Z_DIALS
                     </button>.
                 </p>
             </div>
 
             <div class="relative flex justify-center items-center order-1 md:order-2">
-                <div class="absolute inset-0 bg-zenergy-blue/10 blur-[80px] md:blur-[120px] rounded-full opacity-20 md:opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000"></div>
+                <div class="absolute inset-0 bg-white/10 blur-[80px] md:blur-[120px] rounded-full opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
                 
                 <div class="relative w-full max-w-[60%] md:max-w-[80%] overflow-visible">
                     <img src="img/z-brick.png" 
                         alt="Z-Brick Mycelium"
-                        class="w-full h-auto grayscale opacity-40 md:opacity-30 scale-90 md:scale-75 
+                        class="w-full h-auto grayscale opacity-50 md:opacity-40 scale-95 md:scale-85 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]
                                 transition-all duration-[1000ms] ease-out
-                                group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-105">
+                                group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-100 group-hover/hero:drop-shadow-[0_15px_30px_rgba(255,255,255,0.15)]">
                 </div>
             </div>
+            
         </section>
 
-        <section id="protocol" class="py-24 border-t border-white/5">
-            <div class="text-center mb-16 px-6 select-none">
-                <h2 class="text-2xl sm:text-3xl md:text-5xl mb-4 tracking-[0.3em] sm:tracking-[0.5em] md:tracking-[0.4em] uppercase font-black text-white leading-tight">
-                    PULSOR
-                </h2>
-                <p class="text-zenergy-blue text-[7px] sm:text-[8px] md:text-[10px] tracking-[0.5em] sm:tracking-[0.8em] md:tracking-[1em] uppercase font-bold max-w-xs sm:max-w-none mx-auto">
-                    protocolo de encriptación biocinética _puls
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
+    <section id="protocol" class="py-24 bg-transparent relative overflow-hidden">
                 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">p_pace</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-[0.05em] text-white normal-case">Caminar</p>
-                        <div class="mt-4 border-t border-white/5 pt-4">
-                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
-                                <li>> impulso</li>
-                                <li>> surco</li>
-                                <li>> vibración</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Pbeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
-                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
-                            [ play beat ]
-                        </span>
-                        <img src="img/pace.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Pace">
-                    </div>
+                <div class="text-center mb-16 px-6 select-none">
+                    <h2 class="text-2xl sm:text-3xl md:text-5xl mb-4 tracking-[0.4em] uppercase font-black text-white leading-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.95)]">
+                        PULSOR
+                    </h2>
+                    <p class="text-white text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase font-bold max-w-xs sm:max-w-none mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,1)] bg-black/40 px-4 py-1.5 rounded-sm inline-block backdrop-blur-sm border border-white/5">
+                        protocolo de encriptación biocinética _puls
+                    </p>
                 </div>
 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">u_under</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-[0.05em] text-white normal-case">Caer</p>
-                        <div class="mt-4 border-t border-white/5 pt-4">
-                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
-                                <li>> empuje</li>
-                                <li>> raíz</li>
-                                <li>> equilibrio</li>
-                            </ul>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+                    
+                    <div class="relative bg-black/55 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[420px] md:min-h-[480px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
+                        <div class="scan-line"></div>
+                        
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
+                        
+                        <div>
+                            <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">p_pace</h3>
+                            <p class="text-3xl md:text-4xl font-black mb-1 tracking-[0.05em] text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">Caminar</p>
+                            <div class="mt-4 border-t border-white/10 pt-4">
+                                <ul class="space-y-3 text-[11px] md:text-[12px] tracking-[0.2em] text-white/70 group-hover:text-white transition-colors duration-500 font-medium normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                                    <li>&gt; impulso</li>
+                                    <li>&gt; surco</li>
+                                    <li>&gt; vibración</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div onclick="playBeat('img/Pbeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
+                            <span class="opacity-40 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[9px] md:text-[10px] tracking-[0.2em] font-bold normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                                [ play beat ]
+                            </span>
+                            <img src="img/pace.png" class="w-10 h-auto opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] transition-all duration-500" alt="Vector Pace">
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Ubeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
-                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
-                            [ play beat ]
-                        </span>
-                        <img src="img/under.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Under">
-                    </div>
-                </div>
 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">l_lift</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-[0.05em] text-white normal-case">Levantar</p>
-                        <div class="mt-4 border-t border-white/5 pt-4">
-                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
-                                <li>> ascenso</li>
-                                <li>> núcleo</li>
-                                <li>> tensión</li>
-                            </ul>
+                    <div class="relative bg-black/55 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[420px] md:min-h-[480px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
+                        <div class="scan-line"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
+                        <div>
+                            <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">u_under</h3>
+                            <p class="text-3xl md:text-4xl font-black mb-1 tracking-[0.05em] text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">Caer</p>
+                            <div class="mt-4 border-t border-white/10 pt-4">
+                                <ul class="space-y-3 text-[11px] md:text-[12px] tracking-[0.2em] text-white/70 group-hover:text-white transition-colors duration-500 font-medium normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                                    <li>&gt; empuje</li>
+                                    <li>&gt; raíz</li>
+                                    <li>&gt; equilibrio</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div onclick="playBeat('img/Ubeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
+                            <span class="opacity-40 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[9px] md:text-[10px] tracking-[0.2em] font-bold normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                                [ play beat ]
+                            </span>
+                            <img src="img/under.png" class="w-10 h-auto opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] transition-all duration-500" alt="Vector Under">
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Lbeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
-                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
-                            [ play beat ]
-                        </span>
-                        <img src="img/lift.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Lift">
-                    </div>
-                </div>
 
-                <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[380px] md:min-h-[460px] transition-all duration-500 hover:border-zenergy-blue/50 group select-none">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-4 uppercase tracking-[0.5em]">s_surge</h3>
-                        <p class="text-2xl md:text-3xl font-extrabold mb-1 tracking-[0.05em] text-white normal-case">Saltar</p>
-                        <div class="mt-4 border-t border-white/5 pt-4">
-                            <ul class="space-y-2 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition normal-case">
-                                <li>> carga</li>
-                                <li>> proyección</li>
-                                <li>> destello</li>
-                            </ul>
+                    <div class="relative bg-black/55 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[420px] md:min-h-[480px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
+                        <div class="scan-line"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
+                        <div>
+                            <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">l_lift</h3>
+                            <p class="text-3xl md:text-4xl font-black mb-1 tracking-[0.05em] text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">Levantar</p>
+                            <div class="mt-4 border-t border-white/10 pt-4">
+                                <ul class="space-y-3 text-[11px] md:text-[12px] tracking-[0.2em] text-white/70 group-hover:text-white transition-colors duration-500 font-medium normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                                    <li>&gt; ascenso</li>
+                                    <li>&gt; núcleo</li>
+                                    <li>&gt; tensión</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div onclick="playBeat('img/Lbeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
+                            <span class="opacity-40 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[9px] md:text-[10px] tracking-[0.2em] font-bold normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                                [ play beat ]
+                            </span>
+                            <img src="img/lift.png" class="w-10 h-auto opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] transition-all duration-500" alt="Vector Lift">
                         </div>
                     </div>
-                    <div onclick="playBeat('img/Sbeat.wav')" class="mt-4 flex flex-col items-center gap-2 cursor-pointer group/symbol">
-                        <span class="opacity-30 group-hover/symbol:opacity-100 group-hover/symbol:text-white text-zenergy-blue transition-all duration-500 text-[7px] tracking-[0.2em] font-medium normal-case">
-                            [ play beat ]
-                        </span>
-                        <img src="img/surge.png" class="w-6 md:w-7 opacity-25 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500" alt="Vector Surge">
+
+                    <div class="relative bg-black/55 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[420px] md:min-h-[480px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
+                        <div class="scan-line"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
+                        <div>
+                            <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">s_surge</h3>
+                            <p class="text-3xl md:text-4xl font-black mb-1 tracking-[0.05em] text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">Saltar</p>
+                            <div class="mt-4 border-t border-white/10 pt-4">
+                                <ul class="space-y-3 text-[11px] md:text-[12px] tracking-[0.2em] text-white/70 group-hover:text-white transition-colors duration-500 font-medium normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                                    <li>&gt; carga</li>
+                                    <li>&gt; proyección</li>
+                                    <li>&gt; destello</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div onclick="playBeat('img/Sbeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
+                            <span class="opacity-40 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[9px] md:text-[10px] tracking-[0.2em] font-bold normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                                [ play beat ]
+                            </span>
+                            <img src="img/surge.png" class="w-10 h-auto opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] transition-all duration-500" alt="Vector Surge">
+                        </div>
                     </div>
+                    
                 </div>
-                
-            </div>
-        </section>
+            </section>
 
-    </main>
+        </main>
 
-    <footer class="py-20 border-t border-white/5 text-center text-gray-700 text-[9px] tracking-[0.8em] font-bold uppercase">
-        ZENERGIA <br> MYCELIUM TECH-LAB <br>BY
-        <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-zenergy-blue transition-colors duration-500">
-            JALKO <br>
-        </a> ANT_COL <br> 2026
-    </footer>
+        <footer class="py-20 border-t border-white/5 text-center text-white/40 text-[10px] tracking-[0.8em] font-light uppercase select-none leading-relaxed">
+            ZENERGIA <br> MYCELIUM TECH-LAB <br>
+            <span class="text-white/20">BY</span> <br>
+            <a href="https://github.com/jalkn/zenErgy" target="_blank" class="text-white/60 font-black hover:text-white transition-all duration-500 hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.85)] block my-1">
+                JALKO
+            </a> 
+            ANT_COL &bull; 2026
+        </footer>
+
+    </body>
+    </html>
 
     <script>
         /**
