@@ -120,5 +120,45 @@
         "root": 1,
         "image_ref": "data/img/AMERO_0519_1232.jpg",
         "status": "QC_PASSED"
+    },
+    {
+        "timestamp": "2026-05-19T18:13:37.723279",
+        "type": "ADAPTOGEN_PACK",
+        "batch_id": "PULS_0519_1813",
+        "adaptogen": "Melena de Leon",
+        "capsule_mg": 500.0,
+        "units": 45,
+        "resonance_dial": "4UP9",
+        "parent_biomass": "MELENA_S_01",
+        "operator": "JALKO",
+        "vector_file_path": "data/laser_output/PULS_0519_1813.svg",
+        "status": "LASER_COMPILED_SOLAR_V8"
+    },
+    {
+        "timestamp": "2026-05-19T18:24:44.671350",
+        "type": "ADAPTOGEN_PACK",
+        "batch_id": "PULS_0519_1824",
+        "adaptogen": "Melena de Leon",
+        "capsule_mg": 500.0,
+        "units": 45,
+        "resonance_dial": "4UP12",
+        "parent_biomass": "MELENA_S_01",
+        "operator": "JALKO",
+        "vector_file_path": "data/laser_output/PULS_0519_1824.svg",
+        "status": "LASER_COMPILED_PRISM_V5"
+    },
+    {
+        "timestamp": "2026-05-19T19:08:45.867494",
+        "type": "ADAPTOGEN_PACK",
+        "batch_id": "PULS_0519_1908",
+        "adaptogen": "Melena de Leon",
+        "capsule_mg": 500.0,
+        "units": 45,
+        "resonance_dial": "2UP23",
+        "installation_coords": "6.3294\u00b0 N, 75.5428\u00b0 W",
+        "operator": "JALKO",
+        "front_vector": "data/laser_output/PULS_0519_1908_FRONT.svg",
+        "back_vector": "data/laser_output/PULS_0519_1908_BACK.svg",
+        "status": "DUAL_LABEL_COMPILED"
     }
 ]

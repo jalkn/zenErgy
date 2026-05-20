@@ -3,6 +3,7 @@ import json
 import os
 import pandas as pd
 from datetime import datetime
+import math
 
 # Technical Configuration for Scientific Rigor
 st.set_page_config(page_title="Z-ARPA | Lab Auditor", page_icon="🛡️", layout="wide")
@@ -14,7 +15,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🛡️ Z-ARPA: Laboratory & Resonance Auditor")
+st.title("🛡️ Z-ARPA: Laboratory Minimalist Label Engine")
 
 def load_data():
     path = 'data/zenergia_db.json'
@@ -29,26 +30,43 @@ def save_log(entry):
     with open('data/zenergia_db.json', 'w') as f:
         json.dump(db, f, indent=4)
 
-def generate_laser_svg(batch_id, adaptogen_name, dial_string, weight, units):
-    """Generates a raw layout for laser marking based on the seasonal node template specs"""
+def calculate_z_dial_v8():
+    """Core Mathematical Replication of Z-Dial Engine v8.0"""
+    now = datetime.now()
+    hora = now.hour
+    minuto = now.minute
+    
+    solar_angle = (hora * 15.0) + (minuto * 0.25)
+    
+    if 0.0 <= solar_angle < 180.0:
+        factor_action = "PL"
+        m_compress = 6
+    elif 180.0 <= solar_angle < 270.0:
+        factor_action = "ULS"
+        m_compress = 9
+    else:
+        factor_action = "UP"
+        m_compress = 6
+        
+    phi = 1.61803398875
+    rondas = math.floor(((minuto + 1) * phi) % m_compress)
+    if rondas == 0: rondas = 3
+        
+    repetitions = math.floor((abs(180.0 - solar_angle) % 18) + 6)
+    return f"{rondas}{factor_action}{repetitions}"
+
+def generate_minimalist_front_svg(batch_id, adaptogen_name, dial_string):
+    """Generates an absolute minimalist front label based on the user's sleek reference mockup"""
     folder = "data/laser_output"
     if not os.path.exists(folder): os.makedirs(folder)
-    filepath = f"{folder}/{batch_id}.svg"
+    filepath = f"{folder}/{batch_id}_FRONT_MINIMAL.svg"
     
-    # Industrial Minimal Matrix: Sandwatch layout width, zero crystals/spheres, clean dynamic tokens
-    svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 160" width="120mm" height="50mm">
-        <rect x="10" y="10" width="420" height="140" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4,2"/>
-        <line x1="10" y1="40" x2="430" y2="40" stroke="#ffffff" stroke-width="1"/>
-        <line x1="10" y1="120" x2="430" y2="120" stroke="#ffffff" stroke-width="1"/>
+    # Absolute Clean Canvas Layout: No borders, no lines, no technical footnote metrics.
+    svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 180" width="120mm" height="50mm">
+        <text x="30" y="45" font-family="'Courier New', monospace" font-size="14" fill="#ffffff" font-weight="bold" letter-spacing="3">{adaptogen_name.upper()}</text>
+        <text x="430" y="45" font-family="'Courier New', monospace" font-size="14" fill="#ffffff" font-weight="bold" letter-spacing="1" text-anchor="end">ZENERGY.WORLD</text>
         
-        <text x="20" y="28" font-family="'Courier New', monospace" font-size="13" fill="#ffffff" font-weight="bold" letter-spacing="2">{adaptogen_name.upper()}</text>
-        <text x="310" y="28" font-family="'Courier New', monospace" font-size="11" fill="#ffffff" font-weight="bold" letter-spacing="1">ZENERGY.WORLD</text>
-        
-        <text x="16" y="95" font-family="'Courier New', monospace" font-size="46" fill="#ffffff" font-weight="bold" letter-spacing="10">{dial_string.upper()}</text>
-        
-        <text x="20" y="140" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" opacity="0.8">SPEC: {weight}MGR // VOL: {units}U // BATCH: {batch_id}</text>
-        
-        <circle cx="410" cy="140" r="3" fill="none" stroke="#ffffff" stroke-width="1"/>
+        <text x="50%" y="115" font-family="'Courier New', monospace" font-size="52" fill="#ffffff" font-weight="bold" letter-spacing="16" text-anchor="middle">{dial_string.upper()}</text>
     </svg>"""
     
     with open(filepath, "w", encoding="utf-8") as f:
@@ -95,23 +113,10 @@ if module_select == "Substrate Audit (Amero)":
             efficiency = (useful_dry_weight / total_processed * 100) if total_processed > 0 else 0.0
 
             entry = {
-                "timestamp": datetime.now().isoformat(),
-                "type": "SUBSTRATE",
-                "batch_id": batch_id,
-                "provider": amero_provider,
-                "method": dry_method,
-                "topology": matrix_topology,
-                "raw_input_g": total_raw_weight,
-                "accepted_clean_g": useful_dry_weight,
-                "rejected_dirty_g": rejected_weight,
-                "rejection_rate_pct": round(rejection_rate, 2),
-                "process_efficiency_pct": round(efficiency, 2),
-                "hazard_rating": contamination_risk,
-                "moisture_pct": est_moisture,
-                "resonance": active_dial,
-                "root": resonance_root,
-                "image_ref": img_path,
-                "status": "QC_PASSED" if est_moisture <= 15.0 and rejection_rate < 30.0 else "QC_WARNING"
+                "timestamp": datetime.now().isoformat(), "type": "SUBSTRATE", "batch_id": batch_id, "provider": amero_provider,
+                "method": dry_method, "topology": matrix_topology, "raw_input_g": total_raw_weight, "accepted_clean_g": useful_dry_weight,
+                "rejected_dirty_g": rejected_weight, "rejection_rate_pct": round(rejection_rate, 2), "process_efficiency_pct": round(efficiency, 2),
+                "hazard_rating": contamination_risk, "moisture_pct": est_moisture, "resonance": active_dial, "root": resonance_root, "image_ref": img_path, "status": "QC_PASSED"
             }
             save_log(entry)
             st.success(f"Substrate Audit Logged: {batch_id}")
@@ -145,27 +150,19 @@ elif module_select == "Media Formulation (Agar)":
         notes = st.text_area("Notes")
         if st.form_submit_button("Log Media Metrics"):
             entry = {
-                "timestamp": datetime.now().isoformat(),
-                "type": "MEDIA_RECTIFIED" if is_rectification else "MEDIA_BASE",
-                "batch_id": media_id,
-                "parent_batch": parent_batch_error,
-                "water_source": water_source,
-                "water_vol_ml": water_volume,
-                "agar_g": agar_mass,
-                "honey_g": honey_mass,
-                "chlorella_g": chlorella_mass,
-                "containers": container_count,
-                "vol_per_container_ml": vol_per_container,
-                "psi": sterilization_psi,
-                "duration_min": sterilization_time,
-                "strain": target_strain,
-                "status": "RECTIFIED_AND_STERILIZED" if is_rectification else "STERILIZED_READY"
+                "timestamp": datetime.now().isoformat(), "type": "MEDIA_BASE", "batch_id": media_id, "parent_batch": parent_batch_error,
+                "water_source": water_source, "water_vol_ml": water_volume, "agar_g": agar_mass, "honey_g": honey_mass, "chlorella_g": chlorella_mass,
+                "containers": container_count, "vol_per_container_ml": vol_per_container, "psi": sterilization_psi, "duration_min": sterilization_time,
+                "strain": target_strain, "mix_temp_c": chlorella_mix_temp, "status": "STERILIZED_READY"
             }
             save_log(entry)
             st.success(f"Logged Batch {media_id}")
 
 elif module_select == "Capsule Packaging (Pulsor)":
-    st.header("⚡ Adaptogen Packaging & Laser Vector Generator")
+    st.header("⚡ Adaptogen Packaging & Minimalist Label Generator")
+    
+    computed_solar_dial = calculate_z_dial_v8()
+    st.metric(label="Calculated Solar Engine v8.0 Pulse", value=computed_solar_dial)
     
     with st.form("pulsor_entry"):
         col1, col2 = st.columns(2)
@@ -174,36 +171,33 @@ elif module_select == "Capsule Packaging (Pulsor)":
             adaptogen_select = st.selectbox("Active Adaptogen Node", ["Reishi", "Melena de Leon", "Cordyceps", "Cola de Pavo"])
             cap_weight = st.number_input("Capsule Core Weight (mg)", value=500.0)
         with col2:
-            # Absolute human confirmation field to prevent math code drift entirely
-            custom_dial = st.text_input("Enter Active Z-Dial Code (e.g. 3ULS19)", value="", help="Input the live visible dial from the monitor corner")
+            final_dial = st.text_input("Active Z-Dial Code Validation", value=computed_solar_dial)
             unit_count = st.number_input("Units per Container", value=45)
             parent_grain_batch = st.text_input("Source Matrix Batch ID", value="REISHI_S_01")
             
         operator_sig = st.text_input("Operator Signature", value="JALKO")
-        notes = st.text_area("Manufacturing notes (Environmental moisture, laser calibration check)")
+        notes = st.text_area("Manufacturing notes")
         
-        if st.form_submit_button("Lock Manufacturing Cycle & Compile Laser SVG"):
-            if not custom_dial:
-                st.error("Operation Denied: Please input the active alfanumeric code from your dashboard.")
-            else:
-                svg_path = generate_laser_svg(pack_id, adaptogen_select, custom_dial, cap_weight, unit_count)
-                
-                entry = {
-                    "timestamp": datetime.now().isoformat(),
-                    "type": "ADAPTOGEN_PACK",
-                    "batch_id": pack_id,
-                    "adaptogen": adaptogen_select,
-                    "capsule_mg": cap_weight,
-                    "units": unit_count,
-                    "resonance_dial": custom_dial.upper(),
-                    "parent_biomass": parent_grain_batch,
-                    "operator": operator_sig,
-                    "vector_file_path": svg_path,
-                    "status": "LASER_COMPILED_VERIFIED"
-                }
-                save_log(entry)
-                st.success(f"🚀 Vector File compiled successfully. Output destination: {svg_path}")
-                st.code(f"Laser Core Array Matrix [{custom_dial.upper()}]: {pack_id}.svg", language="bash")
+        if st.form_submit_button("Lock Manufacturing Cycle & Export Minimal Front Label"):
+            dial_target = final_dial if final_dial else computed_solar_dial
+            svg_path = generate_minimalist_front_svg(pack_id, adaptogen_select, dial_target)
+            
+            entry = {
+                "timestamp": datetime.now().isoformat(),
+                "type": "ADAPTOGEN_PACK",
+                "batch_id": pack_id,
+                "adaptogen": adaptogen_select,
+                "capsule_mg": cap_weight,
+                "units": unit_count,
+                "resonance_dial": dial_target.upper(),
+                "parent_biomass": parent_grain_batch,
+                "operator": operator_sig,
+                "front_vector": svg_path,
+                "status": "MINIMAL_LABEL_COMPILED"
+            }
+            save_log(entry)
+            st.success("🚀 ¡Etiqueta Frontal Minimalista generada con éxito!")
+            st.code(f"CLEAN DESIGN -> {svg_path}", language="bash")
 
 # --- Unified Data Engine View ---
 db = load_data()
