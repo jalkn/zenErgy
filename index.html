@@ -12,12 +12,11 @@
             theme: { 
                 extend: { 
                     colors: { 
-                        // Azul cobalto de alta densidad para máxima legibilidad sobre texturas vegetales
                         'zenergy-blue': '#1e40af' 
                     },
                     fontFamily: { 'sans': ['Orbitron', 'sans-serif'] }
-                } 
-            } parent
+                }
+            }
         }
     </script>
     <style>
@@ -30,17 +29,17 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
-            color: #111827; /* Texto principal muta a gris industrial profundo para alto contraste */
+            color: #111827;
         } 
         
-        /* Contenedores de Cristal Claro Óptico (Flotación sobre la tierra) */
+        /* Contenedores de Cristal Claro Óptico */
         .glass { 
             background: rgba(255, 255, 255, 0.65); 
             border: 1px solid rgba(255, 255, 255, 0.4); 
             backdrop-filter: blur(12px); 
         }
         
-        /* Animación de Escaneo Láser de Precisión */
+        /* Animación de Escaneo Láser */
         @keyframes scan {
             0% { top: 0%; opacity: 0; }
             10% { opacity: 0.8; }
@@ -53,8 +52,8 @@
             inset: 0;
             width: 100%;
             height: 2px;
-            background: rgba(30, 64, 175, 0.4);
-            box-shadow: 0 0 20px rgba(30, 64, 175, 0.7);
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             transform: translateY(-100%);
             pointer-events: none;
             opacity: 0;
@@ -65,68 +64,54 @@
             opacity: 1;
         }
 
-        /* Fuerza de Identidad del Sello */
-        .logo-text {
-            font-weight: 900;
-            letter-spacing: 0.3em;
-            text-shadow: 0 0 25px rgba(30, 64, 175, 0.2);
-        }
-
         /* Sincronización del Scrollbar de Navegación */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(5px); }
-        ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 2px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.6); border-radius: 2px; }
 
-        /* Refuerzo Lumínico Multicapa para el Isotipo */
-        .style-laser-heavy {
-            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9)) 
-                    drop-shadow(0 0 4px rgba(255, 255, 255, 0.6))
-                    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7)); /* Sombra negra oculta para recortar la grama */
+        /* Sello Monocromático: Glow Unificado en Blanco Puro (Imagen + Texto) */
+        .style-laser-white {
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+            transition: filter 0.5s ease;
         }
-        .group:hover .style-laser-heavy {
-            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 1)) 
-                    drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
+        .group:hover .style-laser-white {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)) 
+                    drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
         }
 
-        /* Fuerza de Contorno y Separación de Fondo para el Texto Orbitron */
-        .style-text-laser-heavy {
-            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5); /* Engrosa sutilmente el trazo blanco */
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), /* Sombra dura que define la letra desde lejos */
-                         0 0 8px rgba(255, 255, 255, 0.3);
+        .logo-text {
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+            transition: text-shadow 0.5s ease, color 0.5s ease;
         }
-        .group:hover .style-text-laser-heavy {
-            -webkit-text-stroke: 0.5px rgba(59, 130, 246, 0.5);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5),
-                         0 0 6px rgba(59, 130, 246, 0.6), 
-                         0 0 15px rgba(59, 130, 246, 0.4);
+        .group:hover .logo-text {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),
+                         0 0 8px rgba(255, 255, 255, 0.9), 
+                         0 0 15px rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-900">
 
-<nav class="fixed top-0 w-full z-50 bg-black/10 backdrop-blur-md border-b border-white/10 select-none">
-        <div class="p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-[0.3em] text-[10px]">
+<nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/5 backdrop-blur-md border-b border-white/10 select-none">
+        <div class="p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest text-[9px] sm:text-[10px]">
             
-            <div class="flex items-center gap-6 cursor-pointer group" onclick="scrollToSection('hero')">
-                <div class="relative flex items-center justify-center">
-                    <div class="absolute inset-0 bg-white/10 rounded-full blur-md group-hover:bg-blue-500/20 transition-all duration-700"></div>
-                    
-                    <img src="img/logo.png" 
-                         class="w-7 opacity-90 mix-blend-screen transition-all duration-700 group-hover:opacity-100 group-hover:scale-105 style-laser-heavy" 
-                         alt="Zenergia Core"> 
+            <div class="flex items-center gap-3 sm:gap-6 cursor-pointer group" onclick="scrollToSection('installation-node')">
+                <div class="relative flex items-center justify-center flex-shrink-0">
+                    <div class="absolute inset-0 bg-white/0 rounded-full blur-md group-hover:bg-white/30 transition-all duration-700"></div>
+                    <img src="img/logo.png" class="w-6 sm:w-7 brightness-125 transition-all duration-1000 group-hover:rotate-180 style-laser-white relative z-10" alt="Zenergia Core"> 
                 </div>
                 <div class="flex flex-col">
-                    <span class="logo-text text-xl text-white font-black tracking-[0.3em] transition-all duration-700 group-hover:text-zenergy-blue style-text-laser-heavy">
+                    <span class="logo-text text-base sm:text-xl text-white tracking-[0.2em] sm:tracking-[0.3em]">
                         ZENERGIA
                     </span>
                 </div>
             </div>
             
-            <div class="flex items-center gap-10 font-bold">
-                <span onclick="scrollToSection('installation-node')" class="text-white/80 hover:text-white transition-all duration-300 cursor-pointer tracking-[0.2em] uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">PRISMA</span>
-                
-                <div id="z-dial" class="text-white font-black cursor-pointer bg-black/20 hover:bg-white/15 hover:scale-105 border border-white/20 backdrop-blur-sm px-4 py-1 rounded-sm tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" onclick="scrollToSection('dial-monitor')">
-                    000000
+            <div class="flex items-center font-bold">
+                <div id="z-dial" class="text-white font-bold cursor-pointer hover:bg-white/20 transition-all duration-300 border border-white/30 bg-black/10 px-3 sm:px-4 py-1 rounded-sm backdrop-blur-sm tracking-widest hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" onclick="scrollToSection('dial-monitor')">
+                    ...
                 </div>
             </div>
 
