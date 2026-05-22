@@ -300,116 +300,104 @@
             
         </section>
 
-<section id="protocol" class="py-24 bg-transparent relative overflow-hidden">
+<!-- SECCIÓN: PROTOCOLO PULSOR (OCTÁGONO GEOMÉTRICO INTERACTIVO EN CUADRANTES) -->
+<section id="protocol" class="py-24 bg-transparent relative overflow-hidden flex flex-col items-center justify-center">
             
-            <div class="text-center mb-16 px-6 select-none">
-                <p class="text-2xl sm:text-3xl md:text-5xl mb-5 tracking-[0.4em] font-extrabold uppercase max-w-xs sm:max-w-none mx-auto drop-shadow-[0_4px_12px_rgba(0,0,0,1)] bg-black/60 px-5 py-2 rounded-sm inline-block border border-white/10 backdrop-blur-md">
-                PULSOR
-                </p>
-                <p class="text-white/75 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[11px] md:text-[12px] tracking-widest font-light leading-relaxed normal-case drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-                    protocolo de encriptación biocinética _puls
-                </p>
+    <!-- Encabezado de la Sección -->
+    <div class="text-center mb-16 px-6 select-none">
+        <p class="text-2xl sm:text-3xl md:text-5xl mb-5 tracking-[0.4em] font-extrabold uppercase max-w-xs sm:max-w-none mx-auto drop-shadow-[0_4px_12px_rgba(0,0,0,1)] bg-black/60 px-5 py-2 rounded-sm inline-block border border-white/10 backdrop-blur-md">
+            PULSOR
+        </p>
+        <p class="text-white/75 max-w-md mx-auto mb-10 md:mb-12 text-[11px] md:text-[12px] tracking-widest font-light leading-relaxed normal-case drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+            protocolo de encriptación biocinética _puls
+        </p>
+    </div>
+
+    <!-- CONTENEDOR MAESTRO DEL OCTÁGONO (Estructura responsiva y simétrica) -->
+    <div class="relative w-full max-w-[340px] sm:max-w-[460px] md:max-w-[520px] aspect-square grid grid-cols-2 grid-rows-2 gap-2 p-2 select-none">
+        
+        <!-- Líneas de Ejes del Dial (Estéticas y Tecnológicas de Fondo) -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <div class="w-[90%] h-[1px] bg-white/10 absolute"></div>
+            <div class="h-[90%] w-[1px] bg-white/10 absolute"></div>
+            <!-- Círculo interior guía -->
+            <div class="w-1/2 h-1/2 border border-white/5 rounded-full absolute"></div>
+        </div>
+
+        <!-- CUADRANTE 1: ARRIBA-IZQUIERDA (CAMINAR - P_PACE) -->
+        <div onclick="playBeat('img/Pbeat.wav')" 
+             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8"
+             style="clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30%);">
+            
+            <div class="flex flex-col gap-1">
+                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">p_pace</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    Caminar
+                </h3>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
-                
-                <div class="relative bg-black/60 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[440px] md:min-h-[500px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
-                    
-                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
-                    
-                    <div>
-                        <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">p_pace</h3>
-                        <p class="text-2xl sm:text-3xl font-black mb-1 tracking-[0.05em] text-white/40 group-hover:text-white group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.85)] transition-all duration-700 uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                            Caminar
-                        </p>
-                        <div class="mt-5 border-t border-white/10 pt-4">
-                            <ul class="space-y-3 text-[12px] md:text-[13px] tracking-[0.2em] text-white/60 group-hover:text-white transition-colors duration-500 font-bold normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                                <li>&gt; impulso</li>
-                                <li>&gt; surco</li>
-                                <li>&gt; vibración</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div onclick="playBeat('img/Pbeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
-                        <span class="opacity-50 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[10px] tracking-[0.2em] font-black normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                            [ play beat ]
-                        </span>
-                        <img src="img/pace.png" class="w-14 h-14 opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] transition-all duration-500 object-contain" alt="Vector Pace">
-                    </div>
-                </div>
-
-                <div class="relative bg-black/60 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[440px] md:min-h-[500px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
-                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
-                    <div>
-                        <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">u_under</h3>
-                        <p class="text-2xl sm:text-3xl font-black mb-1 tracking-[0.05em] text-white/40 group-hover:text-white group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.85)] transition-all duration-700 uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                            Caer
-                        </p>
-                        <div class="mt-5 border-t border-white/10 pt-4">
-                            <ul class="space-y-3 text-[12px] md:text-[13px] tracking-[0.2em] text-white/60 group-hover:text-white transition-colors duration-500 font-bold normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                                <li>&gt; empuje</li>
-                                <li>&gt; raíz</li>
-                                <li>&gt; equilibrio</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Ubeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
-                        <span class="opacity-50 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[10px] tracking-[0.2em] font-black normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                            [ play beat ]
-                        </span>
-                        <img src="img/under.png" class="w-14 h-14 opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] transition-all duration-500 object-contain" alt="Vector Under">
-                    </div>
-                </div>
-
-                <div class="relative bg-black/60 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[440px] md:min-h-[500px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
-                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
-                    <div>
-                        <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">l_lift</h3>
-                        <p class="text-2xl sm:text-3xl font-black mb-1 tracking-[0.05em] text-white/40 group-hover:text-white group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.85)] transition-all duration-700 uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                            Levantar
-                        </p>
-                        <div class="mt-5 border-t border-white/10 pt-4">
-                            <ul class="space-y-3 text-[12px] md:text-[13px] tracking-[0.2em] text-white/60 group-hover:text-white transition-colors duration-500 font-bold normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                                <li>&gt; ascenso</li>
-                                <li>&gt; núcleo</li>
-                                <li>&gt; tensión</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Lbeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
-                        <span class="opacity-50 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[10px] tracking-[0.2em] font-black normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                            [ play beat ]
-                        </span>
-                        <img src="img/lift.png" class="w-14 h-14 opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] transition-all duration-500 object-contain" alt="Vector Lift">
-                    </div>
-                </div>
-
-                <div class="relative bg-black/60 backdrop-blur-md border border-white/10 p-6 md:p-8 flex flex-col justify-between min-h-[440px] md:min-h-[500px] rounded-sm transition-all duration-500 hover:border-white/40 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] group select-none overflow-hidden">
-                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20 group-hover:border-white/60 transition-colors duration-500"></div>
-                    <div>
-                        <h3 class="text-[10px] md:text-[11px] font-black text-white/50 group-hover:text-white uppercase tracking-[0.4em] transition-colors duration-500 mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">s_surge</h3>
-                        <p class="text-2xl sm:text-3xl font-black mb-1 tracking-[0.05em] text-white/40 group-hover:text-white group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.85)] transition-all duration-700 uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                            Saltar
-                        </p>
-                        <div class="mt-5 border-t border-white/10 pt-4">
-                            <ul class="space-y-3 text-[12px] md:text-[13px] tracking-[0.2em] text-white/60 group-hover:text-white transition-colors duration-500 font-bold normal-case drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                                <li>&gt; carga</li>
-                                <li>&gt; proyección</li>
-                                <li>&gt; destello</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Sbeat.wav')" class="mt-8 flex flex-col items-center gap-3 cursor-pointer group/symbol relative z-10">
-                        <span class="opacity-50 group-hover/symbol:opacity-100 text-white transition-opacity duration-500 text-[10px] tracking-[0.2em] font-black normal-case drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                            [ play beat ]
-                        </span>
-                        <img src="img/surge.png" class="w-14 h-14 opacity-40 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 group-hover/symbol:drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] transition-all duration-500 object-contain" alt="Vector Surge">
-                    </div>
-                </div>
-                
+            
+            <div class="flex flex-col items-start gap-2 mt-auto">
+                <img src="img/pace.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Pace">
+                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_01 ]</span>
             </div>
-        </section>
+        </div>
+
+        <!-- CUADRANTE 2: ARRIBA-DERECHA (CAER - U_UNDER) -->
+        <div onclick="playBeat('img/Ubeat.wav')" 
+             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8 text-right items-end"
+             style="clip-path: polygon(0% 0%, 70% 0%, 100% 30%, 100% 100%, 0% 100%);">
+            
+            <div class="flex flex-col gap-1 items-end">
+                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">u_under</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    Caer
+                </h3>
+            </div>
+            
+            <div class="flex flex-col items-end gap-2 mt-auto">
+                <img src="img/under.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Under">
+                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_02 ]</span>
+            </div>
+        </div>
+
+        <!-- CUADRANTE 3: ABAJO-IZQUIERDA (LEVANTAR - L_LIFT) -->
+        <div onclick="playBeat('img/Lbeat.wav')" 
+             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8"
+             style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%, 0% 70%);">
+            
+            <div class="flex flex-col gap-1">
+                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">l_lift</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    Levantar
+                </h3>
+            </div>
+            
+            <div class="flex flex-col items-start gap-2 mt-auto">
+                <img src="img/lift.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Lift">
+                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_03 ]</span>
+            </div>
+        </div>
+
+        <!-- CUADRANTE 4: ABAJO-DERECHA (SALTAR - S_SURGE) -->
+        <div onclick="playBeat('img/Sbeat.wav')" 
+             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8 text-right items-end"
+             style="clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 70% 100%, 0% 100%);">
+            
+            <div class="flex flex-col gap-1 items-end">
+                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">s_surge</span>
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    Saltar
+                </h3>
+            </div>
+            
+            <div class="flex flex-col items-end gap-2 mt-auto">
+                <img src="img/surge.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Surge">
+                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_04 ]</span>
+            </div>
+        </div>
+
+    </div>
+</section>
 
     </main>
 
