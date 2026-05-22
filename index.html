@@ -300,100 +300,100 @@
             
         </section>
 
-<!-- SECCIÓN: PROTOCOLO PULSOR (OCTÁGONO GEOMÉTRICO INTERACTIVO EN CUADRANTES) -->
+<!-- SECCIÓN: PROTOCOLO PULSOR (MONOLITO OCTÁGONO PERFECTO CON MÁXIMO PROTAGONISMO ICÓNICO) -->
 <section id="protocol" class="py-24 bg-transparent relative overflow-hidden flex flex-col items-center justify-center">
             
-    <!-- Encabezado de la Sección -->
-    <div class="text-center mb-16 px-6 select-none">
-        <p class="text-2xl sm:text-3xl md:text-5xl mb-5 tracking-[0.4em] font-extrabold uppercase max-w-xs sm:max-w-none mx-auto drop-shadow-[0_4px_12px_rgba(0,0,0,1)] bg-black/60 px-5 py-2 rounded-sm inline-block border border-white/10 backdrop-blur-md">
+    <!-- Encabezado de la Sección Unificado (Texto opaco/traslúcido con iluminación interactiva en hover) -->
+    <div class="text-center mb-20 px-6 select-none group/title cursor-default">
+        <p class="text-2xl sm:text-3xl md:text-5xl mb-5 tracking-[0.45em] font-extrabold uppercase max-w-xs sm:max-w-none mx-auto transition-all duration-500 text-white/50 group-hover/title:text-white group-hover/title:drop-shadow-[0_0_25px_rgba(255,255,255,0.6)] bg-black/40 px-8 py-3 rounded-sm inline-block border border-white/5 backdrop-blur-md">
             PULSOR
         </p>
-        <p class="text-white/75 max-w-md mx-auto mb-10 md:mb-12 text-[11px] md:text-[12px] tracking-widest font-light leading-relaxed normal-case drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+        <p class="text-white/60 group-hover/title:text-white/90 transition-colors duration-500 max-w-md mx-auto text-[11px] md:text-[12px] tracking-widest font-medium uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
             protocolo de encriptación biocinética _puls
         </p>
     </div>
 
-    <!-- CONTENEDOR MAESTRO DEL OCTÁGONO (Estructura responsiva y simétrica) -->
-    <div class="relative w-full max-w-[340px] sm:max-w-[460px] md:max-w-[520px] aspect-square grid grid-cols-2 grid-rows-2 gap-2 p-2 select-none">
+    <!-- CONTENEDOR MONOLÍTICO: OCTÁGONO PERFECTO DE LADOS IGUALES -->
+    <!-- Un solo elemento con clip-path geométrico exacto de 8 lados simétricos -->
+    <div class="relative w-full max-w-[320px] sm:max-w-[420px] md:max-w-[460px] aspect-square bg-black/40 backdrop-blur-md border border-white/10 select-none overflow-hidden transition-all duration-700 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
+         style="clip-path: polygon(29.3% 0%, 70.7% 0%, 100% 29.3%, 100% 70.7%, 70.7% 100%, 29.3% 100%, 0% 70.7%, 0% 29.3%);">
         
-        <!-- Líneas de Ejes del Dial (Estéticas y Tecnológicas de Fondo) -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <div class="w-[90%] h-[1px] bg-white/10 absolute"></div>
-            <div class="h-[90%] w-[1px] bg-white/10 absolute"></div>
-            <!-- Círculo interior guía -->
-            <div class="w-1/2 h-1/2 border border-white/5 rounded-full absolute"></div>
+        <!-- Líneas de División Internas: Justificadas desde el Centro Exacto hacia los Bordes -->
+        <div class="absolute inset-0 pointer-events-none z-20">
+            <!-- Eje Horizontal -->
+            <div class="absolute top-1/2 left-0 w-full h-[1px] bg-white/10"></div>
+            <!-- Eje Vertical -->
+            <div class="absolute left-1/2 top-0 h-full w-[1px] bg-white/10"></div>
+            <!-- Núcleo Central de Intersección Sutil -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#141414] border border-white/20 rotate-45"></div>
         </div>
 
-        <!-- CUADRANTE 1: ARRIBA-IZQUIERDA (CAMINAR - P_PACE) -->
-        <div onclick="playBeat('img/Pbeat.wav')" 
-             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8"
-             style="clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30%);">
+        <!-- MALLA INTERNA DE REGIONES INTERACTIVAS (4 Cuadrantes Perfectos) -->
+        <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-10">
             
-            <div class="flex flex-col gap-1">
-                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">p_pace</span>
-                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    Caminar
-                </h3>
-            </div>
-            
-            <div class="flex flex-col items-start gap-2 mt-auto">
-                <img src="img/pace.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Pace">
-                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_01 ]</span>
-            </div>
-        </div>
+            <!-- CUADRANTE A: ARRIBA-IZQUIERDA (P_PACE / CAMINAR) -->
+            <div onclick="playBeat('img/Pbeat.wav')" 
+                 class="relative group/quad flex flex-col items-center justify-center p-6 transition-all duration-500 hover:bg-white/[0.03] cursor-pointer">
+                <!-- Identificador Criptográfico Minimalista -->
+                <span class="absolute top-4 left-6 text-[9px] font-bold text-white/30 tracking-widest uppercase transition-colors duration-300 group-hover/quad:text-white/70">p_pace</span>
+                
+                <!-- SÍMBOLO VECTORIAL PRINCIPAL (El elemento más grande y dominante) -->
+                <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center my-auto">
+                    <img src="img/pace.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-110 group-hover/quad:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] transition-all duration-500 object-contain" alt="Pace Vector">
+                </div>
 
-        <!-- CUADRANTE 2: ARRIBA-DERECHA (CAER - U_UNDER) -->
-        <div onclick="playBeat('img/Ubeat.wav')" 
-             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8 text-right items-end"
-             style="clip-path: polygon(0% 0%, 70% 0%, 100% 30%, 100% 100%, 0% 100%);">
-            
-            <div class="flex flex-col gap-1 items-end">
-                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">u_under</span>
-                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    Caer
-                </h3>
+                <!-- Textos Reducidos y Estilizados Inferiores -->
+                <div class="text-center mt-auto flex flex-col gap-1">
+                    <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-colors duration-300 uppercase">Caminar</span>
+                    <span class="text-[8px] font-medium text-white/20 tracking-wider group-hover/quad:text-white/50 transition-colors duration-300">[ 01 ]</span>
+                </div>
             </div>
-            
-            <div class="flex flex-col items-end gap-2 mt-auto">
-                <img src="img/under.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Under">
-                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_02 ]</span>
-            </div>
-        </div>
 
-        <!-- CUADRANTE 3: ABAJO-IZQUIERDA (LEVANTAR - L_LIFT) -->
-        <div onclick="playBeat('img/Lbeat.wav')" 
-             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8"
-             style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%, 0% 70%);">
-            
-            <div class="flex flex-col gap-1">
-                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">l_lift</span>
-                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    Levantar
-                </h3>
-            </div>
-            
-            <div class="flex flex-col items-start gap-2 mt-auto">
-                <img src="img/lift.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Lift">
-                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_03 ]</span>
-            </div>
-        </div>
+            <!-- CUADRANTE B: ARRIBA-DERECHA (u_UNDER / CAER) -->
+            <div onclick="playBeat('img/Ubeat.wav')" 
+                 class="relative group/quad flex flex-col items-center justify-center p-6 transition-all duration-500 hover:bg-white/[0.03] cursor-pointer">
+                <span class="absolute top-4 right-6 text-[9px] font-bold text-white/30 tracking-widest uppercase transition-colors duration-300 group-hover/quad:text-white/70">u_under</span>
+                
+                <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center my-auto">
+                    <img src="img/under.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-110 group-hover/quad:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] transition-all duration-500 object-contain" alt="Under Vector">
+                </div>
 
-        <!-- CUADRANTE 4: ABAJO-DERECHA (SALTAR - S_SURGE) -->
-        <div onclick="playBeat('img/Sbeat.wav')" 
-             class="relative bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/10 group cursor-pointer overflow-hidden transition-all duration-500 hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.05)] flex flex-col justify-between p-6 sm:p-8 text-right items-end"
-             style="clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 70% 100%, 0% 100%);">
-            
-            <div class="flex flex-col gap-1 items-end">
-                <span class="text-[9px] font-black text-white/40 tracking-[0.3em] uppercase group-hover:text-white/80 transition-colors duration-300">s_surge</span>
-                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white/50 group-hover:text-white tracking-wide transition-all duration-500 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    Saltar
-                </h3>
+                <div class="text-center mt-auto flex flex-col gap-1">
+                    <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-colors duration-300 uppercase">Caer</span>
+                    <span class="text-[8px] font-medium text-white/20 tracking-wider group-hover/quad:text-white/50 transition-colors duration-300">[ 02 ]</span>
+                </div>
             </div>
-            
-            <div class="flex flex-col items-end gap-2 mt-auto">
-                <img src="img/surge.png" class="w-10 h-10 sm:w-12 sm:h-12 opacity-35 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 object-contain" alt="Vector Surge">
-                <span class="text-[8px] tracking-[0.2em] font-black uppercase text-white/30 group-hover:text-white/90 transition-colors duration-500">[ beat_04 ]</span>
+
+            <!-- CUADRANTE C: ABAJO-IZQUIERDA (L_LIFT / LEVANTAR) -->
+            <div onclick="playBeat('img/Lbeat.wav')" 
+                 class="relative group/quad flex flex-col items-center justify-center p-6 transition-all duration-500 hover:bg-white/[0.03] cursor-pointer">
+                <span class="absolute bottom-4 left-6 text-[9px] font-bold text-white/30 tracking-widest uppercase transition-colors duration-300 group-hover/quad:text-white/70">l_lift</span>
+                
+                <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center my-auto">
+                    <img src="img/lift.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-110 group-hover/quad:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] transition-all duration-500 object-contain" alt="Lift Vector">
+                </div>
+
+                <div class="text-center mt-auto flex flex-col gap-1">
+                    <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-colors duration-300 uppercase">Levantar</span>
+                    <span class="text-[8px] font-medium text-white/20 tracking-wider group-hover/quad:text-white/50 transition-colors duration-300">[ 03 ]</span>
+                </div>
             </div>
+
+            <!-- CUADRANTE D: ABAJO-DERECHA (S_SURGE / SALTAR) -->
+            <div onclick="playBeat('img/Sbeat.wav')" 
+                 class="relative group/quad flex flex-col items-center justify-center p-6 transition-all duration-500 hover:bg-white/[0.03] cursor-pointer">
+                <span class="absolute bottom-4 right-6 text-[9px] font-bold text-white/30 tracking-widest uppercase transition-colors duration-300 group-hover/quad:text-white/70">s_surge</span>
+                
+                <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center my-auto">
+                    <img src="img/surge.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-110 group-hover/quad:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] transition-all duration-500 object-contain" alt="Surge Vector">
+                </div>
+
+                <div class="text-center mt-auto flex flex-col gap-1">
+                    <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-colors duration-300 uppercase">Saltar</span>
+                    <span class="text-[8px] font-medium text-white/20 tracking-wider group-hover/quad:text-white/50 transition-colors duration-300">[ 04 ]</span>
+                </div>
+            </div>
+
         </div>
 
     </div>
