@@ -443,12 +443,12 @@
 
 <script>
     /**
-    * Z-Dial Resonance Engine v8.7 - Solar Drift Matrix & WAVE Protocol Sync
+    * Z-Dial Resonance Engine v8.8 - Solar Drift Matrix & WAVE Protocol Sync
     */
     const $ = (id) => document.getElementById(id);
     const PHI = 1.618033;
     
-    // Estado global de la variante seleccionada por el usuario
+    // Estado global de la variante adaptógena seleccionada por el usuario
     let varianteActiva = "FOCUS";
 
     const updateZ = () => {
@@ -483,7 +483,7 @@
         if ($('z-dial')) $('z-dial').innerText = res;
         if ($('hologram-dial')) $('hologram-dial').innerText = res;
         
-        // 6. Inyección de Explicación Conceptual (Corregido contraste de los corchetes a text-white/60)
+        // 6. Inyección de Explicación Conceptual (Alto contraste regulado para el exterior)
         if ($('protocol-desc')) {
             $('protocol-desc').innerHTML = `
                 <span class="text-white/60 font-mono font-bold">[nodo: ${res}]</span> 
@@ -494,18 +494,18 @@
     };
 
     /**
-    * Propuesta 1: Controlador de Interfaz para Selección de Variante Dinámica
+    * Controlador de Interfaz para Selección de Variante Dinámica (Nomenclatura Avanzada)
     */
     function seleccionarVariante(variante) {
         varianteActiva = variante.toUpperCase();
         
-        // Actualiza el texto curvo superior en caliente dentro del SVG
+        // Actualiza dinámicamente el grabado láser del arco superior con la escala recuperada
         if ($('laser-variant-title')) {
             $('laser-variant-title').textContent = `PULSOR ${varianteActiva}`;
         }
         
-        // Matriz de actualización de clases para el menú horizontal
-        const opciones = ['FOCUS', 'CALMA', 'VITAL', 'ESCUDO'];
+        // Sincronización del menú de selección horizontal superior
+        const opciones = ['FOCUS', 'ZEN', 'STAMINA', 'CORE'];
         opciones.forEach(opt => {
             const el = $(`opt-${opt.toLowerCase()}`);
             if (el) {
@@ -520,7 +520,7 @@
         if (navigator.vibrate) navigator.vibrate(25);
     }
 
-    // Inicialización inmediata y bucle de refresco
+    // Inicialización inmediata del motor y bucle de refresco (1 minuto)
     updateZ();
     setInterval(updateZ, 60000);
 
@@ -538,7 +538,7 @@
     }
 
     /**
-    * Procesador de Órdenes Hacia WhatsApp de ARPA (Captura Variante + Hash)
+    * Procesador de Órdenes Hacia WhatsApp de ARPA (Captura Variante Evolucionada + Hash)
     */
     function adquirirNodo(tipoInyeccion) {
         const currentHash = $('big-dial') ? $('big-dial').textContent.trim() : "0000";
