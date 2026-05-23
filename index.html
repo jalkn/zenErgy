@@ -554,7 +554,7 @@
     }
 
     /**
-    * Procesador de Órdenes Hacia WhatsApp de ARPA (Captura Variante Evolucionada + Hash)
+    * Procesador de Órdenes Hacia WhatsApp de ARPA (Lenguaje Unificado con el Frontend)
     */
     function adquirirNodo(tipoInyeccion) {
         const currentHash = $('big-dial') ? $('big-dial').textContent.trim() : "0000";
@@ -565,8 +565,8 @@
             message = encodeURIComponent(
                 `[ZENERGIA WORLD] Solicitud de Operador\n` +
                 `-----------------------------------\n` +
-                `• Acción: Adquirir Protocolo (${varianteActiva})\n` +
-                `• Hash de Carga Solar: #${currentHash}\n` +
+                `• Acción: Adquirir PULSOR ${varianteActiva}\n` +
+                `• Pulso de Resonancia Solar: #${currentHash}\n` +
                 `• Valor T1: $70.000 COP\n` +
                 `• Beneficio: Asignación de 1/30 de Z-Brick`
             );
@@ -575,7 +575,7 @@
                 `[ZENERGIA WORLD] Solicitud de Operador\n` +
                 `-----------------------------------\n` +
                 `• Acción: Adquirir Z-Brick Físico Directo (21x13cm)\n` +
-                `• Hash de Carga Solar: #${currentHash}\n` +
+                `• Pulso de Resonancia Solar: #${currentHash}\n` +
                 `• Valor T1: $70.000 COP\n` +
                 `• Beneficio: Asignación de +1 Z-Dial al Historial`
             );
