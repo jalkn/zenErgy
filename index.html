@@ -130,7 +130,14 @@
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-8 pt-40">
+    <main class="max-w-7xl mx-auto px-8 pt-10">
+
+<!-- SEASONAL NODE: DETECTOR ASÍNCRONO -->
+<section id="seasonal-node" class="relative w-full min-h-screen bg-transparent flex justify-center items-center overflow-hidden select-none py-16">
+    <div id="mesh-container" class="w-full max-w-[1100px] px-6 relative z-10 flex justify-center items-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+        <!-- El script inyectará el SVG aquí de forma transparente -->
+    </div>
+</section>
 
 <!-- ==========================================
      SECCIÓN 1: INSTALLATION-NODE (CARTOGRAFÍA RECALIBRADA - SWEET SPOT)
@@ -599,6 +606,21 @@
         if (navigator.vibrate) navigator.vibrate(40);
         window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
     }
+
+    // Cargar la matriz matemática sin saturar el HTML principal
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('img/barranquero-mesh.svg')
+            .then(response => response.text())
+            .then(data => {
+                const container = document.getElementById('mesh-container');
+                container.innerHTML = data;
+                
+                // Opcional: Aquí podrías añadir lógica JS para pintar nodos 
+                // vendidos dinámicamente si en el futuro usas una API ligera.
+            })
+            .catch(err => console.error('[-] Error cargando la bio-matriz:', err));
+    });
+
 </script>
 </body>
 </html>
