@@ -198,7 +198,7 @@
                 
                 <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/brick" onclick="scrollToSection('z-brick')">
                     <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/brick:text-white group-hover/brick:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
-                        SEED
+                        NODO
                     </span>
                     <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_#fff] mt-1"></div>
                 </div>
@@ -361,27 +361,28 @@
             </span>
         </div>
         
-        <!-- 3. TÍTULO CRÍTICO: Mismo peso que los encabezados del sistema -->
-        <h2 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-[0.15em] text-white uppercase mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] transition-all duration-700 group-hover/brick-section:tracking-[0.18em]">
-            SEED
-        </h2>
-        
-        <!-- 4. DESCRIPCIÓN TÉCNICA NORMALIZADA (Estilo Consola de Estado / Dial) -->
-        <p class="text-[11px] sm:text-[12px] text-white/80 tracking-[0.25em] font-medium max-w-xl uppercase leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mb-10">
-            Modulos de micelio sintetizado con residuo de amero y estimulados mediante el 
-            <button onclick="scrollToSection('protocol')" class="text-white font-black underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
-                PULSOR
-            </button> 
-            bajo la resonancia de los 
-            <button onclick="scrollToSection('dial-monitor')" class="text-white font-black underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
-                DIALS
-            </button>.
-        </p>
+    <!-- 3. TÍTULO CRÍTICO -->
+    <h2 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-[0.15em] text-white uppercase mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] transition-all duration-700 group-hover/brick-section:tracking-[0.18em]">
+        NODO
+    </h2>
+
+    <!-- 4. DESCRIPCIÓN TÉCNICA NORMALIZADA -->
+    <p class="text-[11px] sm:text-[12px] text-white/80 tracking-[0.25em] font-medium max-w-xl uppercase leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mb-10">
+        Síntesis material mediante el acoplamiento de 
+        <button onclick="scrollToSection('dial-monitor')" class="text-white font-black underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
+            DIALS
+        </button>,
+        modulando ondas consecutivas bajo el protocolo 
+        <button onclick="scrollToSection('protocol')" class="text-white font-black underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
+            PULSOR
+        </button> 
+        hasta consolidar una estructura de alta densidad.
+    </p>
 
         <!-- 5. CONTENEDOR DE ACCIONES CON EL ESTILO DEL MENÚ SUPERIOR (Centrado Perfecto) -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xs relative z-30 px-4">
             <button onclick="adquirirNodo('Z_BRICK_DIRECTO')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                INTEGRAR MI NODO AL BOSQUE
+                INTEGRAR NODO
             </button>
         </div>
         
@@ -490,62 +491,48 @@
      ========================================== -->
 <section id="drop-resonance-node" class="relative w-full min-h-screen bg-transparent flex flex-col justify-between items-center overflow-hidden select-none py-20 px-6 scrollbar-none">
     
-    <!-- Espaciador superior para replicar el aire visual del header -->
     <div class="w-full h-12"></div>
 
-    <!-- Contenedor Central Monolítico (Replicando la estructura de Screenshot 2026-05-24 at 7.45.47 PM.jpg) -->
     <div class="w-full max-w-4xl flex flex-col items-center text-center my-auto">
         
-        <!-- DONDE ESTABA EL LADRILLO: Geometría Coaxial de Puntos Consecutivos (Ondas del Dial) -->
-        <div class="w-[280px] sm:w-[340px] aspect-square relative mb-8 flex justify-center items-center group">
-            <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_0_35px_rgba(255,255,255,0.15)]">
+        <!-- GEOMETRÍA COAXIAL: Dashboard de Tres Ingredientes (Visualización de Datos) -->
+        <div class="w-[320px] sm:w-[400px] aspect-square relative mb-8 flex justify-center items-center group">
+            <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
                 
-                <!-- [ONDA EXTERNA: EL SOL / TRANSMISIÓN] 
-                     Puntos consecutivos espaciados simulando emisión de datos -->
-                <path d="M 100 20 A 80 80 0 1 1 23 123" 
-                      class="stroke-white/30 fill-none stroke-[4] transition-all duration-[3s] group-hover:stroke-white/60 group-hover:stroke-[4.5]" 
-                      stroke-linecap="round" 
-                      stroke-dasharray="0 10" />
+                <!-- INGREDIENTE 1: Tensión de expansión (Radio 70) -->
+                <!-- Ángulo ajustado para representar la primera variable -->
+                <path d="M 100 30 A 70 70 0 0 1 170 100" 
+                    class="stroke-white fill-none stroke-[4]" 
+                    stroke-linecap="round" stroke-dasharray="0 6" />
                 
-                <!-- [ONDA CENTRAL: EL CUERPO / PROTOCOLO WAVE] 
-                     Mayor densidad de pulsos en resonancia simétrica -->
-                <path d="M 40 100 A 60 60 0 0 1 160 65" 
-                      class="stroke-white/70 fill-none stroke-[5] transition-all duration-[2.5s] group-hover:stroke-white group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]" 
-                      stroke-linecap="round" 
-                      stroke-dasharray="0 8" />
+                <!-- INGREDIENTE 2: Tensión de equilibrio (Radio 50) -->
+                <!-- Ángulo ajustado para representar la segunda variable -->
+                <path d="M 100 50 A 50 50 0 1 1 100 150" 
+                    class="stroke-white fill-none stroke-[4]" 
+                    stroke-linecap="round" stroke-dasharray="0 6" />
                 
-                <!-- [ONDA INTERNA: LA TIERRA / CAPTACIÓN] 
-                     Puntos masivos cercanos al núcleo -->
-                <path d="M 100 140 A 40 40 0 0 1 118 62" 
-                      class="stroke-white/40 fill-none stroke-[6] transition-all duration-[2s] group-hover:stroke-white/80" 
-                      stroke-linecap="round" 
-                      stroke-dasharray="0 12" />
-
-                <!-- Núcleo Invariable de Convergencia -->
-                <circle cx="100" cy="100" r="3.5" class="fill-white animate-pulse" />
-                <circle cx="100" cy="100" r="14" class="stroke-white/10 fill-none stroke-[0.5]" />
+                <!-- INGREDIENTE 3: Tensión de núcleo (Radio 30) -->
+                <!-- Ángulo ajustado para representar la tercera variable -->
+                <path d="M 100 70 A 30 30 0 0 0 70 100" 
+                    class="stroke-white fill-none stroke-[4]" 
+                    stroke-linecap="round" stroke-dasharray="0 6" />
             </svg>
         </div>
 
-        <!-- Etiqueta de Sub-Contexto (Reemplaza "BIOCONSTRUCTION") -->
         <div class="bg-black/40 border border-white/10 backdrop-blur-md px-5 py-1 rounded-sm mb-4 tracking-[0.35em] text-[10px] sm:text-[11px] font-bold text-white/60 uppercase">
-            DROP RESONANCE
+            T2 DROP RESONANCE
         </div>
 
-            <!-- Texto Explicativo -->
-            <p class="max-w-xl text-xs sm:text-sm font-semibold tracking-[0.2em] leading-relaxed text-white/50 uppercase px-4">
-                Código alfanumérico transmutado en <span class="text-white/90">esferas de resonancia biocinética</span>, sintetizadas mediante la decodificación sónica de pulsos continuos en la estructura matriz del miscelio
-            </p>
-
+        <p class="max-w-xl text-xs sm:text-sm font-semibold tracking-[0.2em] leading-relaxed text-white/50 uppercase px-4">
+            Código alfanumérico transmutado en <span class="text-white/90">frecuencias de resonancia biocinética</span>. La decodificación sónica de pulsos continuos modula la matriz de micelio, consolidando cada <span class="text-white/90">NODO</span> como una esfera geométrica de alta densidad.
+        </p>
     </div>
 
-    <!-- BOTÓN DE INVERSIÓN TEMPORADA COMPLETA (Reemplaza "ORDENAR Z-BRICK") -->
     <div class="w-full max-w-xs px-4">
         <button class="w-full bg-white/[0.07] hover:bg-white text-white hover:text-black border border-white/20 hover:border-white text-xs font-black tracking-[0.4em] uppercase py-4 px-6 rounded-sm backdrop-blur-md transition-all duration-300 transform active:scale-[0.98] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
             ORDENAR BASH
         </button>
     </div>
-
 </section>
     </main>
 
