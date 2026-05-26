@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JALKO // NODO Operational Portfolio</title>
+    <title>JALKO // Portfolio NODO Operational</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -296,43 +296,39 @@
             <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">STAMINA</span>
             <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">CORE</span>
         </div>
+            <!-- STATUS -->
+            <div class="mt-2 w-full max-w-2xl flex flex-col items-center gap-2 relative z-20 select-none px-4">
+                <p id="protocol-desc" class="text-[11px] sm:text-[12px] text-white tracking-[0.15em] font-medium text-center normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                    sincronizando matriz solar...
+                </p>
+                <div class="w-12 h-[1px] bg-white/20 overflow-hidden relative rounded-full mb-4">
+                    <div class="h-full bg-white/80 w-1/2 animate-[scan_2.5s_linear_infinite]"></div>
+                </div>
+            </div>
 
-        <div class="mt-2 w-full max-w-2xl flex flex-col items-center gap-2 relative z-20 select-none px-4">
-            <p id="protocol-desc" class="text-[11px] sm:text-[12px] text-white tracking-[0.25em] font-medium text-center uppercase leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                sincronizando_matriz_solar...
-            </p>
-            <div class="w-12 h-[1px] bg-white/20 overflow-hidden relative rounded-full mb-4">
-                <div class="h-full bg-white/80 w-1/2 animate-[scan_2.5s_linear_infinite]"></div>
+            <!-- BENEFICIOS -->
+            <div class="mb-8 w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 px-6 text-left select-none z-30">
+                <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
+                    <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// ARQUITECTURA FÍSICA</span>
+                    <h4 class="text-white text-[11px] font-black tracking-widest uppercase mb-1">1. Nodo de Instalación</h4>
+                    <p class="text-white/70 text-[10px] tracking-wider leading-relaxed normal-case">Tu aporte financia y asegura un bloque vivo físico dentro de la obra de bio-arte en el bosque.</p>
+                </div>
+                <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
+                    <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// IDENTIDAD CRIPTOGRÁFICA</span>
+                    <h4 class="text-white text-[11px] font-black tracking-widest uppercase mb-1">2. Código Pulsor Único</h4>
+                    <p class="text-white/70 text-[10px] tracking-wider leading-relaxed normal-case">Identificador digital único vinculado de forma indestructible a las coordenadas de la obra.</p>
+                </div>
+                <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
+                    <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// SINTONÍA BIÓNICA DEL AVE</span>
+                    <h4 id="ux-benefit-title" class="text-white text-[11px] font-black tracking-widest uppercase mb-1">3. Conexión Focus</h4>
+                    <p id="ux-benefit-desc" class="text-white/70 text-[10px] tracking-wider leading-relaxed normal-case">Pulsor para expandir tu enfoque y claridad cognitiva.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="mb-8 w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 px-6 text-left select-none z-30">
-            <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
-                <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// ARQUITECTURA FÍSICA</span>
-                <h4 class="text-white text-[11px] font-black tracking-widest uppercase mb-1">1. Nodo de Instalación</h4>
-                <p class="text-white/70 text-[10px] tracking-wider leading-relaxed uppercase">Tu aporte financia y asegura un bloque vivo físico dentro de la obra de Bio-Arte en el bosque.</p>
+            <!-- TAG FINAL -->
+            <div class="mt-12 px-5 py-2 bg-[#141414]/80 backdrop-blur-lg border border-white/10 rounded-full text-[10px] text-white tracking-[0.3em] font-bold uppercase select-none shadow-[0_4px_20px_rgba(0,0,0,0.5)] z-30">
+                T1_DATA // <span class="text-white/60">reflejo activo:</span> lado positivo del ave // enlace indestructible
             </div>
-            <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
-                <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// IDENTIDAD CRIPTOGRÁFICA</span>
-                <h4 class="text-white text-[11px] font-black tracking-widest uppercase mb-1">2. Código Pulsor Único</h4>
-                <p class="text-white/70 text-[10px] tracking-wider leading-relaxed uppercase">Identificador digital único vinculado de forma indestructible a las coordenadas de la obra.</p>
-            </div>
-            <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
-                <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// SINTONÍA BIÓNICA DEL AVE</span>
-                <h4 id="ux-benefit-title" class="text-white text-[11px] font-black tracking-widest uppercase mb-1">3. Conexión Focus</h4>
-                <p id="ux-benefit-desc" class="text-white/70 text-[10px] tracking-wider leading-relaxed uppercase">Pulsor para expandir tu enfoque y claridad cognitiva.</p>
-            </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
-            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                INTEGRAR PULSOR
-            </button>
-        </div>
-        
-        <div class="mt-12 px-5 py-2 bg-[#141414]/80 backdrop-blur-lg border border-white/10 rounded-full text-[10px] text-white tracking-[0.3em] font-bold uppercase select-none shadow-[0_4px_20px_rgba(0,0,0,0.5)] z-30">
-            T1_DATA // <span class="text-white/60">REFLEJO ACTIVO:</span> LADO POSITIVO DEL AVE // ENLACE INDESTRUCTIBLE
-        </div>
 
     </div>
 </section>
@@ -536,7 +532,7 @@
             
             <!-- Marca -->
             <a href="https://github.com/jalkn/zenErgy" target="_blank" class="block uppercase font-black mb-4 hover:opacity-70 transition-opacity">
-                JALKN // SYSTEM
+                JALKN.TECH
             </a>
             
             <!-- Autor y Disciplinas -->
@@ -648,23 +644,22 @@
             }
         });
 
-        // 3. MATRIZ DE REDIRECCIÓN DE CONTENIDO UX: Resuelve el error de "Conexión Focus" permanente
         const varianteData = {
             'FOCUS': {
                 title: '3. Conexión Focus',
-                desc: 'Pulsor para expandir tu enfoque y claridad cognitiva.'
+                desc: 'Pulsor enfocado en la agudeza cognitiva y expansión del rango de atención.'
             },
             'ZEN': {
                 title: '3. Conexión Zen',
-                desc: 'Pulsor para sintonízar frecuencias bajas para la reducción del ruido mental y restauración del sistema nervioso.'
+                desc: 'Pulsor calibrado para la reducción del ruido mental y restauración del sistema nervioso.'
             },
             'STAMINA': {
                 title: '3. Conexión Stamina',
-                desc: 'Pulsor para optimizar el rendimiento energético celular y resistencia física adaptativa en cualquier entorno.'
+                desc: 'Pulsor configurado para optimizar el rendimiento energético celular y resistencia física adaptativa.'
             },
             'CORE': {
                 title: '3. Conexión Core',
-                desc: 'Pulsor para sincronizamente inmunológica integral y balance estructural microbiano profundo.'
+                desc: 'Pulsor diseñado para la sincronización inmunológica integral y balance del ecosistema microbiano.'
             }
         };
 
