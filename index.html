@@ -748,6 +748,28 @@
             .catch(err => console.error('[-] Error cargando la bio-matriz:', err));
     });
 
+    // Agregar al final de tu <script> en index.html
+    window.addEventListener('DOMContentLoaded', () => {
+        // 1. Buscamos si hay un parámetro ?node=XYZ en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const nodeId = urlParams.get('node');
+
+        if (nodeId) {
+            // 2. Le damos un pequeño tiempo a que cargue el SVG y hacemos scroll
+            setTimeout(() => {
+                scrollToNodeID(nodeId);
+                
+                // 3. Opcional: Hacer que el nodo parpadee en rojo o brille para que lo encuentre visualmente
+                const targetNode = document.getElementById(`node-point-${nodeId}`);
+                if (targetNode) {
+                    targetNode.style.fill = '#ff0000';
+                    targetNode.style.opacity = '1';
+                    targetNode.classList.add('pulse-animation'); // Una clase CSS de pulso
+                }
+            }, 800); // 800 milisegundos de espera para asegurar suavidad
+        }
+    });
+
 </script>
 </body>
 </html>

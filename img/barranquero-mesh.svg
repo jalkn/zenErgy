@@ -47,7 +47,7 @@
     <circle class="land-node node-available" cx="260" cy="169" r="5.3" id="node-point-39" onclick="scrollToNodeID(39)" />
     <circle class="land-node node-available" cx="273" cy="169" r="5.7" id="node-point-40" onclick="scrollToNodeID(40)" />
     <circle class="land-node node-available" cx="286" cy="169" r="5.9" id="node-point-41" onclick="scrollToNodeID(41)" />
-    <circle class="land-node node-available" cx="299" cy="169" r="5.8" id="node-point-42" onclick="scrollToNodeID(42)" />
+    <circle class="land-node node-available" cx="299" cy="169" r="1.8" id="node-point-42" onclick="scrollToNodeID(42)" />
     <circle class="land-node node-available" cx="325" cy="169" r="2.6" id="node-point-43" onclick="scrollToNodeID(43)" />
     <circle class="land-node node-available" cx="338" cy="169" r="2.7" id="node-point-44" onclick="scrollToNodeID(44)" />
     <circle class="land-node node-available" cx="351" cy="169" r="3.3" id="node-point-45" onclick="scrollToNodeID(45)" />
@@ -59,7 +59,7 @@
     <circle class="land-node node-available" cx="429" cy="169" r="5.2" id="node-point-51" onclick="scrollToNodeID(51)" />
     <circle class="land-node node-available" cx="273" cy="182" r="5.5" id="node-point-52" onclick="scrollToNodeID(52)" />
     <circle class="land-node node-available" cx="286" cy="182" r="6.0" id="node-point-53" onclick="scrollToNodeID(53)" />
-    <circle class="land-node node-available" cx="299" cy="182" r="6.1" id="node-point-54" onclick="scrollToNodeID(54)" />
+    <circle class="land-node node-available" cx="299" cy="182" r="3.2" id="node-point-54" onclick="scrollToNodeID(54)" />
     <circle class="land-node node-available" cx="312" cy="182" r="6.0" id="node-point-55" onclick="scrollToNodeID(55)" />
     <circle class="land-node node-available" cx="325" cy="182" r="5.8" id="node-point-56" onclick="scrollToNodeID(56)" />
     <circle class="land-node node-available" cx="338" cy="182" r="4.0" id="node-point-57" onclick="scrollToNodeID(57)" />
@@ -169,6 +169,7 @@
     <circle class="land-node node-available" cx="312" cy="273" r="4.2" id="node-point-161" onclick="scrollToNodeID(161)" />
     <circle class="land-node node-available" cx="325" cy="273" r="4.3" id="node-point-162" onclick="scrollToNodeID(162)" />
     <circle class="land-node node-available" cx="338" cy="273" r="4.1" id="node-point-163" onclick="scrollToNodeID(163)" />
+    <circle class="land-node node-available" cx="351" cy="273" r="4.1" id="node-point-999" onclick="scrollToNodeID(999)" />
     <circle class="land-node node-available" cx="364" cy="273" r="4.1" id="node-point-164" onclick="scrollToNodeID(164)" />
     <circle class="land-node node-available" cx="377" cy="273" r="4.1" id="node-point-165" onclick="scrollToNodeID(165)" />
     <circle class="land-node node-available" cx="390" cy="273" r="4.3" id="node-point-166" onclick="scrollToNodeID(166)" />
@@ -188,7 +189,7 @@
     <circle class="land-node node-available" cx="312" cy="286" r="4.2" id="node-point-180" onclick="scrollToNodeID(180)" />
     <circle class="land-node node-available" cx="325" cy="286" r="4.2" id="node-point-181" onclick="scrollToNodeID(181)" />
     <circle class="land-node node-available" cx="338" cy="286" r="4.2" id="node-point-182" onclick="scrollToNodeID(182)" />
-    <circle class="land-node node-available" cx="351" cy="286" r="5.7" id="node-point-183" onclick="scrollToNodeID(183)" />
+    <circle class="land-node node-available" cx="351" cy="286" r="4.2" id="node-point-183" onclick="scrollToNodeID(183)" />
     <circle class="land-node node-available" cx="364" cy="286" r="4.1" id="node-point-184" onclick="scrollToNodeID(184)" />
     <circle class="land-node node-available" cx="377" cy="286" r="4.3" id="node-point-185" onclick="scrollToNodeID(185)" />
     <circle class="land-node node-available" cx="390" cy="286" r="4.3" id="node-point-186" onclick="scrollToNodeID(186)" />
@@ -955,6 +956,7 @@
     <circle class="land-node node-available" cx="715" cy="533" r="4.5" id="node-point-947" onclick="scrollToNodeID(947)" />
     <circle class="land-node node-available" cx="728" cy="533" r="3.6" id="node-point-948" onclick="scrollToNodeID(948)" />
     <circle class="land-node node-available" cx="741" cy="533" r="5.4" id="node-point-949" onclick="scrollToNodeID(949)" />
+    <circle class="land-node node-available" cx="754" cy="533" r="5.7" id="node-point-998" onclick="scrollToNodeID(998)" />
     <circle class="land-node node-available" cx="767" cy="533" r="6.0" id="node-point-950" onclick="scrollToNodeID(950)" />
     <circle class="land-node node-available" cx="780" cy="533" r="5.2" id="node-point-951" onclick="scrollToNodeID(951)" />
     <circle class="land-node node-available" cx="793" cy="533" r="4.7" id="node-point-952" onclick="scrollToNodeID(952)" />
