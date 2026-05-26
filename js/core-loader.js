@@ -1,19 +1,19 @@
 // Motor de Inyección Dinámica y Telemetría Unificada // ZENERGIA 2026
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Determinamos la ruta hacia los componentes de forma puramente relativa.
-    // Si la URL actual incluye 't2.html' (o estás dentro de un sub-endpoint), puedes ajustar el prefijo.
-    // Para index.html y t2.html estando ambos en la raíz, la ruta es simplemente "components/"
+    // Al usar "components/" sin barra inicial, el navegador busca la carpeta
+    // partiendo exactamente desde la ubicación del archivo HTML actual.
+    // Esto funciona de forma nativa en localhost, subcarpetas o dominios finales.
     const basePath = "components/";
 
-    console.log("[+] ZENERGIA Core Loader - Buscando en ruta relativa:", basePath);
+    console.log("[+] ZENERGIA Core Loader - Buscando en:", basePath);
 
     // 1. Inyectar Barra de Navegación
     const navContainer = document.getElementById("global-nav");
     if (navContainer) {
         fetch(`${basePath}nav.html`) 
             .then(response => {
-                if (!response.ok) throw new Error(`404: No se encontró nav.html en la ruta estática.`);
+                if (!response.ok) throw new Error(`404: No se encontró nav.html`);
                 return response.text();
             })
             .then(html => {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (footerContainer) {
         fetch(`${basePath}footer.html`) 
             .then(response => {
-                if (!response.ok) throw new Error(`404: No se encontró footer.html en la ruta estática.`);
+                if (!response.ok) throw new Error(`404: No se encontró footer.html`);
                 return response.text();
             })
             .then(html => {
