@@ -120,10 +120,32 @@
     </nav>
 
     <main class="max-w-7xl mx-auto px-8 pt-10">
+<!-- ==========================================
+             SECTION 1: SEASONAL NODE (TERRITORIAL BIO-MATRIX MESH)
+             ========================================== -->
+        <section id="seasonal-node" class="py-24 flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
+            <div class="relative z-10 flex flex-col items-center w-full px-4 text-center gap-8">
+                
+                <!-- Asynchronous Mesh Container (Responsive scroll native tracking) -->
+                <div class="w-full overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
+                    <div id="mesh-container" class="w-full min-w-[850px] sm:min-w-0 sm:max-w-[1100px] px-4 sm:px-6 relative z-10 flex justify-center items-center mx-auto transition-all duration-700">
+                        <!-- img/barranquero-mesh.svg loads here dynamically via fetch -->
+                    </div>
+                </div>
 
-        <!-- SEASONAL NODE: DETECTOR ASÍNCRONO OPTIMIZADO PARA MÓVIL -->
-        <section id="seasonal-node" class="relative w-full min-h-[70vh] sm:min-h-screen bg-transparent flex justify-center items-center overflow-x-auto overflow-y-hidden select-none py-12 md:py-16 scrollbar-none">
-            <div id="mesh-container" class="w-full min-w-[850px] sm:min-w-0 sm:max-w-[1100px] px-4 sm:px-6 relative z-10 flex justify-center items-center"></div>
+                <!-- Shared UI Design: Glass Title Badge -->
+                <div class="glass px-8 py-3 border-[0.5px] border-white/30 bg-black/5 backdrop-blur-[6px] rounded-sm text-white font-black text-[11px] tracking-[0.25em] uppercase max-w-xl mx-auto select-none shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+                    T1 LANDART INSTALLATION NODES
+                </div>
+
+                <!-- Conceptual Text with High-Contrast Drop Shadow (Location Agnostic) -->
+                <!-- Conceptual Text with High-Contrast Drop Shadow (Brief Version) -->
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
+                    A physical 1:1 territorial intervention in the forest of Santa Elena. 
+                    This bio-matrix traces a bird's geometric grid, transforming land-art modules into synchronized tracking anchors connected directly to our hardware ecosystem.
+                </p>
+
+            </div>
         </section>
 
 <!-- SECCIÓN INTERMEDIA: MAPEO DE NODOS DE RESONANCIA -->
@@ -178,10 +200,13 @@
                 </div>
             </div>
         </section>
-
+<!-- ==========================================
+     SECTION: DIAL MONITOR (DYNAMIC CORE TELEMETRY)
+     ========================================== -->
 <section id="dial-monitor" class="py-24 flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
     <div class="relative z-10 flex flex-col items-center w-full px-4 text-center gap-8">
         
+        <!-- Interactive Vector Arcs -->
         <div class="relative w-full max-w-[280px] md:max-w-[320px] aspect-square select-none cursor-pointer group">
             <div class="w-full h-full p-1 relative overflow-hidden bg-transparent">
                 <div class="absolute inset-0 flex items-center justify-center p-[6%] z-10">
@@ -194,17 +219,20 @@
             </div>
         </div>
 
+        <!-- Telemetry Live Display Badge -->
         <div class="glass px-8 py-3 border-[0.5px] border-white/30 bg-black/5 backdrop-blur-[6px] rounded-sm text-white font-black text-[11px] tracking-[0.25em] uppercase max-w-xl mx-auto select-none shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
             <span id="telemetry-display">...</span>
         </div>
 
+        <!-- Updated Conceptual Text Block -->
         <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
             Matrix determined by solar drift and golden ratio (phi) iterations. 
             The first digit calibrates via cycle light angles. 
-            The central coordinates combine torque, gravity, and frequency (<span class="text-white font-bold">lift // under // surge</span>), igniting the <span class="text-white font-bold">trigger t</span> as a flow state where the body operates as the unconscious mind—attracting and pushing away thoughts. 
-            The final digits respond to bioelectric feedback loops and beats stimulation directly in the territory's mycelium.
+            The central coordinates combine torque, gravity, and frequency with functional movements, igniting the creativity as a flow state where the body operates as the unconscious mind—attracting and pushing away thoughts. 
+            The final digits respond to bioelectric feedback loops and beats stimulation directly in the lab's mycelium.
         </p>
 
+        <!-- Dynamic Trigger Action -->
         <button onclick="adquirirNodo('PARTITURA_PULSOR')" 
                 class="glass px-8 py-3 mt-4 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
             tune pulsor
