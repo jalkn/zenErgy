@@ -185,16 +185,15 @@
         </div>
 
         <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
-            Matriz determinada por la altura del sol y la iteración de la proporción áurea. 
-            El primer número se calibra mediante el ángulo lumínico del ciclo solar, 
-            las letras centrales mutan según el vector de la sombra y la gravedad, 
-            y los dígitos finales responden a la densidad de tensión contra la tierra. 
-            Cada pulso alfanumérico genera un estímulo bioeléctrico y beats de encriptación kinética directos en el micelio.
+            Matrix determined by solar drift and golden ratio (phi) iterations. 
+            The first digit calibrates via cycle light angles. 
+            The central coordinates combine torque, gravity, and frequency (<span class="text-white font-bold">lift // under // surge</span>), igniting the <span class="text-white font-bold">trigger t</span> as a flow state where the body operates as the unconscious mind—attracting and pushing away thoughts. 
+            The final digits respond to bioelectric feedback loops and beats stimulation directly in the territory's mycelium.
         </p>
 
         <button onclick="adquirirNodo('PARTITURA_PULSOR')" 
                 class="glass px-8 py-3 mt-4 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
-            sintonizar pulsor
+            tune pulsor script
         </button>
     </div>
 </section>
@@ -302,6 +301,33 @@
             </div>
         </section>
 
+<!-- ==========================================
+     SECTION: ART MANIFESTO & PIEZO-BIOMECHANICS
+     ========================================= -->
+<section id="manifesto" class="py-24 flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
+    <div class="relative z-10 flex flex-col items-center w-full px-4 text-center gap-6">
+        
+        <!-- Minimalist Artistic Statement / Normal-case Rule -->
+        <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
+            My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. 
+            I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. 
+            To keep this gap open, we code the functional movements of the body into a live language.
+        </p>
+
+        <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
+            The unconscious mind operates through kinetic traction: <span class="text-white font-bold">attracting and pushing away thoughts</span>. 
+            By mapping these sequences into mechanical blocks, we trigger constant ignition. 
+            Inside the nodes, integrated quartz matrices act as passive piezo-electrical interfaces—converting the raw tension of your footsteps into micro-voltage stimuli that accelerate the bio-welding of the living mycelium.
+        </p>
+
+        <!-- Minimalist Navigation Trigger -->
+        <button onclick="scrollToSection('dial-monitor')" 
+                class="glass px-8 py-3 mt-4 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
+            view live dials
+        </button>
+    </div>
+</section>
+
       
 
     </main>
@@ -350,10 +376,17 @@
         const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
         
         // 2. Mapeo de Transiciones Kinéticas por Cuadrante (PULS Protocol)
-        let acciones = 'UL'; 
-        if (deg >= 90 && deg < 180) acciones = 'PL';
-        else if (deg >= 180 && deg < 270) acciones = 'ULS';
-        else if (deg >= 270) acciones = 'LU';
+        let acciones = 'UL'; // Estado base: Control Excéntrico + Potencia Concéntrica
+
+        if (deg >= 90 && deg < 180) {
+            acciones = 'PL';  // Pace + Lift: Alineación de ritmo y vector de ascenso
+        } 
+        else if (deg >= 180 && deg < 270) {
+            acciones = 'LST'; // IGNICIÓN: Lift + Surge + Trigger (Potencia explosiva + Frecuencia = Disparador)
+        } 
+        else if (deg >= 270) {
+            acciones = 'US';  // Under + Surge: Absorción de gravedad a alta frecuencia neuromuscular
+        }
 
         // 3. Modulación Dinámica de Sets (PACE) basada en la altura del Sol
         const setsRaw = Math.floor(Math.abs(Math.sin((deg * Math.PI) / 180)) * 6) + 2;
