@@ -213,37 +213,15 @@
 </section>
 
 <!-- ==========================================
-             SECTION 3: NODE (HIGH-DENSITY / SCALABLE LIVING INFRASTRUCTURE)
+             SECTION 4: PULSOR PROTOCOL (DODECAGON KINETIC INTERFACE)
              ========================================== -->
-        <section id="node-section" class="group/brick-section flex flex-col items-center justify-center min-h-[85vh] py-24 px-4 bg-transparent overflow-hidden relative">
-            <div class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto text-center select-none gap-6">
-                
-                <!-- Live Node Visual Centerpiece floating over grass -->
-                <div class="relative w-full max-w-[260px] sm:max-w-[320px] aspect-square flex justify-center items-center">
-                    <div class="absolute inset-0 bg-white/5 blur-[90px] rounded-full opacity-0 group-hover/brick-section:opacity-100 transition-opacity duration-[1000ms] pointer-events-none"></div>
-                    <img src="img/node.png" alt="Zenergia Mycelium Tech-Lab Live Node" class="w-full h-auto grayscale opacity-40 scale-95 transition-all duration-[1000ms] group-hover/brick-section:grayscale-0 group-hover/brick-section:opacity-75 group-hover/brick-section:scale-100">
-                </div>
-
-                <!-- Minimalist Descriptive Block / High Shadow & Normal-case Rule -->
-                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                    Mechanical modules coupled directly with live 
-                    <button onclick="scrollToSection('dial-monitor')" class="text-white font-bold underline decoration-white/40 underline-offset-4 hover:text-white transition-all">dials</button>. 
-                    The raw kinetic energy from your physical levers transmits bioelectric impulses into the grid, triggering quartz resonance crystals to accelerate the structural coding of each biological block.
-                </p>
-
-                <!-- Interactive Integration Trigger -->
-                <button onclick="adquirirNodo('NODE_DIRECT')" 
-                        class="px-8 py-3 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
-                    activate node
-                </button>
-            </div>
-        </section>
-
-        <!-- SECCIÓN: PROTOCOLO PULSOR (DODECÁGONO CON NUEVA ORIENTACIÓN WAVE) -->
         <section id="protocol" class="py-24 bg-transparent relative overflow-hidden flex flex-col items-center justify-center">
+            
+            <!-- Geometric Hourglass Dodecagon Grid Layout -->
             <div class="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[320px] aspect-square bg-black/40 backdrop-blur-md border border-white/10 select-none overflow-hidden transition-all duration-700 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
                  style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
                 
+                <!-- Central Real-Time Wave Audio Pulsor Core -->
                 <div class="absolute inset-0 pointer-events-none z-20">
                     <div class="absolute top-1/2 left-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
                     <div class="absolute top-1/2 right-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
@@ -259,62 +237,72 @@
                     </div>
                 </div>
 
-                <!-- PROTOCOLO DE AUDITORÍA KINÉTICA -->
+                <!-- BIOMECHANICAL ENCRYPTION QUADRANTS -->
                 <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-10">
+                    
+                    <!-- Quadrant Alpha: Pace (Base Rhythm) -->
                     <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.03]">
                         <div class="flex flex-col items-center justify-center gap-1 mt-4 ml-4">
                             <div onclick="playBeat('img/Pbeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
                                 <img src="img/pace.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Pace Vector">
                             </div>
-                            <div class="text-center flex flex-col gap-0.5 select-none">
-                                <span class="text-[9px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">PACE</span>
-                                <span class="text-[6px] font-bold text-white/20 tracking-[0.12em] uppercase">ritmo_base</span>
+                            <div class="text-center flex flex-col gap-0.5 select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+                                <span class="text-[9px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">PACE</span>
+                                <span class="text-[6px] font-bold text-white/30 tracking-[0.12em] uppercase">base_rhythm</span>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Quadrant Beta: Under (Eccentric Gravity / Pushing Away Thoughts) -->
                     <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.05]">
                         <div class="flex flex-col items-center justify-center gap-1 mt-4 mr-4">
                             <div onclick="playBeat('img/Ubeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
                                 <img src="img/under.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Under Vector">
                             </div>
-                            <div class="text-center select-none">
-                                <span class="text-[9px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">UNDER</span>
-                                <span class="block text-[6px] font-bold text-white/20 tracking-[0.12em] uppercase">gravedad</span>
+                            <div class="text-center select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+                                <span class="text-[9px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">UNDER</span>
+                                <span class="block text-[6px] font-bold text-white/30 tracking-[0.12em] uppercase">gravity_push</span>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Quadrant Gamma: Lift (Concentric Torque / Attracting Thoughts) -->
                     <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.05]">
                         <div class="flex flex-col items-center justify-center gap-1 mb-4 ml-4">
                             <div onclick="playBeat('img/Lbeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
                                 <img src="img/lift.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Lift Vector">
                             </div>
-                            <div class="text-center select-none">
-                                <span class="text-[9px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">LIFT</span>
-                                <span class="block text-[6px] font-bold text-white/20 tracking-[0.12em] uppercase">potencia</span>
+                            <div class="text-center select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+                                <span class="text-[9px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">LIFT</span>
+                                <span class="block text-[6px] font-bold text-white/30 tracking-[0.12em] uppercase">torque_pull</span>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Quadrant Delta: Surge & Trigger (Bioelectric Frequency Ignitions) -->
                     <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.05]">
                         <div class="flex flex-col items-center justify-center gap-1 mb-4 mr-4">
                             <div onclick="playBeat('img/Sbeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
                                 <img src="img/surge.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Surge Vector">
                             </div>
-                            <div class="text-center select-none">
-                                <span class="text-[9px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">SURGE</span>
-                                <span class="block text-[6px] font-bold text-white/20 tracking-[0.12em] uppercase">frecuencia</span>
+                            <div class="text-center select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+                                <span class="text-[9px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">SURGE // T</span>
+                                <span class="block text-[6px] font-bold text-white/30 tracking-[0.12em] uppercase">electric_trigger</span>
                             </div>
                         </div>
                     </div>
                 </div>        
             </div>
 
-            <div class="text-center flex flex-col items-center gap-6 select-none mt-8">
-                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case">
-                    Protocolo de encriptación biocinética PULS
+            <!-- Manifiesto Unificado del Pulsor en Inglés (Normal-Case Rule) -->
+            <div class="text-center flex flex-col items-center gap-6 select-none mt-8 px-4">
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                    The PULS biokinetic encryption protocol maps terrestrial biomechanics directly into the unconscious mind. 
+                    By matching velocity frequencies and mass vectors, the network releases the synchronized ignition of the trigger—transforming the physical framework into a raw generative tool.
                 </p>
                 <button onclick="playFullProtocol()" 
                         class="px-8 py-3 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
-                    Escuchar pulsor
+                    listen pulsor script
                 </button>
             </div>
         </section>
