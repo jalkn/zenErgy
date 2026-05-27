@@ -331,8 +331,8 @@
     }
 
     /**
-    * Zenergia Kinetic Resonance Engine v9.9 - Dynamic Solar Drift Matrix & Screenless PULS Protocol Sync
-    * Interfaz purista: Telemetría unificada, oscilador macromolecular de micelio y condicional de supresión de ceros.
+    * Zenergia Kinetic Resonance Engine v10.0 - Dynamic Solar Drift Matrix & Screenless PULS Protocol Sync
+    * Interfaz purista: Telemetría unificada, oscilador macromolecular de micelio y supresión estricta de ceros a nivel global (< 10).
     */
     const $ = (id) => document.getElementById(id);
     const PHI = 1.618033;
@@ -357,16 +357,18 @@
         const repsRaw = Math.floor(((now.getMinutes() + 1) * PHI) % 8) + 3;
         const reps = String(repsRaw).padStart(2, '0');
 
-        // 5. CONDICIONAL DE RECORTE DE CERO: Si comienzan por 0, se remueve y se muestra desde el segundo dígito
-        const setsFiltrado = sets.replace(/^0/, '');
-        const repsFiltrado = reps.replace(/^0/, '');
+        // 5. CONDICIONAL DE RECORTE DE CEROS (MENORES A 10): Limpieza absoluta convirtiendo a entero
+        const setsFiltrado = parseInt(sets, 10).toString();
+        const repsFiltrado = parseInt(reps, 10).toString();
 
-        // 6. Compilación del código de encriptación puro de transferencia de datos externa (Glow de Barra Superior)
-        const coordenadaBiocinética = `${sets}${acciones}${reps}`;
+        // 6. Compilación del código de encriptación puro SIN CEROS (Ej: 04UL05 pasa a ser 4UL5)
+        const coordenadaBiocinética = `${setsFiltrado}${acciones}${repsFiltrado}`;
+        
+        // Inyección unificada y limpia en todo el ecosistema web
         if ($('z-dial')) $('z-dial').innerText = coordenadaBiocinética;
         if ($('hologram-dial')) $('hologram-dial').innerText = coordenadaBiocinética;
 
-        // 7. INYECCIÓN TÁCTICA EN LA LÍNEA DE TELEMETRÍA: Desglose dinámico en una sola línea (Ej: 2ul4)
+        // 7. INYECCIÓN TÁCTICA EN LA LÍNEA DE TELEMETRÍA: Desglose dinámico en una sola línea
         if ($('telemetry-display')) {
             $('telemetry-display').innerHTML = `${setsFiltrado} sets <span class="text-white/30">//</span> ${acciones.toLowerCase()} acciones <span class="text-white/30">//</span> ${repsFiltrado} reps`;
         }
