@@ -60,31 +60,26 @@
 </head>
 <body class="antialiased selection:bg-white/20 min-h-screen flex flex-col justify-between text-white">
 
-    <!-- NAV BAR SUPERIOR (Sincronizada con index.html) -->
+        <!-- NAV BAR SUPERIOR (BLOQUES MONOLÍTICOS SCREENLESS IDENTITY) -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/5 backdrop-blur-md border-b border-white/10 select-none">
         <div class="p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest text-[9px] sm:text-[10px]">
             
-            <!-- Nodo de Identidad Core (Retorno a Home Oficial) -->
-            <a href="https://zenergy.world/" class="flex items-center gap-2 sm:gap-3 cursor-pointer group">
+            <div href="https://zenergy.world/" class="flex items-center gap-4 cursor-pointer group" >
                 <div class="relative flex items-center justify-center flex-shrink-0">
-                    <div class="absolute inset-0 bg-white/0 rounded-full blur-md group-hover:bg-white/20 transition-all duration-700"></div>
-                    <img src="img/logo.png" class="w-6 sm:w-7 brightness-125 transition-all duration-1000 group-hover:rotate-180 style-laser-white relative z-10" alt="Zenergia Core"> 
+                    <img src="img/logo.png" class="w-7 transition-all duration-1000 group-hover:rotate-180" alt="Zenergia Core"> 
                 </div>
                 <div class="flex flex-col">
-                    <span class="logo-text text-base sm:text-xl text-white tracking-[0.2em] sm:tracking-[0.3em] group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
-                        ZENERGIA
-                    </span>
+                    <span class="text-xl text-white tracking-[0.4em] font-black uppercase">ZENERGY</span>
                 </div>
-            </a>
-            
-            <!-- Grupo de Control Satelital (Monolito Único de Telemetría) -->
-            <div class="flex items-center font-bold">
-                <a id="z-dial" 
-                   href="index.html#dial-monitor"
-                   class="text-white font-bold cursor-pointer hover:bg-white/20 transition-all duration-300 border border-white/30 bg-black/10 h-[28px] sm:h-[32px] w-[72px] sm:w-[84px] flex items-center justify-center rounded-sm backdrop-blur-sm tracking-widest hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
-                   title="Retornar a Dial Monitor">
-                    ------
-                </a>
+            </div>
+                            
+            <!-- Telemetría Alfanumérica de Coordenada Coaxial Solar -->
+            <div class="flex items-center gap-3 font-bold">
+                <div id="z-dial" 
+                     class="text-white font-bold cursor-pointer hover:bg-white/20 transition-all duration-300 border border-white/30 bg-black/10 h-[28px] sm:h-[32px] w-[90px] sm:w-[110px] flex items-center justify-center rounded-sm backdrop-blur-sm tracking-[0.15em] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" 
+                     onclick="scrollToSection('dial-monitor')">
+                    ...
+                </div>
             </div>
 
         </div>
@@ -198,13 +193,14 @@
         </div>
     </main>
 
-   <footer class="py-20 border-t border-white/10 text-center text-white text-[11px] tracking-[0.8em] font-bold uppercase select-none leading-relaxed bg-black/50 backdrop-blur-md relative z-10 drop-shadow-[0_-5px_15px_rgba(0,0,0,0.5)]">
-        ZENERGIA <br> NODO TECH-LAB <br>
-        <span class="text-white/40 font-medium text-[9px]">BY</span> <br>
-        <a href="https://github.com/jalkn/zenErgy" target="_blank" class="text-white font-black hover:text-white transition-all duration-500 hover:drop-shadow-[0_0_12px_rgba(255,255,255,1)] inline-block my-1 underline decoration-white/20 underline-offset-4">
-            JALKO
-        </a> <br>
-        <span class="text-white/90">ANT_COL &bull; <br>Biolandart full stack dev.</span>
+    <footer class="py-12 border-t border-white/10 text-center text-white text-[10px] tracking-[0.4em] select-none bg-black/50 backdrop-blur-md relative z-10">
+        <a href="https://github.com/jalkn/zenErgy" target="_blank" class="block uppercase font-black mb-4 hover:opacity-70 transition-opacity">
+            ZENERGY.WORLD &copy; 2026
+        </a>
+        <div class="text-[9px] font-light italic normal-case opacity-70 mb-4">
+            <span class="block mb-1">by Alejandro Monsalve</span>
+            <span class="block tracking-[0.2em]">Biolandart // Fullstack Dev.</span>
+        </div>
     </footer>
 
 <!-- LOGICA SÍNCRONA OPTIMIZADA (REFRACTORIZADA: BIOSINERGIA CORE) -->
