@@ -160,42 +160,48 @@
             <!-- Menú Limpio, Minimalista y Alineado a la Derecha -->
             <div class="px-8 flex flex-col gap-6 mt-10">
                 
-                <!-- 1. El Origen (Contexto) -->
-                <button onclick="scrollToSection('manifesto'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                <!-- 1. El Origen (Enlace externo a página limpia) -->
+                <a href="/manifesto" class="drawer-btn w-full text-right focus:outline-none group block">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         MANIFESTO
                     </span>
-                </button>
+                </a>
 
-                <!-- 2. La Intervención Territorial (Sincronizado con el Nav) -->
+                <!-- 2. La Intervención Territorial -->
                 <button onclick="scrollToSection('seasonal-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         BIOLANDART
                     </span>
                 </button>
 
-                <!-- 3. Biomecánica y Ecosistema -->
+                <!-- 3. Biomecánica y Ecosistema (Z-Bricks / Escalabilidad Bioconstrucción) -->
+                <button onclick="scrollToSection('installation-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
+                        NODE (Z-BRICK)
+                    </span>
+                </button>
+
                 <button onclick="scrollToSection('protocol'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         PULSOR
                     </span>
                 </button>
 
-                <button onclick="scrollToSection('installation-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                <button onclick="scrollToSection('axis'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         AXIS
                     </span>
                 </button>
 
                 <!-- 4. Archivo -->
-                <button onclick="scrollToSection('vault'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group text-right">
+                <button onclick="scrollToSection('vault'); toggleDrawer();" class="drawer-btn w-full focus:outline-none group text-right">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         MATERIAL VAULT
                     </span>
                 </button>
 
             </div>
-
+            
             <!-- Panel de Especificaciones -->
             <div class="px-8 mt-8">
                 <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.02] backdrop-blur-md rounded-sm p-4 space-y-2 transition-all duration-300">
