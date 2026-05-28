@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MYCELIUM TECH-LAB</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = { 
             theme: { 
                 extend: { 
                     colors: { 'zenergia-black': '#0a0a0a' },
-                    fontFamily: { 'sans': ['Orbitron', 'sans-serif'] }
+                    fontFamily: { 
+                        'sans': ['Orbitron', 'sans-serif'],
+                        'mono': ['Orbitron', 'monospace'],
+                        'body': ['Plus Jakarta Sans', 'sans-serif']
+                    }
                 }
             }
         }
@@ -27,7 +31,6 @@
             position: relative;
         } 
 
-        /* Contenedor del césped con transición de opacidad para oscurecimiento radical */
         #page-bg-overlay {
             position: fixed;
             inset: 0;
@@ -39,7 +42,6 @@
             transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
         }
 
-        /* Entorno Oscuro (Indoor) activado */
         .drawer-active #page-bg-overlay {
             opacity: 0.08;
             filter: grayscale(100%) brightness(30%);
@@ -58,15 +60,12 @@
             transition: all 0.4s ease;
         }
 
-        /* Transición base para los íconos que van a encenderse */
         .img-glow-transition {
             transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: filter, transform;
             transform: scale(1);
         }
 
-        /* EFECTO GLOW ELÉCTRICO INTENSO (FORZADO POR HARDWARE) */
-        /* Al activarse el modo Indoor, los isotipos se expanden sutilmente y proyectan luz cobalto profunda */
         .drawer-active .img-glow-transition {
             opacity: 1 !important;
             transform: scale(1.05);
@@ -76,12 +75,10 @@
                     drop-shadow(0 0 45px rgba(0, 70, 255, 0.45));
         }
 
-        /* Asegurar que los contenedores de los botones no recorten el efecto drop-shadow */
         .group, button {
             overflow: visible !important;
         }
 
-        /* Sombra Maestra Estándar para la Bio-Matriz SVG */
         #mesh-container svg {
             transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.55)) 
@@ -107,12 +104,11 @@
     <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="toggleDrawer()"></div>
 
     <!-- UNIVERSAL NAVIGATION BAR -->
-<!-- UNIVERSAL NAVIGATION BAR -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/15 backdrop-blur-md select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] relative">
             
             <!-- EXTREMO IZQUIERDO: LOGO CORE -->
-            <div class="flex items-center gap-3 cursor-pointer group justify-self-start p-2" onclick="window.location.href='index.html'">
+            <div class="flex items-center gap-3 cursor-pointer group justify-self-start p-2" onclick="window.location.reload()">
                 <img src="img/logo.png" class="w-6 h-6 img-glow-transition opacity-70 group-hover:opacity-100 group-hover:rotate-180" alt="Zenergia Core"> 
             </div>
 
@@ -136,36 +132,33 @@
         </div>
     </nav>
 
-    <!-- DRAWER DE NAVEGACIÓN PURIFICADO (ESTILO TECH-LAB STUDIO) -->
-<!-- DRAWER DE NAVEGACIÓN PURIFICADO (ESTILO TECH-LAB STUDIO) -->
-<!-- DRAWER DE NAVEGACIÓN PURIFICADO (ESTILO TECH-LAB STUDIO) -->
+    <!-- DRAWER DE NAVEGACIÓN PURIFICADO -->
     <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-[260px] sm:w-[320px] z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
         <div>
-            <!-- Cabecera del Drawer: Alineación exacta y simétrica con el NAV -->
+            <!-- Cabecera del Drawer -->
             <div class="p-4 sm:p-6 flex justify-between items-center border-b border-white/5 w-full">
                 <div class="flex items-center font-bold">
-                    <!-- BOTÓN INTERACTIVO DEL DIAL CÓDIGO ALFANUMÉRICO -->
                     <button id="z-dial" 
-                            onclick="scrollToSection('dial-monitor'); toggleDrawer();"
+                            onclick="scrollToSection('seasonal-node'); toggleDrawer();"
                             class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[100px] flex items-center justify-center rounded-sm backdrop-blur-sm select-none transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
                         --
                     </button>
                 </div>
 
-                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300 transform active:scale-95" aria-label="Close Navigation">
+                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300 transform active:scale-95" aria-label="Close Menu">
                     <img src="img/pace.png" class="w-5 h-5 object-contain img-glow-transition opacity-40 group-hover:opacity-100" alt="Close Menu">
                 </button>
             </div>
 
-            <!-- Menú Limpio, Minimalista y Alineado a la Derecha -->
+            <!-- Menú Minimalista con Lanzador de Terminal Interno -->
             <div class="px-8 flex flex-col gap-6 mt-10">
                 
-                <!-- 1. El Origen (Enlace externo a página limpia) -->
-                <a href="/manifesto" class="drawer-btn w-full text-right focus:outline-none group block">
+                <!-- 1. Manifesto Traccionado (Abre el Modal del Manifiesto) -->
+                <button onclick="openPhilosophyModal(); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         MANIFESTO
                     </span>
-                </a>
+                </button>
 
                 <!-- 2. La Intervención Territorial -->
                 <button onclick="scrollToSection('seasonal-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
@@ -174,7 +167,7 @@
                     </span>
                 </button>
 
-                <!-- 3. Biomecánica y Ecosistema (Z-Bricks / Escalabilidad Bioconstrucción) -->
+                <!-- 3. Biomecánica y Ecosistema (Z-Bricks) -->
                 <button onclick="scrollToSection('installation-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         NODE (Z-BRICK)
@@ -202,8 +195,17 @@
 
             </div>
             
+            <!-- Terminal de Validación de Movimiento Integrado (Z-Dial Manual Guide) -->
+            <div class="px-8 mt-10 space-y-4">
+                <div class="border border-white/5 bg-black/40 p-4 rounded-sm backdrop-blur-sm">
+                    <span class="text-[7px] font-mono tracking-[0.2em] text-white/40 block mb-2 uppercase">Z-DIAL INTERFACE KEY</span>
+                    <input type="text" id="z-terminal-input" maxlength="3" placeholder="000" class="w-full bg-black/60 border border-white/10 rounded-sm h-[32px] font-mono text-[11px] text-center tracking-[0.4em] text-white focus:outline-none focus:border-emerald-500/40 uppercase transition-all">
+                    <div id="terminal-feedback" class="text-[7px] font-mono tracking-[0.1em] text-white/30 mt-2 text-right lowercase">awaiting movement cipher...</div>
+                </div>
+            </div>
+
             <!-- Panel de Especificaciones -->
-            <div class="px-8 mt-8">
+            <div class="px-8 mt-6">
                 <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.02] backdrop-blur-md rounded-sm p-4 space-y-2 transition-all duration-300">
                     <div class="flex justify-between items-center border-b border-white/5 pb-2">
                         <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH</span>
@@ -219,33 +221,61 @@
 
         <!-- Footer Minimalista -->
         <div class="p-8 border-t border-white/5 text-[8px] text-white/30 tracking-[0.25em] font-medium text-center">
-            <a href="https://github.com/jalkn/zenErgy" target="_blank" class="block uppercase hover:text-white/70 transition-colors">
+            <a href="https://github.com/jalkn/zenergia" target="_blank" class="block uppercase hover:text-white/70 transition-colors">
                 by jalkn &copy; 2026
             </a>
         </div>
     </div>
+
     <!-- CONTENEDOR DE LA BIO-MATRIZ -->
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
-        
         <section id="seasonal-node" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
-            <!-- El contenedor del SVG ahora aprovecha el 100% del alto disponible para escalar simétricamente -->
             <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
                 <!-- img/barranquero-mesh.svg loads here dynamically -->
             </div>
         </section>
-
     </main>
+
+    <!-- INTERFAZ TERMINAL FILOSÓFICA (Estructura molecular exacta basada en Screenshot 2026-05-28 at 12.16.49 AM.jpg) -->
+    <div id="philosophy-modal" class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-md hidden justify-center items-center p-6 select-none transition-all duration-500 opacity-0">
+        <div class="max-w-2xl w-full flex flex-col items-center gap-10 text-center relative px-4">
+            
+            <button onclick="closePhilosophyModal()" class="text-white/40 font-mono text-[9px] tracking-[0.3em] hover:text-white uppercase focus:outline-none transition-colors">
+                [ close terminal ]
+            </button>
+            
+            <div class="space-y-8 font-body max-w-xl">
+                <!-- Bloque 1: El Concepto de Arte de Autor -->
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.16em] font-medium leading-relaxed lowercase">
+                    my concept of art is what we bring from imagination into reality and my method is drawing the patterns of a possible wellness body. i believe the body is the unconscious mind. when i meditate, i am aware of the moment, my mind observes how the body is creative by itself.
+                </p>
+
+                <!-- Bloque 2: La Falla frente a la Interrupción Digital -->
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.16em] font-medium leading-relaxed lowercase">
+                    there is the space of our creativity, but governments, banks and media even more, the new internet 3.0 is killing our pure link with nature. the unconscious is a gap in my mind, i create a mechanism to keep this gap open.
+                </p>
+
+                <!-- Bloque 3: La Dinámica Cinética de los Nodos y Bio-Bloques -->
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.16em] font-medium leading-relaxed lowercase">
+                    in the same way my thoughts move around my body, igniting consciousness with these three actions; push, pull and traction. a thought comes because i <span class="text-white font-bold uppercase tracking-[0.05em]">pull it into the canvas of my mind / draw</span>. a thought vanishes because i <span class="text-white font-bold uppercase tracking-[0.05em]">push it away / press</span>. by pushing and pulling i start opening the space between my body and mind until i leave my mind in the right place, observing how the body is create by itself.
+                </p>
+
+                <!-- Bloque 4: Encendido Continuo -->
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.16em] font-medium leading-relaxed lowercase">
+                    the unconscious mind operates through kinetic traction: <span class="text-white font-bold uppercase tracking-[0.05em]">attracting and pushing away thoughts</span>. by mapping these sequences into mechanical blocks, we ignite constant creativity. inside the nodes, integrated dials act as passive piezo-electrical interfaces—converting the raw tension of the footsteps into micro-voltage stimuli that accelerate the bio-welding of the living mycelium. this project is focused on strengthening the link of the human body with nature, coding the functional movements of the body, and rendering through a code of capturing the moment.
+                </p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- UNIVERSAL TERMINAL PANEL (INFO-FOOTER SIMÉTRICO) -->
     <footer class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md select-none border-t border-white/[0.02]">
-        <!-- p-4 en mobile (h ~80px) y p-8 en sm (h ~96px) emula la simetría exacta del footer del drawer -->
         <div class="p-4 sm:p-8 max-w-xl mx-auto text-center">
-            
             <!-- TEXTO CONCEPTUAL EN ESTRICTAS MINÚSCULAS -->
             <p id="universal-meta-text" class="text-white/70 text-[9px] sm:text-[10px] font-medium leading-relaxed tracking-[0.18em] lowercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                 A physical 1:1 territorial intervention in the forest. this bio-matrix traces a bird's geometric grid, transforming land-art modules into synchronized tracking anchors.
             </p>
-
         </div>
     </footer>
 
@@ -256,6 +286,7 @@
     window.selectedNodeFromMesh = null;
     let biokineticInterval = null;
 
+    // MOTOR DE CÁLCULO ALFANUMÉRICO DEL DIAL SÍNCRO
     function updateZ() {
         if (window.selectedNodeFromMesh) return;
 
@@ -301,19 +332,36 @@
         if (biokineticInterval) clearInterval(biokineticInterval);
     }
 
+    // MANEJADOR DE LA TERMINAL DE MOVIMIENTOS INTEGRADA (GUIDE DE ACCESO)
+    $('z-terminal-input').addEventListener('input', (e) => {
+        const val = e.target.value;
+        const feedback = $('terminal-feedback');
+        
+        if (val === '001') {
+            feedback.innerHTML = "cmd: <span class='text-white font-bold uppercase'>pull (draw)</span> -> pulling thought sequence into mind canvas.";
+        } else if (val === '002') {
+            feedback.innerHTML = "cmd: <span class='text-white font-bold uppercase'>push (press)</span> -> vanishing external digital noise.";
+        } else if (val === '003') {
+            feedback.innerHTML = "cmd: <span class='text-white font-bold uppercase'>traction</span> -> constant ignition gap activated.";
+        } else if (val.length === 3) {
+            feedback.innerHTML = "err: movement token unrecognized. system idle.";
+        } else {
+            feedback.innerHTML = "awaiting movement cipher...";
+        }
+    });
+
+    // SISTEMA DE CONTROL DE TELEMETRÍA MESH
     function updateTerminalTelemetry(nodeString = null) {
         const zDial = $('z-dial');
         const specPanel = $('dynamic-node-spec');
 
         if (nodeString) {
             stopBiokineticLoop(); 
-            
             if (zDial) {
                 zDial.innerText = `N${nodeString}`; 
                 zDial.classList.remove('text-white/80', 'border-white/10');
                 zDial.classList.add('text-emerald-400', 'border-emerald-500/30'); 
             }
-            
             if (specPanel) {
                 specPanel.classList.remove('hidden');
                 const specId = $('spec-id');
@@ -329,43 +377,59 @@
         }
     }
 
+    // INTERRUPTOR DE ESTADOS INDOOR/OUTDOOR (DRAWER COBALTO)
     function toggleDrawer() {
         const drawer = $('biokinetic-drawer');
         const overlay = $('drawer-overlay');
         const body = document.body;
-        const infoFooter = document.querySelector('footer'); // Captura el panel inferior
+        const infoFooter = document.querySelector('footer');
         
         if (drawer.classList.contains('translate-x-full')) {
             drawer.classList.remove('translate-x-full');
             overlay.classList.remove('hidden');
             body.classList.add('drawer-active'); 
-            
-            // Atenúa el footer al entrar al modo Indoor (Drawer abierto)
             if (infoFooter) {
                 infoFooter.classList.add('opacity-0', 'pointer-events-none');
                 infoFooter.classList.remove('opacity-100');
             }
-            
             setTimeout(() => overlay.classList.add('opacity-100'), 10);
             updateTerminalTelemetry(window.selectedNodeFromMesh);
         } else {
             drawer.classList.add('translate-x-full');
-            overlay.classList.opacity-100;
             overlay.classList.remove('opacity-100');
             body.classList.remove('drawer-active'); 
-            
-            // Restablece el footer al regresar al modo Outdoor
             if (infoFooter) {
                 infoFooter.classList.remove('opacity-0', 'pointer-events-none');
                 infoFooter.classList.add('opacity-100');
             }
-            
             setTimeout(() => {
                 overlay.classList.add('hidden');
                 stopBiokineticLoop(); 
                 window.selectedNodeFromMesh = null; 
             }, 500);
         }
+    }
+
+    // DISPARADORES EXPANSIVOS DEL MODAL FILOSÓFICO (SCREENSHOT EXACTO)
+    function openPhilosophyModal() {
+        const modal = $('philosophy-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    }
+
+    function closePhilosophyModal() {
+        const modal = $('philosophy-modal');
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }, 500);
+    }
+
+    function scrollToSection(id) {
+        const target = $(id);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
     function scrollToNodeID(nodeNumber) {
@@ -375,6 +439,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        startBiokineticLoop();
         fetch('img/barranquero-mesh.svg')
             .then(response => response.text())
             .then(data => {
