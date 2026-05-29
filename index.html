@@ -125,8 +125,7 @@
 
         </div>
     </nav>
-
-<div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-[260px] sm:w-[320px] z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
+<div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-full z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
         
         <div>
             <div class="p-4 sm:p-6 flex justify-between items-center border-b border-white/5 w-full min-h-[63px] sm:min-h-[69px]">
@@ -144,7 +143,7 @@
         </div>
 
         <div class="flex-grow flex flex-col items-center justify-center p-6 my-auto">
-            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[180px] sm:max-w-[210px] mx-auto">
+            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[200px] sm:max-w-[240px] mx-auto">
                 
                 <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10">
                     <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] group-hover:scale-[1.03]">
@@ -157,7 +156,7 @@
             </div>
         </div>
 
-        <div class="p-6 sm:p-8 flex flex-col justify-end gap-6 border-t border-white/[0.03] bg-black/20">
+        <div class="p-6 sm:p-8 flex flex-col justify-end gap-4 max-w-xl mx-auto w-full">
             
             <div class="w-full text-center">
                 <p id="telemetry-display" class="text-[9px] sm:text-[10px] text-white/50 tracking-[0.15em] font-body font-light normal-case leading-relaxed text-justify px-1">
@@ -165,20 +164,6 @@
                     Central coordinates map torque, gravity, and frequency in <span class="text-white font-medium">functional movements</span>. 
                     Final digits sync with bioelectric feedback loops inside the <span class="text-white font-medium">lab's mycelium</span>.
                 </p>
-            </div>
-
-            <div class="flex flex-row justify-between items-center w-full pt-4 pb-2 border-t border-white/5 px-1">
-                <button onclick="openManifesto(); toggleDrawer();" class="drawer-btn focus:outline-none group">
-                    <span class="text-[9px] font-bold tracking-[0.25em] text-white/40 group-hover:text-white block transition-all duration-300 uppercase">
-                        MANIFESTO
-                    </span>
-                </button>
-
-                <button onclick="scrollToSection('biokinetic-interface'); toggleDrawer();" class="drawer-btn focus:outline-none group">
-                    <span class="text-[9px] font-bold tracking-[0.25em] text-white/40 group-hover:text-white block transition-all duration-300 uppercase">
-                        GALLERY
-                    </span>
-                </button>
             </div>
             
             <div class="w-full">
@@ -195,10 +180,27 @@
             </div>
         </div>
 
-        <div class="p-6 border-t border-white/5 text-[8px] text-white/30 tracking-[0.25em] font-medium text-center">
-            <a href="https://github.com/jalkn/zenergy" target="_blank" class="block uppercase hover:text-white/70 transition-colors">
-                by jalkn &copy; 2026
-            </a>
+        <div id="drawer-fixed-footer" class="p-6 border-t border-white/5 bg-black/40 backdrop-blur-xs w-full">
+            <div class="max-w-xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[8px] tracking-[0.25em] font-medium text-center">
+                
+                <div class="flex gap-6">
+                    <button onclick="openManifesto(); toggleDrawer();" class="focus:outline-none group">
+                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">MANIFESTO</span>
+                    </button>
+                    <button onclick="scrollToSection('biokinetic-interface'); toggleDrawer();" class="focus:outline-none group">
+                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">GALLERY</span>
+                    </button>
+                </div>
+
+                <div class="text-white/30 uppercase">
+                    by 
+                    <a href="https://jalkn.tech" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">
+                        jalkn.tech
+                    </a> 
+                    &copy; 2026
+                </div>
+
+            </div>
         </div>
     </div>
 
