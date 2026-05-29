@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link class="content-sourced" rel="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENERGY.WORLD // MYCELIUM TECH-LAB</title>
+    <title>ZENERGY.WORLD TECH-LAB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -130,8 +130,12 @@
         
         <div>
             <div class="p-4 sm:p-6 flex justify-between items-center border-b border-white/5 w-full min-h-[63px] sm:min-h-[69px]">
-                <div class="flex items-center font-bold invisible">
-                    <span class="text-[10px] tracking-[0.2em]">--</span>
+                <div class="flex items-center">
+                    <button id="z-dial" 
+                            onclick="scrollToSection('material-vault'); toggleDrawer();"
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors">
+                        --
+                    </button>
                 </div>
                 <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300" aria-label="Close Menu">
                     <img src="img/pace.png" class="w-5 h-5 object-contain img-glow-transition opacity-40 group-hover:opacity-100" alt="Close Menu">
@@ -140,23 +144,16 @@
         </div>
 
         <div class="flex-grow flex flex-col items-center justify-center p-6 my-auto">
-            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[220px] sm:max-w-[250px] mx-auto">
+            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[180px] sm:max-w-[210px] mx-auto">
                 
-                <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10 p-[4%]">
-                    <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_25px_rgba(255,255,255,0.15)]">
+                <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10">
+                    <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] group-hover:scale-[1.03]">
                         <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[4] transition-all duration-500 will-change-transform" stroke-linecap="round" />
                         <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[3.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
                         <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
                     </svg>
                 </div>
 
-                <div class="w-full relative z-20 mt-auto">
-                    <button id="z-dial" 
-                            onclick="scrollToSection('material-vault'); toggleDrawer();"
-                            class="text-white/90 font-mono font-bold text-[11px] tracking-[0.25em] border border-white/10 bg-black/80 h-[42px] w-full flex items-center justify-center rounded-xs backdrop-blur-md transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
-                        --
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -198,7 +195,7 @@
             </div>
         </div>
 
-        <div class="p-4 border-t border-white/5 text-[8px] text-white/30 tracking-[0.25em] font-medium text-center">
+        <div id="drawer-fixed-footer" class="p-4 border-t border-white/5 text-[8px] text-white/30 tracking-[0.25em] font-medium text-center bg-black/40 backdrop-blur-xs">
             <a href="https://github.com/jalkn/zenergy" target="_blank" class="block uppercase hover:text-white/70 transition-colors">
                 by jalkn &copy; 2026
             </a>
@@ -587,13 +584,9 @@
             })
             .catch(err => console.error('[-] Error loading bio-matrix:', err));
 
-        const materialVaultSection = $('material-vault');
-        const navCenterText = $('nav-center-text');
-        const dynamicFooter = $('dynamic-footer');
-
+    // Buscas esta sección dentro de la inicialización de observadores en tu index.html
+        const materialVaultSection = document.getElementById('material-vault');
         if (materialVaultSection) {
-            const observerOptions = { root: null, threshold: 0.15 };
-
             const navObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -604,10 +597,7 @@
                                 navCenterText.style.opacity = '1';
                             }, 250);
                         }
-                        if (dynamicFooter) {
-                            dynamicFooter.style.opacity = '0';
-                            dynamicFooter.style.pointerEvents = 'none';
-                        }
+                        // ELIMINADO: dynamicFooter.style.opacity = '0' para prevenir que se oculte en vault
                     } else {
                         if (navCenterText) {
                             navCenterText.style.opacity = '0';
@@ -616,10 +606,7 @@
                                 navCenterText.style.opacity = '1';
                             }, 250);
                         }
-                        if (dynamicFooter) {
-                            dynamicFooter.style.opacity = '1';
-                            dynamicFooter.style.pointerEvents = 'auto';
-                        }
+                        // ELIMINADO: dynamicFooter.style.opacity = '1'
                     }
                 });
             }, observerOptions);
