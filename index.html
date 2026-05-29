@@ -97,7 +97,7 @@
     <!-- OVERLAY DEL DRAWER -->
     <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="toggleDrawer()"></div>
 
-<nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md select-none border-b border-white/[0.01]">
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md select-none border-b border-white/[0.01]">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] relative">
             
             <div class="flex items-center gap-3 cursor-pointer group justify-self-start p-2">
@@ -299,6 +299,83 @@
                     <a href="https://jalkn.tech" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">
                         jalkn.tech
                     </a> 
+                    &copy; 2026
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- LEFT CORE DRAWER (FULL SCREEN INTERACTIVE CONFIG / MANIFEST CANVAS) -->
+    <div id="left-core-drawer" class="fixed left-0 top-0 h-full w-full z-50 transform -translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
+        
+        <!-- TOP SECTION: UNIFIED SYMMETRIC HEADER (3-COLUMN GRID) -->
+        <div class="border-b border-white/5 w-full bg-[#0a0a0a]/40 backdrop-blur-md">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative">
+                
+                <!-- EXTREMO IZQUIERDO: INTERFAZ DE CIERRE (Mantiene la ergonomía táctil en el borde exterior) -->
+                <div class="justify-self-start">
+                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Close Core Menu">
+                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Menu">
+                    </button>
+                </div>
+
+                <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA SECUNDARIA (Listo para mapear nuevo tracking) -->
+                <div class="justify-self-center text-center">
+                    <span id="z-left-dial" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        -- CORE --
+                    </span>
+                </div>
+                                
+                <!-- EXTREMO DERECHO: ESPACIO DE RESERVA / BALANCE SIMÉTRICO -->
+                <div class="justify-self-end opacity-20">
+                    <span class="font-mono text-[8px] tracking-[0.2em]">0x00</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CENTER SECTION: CLEAN DESIGN CANVAS (Sin ondas vectoriales - Listo para inyección de datos) -->
+        <div id="left-drawer-content" class="flex-grow flex flex-col items-center justify-center p-6 my-auto w-full max-w-2xl mx-auto overflow-y-auto scrollbar-none">
+            
+            <!-- CONTENEDOR TEMPORAL DE ESPACIO DE TRABAJO -->
+            <div class="text-center space-y-2 opacity-40 transition-opacity duration-300 hover:opacity-80">
+                <div class="font-mono text-[10px] tracking-[0.4em] uppercase text-emerald-400">awaiting setup module...</div>
+                <div class="font-body text-[9px] tracking-[0.15em] text-white/50 lowercase">ready for left matrix expansion configuration.</div>
+            </div>
+
+        </div>
+
+        <!-- LOWER SECTION: CLEAN CONSOLE LAYER (Sin cuadrantes de pulsor - Zona de comandos limpia) -->
+        <div id="left-drawer-console" class="w-full flex flex-col items-center justify-center p-6 border-t border-white/[0.03] bg-black/20">
+            <!-- Espacio reservado para inputs analógicos o lecturas de sensores bio-tech -->
+        </div>
+
+        <!-- FIXED BRUTALIST FOOTER: UNIFIED 3-COLUMN LAYOUT -->
+        <div id="left-drawer-fixed-footer" class="p-4 sm:p-6 border-t border-white/5 bg-black/40 backdrop-blur-xs w-full select-none">
+            <div class="grid grid-cols-3 items-center w-full text-[8px] tracking-[0.25em] font-medium uppercase relative">
+                
+                <!-- EXTREMO IZQUIERDO: LINKS SECUNDARIOS -->
+                <div class="flex gap-6 justify-self-start">
+                    <button onclick="scrollToSection('material-vault'); toggleLeftDrawer();" class="focus:outline-none group">
+                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">VAULT</span>
+                    </button>
+                    <button onclick="scrollToSection('biokinetic-interface'); toggleLeftDrawer();" class="focus:outline-none group">
+                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">INTERFACE</span>
+                    </button>
+                </div>
+
+                <!-- CENTRO: SEPARADOR DE VACÍO -->
+                <div class="justify-self-center text-center opacity-20 hidden sm:block">
+                    <span>•</span>
+                </div>
+
+                <!-- EXTREMO DERECHO: SYSTEM BRAND SIGNATURE -->
+                <div class="text-white/30 uppercase justify-self-end text-right whitespace-nowrap">
+                    zenergia
+                    <span class="hover:text-white/70 transition-colors font-bold text-white/40 ml-1">
+                        tech-lab
+                    </span> 
                     &copy; 2026
                 </div>
 
@@ -612,6 +689,35 @@
                 overlay.classList.add('hidden');
                 stopBiokineticLoop(); 
                 window.selectedNodeFromMesh = null; 
+            }, 500);
+        }
+    }
+
+    function toggleLeftDrawer() {
+        const leftDrawer = $('left-core-drawer');
+        const overlay = $('drawer-overlay');
+        const body = document.body;
+        const infoFooter = $('dynamic-footer');
+        
+        if (!leftDrawer || !overlay) return;
+
+        if (leftDrawer.classList.contains('-translate-x-full')) {
+            leftDrawer.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            body.classList.add('drawer-active'); 
+            if (infoFooter) {
+                infoFooter.classList.add('opacity-0', 'pointer-events-none');
+            }
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        } else {
+            leftDrawer.classList.add('-translate-x-full');
+            overlay.classList.remove('opacity-100');
+            body.classList.remove('drawer-active'); 
+            if (infoFooter) {
+                infoFooter.classList.remove('opacity-0', 'pointer-events-none');
+            }
+            setTimeout(() => {
+                overlay.classList.add('hidden');
             }, 500);
         }
     }
