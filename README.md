@@ -55,4 +55,4 @@ Zenergia breathes through an untamed cycle between spatial data, kinetic perform
 
 ---
 
-**ZENERGIA MYCELIUM TECH-LAB // SANTA ELENA, ANTIOQUIA // 2026**
+**zenergy.world** // TECH-LAB // ANT // COL // 2026**
