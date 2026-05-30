@@ -95,111 +95,130 @@
         </div>
     </nav>
 
-    <div id="biokinetic-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none bg-[#070707]">
-        
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
-            <div class="p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative w-full">
-                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em]">PULSOR // CONTROL</span>
+<div id="biokinetic-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
+    
+    <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
+            
+            <div class="justify-self-start">
+                <button onclick="openNodesDrawer()" class="focus:outline-none group bg-transparent border-0 p-0 cursor-pointer text-left">
+                    <span class="text-white/40 group-hover:text-white transition-colors tracking-widest text-[9px] sm:text-[10px]">NODES</span>
+                </button>
+            </div>
+            
+            <div class="justify-self-center text-center">
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PULSOR</span>
+            </div>
+            
+            <div class="justify-self-end">
                 <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
                     <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
                 </button>
             </div>
-        </header>
-
-        <div class="flex-1 overflow-y-auto px-6 flex flex-col justify-center items-center gap-8 min-h-0 scrollbar-none pb-32 sm:pb-12">
-            
-            <div class="w-full max-w-xs mx-auto shrink-0 z-10">
-                <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.01] backdrop-blur-md rounded-xs p-3 space-y-2 transition-all duration-300">
-                    <div class="flex justify-between items-center border-b border-white/5 pb-2">
-                        <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH NODE</span>
-                        <span id="spec-id" class="text-[8px] font-mono font-bold text-white/80">NODE-T1-000</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">TOKEN HASH</span>
-                        <span id="spec-hash" class="text-[8px] font-mono font-bold text-white/60">0x0000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full flex flex-col items-center justify-center shrink-0 max-w-xs mx-auto">
-                <div class="relative w-full max-w-[210px] sm:max-w-[230px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.7)] group/pulsor"
-                    style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
-                    
-                    <div class="absolute inset-0 w-full h-full rotate-45 pointer-events-none z-10">
-                        <div class="absolute inset-0 flex items-center justify-center p-16 z-20">
-                            <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] group-hover/pulsor:scale-[1.05]">
-                                <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                                <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[2.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                                <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[2] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                            </svg>
-                        </div>
-                        <div class="absolute inset-0">
-                            <div class="absolute top-1/2 left-0 w-[calc(50%-40px)] h-[1px] bg-white/5"></div>
-                            <div class="absolute top-1/2 right-0 w-[calc(50%-40px)] h-[1px] bg-white/5"></div>
-                            <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-40px)] bg-white/5"></div>
-                            <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-40px)] bg-white/5"></div>
-                        </div>
-                    </div>
-
-                    <div class="absolute inset-0 flex flex-col justify-between p-3 z-30 pointer-events-none">
-                        
-                        <div class="w-full flex justify-center pointer-events-auto">
-                            <div onclick="playBeat('img/Lbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300">
-                                <img src="img/lift.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-y-0.5 transition-all duration-300 object-contain" alt="Lift">
-                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">LIFT</span>
-                            </div>
-                        </div>
-
-                        <div class="w-full flex justify-between items-center px-1">
-                            <div onclick="playBeat('img/Sbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300 pointer-events-auto">
-                                <img src="img/surge.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-x-0.5 transition-all duration-300 object-contain" alt="Surge">
-                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">SURGE</span>
-                            </div>
-
-                            <div onclick="playBeat('img/Pbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300 pointer-events-auto">
-                                <img src="img/pace.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-x-0.5 transition-all duration-300 object-contain" alt="Pace">
-                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">PACE</span>
-                            </div>
-                        </div>
-
-                        <div class="w-full flex justify-center pointer-events-auto">
-                            <div onclick="playBeat('img/Ubeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300">
-                                <img src="img/under.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-y-0.5 transition-all duration-300 object-contain" alt="Under">
-                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">UNDER</span>
-                            </div>
-                        </div>
-
-                    </div>        
-                </div>
-            </div>
 
         </div>
+    </header>
 
-        <footer class="fixed bottom-0 left-0 w-full z-30 p-4 sm:p-6 border-t border-white/5 bg-[#070707]/90 backdrop-blur-md shrink-0">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
-                <button onclick="scrollToSection('node-gallery-section'); toggleDrawer();" class="focus:outline-none group bg-transparent border-0 p-0 cursor-pointer text-left">
-                    <span class="text-white/40 group-hover:text-white transition-colors">GALLERY</span>
-                </button>
-                
-                <div id="z-dial" class="justify-self-center text-center text-white/80 font-mono font-bold tracking-[0.2em]">
-                    --
+    <div class="flex-1 overflow-y-auto px-6 flex flex-col justify-center items-center gap-8 min-h-0 scrollbar-none pb-32 sm:pb-12">
+        
+        <div class="w-full max-w-xs mx-auto shrink-0 z-10">
+            <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.01] backdrop-blur-md rounded-xs p-3 space-y-2 transition-all duration-300">
+                <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                    <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH NODE</span>
+                    <span id="spec-id" class="text-[8px] font-mono font-bold text-white/80">NODE-T1-000</span>
                 </div>
-                
-                <div class="text-white/30 text-right whitespace-nowrap justify-self-end">
-                    by <a href="https://jalkn.tech" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn.tech</a> &copy; 2026
+                <div class="flex justify-between items-center">
+                    <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">TOKEN HASH</span>
+                    <span id="spec-hash" class="text-[8px] font-mono font-bold text-white/60">0x0000</span>
                 </div>
             </div>
-        </footer>
+        </div>
+
+        <div class="w-full flex flex-col items-center justify-center shrink-0 max-w-xs mx-auto">
+            <div class="relative w-full max-w-[210px] sm:max-w-[230px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.7)] group/pulsor"
+                style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
+                
+                <div class="absolute inset-0 w-full h-full rotate-45 pointer-events-none z-10">
+                    <div class="absolute inset-0 flex items-center justify-center p-16 z-20">
+                        <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] group-hover/pulsor:scale-[1.05]">
+                            <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                            <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[2.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                            <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[2] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="absolute inset-0">
+                        <div class="absolute top-1/2 left-0 w-[calc(50%-40px)] h-[1px] bg-white/5"></div>
+                        <div class="absolute top-1/2 right-0 w-[calc(50%-40px)] h-[1px] bg-white/5"></div>
+                        <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-40px)] bg-white/5"></div>
+                        <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-40px)] bg-white/5"></div>
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col justify-between p-3 z-30 pointer-events-none">
+                    <div class="w-full flex justify-center pointer-events-auto">
+                        <div onclick="playBeat('img/Lbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300">
+                            <img src="img/lift.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-y-0.5 transition-all duration-300 object-contain" alt="Lift">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">LIFT</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-between items-center px-1">
+                        <div onclick="playBeat('img/Sbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300 pointer-events-auto">
+                            <img src="img/surge.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-x-0.5 transition-all duration-300 object-contain" alt="Surge">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">SURGE</span>
+                        </div>
+
+                        <div onclick="playBeat('img/Pbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300 pointer-events-auto">
+                            <img src="img/pace.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-x-0.5 transition-all duration-300 object-contain" alt="Pace">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">PACE</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-center pointer-events-auto">
+                        <div onclick="playBeat('img/Ubeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300">
+                            <img src="img/under.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-y-0.5 transition-all duration-300 object-contain" alt="Under">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">UNDER</span>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+        </div>
+
     </div>
+
+    <footer class="fixed bottom-0 left-0 w-full z-30 p-4 sm:p-6 border-t border-white/5 bg-[#070707]/90 backdrop-blur-md shrink-0">
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
+            <div></div>    
+            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
+            </div>
+            <div></div>
+        </div>
+    </footer>
+</div>
 
     <div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
         
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
-            <div class="p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative w-full">
-                <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
-                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
-                </button>
-                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em]">AXIS // SYSTEM</span>
+        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
+                
+                <div class="justify-self-start">
+                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
+                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                    </button>
+                </div>
+                
+                <div class="justify-self-center text-center">
+                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">AXIS // TECH-LAB</span>
+                </div>
+                
+                <div class="justify-self-end">
+                    <button onclick="openManifesto()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Abrir Manifesto">
+                        <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">MANIFESTO</span>
+                        <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-y-0.5 transition-all duration-300" alt="Manifesto">
+                    </button>
+                </div>
+
             </div>
         </header>
 
@@ -217,7 +236,7 @@
                     
                     <div class="absolute inset-0 z-10">
                         <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-interface'); toggleLeftDrawer();">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">NODE</span>
+                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">RESONANCE</span>
                             <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 group-hover/brick:opacity-100 shadow-[0_0_8px_#fff]"></div>
                         </div>
                         
@@ -233,7 +252,7 @@
 
                         <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="scrollToSection('node-gallery-section'); toggleLeftDrawer();">
                             <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 group-hover/base:opacity-100 shadow-[0_0_8px_#fff]"></div>
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">RESONANCE</span>
+                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">NODE</span>
                         </div>
                     </div>
                 </div>
@@ -242,17 +261,59 @@
 
         <footer class="fixed bottom-0 left-0 w-full z-30 p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase text-white/30">
-                <button onclick="openManifesto(); closeAllDrawers();" class="hover:text-white transition-colors duration-300 uppercase bg-transparent border-0 p-0 text-left cursor-pointer">MANIFESTO</button>
                 
-                <div id="z-dial-left" class="justify-self-center text-center text-white/80 font-mono font-bold tracking-[0.2em]">
-                    --
+                <div></div>
+                
+                <div class="justify-self-center text-center whitespace-nowrap tracking-[0.3em]">
+                    <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergia.world</span> &copy; 2026
                 </div>
-
-                <span class="uppercase text-right justify-self-end whitespace-nowrap tracking-[0.3em]">
-                    <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergia.world</span> TECH-LAB &copy; 2026
-                </span>
+                
+                <div></div>
+                
             </div>
         </footer>
+    </div>
+    
+    <div id="nodes-drawer" class="fixed bottom-0 left-0 w-full h-auto max-h-[85vh] z-[60] transform translate-y-full transition-transform duration-500 ease-out bg-[#070707]/98 backdrop-blur-md border-t border-white/5 overflow-y-auto scrollbar-none select-none">
+        <div class="max-w-2xl mx-auto flex flex-col items-center gap-6 text-center px-6 py-10">
+            
+            <div class="flex flex-col items-center justify-center cursor-pointer group p-2" onclick="closeNodesDrawer()">
+                <img src="img/under.png" class="w-4 h-4 opacity-30 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300 object-contain" alt="Push Close">
+                <span class="text-[7px] font-mono tracking-[0.3em] text-white/40 group-hover:text-white transition-colors mt-1">CERRAR PANEL</span>
+            </div>
+
+            <section class="py-6 flex flex-col items-center justify-center relative bg-transparent w-full">
+                <div class="relative z-10 flex flex-col items-center w-full text-center gap-6">
+                    
+                    <div class="relative w-full max-w-[240px] md:max-w-[260px] aspect-square select-none cursor-pointer group">
+                        <div class="w-full h-full rounded-full bg-[#0a0a0a] border border-white/10 p-1 relative overflow-hidden transition-all duration-500 hover:border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('img/miscelio.png');"></div>
+                            <div class="absolute inset-0 flex items-center justify-center p-[8%] z-10">
+                                <svg viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.2] group-hover:stroke-white/70 transition-all duration-500">
+                                    <defs>
+                                        <path id="textPath-top" d="M 45,200 A 155,155 0 0,1 355,200" />
+                                        <path id="textPath-bottom" d="M 45,200 A 155,155 0 0,0 355,200" />
+                                    </defs>
+                                    <text class="fill-white/80 font-black text-[13px] tracking-[0.45em] uppercase">
+                                        <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">PULSOR: MELENA</textPath>
+                                    </text>
+                                    <g class="opacity-20 stroke-[1.2]">
+                                        <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
+                                        <path d="M 110,120 Q 200,150 290,120" />
+                                        <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                                    </g>
+                                    <text id="big-dial" x="200" y="218" font-weight="900" text-anchor="middle" class="fill-white font-black text-[46px] tracking-[0.05em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] uppercase">--</text>
+                                    <text class="fill-white/40 font-black text-[10px] tracking-[0.4em] uppercase">
+                                        <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">z_storm launch token &bull; $10 usd</textPath>
+                                    </text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
     </div>
 
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
@@ -262,76 +323,44 @@
         </section>
     </main>
 
-    <div id="manifesto" class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-md hidden justify-center items-center p-6 transition-all duration-500 opacity-0" onclick="closeManifesto()">
-        <div class="max-w-2xl w-full flex flex-col items-center gap-10 text-center px-4" onclick="event.stopPropagation()">
+    <div id="manifesto" class="fixed top-0 left-0 w-full h-auto max-h-[85vh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out bg-[#070707]/98 backdrop-blur-md border-b border-white/5 overflow-y-auto scrollbar-none select-none">
+        <div class="max-w-2xl mx-auto flex flex-col items-center gap-6 text-center px-6 py-10">
+            
             <div class="flex items-center justify-center cursor-pointer group p-2 relative" onclick="closeManifesto()">
                 <img src="img/logo.png" class="w-6 h-6 img-glow-transition opacity-30 group-hover:opacity-60 group-hover:rotate-180" alt="Core"> 
                 <span class="absolute inset-0 flex items-center justify-center text-[10px] font-mono text-white/40 group-hover:text-white transition-colors pointer-events-none">&times;</span>
             </div>
             
-            <div class="space-y-8 font-body max-w-xl">
-                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium leading-relaxed normal-case">
+            <div class="space-y-6 font-body text-left max-w-xl border border-white/5 bg-white/[0.01] p-6 rounded-sm select-text">
+                <h3 class="font-sans font-black text-[11px] uppercase tracking-[0.3em] text-emerald-400 mb-4 text-center">BIOMANIFESTO // EL SISTEMA COGNITIVO</h3>
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.12em] font-medium leading-relaxed normal-case">
                     Mi concepto del arte es lo que traemos de la imaginación a la realidad, dibujando los patrones de un cuerpo en bienestar posible. Creo que el cuerpo es la mente inconsciente: un espacio de naturaleza pura y creatividad cruda actualmente suprimido por el ruido digital. Para mantener esta brecha abierta, codificamos los movimientos funcionales del cuerpo en un lenguaje vivo.
                 </p>
-                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium leading-relaxed normal-case">
-                    La mente inconsciente opera a través de tracción cinética: <span class="text-white font-bold">atrayendo y empujando pensamientos</span>. Al mapear estas secuencias en bloques mecánicos, encendemos una creatividad constante. Dentro de los nodos, los ritmos integrados de los z_dials actúan como interfaces piezoeléctricas pasivas, convirtiendo la tensión pura de las pisadas en estímulos de microvoltaje que aceleran la biosoldadura del micelio vivo.
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.12em] font-medium leading-relaxed normal-case border-b border-white/5 pb-4">
+                    La mente inconsciente opera a través de tracción cinética: <span class="text-white font-bold">atrayendo y empujando thoughts</span>. Al mapear estas secuencias en bloques mecánicos, encendemos una creatividad constante. Dentro de los nodos, los ritmos integrados de los z_dials actúan como interfaces piezoeléctricas pasivas, convirtiendo la tensión pura de las pisadas en estímulos de microvoltaje que aceleran la biosoldadura del micelio vivo.
                 </p>
+
+                <h3 class="font-sans font-black text-[10px] uppercase tracking-[0.25em] text-white/80 pt-2 mb-2 text-center">EL DIAL ALGORÍTMICO // MANUAL DE TRADUCCIÓN</h3>
+                <p class="text-[10px] sm:text-[11px] text-white/50 tracking-[0.1em] font-mono leading-relaxed normal-case mb-3">
+                    El algoritmo no inventa datos; es un traductor. Toma la rotación de la Tierra respecto al Sol en un ciclo de 24 horas y la convierte en una "coordenada biocinética" única. El tiempo se vuelve una matriz de movimiento.
+                </p>
+                <ul class="space-y-3 font-mono text-[9px] sm:text-[10px] text-white/60 list-none pl-0">
+                    <li><strong class="text-white">1. DERIVA SOLAR:</strong> Lee la hora y minutos mundiales para calcular el ángulo de rotación exacto de la Tierra (15° por hora + 0.25° por minuto). A mediodía, el ángulo es estrictamente 180°.</li>
+                    <li><strong class="text-white">2. CUADRANTES WAVE:</strong> Divide los 360° en 4 acciones biomecánicas: <span class="text-emerald-400">0°-90° [UL]</span>, <span class="text-emerald-400">90°-180° [PL]</span>, <span class="text-emerald-400">180°-270° [LST]</span>, y <span class="text-emerald-400">270°-360° [US]</span>.</li>
+                    <li><strong class="text-white">3. PROPORCIÓN ÁUREA (PHI):</strong> Los Sets ondulan de forma orgánica a través de una función senoidal (de 2 a 8), mientras que las Repeticiones se multiplican por <span class="text-white font-bold">PHI (1.618033)</span> imitando la geometría fractal del micelio.</li>
+                    <li><strong class="text-white">4. PURGA RADÓN:</strong> Remueve quirúrgicamente los ceros artificiales a la izquierda a través de un filtrado estricto. El vacío o el cero simulado no existen en el diseño de la naturaleza.</li>
+                </ul>
+                <div class="mt-4 pt-4 border-t border-white/5 text-center">
+                    <span class="text-[9px] font-mono tracking-[0.2em] text-white/30 uppercase">Fórmula: SetsFiltrados + AcciónCuadrante + RepsFiltradas</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <section id="node-gallery-section" class="py-32 flex flex-col items-center justify-center relative bg-transparent overflow-hidden border-t border-white/[0.02]">
-        <div class="relative z-10 flex flex-col items-center w-full px-4 text-center gap-6">
-            
-            <div class="relative w-full max-w-[240px] md:max-w-[260px] aspect-square select-none cursor-pointer group">
-                <div class="w-full h-full rounded-full bg-[#0a0a0a] border border-white/10 p-1 relative overflow-hidden transition-all duration-500 hover:border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('img/miscelio.png');"></div>
-                    <div class="absolute inset-0 flex items-center justify-center p-[8%] z-10">
-                        <svg viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.2] group-hover:stroke-white/70 transition-all duration-500">
-                            <defs>
-                                <path id="textPath-top" d="M 45,200 A 155,155 0 0,1 355,200" />
-                                <path id="textPath-bottom" d="M 45,200 A 155,155 0 0,0 355,200" />
-                            </defs>
-                            <text class="fill-white/80 font-black text-[13px] tracking-[0.45em] uppercase">
-                                <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">PULSOR: MELENA</textPath>
-                            </text>
-                            <g class="opacity-20 stroke-[1.2]">
-                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                <path d="M 110,120 Q 200,150 290,120" />
-                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
-                            </g>
-                            <text id="big-dial" x="200" y="218" font-weight="900" text-anchor="middle" class="fill-white font-black text-[46px] tracking-[0.05em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] uppercase">--</text>
-                            <text class="fill-white/40 font-black text-[10px] tracking-[0.4em] uppercase">
-                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">z_storm launch token &bull; $10 usd</textPath>
-                            </text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-center gap-2 text-[8px] sm:text-[9px] tracking-[0.25em] font-black uppercase z-30 max-w-md">
-                <span id="opt-melena" onclick="seleccionarVariante('MELENA')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-xs text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]">Melena: Focus</span>
-                <span id="opt-reishi" onclick="seleccionarVariante('REISHI')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80">Reishi: Zen</span>
-                <span id="opt-cordyceps" onclick="seleccionarVariante('CORDYCEPS')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80">Cordyceps: Stamina</span>
-                <span id="opt-cola" onclick="seleccionarVariante('COLA')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80">Cola Pavo: Core</span>
-            </div>
-
-            <div class="w-full max-w-md px-4 mt-2">
-                <p id="ux-benefit-desc" class="text-white/50 text-[9px] font-medium tracking-[0.18em] leading-relaxed lowercase">
-                    pulsor generado en z_storm. redimible por $10 usd en productos de bioconstrucción y suplementación adaptógena (z_caps, z_bricks, z_panels).
-                </p>
-            </div>
-
-            <button onclick="adquirirNodo('PULSOR_LAUNCH_TOKEN')" class="px-7 py-3 mt-2 border border-white/15 bg-[#0a0a0a]/40 text-white/70 font-black text-[9px] tracking-[0.35em] uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-400 rounded-xs">
-                Adquirir Pulsor // $10 USD
-            </button>
-        </div>
-    </section>
-
     <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md border-t border-white/[0.01] transition-opacity duration-500">
         <div class="p-4 sm:p-6 max-w-xl mx-auto flex items-center justify-center font-bold">
-            <button id="z-dial-footer" onclick="scrollToSection('biokinetic-interface')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
-                <span id="footer-text">MELENA: FOCUS</span>
+            <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-interface')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
+                <span id="z-dial-footer">--</span>
             </button>
         </div>
     </footer>
@@ -393,6 +422,7 @@
         if (!window.selectedNodeFromMesh) {
             if ($('z-dial')) $('z-dial').innerText = coordenadaBiocinetica;
             if ($('big-dial')) $('big-dial').textContent = coordenadaBiocinetica;
+            if ($('z-dial-footer')) $('z-dial-footer').innerText = coordenadaBiocinetica;
         }
 
         if ($('z-dial-left')) $('z-dial-left').innerText = coordenadaBiocinetica;
@@ -432,6 +462,9 @@
             if ($('z-dial')) {
                 $('z-dial').innerText = `N${nodeString}`; 
                 $('z-dial').className = "text-emerald-400 font-mono font-bold tracking-[0.2em]";
+            }
+            if ($('z-dial-footer')) {
+                $('z-dial-footer').innerText = `NODE // ${nodeString}`;
             }
             if (specPanel) {
                 specPanel.classList.remove('hidden');
@@ -512,16 +545,8 @@
             'CORDYCEPS': 'PULSOR: CORDYCEPS',
             'COLA': 'PULSOR: COLA PAVO'
         };
-        
-        const footerLabels = {
-            'MELENA': 'MELENA: FOCUS',
-            'REISHI': 'REISHI: ZEN',
-            'CORDYCEPS': 'CORDYCEPS: STAMINA',
-            'COLA': 'COLA PAVO: CORE'
-        };
 
         if ($('laser-variant-title')) $('laser-variant-title').textContent = labels[varianteActiva];
-        if ($('footer-text')) $('footer-text').textContent = footerLabels[varianteActiva];
         
         updateZ();
         
@@ -548,25 +573,39 @@
     function openManifesto() {
         const modal = $('manifesto');
         if (!modal) return;
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        // Remueve el desplazamiento negativo superior para que baje fluidamente
+        modal.classList.remove('-translate-y-full');
+        if (navigator.vibrate) navigator.vibrate(15);
     }
 
     function closeManifesto() {
         const modal = $('manifesto');
         if (!modal) return;
-        modal.classList.add('opacity-0');
-        setTimeout(() => {
-            modal.classList.remove('flex');
-            modal.classList.add('hidden');
-        }, 500);
+        // Aplica de nuevo el desplazamiento hacia arriba para ocultarlo
+        modal.classList.add('-translate-y-full');
+        if (navigator.vibrate) navigator.vibrate(10);
     }
 
-    function scrollToSection(id) {
-        const target = $(id);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    function openNodesDrawer() {
+        const nodesPanel = document.getElementById('nodes-drawer');
+        if (!nodesPanel) return;
+        // Remueve el desplazamiento inferior para deslizar de abajo a arriba
+        nodesPanel.classList.remove('translate-y-full');
+        if (navigator.vibrate) navigator.vibrate(15);
     }
+
+    function closeNodesDrawer() {
+        const nodesPanel = document.getElementById('nodes-drawer');
+        if (!nodesPanel) return;
+        // Aplica el desplazamiento hacia abajo para ocultarlo bajo la pantalla
+        nodesPanel.classList.add('translate-y-full');
+        if (navigator.vibrate) navigator.vibrate(10);
+    }
+
+        function scrollToSection(id) {
+            const target = $(id);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }
 
     function adquirirNodo(tipoInyeccion) {
         const currentHash = $('big-dial') ? $('big-dial').textContent.trim() : "--";
