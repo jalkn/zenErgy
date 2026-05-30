@@ -97,44 +97,6 @@
     <!-- OVERLAY DEL DRAWER -->
     <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="toggleDrawer()"></div>
 
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md select-none border-b border-white/[0.01]">
-        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] relative">
-            
-            <div class="flex items-center gap-3 cursor-pointer group justify-self-start p-2">
-                <button id="z-logo-trigger" 
-                        onclick="toggleLeftDrawer()"
-                        class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center"
-                        aria-label="Open Core Drawer">
-                    <img src="img/logo.png" 
-                         class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" 
-                         alt="Zenergy Core Trigger"> 
-                </button>
-            </div>
-
-            <div class="justify-self-center text-center">
-                <span id="nav-center-text" class="text-white/70 text-[6.5px] sm:text-[8px] font-black tracking-[0.45em] whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-opacity duration-500 ease-in-out">
-                    BIO-KINETIC INTERFACE
-                </span>
-            </div>
-                            
-            <div class="justify-self-end">
-                <button id="z-dial-trigger" 
-                        onclick="toggleDrawer()"
-                        class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" 
-                        aria-label="Open Navigation">
-                    <img src="img/back.png" 
-                         class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" 
-                         alt="Menu Trigger">
-                </button>
-            </div>
-
-        </div>
-    </nav>
-
-    
-<!-- NAVIGATION DRAWER (FULL SCREEN INTERACTIVE CANVAS) -->
-    <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-full z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
-        
 <!-- NAVBAR UNIVERSAL UNIFICADO (ABSOLUTE LAYOUT SYMMETRIC MATCH) -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative">
@@ -174,6 +136,40 @@
 
         </div>
     </nav>
+
+    
+<!-- NAVIGATION DRAWER (FULL SCREEN INTERACTIVE CANVAS) -->
+    <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-full z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
+        
+<!-- TOP SECTION: UNIFIED SIMMETRIC HEADER (3-COLUMN GRID) -->
+        <div class="border-b border-white/5 w-full bg-[#0a0a0a]/40 backdrop-blur-md">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative">
+                
+                <!-- EXTREMO IZQUIERDO: DISPARADOR CRUZADO AL DRAWER IZQUIERDO -->
+                <div class="flex items-center cursor-pointer group justify-self-start p-2">
+                    <button onclick="toggleDrawer(); setTimeout(toggleLeftDrawer, 200);" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center" aria-label="Switch to Core Menu">
+                        <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="Zenergy Core Drawer"> 
+                    </button>
+                </div>
+
+                <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA CENTRALIZADA -->
+                <div class="justify-self-center text-center">
+                    <button id="z-dial" 
+                            onclick="scrollToSection('material-vault'); toggleDrawer();"
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        --
+                    </button>
+                </div>
+                                
+                <!-- EXTREMO DERECHO: INTERFAZ DE CIERRE -->
+                <div class="justify-self-end">
+                    <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Close Menu">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Menu">
+                    </button>
+                </div>
+
+            </div>
+        </div>
 
         <!-- CENTER SECTION: ACTIVE VECTOR ARCS (ABSOLUTE SYMMETRY) -->
         <div class="flex-grow flex flex-col items-center justify-center p-4 my-auto">
@@ -332,11 +328,13 @@
                     </button>
                 </div>
 
-                <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA SECUNDARIA -->
+                <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA SECUNDARIA (INTERACTIVA) -->
                 <div class="justify-self-center text-center">
-                    <span id="z-left-dial" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        -- CORE --
-                    </span>
+                    <button id="z-dial-left" 
+                            onclick="scrollToSection('material-vault'); toggleLeftDrawer();"
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        --
+                    </button>
                 </div>
                                 
                 <!-- EXTREMO DERECHO: DISPARADOR CRUZADO AL DRAWER BIOCINÉTICO -->
@@ -557,6 +555,7 @@
         const now = new Date();
         const zDial = $('z-dial');
         const zDialNav = $('z-dial-nav');
+        const zDialLeft = $('z-dial-left'); // Captura el nuevo id del header izquierdo
         const zDialFooter = $('z-dial-footer'); 
         const bigDial = $('big-dial'); 
 
@@ -592,6 +591,12 @@
             zDialNav.innerText = coordenadaBiocinética;
             zDialNav.classList.remove('text-emerald-400', 'border-emerald-500/20');
             zDialNav.classList.add('text-white/80', 'border-white/10');
+        }
+
+        if (zDialLeft) {
+            zDialLeft.innerText = coordenadaBiocinética;
+            zDialLeft.classList.remove('text-emerald-400', 'border-emerald-500/20');
+            zDialLeft.classList.add('text-white/80', 'border-white/10');
         }
 
         if (zDialFooter) {
