@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zenergia.world // MYCELIUM TECH-LAB</title>
+    <title>zenergy.world // TECH-LAB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -77,7 +77,7 @@
             
             <div class="flex items-center cursor-pointer group justify-self-start p-2">
                 <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center cursor-pointer" aria-label="Abrir Axis Drawer">
-                    <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="Zenergia Axis Trigger"> 
+                    <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Axis Trigger"> 
                 </button>
             </div>
 
@@ -95,15 +95,19 @@
         </div>
     </nav>
 
+<!-- ========================================== -->
+<!-- RIGHT DRAWER: BIOKINETIC / PULSOR INTERFACE-->
+<!-- ========================================== -->
 <div id="biokinetic-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
     
+    <!-- HEADER INTERCAMBIADO -->
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             
+            <!-- ANTES EN LA DERECHA: BOTÓN DE CIERRE (AHORA EXTREMO IZQUIERDO) -->
             <div class="justify-self-start">
-                <button onclick="openNodesDrawer()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Abrir Galería de Nodos">
-                    <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">NODES</span>
-                    <img src="img/lift.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300" alt="Nodes">
+                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
+                    <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
                 </button>
             </div>
             
@@ -111,15 +115,18 @@
                 <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PULSOR</span>
             </div>
             
+            <!-- ANTES EN LA IZQUIERDA: BOTÓN NODES RESPONSIVO (AHORA EXTREMO DERECHO) -->
             <div class="justify-self-end">
-                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
-                    <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+                <button onclick="openNodesDrawer()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Abrir Galería de Nodos">
+                    <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">NODES</span>
+                    <img src="img/lift.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300" alt="Nodes">
                 </button>
             </div>
 
         </div>
     </header>
 
+    <!-- CONTENIDO CENTRAL SCROLLABLE -->
     <div class="flex-1 overflow-y-auto px-6 flex flex-col justify-center items-center gap-8 min-h-0 scrollbar-none pb-32 sm:pb-12">
         
         <div class="w-full max-w-xs mx-auto shrink-0 z-10">
@@ -187,7 +194,8 @@
 
     </div>
 
-    <footer class="fixed bottom-0 left-0 w-full z-30 p-4 sm:p-6 border-t border-white/5 bg-[#070707]/90 backdrop-blur-md shrink-0">
+    <!-- FOOTER AJUSTADO (ELIMINADO FIXED) -->
+    <footer class="w-full p-4 sm:p-6 border-t border-white/5 bg-[#070707]/90 backdrop-blur-md shrink-0">
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
             <div></div>    
             <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
@@ -198,97 +206,108 @@
     </footer>
 </div>
 
-    <div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
-        
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                
-                <div class="justify-self-start">
-                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
-                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
-                    </button>
-                </div>
-                
-                <div class="justify-self-center text-center">
-                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">AXIS // TECH-LAB</span>
-                </div>
-                
-                <div class="justify-self-end">
-                    <button onclick="openManifesto()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Abrir Manifesto">
-                        <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">MANIFESTO</span>
-                        <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-y-0.5 transition-all duration-300" alt="Manifesto">
-                    </button>
-                </div>
 
+<!-- ========================================== -->
+<!-- LEFT DRAWER: AXIS / SYSTEM CORE            -->
+<!-- ========================================== -->
+<div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
+    
+    <!-- HEADER INTERCAMBIADO -->
+    <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
+            
+            <div class="justify-self-start">
+                <button onclick="openManifesto()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Abrir Manifesto">
+                    <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">MANIFESTO</span>
+                    <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-y-0.5 transition-all duration-300" alt="Manifesto">
+                </button>
             </div>
-        </header>
+            
+            <div class="justify-self-center text-center">
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">AXIS // TECH-LAB</span>
+            </div>
+            
+            <div class="justify-self-end">
+                <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
+                    <img src="img/logo.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                </button>
+            </div>
 
-        <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-32 sm:pb-6">
-            <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
-                <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
-                    <div class="absolute inset-0 pointer-events-none z-0">
-                        <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.7]">
-                            <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/30 transition-all duration-700 group-hover:stroke-white/60" />
-                            <path d="M10 36 Q50 65 90 36" class="stroke-white/20 group-hover:stroke-white/40" />
-                            <path d="M10 114 Q50 85 90 114" class="stroke-white/20" stroke-dasharray="1.2 1.2" />
-                            <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/15" stroke-dasharray="2 2" />
-                        </svg>
+        </div>
+    </header>
+
+    <!-- CONTENIDO CENTRAL SCROLLABLE -->
+    <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-32 sm:pb-6">
+        <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
+            <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
+                <div class="absolute inset-0 pointer-events-none z-0">
+                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.7]">
+                        <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/30 transition-all duration-700 group-hover:stroke-white/60" />
+                        <path d="M10 36 Q50 65 90 36" class="stroke-white/20 group-hover:stroke-white/40" />
+                        <path d="M10 114 Q50 85 90 114" class="stroke-white/20" stroke-dasharray="1.2 1.2" />
+                        <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/15" stroke-dasharray="2 2" />
+                    </svg>
+                </div>
+                
+                <div class="absolute inset-0 z-10">
+                    <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-interface'); toggleLeftDrawer();">
+                        <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">RESONANCE</span>
+                        <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 group-hover/brick:opacity-100 shadow-[0_0_8px_#fff]"></div>
                     </div>
                     
-                    <div class="absolute inset-0 z-10">
-                        <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-interface'); toggleLeftDrawer();">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">RESONANCE</span>
-                            <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 group-hover/brick:opacity-100 shadow-[0_0_8px_#fff]"></div>
-                        </div>
-                        
-                        <div class="absolute top-[21%] left-1/2 -translate-x-1/2 text-[8px] tracking-[0.4em] font-black uppercase text-white/40 pointer-events-none">SYNERGY</div>
+                    <div class="absolute top-[21%] left-1/2 -translate-x-1/2 text-[8px] tracking-[0.4em] font-black uppercase text-white/40 pointer-events-none">SYNERGY</div>
 
-                        <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="toggleLeftDrawer(); toggleDrawer();">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
-                            <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2 transition-all duration-300 group-hover/core:text-emerald-400">...</span>
-                        </div>
+                    <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="toggleLeftDrawer(); toggleDrawer();">
+                        <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
+                        <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2 transition-all duration-300 group-hover/core:text-emerald-400">...</span>
+                    </div>
 
-                        <div class="absolute bottom-[27%] left-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/40">BODY</div>
-                        <div class="absolute bottom-[27%] right-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/40">PLANET</div>
+                    <div class="absolute bottom-[27%] left-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/40">BODY</div>
+                    <div class="absolute bottom-[27%] right-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/40">PLANET</div>
 
-                        <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="scrollToSection('node-gallery-section'); toggleLeftDrawer();">
-                            <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 group-hover/base:opacity-100 shadow-[0_0_8px_#fff]"></div>
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">NODE</span>
-                        </div>
+                    <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="scrollToSection('node-gallery-section'); toggleLeftDrawer();">
+                        <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 group-hover/base:opacity-100 shadow-[0_0_8px_#fff]"></div>
+                        <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">NODE</span>
                     </div>
                 </div>
-            </section>
-        </div>
-
-        <footer class="fixed bottom-0 left-0 w-full z-30 p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase text-white/30">
-                
-                <div></div>
-                
-                <div class="justify-self-center text-center whitespace-nowrap tracking-[0.3em]">
-                    <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergia.world</span> &copy; 2026
-                </div>
-                
-                <div></div>
-                
             </div>
-        </footer>
+        </section>
     </div>
+
+    <!-- FOOTER AJUSTADO (ELIMINADO FIXED) -->
+    <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase text-white/30">
+            <div></div>
+            <div class="justify-self-center text-center whitespace-nowrap tracking-[0.3em]">
+                <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergy.world</span> &copy; 2026
+            </div>
+            <div></div>
+        </div>
+    </footer>
+</div>
     
 <div id="manifesto" class="fixed inset-0 w-screen h-screen z-[60] transform -translate-y-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
     
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
+            
+            <!-- EXTREMO IZQUIERDO: RETORNO DIRECTO A BIO-KINETIC INTERFACE -->
             <div class="justify-self-start">
-                </div>
+                <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-interface');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
+                    <img src="img/logo.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
+                </button>
+            </div>
+            
             <div class="justify-self-center text-center">
                 <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOMANIFESTO // CORE</span>
             </div>
+            
             <div class="justify-self-end">
                 <button onclick="closeManifesto()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Manifesto">
                     <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
                 </button>
             </div>
+            
         </div>
     </header>
 
@@ -310,7 +329,6 @@
                 <li><strong class="text-white">1. DERIVA SOLAR:</strong> Lee la hora y minutos mundiales para calcular el ángulo de rotación exacto de la Tierra (15° por hora + 0.25° por minuto). A mediodía, el ángulo es estrictamente 180°.</li>
                 <li><strong class="text-white">2. CUADRANTES WAVE:</strong> Divide los 360° en 4 acciones biomecánicas: <span class="text-emerald-400">0°-90° [UL]</span>, <span class="text-emerald-400">90°-180° [PL]</span>, <span class="text-emerald-400">180°-270° [LST]</span>, y <span class="text-emerald-400">270°-360° [US]</span>.</li>
                 <li><strong class="text-white">3. PROPORCIÓN ÁUREA (PHI):</strong> Los Sets ondulana a través de una función senoidal (de 2 a 8), mientras que las Repeticiones se multiplican por <span class="text-white font-bold">PHI (1.618033)</span> imitando la geometría fractal del micelio.</li>
-                <li><strong class="text-white">4. PURGA RADÓN:</strong> Remueve quirúrgicamente los ceros artificiales a la izquierda a través de un filtrado estricto. El vacío o el cero simulado no existen en el diseño de la naturaleza.</li>
             </ul>
             <div class="mt-4 pt-4 border-t border-white/5 text-center">
                 <span class="text-[9px] font-mono tracking-[0.2em] text-white/30 uppercase">Fórmula: SetsFiltrados + AcciónCuadrante + RepsFiltradas</span>
@@ -322,7 +340,7 @@
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase text-white/30">
             <div></div>
             <div class="justify-self-center text-center whitespace-nowrap tracking-[0.3em]">
-                <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergia.world</span> TECH-LAB &copy; 2026
+                <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergy.world</span> &copy; 2026
             </div>
             <div></div>
         </div>
@@ -345,7 +363,12 @@
             <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">NODE NETWORK GALLERY</span>
         </div>
 
-        <div></div>
+        <!-- EXTREMO DERECHO: RETORNO DIRECTO A BIO-KINETIC INTERFACE -->
+        <div class="justify-self-end">
+            <button onclick="closeNodesDrawer(); closeAllDrawers(); scrollToSection('biokinetic-interface');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
+                <img src="img/logo.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
+            </button>
+        </div>
         
     </div>
 </header>
@@ -659,12 +682,12 @@
 
         if (tipoInyeccion === 'PULSOR_LAUNCH_TOKEN') {
             const message = encodeURIComponent(
-                `[zenergia.world] Adquisición de Pulsor Adaptógeno\n` +
+                `[zenergy.world] Adquisición de Pulsor Adaptógeno\n` +
                 `-----------------------------------------\n` +
                 `• Tipo: LAUNCH TOKEN // PULSOR ${varianteActiva}${nodeParam}\n` +
                 `• Valor: $10 USD (Redimible en z_caps, z_bricks, z_panels)\n` +
                 `• Registro Lab: #${currentHash}\n` +
-                `• Sistema: zenergia.world TECH-LAB`
+                `• Sistema: zenergy.world TECH-LAB`
             );
             if (navigator.vibrate) navigator.vibrate(40);
             window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
