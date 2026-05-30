@@ -130,42 +130,55 @@
                 </div>
             </div>
 
+            <!-- NÚCLEO MECÁNICO INTERACTIVO (X-VECTOR ALIGNMENT) -->
             <div class="w-full flex flex-col items-center justify-center shrink-0 max-w-xs mx-auto">
                 <div class="relative w-full max-w-[210px] sm:max-w-[230px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.7)] group/pulsor"
                     style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
                     
-                    <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-20 p-8">
-                        <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover/pulsor:scale-[1.05]">
-                            <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                            <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[2.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                            <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[2] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                        </svg>
+                    <div class="absolute inset-0 w-full h-full rotate-45 pointer-events-none z-10">
+                        <div class="absolute inset-0 flex items-center justify-center p-8 z-20">
+                            <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] group-hover/pulsor:scale-[1.05]">
+                                <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                                <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[2.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                                <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[2] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div class="absolute inset-0">
+                            <div class="absolute top-1/2 left-0 w-[calc(50%-28px)] h-[1px] bg-white/5"></div>
+                            <div class="absolute top-1/2 right-0 w-[calc(50%-28px)] h-[1px] bg-white/5"></div>
+                            <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-28px)] bg-white/5"></div>
+                            <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-28px)] bg-white/5"></div>
+                        </div>
                     </div>
 
-                    <div class="absolute inset-0 pointer-events-none z-10">
-                        <div class="absolute top-1/2 left-0 w-[calc(50%-28px)] h-[1px] bg-white/5"></div>
-                        <div class="absolute top-1/2 right-0 w-[calc(50%-28px)] h-[1px] bg-white/5"></div>
-                        <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-28px)] bg-white/5"></div>
-                        <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-28px)] bg-white/5"></div>
-                    </div>
+                    <div class="absolute inset-0 flex flex-col justify-between p-4 z-30 pointer-events-none">
+                        
+                        <div class="w-full flex justify-center pointer-events-auto">
+                            <div onclick="playBeat('img/Lbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-2 rounded-xs hover:bg-white/[0.02] transition-all duration-300">
+                                <img src="img/lift.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-y-0.5 transition-all duration-300 object-contain" alt="Lift">
+                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">LIFT</span>
+                            </div>
+                        </div>
 
-                    <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-30">
-                        <div onclick="playBeat('img/Pbeat.wav')" class="relative group/quad flex flex-col items-center justify-start pt-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
-                            <img src="img/pace.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Pace">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">PACE</span>
+                        <div class="w-full flex justify-between items-center px-1">
+                            <div onclick="playBeat('img/Sbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-2 rounded-xs hover:bg-white/[0.02] transition-all duration-300 pointer-events-auto">
+                                <img src="img/surge.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-x-0.5 transition-all duration-300 object-contain" alt="Surge">
+                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">SURGE</span>
+                            </div>
+
+                            <div onclick="playBeat('img/Pbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-2 rounded-xs hover:bg-white/[0.02] transition-all duration-300 pointer-events-auto">
+                                <img src="img/pace.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-x-0.5 transition-all duration-300 object-contain" alt="Pace">
+                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">PACE</span>
+                            </div>
                         </div>
-                        <div onclick="playBeat('img/Ubeat.wav')" class="relative group/quad flex flex-col items-center justify-start pt-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
-                            <img src="img/under.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Under">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">UNDER</span>
+
+                        <div class="w-full flex justify-center pointer-events-auto">
+                            <div onclick="playBeat('img/Ubeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-2 rounded-xs hover:bg-white/[0.02] transition-all duration-300">
+                                <img src="img/under.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-y-0.5 transition-all duration-300 object-contain" alt="Under">
+                                <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">UNDER</span>
+                            </div>
                         </div>
-                        <div onclick="playBeat('img/Lbeat.wav')" class="relative group/quad flex flex-col items-center justify-end pb-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mb-1 group-hover/quad:text-white">LIFT</span>
-                            <img src="img/lift.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Lift">
-                        </div>
-                        <div onclick="playBeat('img/Sbeat.wav')" class="relative group/quad flex flex-col items-center justify-end pb-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mb-1 group-hover/quad:text-white">SURGE</span>
-                            <img src="img/surge.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Surge">
-                        </div>
+
                     </div>        
                 </div>
             </div>
@@ -400,7 +413,7 @@
         if ($('z-dial-left')) $('z-dial-left').innerText = coordenadaBiocinetica;
         if ($('hologram-dial')) $('hologram-dial').textContent = coordenadaBiocinetica;
 
-        // Cinemática de Arcos Vectoriales centrales del Pulsor
+        // Cinemática de Arcos Vectoriales centrales del Pulsor (X-Vector Config)
         const wOuter = $('wave-outer');
         const wMid = $('wave-mid');
         const wInner = $('wave-inner');
@@ -409,19 +422,26 @@
             const timeFactor = now.getSeconds() + (now.getMilliseconds() / 1000);
             const pulse = Math.abs(Math.sin(timeFactor * 0.8));
             
-            if (!activeAudioChannels[Object.keys(activeAudioChannels)[0]]?.playing) {
+            // Verificación limpia de canales activos de audio para modular opacidad por pulso
+            let algunoSonando = Object.values(activeAudioChannels).some(audio => audio && !audio.paused);
+            
+            if (!algunoSonando) {
                 wOuter.style.stroke = `rgba(255, 255, 255, ${0.15 + pulse * 0.25})`;
                 wMid.style.stroke = `rgba(255, 255, 255, ${0.20 + (1 - pulse) * 0.20})`;
                 wInner.style.stroke = `rgba(255, 255, 255, ${0.30 + pulse * 0.30})`;
             }
             
             let speedMultiplier = acciones.length === 3 ? 4 : 2; 
+            
+            // Rotación simétrica forzando origen en 'center center' por la rotación base de 45deg
             wOuter.style.transform = `rotate(${timeFactor * speedMultiplier}deg)`;
-            wOuter.style.transformOrigin = '100px 100px';
+            wOuter.style.transformOrigin = 'center center';
+            
             wMid.style.transform = `rotate(${-timeFactor * (speedMultiplier * 0.7)}deg)`;
-            wMid.style.transformOrigin = '100px 100px';
+            wMid.style.transformOrigin = 'center center';
+            
             wInner.style.transform = `rotate(${timeFactor * 1.5}deg)`;
-            wInner.style.transformOrigin = '100px 100px';
+            wInner.style.transformOrigin = 'center center';
         }
     }
 
