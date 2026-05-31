@@ -83,7 +83,7 @@
 
             <div class="justify-self-center text-center">
                 <span id="z-dial-nav" class="text-white/40 font-mono font-bold text-[9px] tracking-[0.25em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    BIO-KINETIC INTERFACE
+                    BIO-KINETIC PORTFOLIO
                 </span>
             </div>
                             
@@ -96,7 +96,7 @@
     </nav>
 
 <!-- ========================================== -->
-<!-- RIGHT DRAWER: BIOKINETIC / PULSOR INTERFACE-->
+<!-- RIGHT DRAWER: BIOKINETIC / PULSOR PORTFOLIO-->
 <!-- ========================================== -->
 <div id="biokinetic-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
     
@@ -250,7 +250,7 @@
                 </div>
                 
                 <div class="absolute inset-0 z-10">
-                    <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-interface'); toggleLeftDrawer();">
+                    <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-portfolio'); toggleLeftDrawer();">
                         <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">RESONANCE</span>
                         <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 group-hover/brick:opacity-100 shadow-[0_0_8px_#fff]"></div>
                     </div>
@@ -291,9 +291,9 @@
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             
-            <!-- EXTREMO IZQUIERDO: RETORNO DIRECTO A BIO-KINETIC INTERFACE -->
+            <!-- EXTREMO IZQUIERDO: RETORNO DIRECTO A BIO-KINETIC portfolio -->
             <div class="justify-self-start">
-                <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-interface');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
+                <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
                     <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
                 </button>
             </div>
@@ -369,9 +369,9 @@
             <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">NODE NETWORK GALLERY</span>
         </div>
 
-        <!-- EXTREMO DERECHO: RETORNO DIRECTO A BIO-KINETIC INTERFACE -->
+        <!-- EXTREMO DERECHO: RETORNO DIRECTO A BIO-KINETIC portfolio -->
         <div class="justify-self-end">
-            <button onclick="closeNodesDrawer(); closeAllDrawers(); scrollToSection('biokinetic-interface');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
+            <button onclick="closeNodesDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
                 <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
             </button>
         </div>
@@ -425,7 +425,7 @@
 </div>
 
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
-        <section id="biokinetic-interface" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
+        <section id="biokinetic-portfolio" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
             <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
                 </div>
         </section>
@@ -441,7 +441,7 @@
             </div>
             
             <div class="justify-self-center text-center">
-                <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-interface')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] sm:w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
+                <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-portfolio')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] sm:w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
                     <span id="z-dial-footer">--</span>
                 </button>
             </div>
@@ -736,7 +736,7 @@
                 entries.forEach(entry => {
                     zDialNav.style.opacity = '0';
                     setTimeout(() => {
-                        zDialNav.textContent = entry.isIntersecting ? 'node gallery' : 'bio-kinetic interface';
+                        zDialNav.textContent = entry.isIntersecting ? 'node gallery' : 'bio-kinetic portfolio';
                         zDialNav.style.opacity = '1';
                     }, 200);
                 });
