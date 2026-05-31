@@ -58,7 +58,7 @@
         .drawer-active .img-glow-transition {
             opacity: 1 !important;
             transform: scale(1.05);
-            filter: brightness(1.4) drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
+            filter: brightness(1.4) drop-shadow(0 0 8px rgba(8, 0, 255, 0.8));
         }
 
         .scrollbar-none::-webkit-scrollbar { display: none; }
@@ -195,7 +195,7 @@
     </div>
 
     <!-- FOOTER AJUSTADO (ELIMINADO FIXED) -->
-    <footer class="w-full p-4 sm:p-6 border-t border-white/5 bg-[#070707]/90 backdrop-blur-md shrink-0">
+    <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
             <div></div>    
             <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
@@ -276,10 +276,10 @@
 
     <!-- FOOTER AJUSTADO (ELIMINADO FIXED) -->
     <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase text-white/30">
-            <div></div>
-            <div class="justify-self-center text-center whitespace-nowrap tracking-[0.3em]">
-                <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergy.world</span> &copy; 2026
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
+            <div></div>    
+            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
             </div>
             <div></div>
         </div>
@@ -343,10 +343,10 @@
     </div>
 
     <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase text-white/30">
-            <div></div>
-            <div class="justify-self-center text-center whitespace-nowrap tracking-[0.3em]">
-                <span class="text-white font-black hover:text-emerald-400 transition-colors duration-300 cursor-pointer">zenergy.world</span> &copy; 2026
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
+            <div></div>    
+            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
             </div>
             <div></div>
         </div>
@@ -431,11 +431,27 @@
         </section>
     </main>
 
-    <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md border-t border-white/[0.01] transition-opacity duration-500">
-        <div class="p-4 sm:p-6 max-w-xl mx-auto flex items-center justify-center font-bold">
-            <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-interface')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
-                <span id="z-dial-footer">--</span>
-            </button>
+<footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md border-t border-white/[0.01] transition-opacity duration-500 select-none">
+        <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full font-bold">
+            
+            <div class="justify-self-start">
+                <button onclick="openManifesto()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Manifesto">
+                    <img src="img/under.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-y-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Manifesto">
+                </button>
+            </div>
+            
+            <div class="justify-self-center text-center">
+                <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-interface')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] sm:w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
+                    <span id="z-dial-footer">--</span>
+                </button>
+            </div>
+            
+            <div class="justify-self-end">
+                <button onclick="openNodesDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Nodes">
+                    <img src="img/lift.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Nodes">
+                </button>
+            </div>
+
         </div>
     </footer>
 
