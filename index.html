@@ -112,11 +112,12 @@
             </div>
         </div>
     </nav>
-
-<!-- NODES DRAWER: Optimizado con grid y h-[100dvh] para anclaje móvil absoluto -->
-   <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none bg-[#070707]">
+<!-- ========================================================================= -->
+<!-- NODES DRAWER RESTRUCTURADO CON DISTRIBUCIÓN VERTICAL COMPACTA (FLEX-BETWEEN) -->
+<!-- ========================================================================= -->
+<div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
     
-    <!-- HEADER: Fijo arriba -->
+    <!-- HEADER (FIJO ARRIBA) -->
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             <div class="justify-self-start">
@@ -135,90 +136,94 @@
         </div>
     </header>
 
-    <!-- CUERPO CENTRAL SCROLLABLE: Mantiene el pb-12 para dar aire visual al subir -->
-    <div class="overflow-y-auto px-6 py-8 flex flex-col justify-start items-center gap-8 min-h-0 scrollbar-none pb-12">
-        <div class="w-full max-w-xs mx-auto shrink-0 z-10">
-            <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.01] backdrop-blur-md rounded-xs p-3 space-y-2 transition-all duration-300">
-                <div class="flex justify-between items-center border-b border-white/5 pb-2">
-                    <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH NODE</span>
-                    <span id="spec-id" class="text-[8px] font-mono font-bold text-white/80">NODE-T1-000</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">TOKEN HASH</span>
-                    <span id="spec-hash" class="text-[8px] font-mono font-bold text-white/60">0x0000</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full flex flex-col items-center justify-center shrink-0 max-w-xs mx-auto">
-            <div class="relative w-full max-w-[210px] sm:max-w-[230px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.7)] group/pulsor"
-                style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
-                <div class="absolute inset-0 w-full h-full pointer-events-none z-10">
-                    <div class="absolute inset-0 flex items-center justify-center p-8 z-20">
-                        <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.12)]">
-                            <circle id="wave-outer" cx="100" cy="100" r="75" class="stroke-white/60 fill-none stroke-[2.5] transition-all duration-500 ease-in-out" stroke-linecap="round" transform="rotate(-90 100 100)" />
-                            <circle id="wave-mid" cx="100" cy="100" r="53" class="stroke-white/40 fill-none stroke-[2] transition-all duration-500 ease-in-out" stroke-linecap="round" transform="rotate(-90 100 100)" />
-                            <circle id="wave-inner" cx="100" cy="100" r="31" class="stroke-white/25 fill-none stroke-[1.5] transition-all duration-500 ease-in-out" stroke-linecap="round" transform="rotate(-90 100 100)" />
-                        </svg>
-                    </div>
-                    <div class="absolute inset-0 opacity-40">
-                        <div class="absolute top-1/2 left-0 w-[calc(50%-20px)] h-[1px] bg-white/5"></div>
-                        <div class="absolute top-1/2 right-0 w-[calc(50%-20px)] h-[1px] bg-white/5"></div>
-                        <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-20px)] bg-white/5"></div>
-                        <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-20px)] bg-white/5"></div>
-                    </div>
+    <!-- CUERPO CENTRAL CON AUTO-ESPACIADO (EVITA COLAPSO CONTRA EL FOOTER) -->
+<div class="relative w-44 h-44 mx-auto flex items-center justify-center shrink-0 mt-2 overflow-hidden group/pulsor">
+            <div class="absolute inset-0 w-full h-full pointer-events-none z-10">
+                <div class="absolute inset-0 flex items-center justify-center p-1 z-20 pointer-events-auto">
+                    <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                        <circle id="wave-outer" cx="100" cy="100" r="95" 
+                                onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)]" 
+                                stroke-linecap="round" transform="rotate(-90 100 100)" />
+                        
+                        <circle id="wave-mid" cx="100" cy="100" r="67" 
+                                onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)]" 
+                                stroke-linecap="round" transform="rotate(-90 100 100)" />
+                        
+                        <circle id="wave-inner" cx="100" cy="100" r="39" 
+                                onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)]" 
+                                stroke-linecap="round" transform="rotate(-90 100 100)" />
+                    </svg>
                 </div>
             </div>
         </div>
 
-        <div class="w-full max-w-xs shrink-0 flex flex-col items-center justify-center">
-            <div id="z-dial-pulsor" class="font-mono text-[22px] sm:text-[26px] font-black tracking-[0.25em] text-white/90 text-center select-none bg-white/[0.01] border border-white/5 px-6 py-2 rounded-xs min-w-[160px] shadow-inner uppercase">
+        <div class="w-full max-w-sm flex items-center justify-center text-center py-2 mx-auto font-mono select-none shrink-0">
+            <div id="z-dial-pulsor" class="text-2xl font-bold text-white tracking-wide min-h-[36px] flex items-center justify-center drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-300 uppercase">
                 --
             </div>
         </div>
 
-        <div class="w-full max-w-xs border border-white/5 bg-white/[0.01] p-4 rounded-xs space-y-4">
+        <div class="w-full max-w-md mx-auto border-t border-white/10 pt-4 space-y-4 shrink-0">
             <h3 class="font-sans font-black text-[8px] uppercase tracking-[0.3em] text-white/80 text-center border-b border-white/5 pb-2">
-                GEOMETRIC WAVE SYNTAX
+                GEOMETRIC PULS SYNTAX
             </h3>
-            <div class="grid grid-cols-4 gap-1.5 text-center font-mono text-[8px]">
-                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
-                    <div class="text-white/40 mb-1">UL</div>
-                    <div class="text-white text-xs leading-none">∪</div>
+            <div class="grid grid-cols-4 gap-1.5 text-center font-mono">
+                <div onmouseenter="inspectKineticWave('ACTION_UL', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
+                    <div>
+                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">UL</div>
+                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">∪</div>
+                    </div>
+                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
+                        VECTOR UP_LIFT<br>KINETIC DISPL.
+                    </div>
                 </div>
-                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
-                    <div class="text-white/40 mb-1">PL</div>
-                    <div class="text-white text-xs leading-none">∩</div>
+                <div onmouseenter="inspectKineticWave('ACTION_PL', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
+                    <div>
+                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">PL</div>
+                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">∩</div>
+                    </div>
+                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
+                        PROPULSION LAB<br>BALLISTIC EXT.
+                    </div>
                 </div>
-                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
-                    <div class="text-white/40 mb-1">LST</div>
-                    <div class="text-white text-xs leading-none">⊂</div>
+                <div onmouseenter="inspectKineticWave('ACTION_LST', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
+                    <div>
+                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">LST</div>
+                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">⊂</div>
+                    </div>
+                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
+                        LOAD STABIL.<br>ACCEL. COUPLING
+                    </div>
                 </div>
-                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
-                    <div class="text-white/40 mb-1">UST</div>
-                    <div class="text-white text-xs leading-none">∘</div>
+                <div onmouseenter="inspectKineticWave('ACTION_UST', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
+                    <div>
+                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">UST</div>
+                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">∘</div>
+                    </div>
+                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
+                        AXIAL TORQUE<br>ISOMETRIC TENS.
+                    </div>
                 </div>
             </div>
-            <p class="text-[9px] text-white/40 font-mono tracking-[0.1em] leading-relaxed uppercase text-center">
-                INNER = <span class="text-white/70">SETS</span> // MID = <span class="text-white/70">ACTION</span> // OUTER = <span class="text-white/70">REPS</span>
+
+            <p class="text-[8px] text-white/30 font-mono tracking-[0.11em] leading-relaxed uppercase text-center pt-2 select-none">
+                <span onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()" class="cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">INNER = SETS</span> // 
+                <span onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()" class="cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">MID = ACTION</span> // 
+                <span onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()" class="cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">OUTER = REPS</span>
             </p>
         </div>
-    </div>
 
-    <!-- FOOTER FIJO CON EXTREMOS INTERACTIVOS CONFIGURADOS -->
-    <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
+    <!-- FOOTER (FIJO ABAJO) -->
+    <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
-            <!-- Bloque Izquierdo para futuro botón interactivo -->
-            <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors">
-                <!-- [BOTÓN ADICIONAL IZQ] -->
-            </div>    
+            <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors"></div>    
             <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
                 by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
             </div>
-            <!-- Bloque Derecho para futuro botón interactivo -->
-            <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors">
-                <!-- [BOTÓN ADICIONAL DER] -->
-            </div>
+            <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors"></div>
         </div>
     </footer>
 </div>
@@ -421,10 +426,19 @@
     const PHI = 1.618033; // Global Golden Ratio Core Variable
 
     window.selectedNodeFromMesh = null;
+    window.currentTelemetryValue = "--"; // Buffer de telemetría global limpia para aislamiento inverso
+    let waveInspectionActive = false;     // Bandera de control de inspección táctil
     let biokineticInterval = null;
+    let isReading = false;
 
     // 1. THE BIO-VECTOR GLYPH MOTOR (12-STAGE POLARITY SPECTRUM)
     function updateZ() {
+        // Si el usuario seleccionó un nodo fijo en la malla, se detiene el cálculo solar temporal
+        if (window.selectedNodeFromMesh) {
+            updateTerminalTelemetry(window.selectedNodeFromMesh);
+            return;
+        }
+
         const now = new Date();
         const hours = now.getHours();
         const minutes = now.getMinutes();
@@ -447,11 +461,23 @@
         // Strict Mathematical Zero Suppression (e.g., 4UL5 instead of 04UL05)
         const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
         
-        // Telemetry Synchronization
+        // Guardar la telemetría calculada en el buffer global
+        window.currentTelemetryValue = biokineticCoordinate;
+
+        // Telemetry Synchronization across components
         if ($('z-dial-left')) $('z-dial-left').innerText = biokineticCoordinate;
         if (!isReading && $('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
-        if ($('z-dial-pulsor')) $('z-dial-pulsor').textContent = biokineticCoordinate;
         if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate; 
+
+        // Solo actualizar el dial del pulsor si NO hay una inspección activa por mouseover
+        if (!waveInspectionActive) {
+            const dialDisplay = $('z-dial-pulsor');
+            if (dialDisplay) {
+                dialDisplay.innerHTML = biokineticCoordinate;
+                dialDisplay.classList.remove('text-cyan-400', 'drop-shadow-[0_0_10px_rgba(0,210,255,0.4)]');
+                dialDisplay.classList.add('text-white');
+            }
+        }
 
         // Angular Wave Vector Rendering
         const wOuter = $('wave-outer'); 
@@ -494,14 +520,37 @@
 
     function updateTerminalTelemetry(nodeString = null) {
         const specPanel = $('dynamic-node-spec');
+        
         if (nodeString) {
             const cleanNodeString = nodeString.replace(/^0+/, '');
+            window.currentTelemetryValue = cleanNodeString;
+            
+            // Si el usuario está inspeccionando con el mouse, congelar render en pantalla pero guardar datos
+            if (waveInspectionActive) {
+                if (specPanel) {
+                    specPanel.classList.remove('hidden');
+                    if ($('spec-id')) $('spec-id').innerText = `NODE-T1-${cleanNodeString}`;
+                }
+                return; 
+            }
+
+            const dialDisplay = $('z-dial-pulsor');
+            if (dialDisplay) {
+                dialDisplay.innerHTML = cleanNodeString;
+                dialDisplay.classList.remove('text-cyan-400', 'drop-shadow-[0_0_10px_rgba(0,210,255,0.4)]');
+                dialDisplay.classList.add('text-white');
+            }
+
             if (specPanel) {
                 specPanel.classList.remove('hidden');
                 if ($('spec-id')) $('spec-id').innerText = `NODE-T1-${cleanNodeString}`;
                 if ($('spec-hash')) $('spec-hash').innerText = `0x${Math.floor(Math.random() * 65535).toString(16).toUpperCase()}`;
             }
         } else {
+            if (!waveInspectionActive) {
+                const dialDisplay = $('z-dial-pulsor');
+                if (dialDisplay) dialDisplay.textContent = "--";
+            }
             if (specPanel) specPanel.classList.add('hidden');
             window.selectedNodeFromMesh = null;
             updateZ();
@@ -533,6 +582,7 @@
         }
     }
 
+    // LEFT PANEL DRAW CONTEXT
     function toggleLeftDrawer() {
         const leftDrawer = $('left-core-drawer');
         const overlay = $('drawer-overlay');
@@ -573,6 +623,7 @@
         if (navigator.vibrate) navigator.vibrate(15);
     }
 
+    // MODAL WINDOW INTERACTION
     function closeManifesto() {
         const modal = $('manifesto');
         if (!modal) return;
@@ -586,7 +637,7 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
-// 3. INTERACTIVE RSVP MANIFESTO ENGINE (SEPARATED COMPACT LAYOUT)
+    // 3. INTERACTIVE RSVP MANIFESTO ENGINE (SEPARATED COMPACT LAYOUT)
     const manifestoChapters = {
         1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. To keep this gap open, we code the functional movements of the body into a live language. The unconscious mind operates through kinetic traction: attracting and pushing away thoughts. By mapping these sequences into mechanical blocks, we ignite constant creativity.",
         2: "THE ALGORITHMIC DIAL // TRANSLATION MANUAL The algorithm does not invent data; it is a translator. It takes the Earth's rotation relative to the Sun in a 24-hour cycle and converts it into a unique 'bio-kinetic coordinate.' Time becomes a matrix of movement. 1. SOLAR DRIFT: Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.",
@@ -595,7 +646,6 @@
 
     let activeWords = manifestoChapters[1].split(/\s+/);
     let wordIndex = 0;
-    let isReading = false;
     let readSpeed = 250; 
     let rsvpIntervalId = null;
 
@@ -621,7 +671,6 @@
             if (wordIndex < activeWords.length) {
                 let word = activeWords[wordIndex];
                 
-                // Suavizado inteligente de mayúsculas sostenidas largas para legibilidad móvil
                 if (word === word.toUpperCase() && word.length > 3 && !/[0-9]/.test(word) && word !== "//") {
                     word = word.charAt(0) + word.slice(1).toLowerCase();
                 }
@@ -652,7 +701,86 @@
         }
     }
 
-    // CRUCETA BINDING (ATTACHING TRIGGERS TO TACTILE CROSS-PAD ELEMENTS)
+    // 4. MOTOR DE DETECCIÓN INVERSA Y AISLAMIENTO BIOMECÁNICO
+    function inspectKineticWave(type, targetRing) {
+        waveInspectionActive = true;
+
+        // Aislamiento Lumínico en los Arcos del SVG
+        const rings = {
+            'OUTER': $('wave-outer'),
+            'MID': $('wave-mid'),
+            'INNER': $('wave-inner')
+        };
+
+        // Opacar trazos secundarios para centrar foco visual
+        Object.values(rings).forEach(ring => { 
+            if(ring) ring.style.stroke = "rgba(255,255,255,0.15)"; 
+        });
+        
+        // Encender arco objetivo en Azul Eléctrico
+        if(rings[targetRing]) {
+            rings[targetRing].style.stroke = "#00d2ff";
+            rings[targetRing].style.filter = "drop-shadow(0 0 8px rgba(0,210,255,0.8))";
+        }
+
+        const dialDisplay = $('z-dial-pulsor');
+        if (!dialDisplay) return;
+
+        const rawTelemetry = window.currentTelemetryValue || "--";
+        
+        // Desestructurar coordenada por Regex: [Sets][Accion][Reps] -> ej: "5LST12"
+        const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
+        let isolatedValue = "--";
+
+        if (match) {
+            const [_, sets, action, reps] = match;
+            if (type === 'SETS') isolatedValue = `${sets} <span class="text-[10px] text-white/30 ml-1">SETS</span>`;
+            else if (type === 'REPS') isolatedValue = `${reps} <span class="text-[10px] text-white/30 ml-1">REPS</span>`;
+            else if (type === 'ACTION') isolatedValue = `<span class="text-[11px] text-white/30 mr-1">ACT:</span>${action}`;
+            else if (type === 'ONLY_ACTION') isolatedValue = `PULS // ${action}`;
+        } else {
+            // Fallback en reposo si la malla no está arrojando datos
+            if (type === 'SETS') isolatedValue = "00 // SETS";
+            else if (type === 'REPS') isolatedValue = "00 // REPS";
+            else if (type === 'ONLY_ACTION') isolatedValue = "PULS // CORE";
+        }
+
+        // Casos de hover sobre las tarjetas de sintaxis inferiores
+        if (type === 'ACTION_UL') isolatedValue = "VECTOR: UL";
+        if (type === 'ACTION_PL') isolatedValue = "VECTOR: PL";
+        if (type === 'ACTION_LST') isolatedValue = "VECTOR: LST";
+        if (type === 'ACTION_UST') isolatedValue = "VECTOR: UST";
+
+        // Inyectar telemetría aislada en Cian de Laboratorio
+        dialDisplay.innerHTML = isolatedValue;
+        dialDisplay.classList.add('text-cyan-400', 'drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]');
+        dialDisplay.classList.remove('text-white');
+
+        if (navigator.vibrate) navigator.vibrate(5);
+    }
+
+    function clearKineticWave() {
+        waveInspectionActive = false;
+
+        // Restaurar estilos de trazos nativos en arcos SVG
+        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => {
+            const ring = $(id);
+            if(ring) {
+                ring.style.stroke = "";
+                ring.style.filter = "";
+            }
+        });
+
+        // Retornar pantalla alfanumérica al valor completo del búfer real
+        const dialDisplay = $('z-dial-pulsor');
+        if (dialDisplay) {
+            dialDisplay.classList.remove('text-cyan-400', 'drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]');
+            dialDisplay.classList.add('text-white');
+            dialDisplay.innerHTML = window.currentTelemetryValue;
+        }
+    }
+
+    // 5. CRUCETA BINDING & ARCHITECTURE INITIALIZATION
     document.addEventListener("DOMContentLoaded", () => {
         // STREAM CONTROL (RIGHT)
         if ($('btn-stream-start')) {
@@ -670,7 +798,7 @@
             });
         }
 
-        // SPEED UP (++ ARRIBA): Disminuye el delay en ms para que el stream vaya más rápido
+        // SPEED UP (++ ARRIBA)
         if ($('btn-speed-up')) {
             $('btn-speed-up').addEventListener('click', () => {
                 readSpeed = Math.max(60, readSpeed - 40); 
@@ -684,7 +812,7 @@
             });
         }
 
-        // SPEED DOWN (-- ABAJO): Incrementa el delay en ms para ralentizar el stream
+        // SPEED DOWN (-- ABAJO)
         if ($('btn-speed-down')) {
             $('btn-speed-down').addEventListener('click', () => {
                 readSpeed = Math.min(800, readSpeed + 40);
