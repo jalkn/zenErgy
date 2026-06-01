@@ -113,8 +113,10 @@
         </div>
     </nav>
 
-   <div id="nodes-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
+<!-- NODES DRAWER: Optimizado con grid y h-[100dvh] para anclaje móvil absoluto -->
+   <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none bg-[#070707]">
     
+    <!-- HEADER: Fijo arriba -->
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             <div class="justify-self-start">
@@ -133,7 +135,8 @@
         </div>
     </header>
 
-    <div class="flex-1 overflow-y-auto px-6 py-8 flex flex-col justify-start items-center gap-8 min-h-0 scrollbar-none pb-36">
+    <!-- CUERPO CENTRAL SCROLLABLE: Mantiene el pb-12 para dar aire visual al subir -->
+    <div class="overflow-y-auto px-6 py-8 flex flex-col justify-start items-center gap-8 min-h-0 scrollbar-none pb-12">
         <div class="w-full max-w-xs mx-auto shrink-0 z-10">
             <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.01] backdrop-blur-md rounded-xs p-3 space-y-2 transition-all duration-300">
                 <div class="flex justify-between items-center border-b border-white/5 pb-2">
@@ -202,19 +205,28 @@
         </div>
     </div>
 
-        <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
-                <div></div>    
-                <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022 - 2026
-                </div>
-                <div></div>
+    <!-- FOOTER FIJO CON EXTREMOS INTERACTIVOS CONFIGURADOS -->
+    <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
+            <!-- Bloque Izquierdo para futuro botón interactivo -->
+            <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors">
+                <!-- [BOTÓN ADICIONAL IZQ] -->
+            </div>    
+            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
             </div>
-        </footer>
-    </div>
+            <!-- Bloque Derecho para futuro botón interactivo -->
+            <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors">
+                <!-- [BOTÓN ADICIONAL DER] -->
+            </div>
+        </div>
+    </footer>
+</div>
 
-    <div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
-        
+    <!-- LEFT CORE DRAWER: Optimizado con grid y h-[100dvh] para anclaje móvil absoluto -->
+    <div id="left-core-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform -translate-x-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
+            
+        <!-- HEADER: Fijo arriba -->
         <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start">
@@ -234,7 +246,8 @@
             </div>
         </header>
 
-        <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-32 sm:pb-6">
+        <!-- CUERPO CENTRAL SCROLLABLE: Centrado responsivo limpio -->
+        <div class="overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-12">
             <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
                 <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
                     <div class="absolute inset-0 pointer-events-none z-0">
@@ -270,13 +283,22 @@
             </section>
         </div>
 
-        <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
-                <div></div>    
+        <!-- FOOTER FIJO CON EXTREMOS INTERACTIVOS CONFIGURADOS (Rango 2020-2026 unificado) -->
+        <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
+            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
+                <!-- Bloque Izquierdo para futuro botón interactivo -->
+                <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors">
+                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Back">
+                    </button>
+                </div>    
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020-2026
+                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020–2026
                 </div>
-                <div></div>
+                <!-- Bloque Derecho para futuro botón interactivo -->
+                <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors">
+                    <!-- [BOTÓN ADICIONAL DER] -->
+                </div>
             </div>
         </footer>
     </div>
@@ -342,15 +364,28 @@
             </div>
         </div>
 
+<!-- FOOTER INTEGRADO INTERACTIVO: Flujo de Capas Corregido -->
         <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
-                <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors">
-                    </div>    
+                
+                <!-- Extremo Izquierdo: Cierra Manifesto temporalmente y abre el Axis Tech-Lab -->
+                <div class="justify-self-start">
+                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Open Axis Menu">
+                        <img src="img/back.png" class="w-4 h-4 object-contain opacity-35 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300" alt="Axis Tech-Lab">
+                    </button>
+                </div>    
+                
+                <!-- Centro: Rango de Copyright Unificado -->
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
                     by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020–2026
                 </div>
-                <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors">
-                    </div>
+                
+                <!-- Extremo Derecho: Cierra todo el ecosistema y regresa al Main principal -->
+                <div class="justify-self-end">
+                    <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Return to Main Framework">
+                        <img src="img/logo.png" class="w-4 h-4 object-contain opacity-35 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_0_4px_rgba(255,255,255,0.2)]" alt="Main Framework">
+                    </button>
+                </div>
             </div>
         </footer>
     </div>
@@ -375,8 +410,8 @@
                 </button>
             </div>
             <div class="justify-self-end">
-                <button onclick="openNodesDrawer()" class="group flex items-center justify-center p-1" aria-label="Open Nodes">
-                    <img src="img/lift.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5" alt="Nodes">
+                <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
+                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
                 </button>
             </div>
         </div>
