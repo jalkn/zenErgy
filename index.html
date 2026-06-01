@@ -89,7 +89,7 @@
                             
             <div class="justify-self-end">
                 <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Abrir Pulsor Drawer">
-                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
+                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
                 </button>
             </div>
         </div>
@@ -138,49 +138,21 @@
             <div class="relative w-full max-w-[210px] sm:max-w-[230px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.7)] group/pulsor"
                 style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
                 
-                <div class="absolute inset-0 w-full h-full rotate-45 pointer-events-none z-10">
-                    <div class="absolute inset-0 flex items-center justify-center p-16 z-20">
-                        <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] group-hover/pulsor:scale-[1.05]">
-                            <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                            <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[2.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                            <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[2] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                <div class="absolute inset-0 w-full h-full pointer-events-none z-10">
+                    <div class="absolute inset-0 flex items-center justify-center p-8 z-20">
+                        <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.12)]">
+                            <circle id="wave-outer" cx="100" cy="100" r="75" class="stroke-white/50 fill-none stroke-[2.5] transition-all duration-500 ease-in-out will-change-[stroke-dasharray,transform]" stroke-linecap="round" />
+                            <circle id="wave-mid" cx="100" cy="100" r="53" class="stroke-white/35 fill-none stroke-[2] transition-all duration-500 ease-in-out will-change-[stroke-dasharray]" stroke-linecap="round" />
+                            <circle id="wave-inner" cx="100" cy="100" r="31" class="stroke-white/20 fill-none stroke-[1.5] transition-all duration-500 ease-in-out will-change-[stroke-dasharray,transform]" stroke-linecap="round" />
                         </svg>
                     </div>
-                    <div class="absolute inset-0">
-                        <div class="absolute top-1/2 left-0 w-[calc(50%-40px)] h-[1px] bg-white/5"></div>
-                        <div class="absolute top-1/2 right-0 w-[calc(50%-40px)] h-[1px] bg-white/5"></div>
-                        <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-40px)] bg-white/5"></div>
-                        <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-40px)] bg-white/5"></div>
+                    <div class="absolute inset-0 opacity-40">
+                        <div class="absolute top-1/2 left-0 w-[calc(50%-20px)] h-[1px] bg-white/5"></div>
+                        <div class="absolute top-1/2 right-0 w-[calc(50%-20px)] h-[1px] bg-white/5"></div>
+                        <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-20px)] bg-white/5"></div>
+                        <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-20px)] bg-white/5"></div>
                     </div>
                 </div>
-
-                <div class="absolute inset-0 flex flex-col justify-between p-3 z-30 pointer-events-none">
-                    <div class="w-full flex justify-center pointer-events-auto">
-                        <div onclick="playBeat('img/Lbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300">
-                            <img src="img/lift.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-y-0.5 transition-all duration-300 object-contain" alt="Lift">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">LIFT</span>
-                        </div>
-                    </div>
-
-                    <div class="w-full flex justify-between items-center px-1">
-                        <div onclick="playBeat('img/Sbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300 pointer-events-auto">
-                            <img src="img/surge.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:-translate-x-0.5 transition-all duration-300 object-contain" alt="Surge">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">SURGE</span>
-                        </div>
-
-                        <div onclick="playBeat('img/Pbeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300 pointer-events-auto">
-                            <img src="img/pace.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-x-0.5 transition-all duration-300 object-contain" alt="Pace">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">PACE</span>
-                        </div>
-                    </div>
-
-                    <div class="w-full flex justify-center pointer-events-auto">
-                        <div onclick="playBeat('img/Ubeat.wav')" class="group/quad flex flex-col items-center cursor-pointer p-1.5 rounded-xs hover:bg-white/[0.03] transition-all duration-300">
-                            <img src="img/under.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:translate-y-0.5 transition-all duration-300 object-contain" alt="Under">
-                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">UNDER</span>
-                        </div>
-                    </div>
-                </div>        
             </div>
         </div>
 
@@ -225,9 +197,6 @@
 </div>
 
 
-<!-- ========================================== -->
-<!-- LEFT DRAWER: AXIS / SYSTEM CORE            -->
-<!-- ========================================== -->
 <div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
     
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
@@ -347,7 +316,7 @@
             </p>
             <ul class="space-y-3 font-mono text-[9px] sm:text-[10px] text-white/60 list-none pl-0">
                 <li><strong class="text-white">1. SOLAR DRIFT:</strong> Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.</li>
-                <li><strong class="text-white">2. WAVE QUADRANTS:</strong> Divides the 360° matrix into 4 biomechanical actions: <span class="text-white font-bold">0°-90° [UL]</span>, <span class="text-white font-bold">90°-180° [PL]</span>, <span class="text-white font-bold">180°-270° [LST]</span>, and <span class="text-white font-bold">270°-360° [UST]</span>.</li>
+                <li><strong class="text-white">2. WAVE QUADRANTS:</strong> Divides the 360° matrix into 4 biomechanical actions: <span class="text-white font-bold">0°-90° [UL] ($\cup$)</span>, <span class="text-white font-bold">90°-180° [PL] ($\subset$)</span>, <span class="text-white font-bold">180°-270° [LST] ($\cap$)</span>, and <span class="text-white font-bold">270°-360° [UST] ($\circ$)</span>.</li>
                 <li><strong class="text-white">3. GOLDEN RATIO (PHI):</strong> Sets fluctuate through a sine function (from 2 to 8), while Repetitions are multiplied by <span class="text-white font-bold">PHI (1.618033)</span>, mimicking the fractal geometry of mycelium.</li>
             </ul>
             <div class="mt-4 pt-4 border-t border-white/5 text-center">
@@ -406,39 +375,6 @@
     window.selectedNodeFromMesh = null;
     let biokineticInterval = null;
     let varianteActiva = "MELENA";
-    let activeAudioChannels = {};
-
-    function playBeat(audioPath) {
-        if (activeAudioChannels[audioPath]) {
-            activeAudioChannels[audioPath].currentTime = 0;
-        } else {
-            activeAudioChannels[audioPath] = new Audio(audioPath);
-        }
-
-        activeAudioChannels[audioPath].play()
-            .then(() => triggerPulsorVisuals())
-            .catch(err => console.warn(`[!] Audio diferido: ${err.message}`));
-
-        if (navigator.vibrate) navigator.vibrate(20);
-    }
-
-    function triggerPulsorVisuals() {
-        const wOuter = $('wave-outer');
-        const wMid = $('wave-mid');
-        const wInner = $('wave-inner');
-        
-        if (wOuter && wMid && wInner) {
-            wOuter.style.stroke = '#ffffff';
-            wMid.style.stroke = '#ffffff';
-            wInner.style.stroke = '#ffffff';
-            
-            setTimeout(() => {
-                wOuter.style.stroke = 'rgba(255, 255, 255, 0.4)';
-                wMid.style.stroke = 'rgba(255, 255, 255, 0.25)';
-                wInner.style.stroke = 'rgba(255, 255, 255, 0.15)';
-            }, 250);
-        }
-    }
 
     function updateZ() {
         const now = new Date();
@@ -449,9 +385,10 @@
         else if (deg >= 180 && deg < 270) acciones = 'LST'; 
         else if (deg >= 270) acciones = 'UST'; 
 
-        const sets = String(Math.floor(Math.abs(Math.sin((deg * Math.PI) / 180)) * 6) + 2).padStart(2, '0');
-        const reps = String(Math.floor(((now.getMinutes() + 1) * PHI) % 8) + 3).padStart(2, '0');
-        const coordenadaBiocinetica = `${parseInt(sets, 10)}${acciones}${parseInt(reps, 10)}`;
+        const rawSets = Math.floor(Math.abs(Math.sin((deg * Math.PI) / 180)) * 6) + 2;
+        const rawReps = Math.floor(((now.getMinutes() + 1) * PHI) % 8) + 3;
+
+        const coordenadaBiocinetica = `${rawSets}${acciones}${rawReps}`;
         
         if (!window.selectedNodeFromMesh) {
             if ($('z-dial')) $('z-dial').innerText = coordenadaBiocinetica;
@@ -462,30 +399,56 @@
         if ($('z-dial-left')) $('z-dial-left').innerText = coordenadaBiocinetica;
         if ($('hologram-dial')) $('hologram-dial').textContent = coordenadaBiocinetica;
 
+        // ==========================================
+        // PARTITURA KINÉTIK: ENCRIPTACIÓN EN EL SVG
+        // ==========================================
         const wOuter = $('wave-outer');
         const wMid = $('wave-mid');
         const wInner = $('wave-inner');
 
         if (wOuter && wMid && wInner) {
-            const timeFactor = now.getSeconds() + (now.getMilliseconds() / 1000);
-            const pulse = Math.abs(Math.sin(timeFactor * 0.8));
-            
-            let algunoSonando = Object.values(activeAudioChannels).some(audio => audio && !audio.paused);
-            
-            if (!algunoSonando) {
-                wOuter.style.stroke = `rgba(255, 255, 255, ${0.15 + pulse * 0.25})`;
-                wMid.style.stroke = `rgba(255, 255, 255, ${0.20 + (1 - pulse) * 0.20})`;
-                wInner.style.stroke = `rgba(255, 255, 255, ${0.30 + pulse * 0.30})`;
+            // Perímetros teóricos: 2 * PI * r
+            const cOuterLength = 2 * Math.PI * 75; // ~471.2
+            const cMidLength = 2 * Math.PI * 53;   // ~333.0
+            const cInnerLength = 2 * Math.PI * 31; // ~194.7
+
+            // 1. CONFIGURACIÓN DEL OPERADOR DE ACCIÓN (Anillo Externo)
+            if (acciones === 'UST') { 
+                // Círculo Completo (Saltar: ∘)
+                wOuter.style.strokeDasharray = `${cOuterLength} ${cOuterLength}`;
+                wOuter.style.strokeDashoffset = '0';
+                wOuter.style.transform = 'rotate(0deg)';
+            } else {
+                // Semicírculos Primitivos
+                wOuter.style.strokeDasharray = `${cOuterLength / 2} ${cOuterLength}`;
+                wOuter.style.strokeDashoffset = '0';
+                
+                if (acciones === 'UL') {       // Caer (∪) -> Abierto abajo
+                    wOuter.style.transform = 'rotate(90deg)';
+                } else if (acciones === 'PL') {  // Caminar (⊂) -> Abierto derecha
+                    wOuter.style.transform = 'rotate(0deg)';
+                } else if (acciones === 'LST') { // Levantarse (∩) -> Abierto arriba
+                    wOuter.style.transform = 'rotate(180deg)';
+                }
             }
-            
-            let speedMultiplier = acciones.length === 3 ? 4 : 2; 
-            
-            wOuter.style.transform = `rotate(${timeFactor * speedMultiplier}deg)`;
-            wOuter.style.transformOrigin = 'center center';
-            wMid.style.transform = `rotate(${-timeFactor * (speedMultiplier * 0.7)}deg)`;
-            wMid.style.transformOrigin = 'center center';
-            wInner.style.transform = `rotate(${timeFactor * 1.5}deg)`;
-            wInner.style.transformOrigin = 'center center';
+            wOuter.style.transformOrigin = '100px 100px';
+
+            // 2. CONFIGURACIÓN DE REPETICIONES FRACTALES (Anillo Medio)
+            // Se fragmenta el perímetro exactamente en X unidades discontinuas visibles
+            const segmentSpace = cMidLength / rawReps;
+            wMid.style.strokeDasharray = `${segmentSpace * 0.4} ${segmentSpace * 0.6}`;
+
+            // 3. CONFIGURACIÓN DE SETS GEOMÉTRICOS (Anillo Interno)
+            if (rawSets % 2 === 0) {
+                // Configuración de Semicírculo inferior para Sets Pares
+                wInner.style.strokeDasharray = `${cInnerLength / 2} ${cInnerLength}`;
+                wInner.style.transform = 'rotate(90deg)';
+            } else {
+                // Configuración de Semicírculo superior para Sets Impares
+                wInner.style.strokeDasharray = `${cInnerLength / 2} ${cInnerLength}`;
+                wInner.style.transform = 'rotate(180deg)';
+            }
+            wInner.style.transformOrigin = '100px 100px';
         }
     }
 
