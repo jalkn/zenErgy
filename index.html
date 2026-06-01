@@ -308,92 +308,82 @@
         </footer>
     </div>
     
-    <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
+<div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
+    
+    <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 select-none">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
+            <div class="justify-self-start">
+                <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1" aria-label="Home">
+                    <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Home">
+                </button>
+            </div>
+            <div class="justify-self-center text-center">
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOMANIFESTO // CORE</span>
+            </div>
+            <div class="justify-self-end">
+                <button onclick="closeManifesto()" class="group flex items-center justify-center p-1" aria-label="Close">
+                    <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90" alt="Close">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-8 max-w-xl mx-auto w-full pb-12 scrollbar-none">
         
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start">
-                    <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1" aria-label="Home">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Home">
-                    </button>
-                </div>
-                <div class="justify-self-center text-center">
-                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOMANIFESTO // CORE</span>
-                </div>
-                <div class="justify-self-end">
-                    <button onclick="closeManifesto()" class="group flex items-center justify-center p-1" aria-label="Close">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90" alt="Close">
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-8 max-w-xl mx-auto w-full pb-12 scrollbar-none">
-            
-            <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
-                <div class="axis-x-overlay"></div>
-                <div class="flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none">
-                    <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold" id="rsvp-status-indicator">
-                        READY
-                    </div>
-                </div>
-                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-up">++</button>
-                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-down">--</button>
-                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-stop">
-                    <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Stop">
-                </button>
-                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-start">
-                    <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" alt="Stream">
-                </button>
-            </div>
-
-            <div class="w-full max-w-sm flex items-center justify-center text-center py-6 my-1 font-mono select-none">
-                <div class="text-2xl font-bold text-white tracking-wide min-h-[36px] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-70" id="rsvp-word-display">
+        <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
+            <div class="axis-x-overlay"></div>
+            <div class="flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none">
+                <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold" id="rsvp-status-indicator">
                     READY
                 </div>
             </div>
+            <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-up">++</button>
+            <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-down">--</button>
+            <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-stop">
+                <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Stop">
+                </button>
+            <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-start">
+                <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" alt="Stream">
+            </button>
+        </div>
 
-            <div class="w-full max-w-md mx-auto border-t border-white/10 pt-6 space-y-2 font-mono">
-                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(1)">
-                    <span class="text-xs text-white/60 group-hover:text-white">EP_1: THE COGNITIVE SYSTEM</span>
-                    <span class="text-[9px] text-white/30">2Hz FREQ</span>
-                </div>
-                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(2)">
-                    <span class="text-xs text-white/60 group-hover:text-white">EP_2: INVISIBLE ARCHITECTURE</span>
-                    <span class="text-[9px] text-white/30">PHI MATRX</span>
-                </div>
-                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(3)">
-                    <span class="text-xs text-white/60 group-hover:text-white">EP_3: BIOCINETIC SYNTAX</span>
-                    <span class="text-[9px] text-white/30">VCTR CLPS</span>
-                </div>
+        <div class="w-full max-w-sm flex items-center justify-center text-center py-6 my-1 font-mono select-none">
+            <div class="text-2xl font-bold text-white tracking-wide min-h-[36px] flex items-center justify-center drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-70" id="rsvp-word-display">
+                <img src="img/pace.png" class="w-9 h-9 object-contain animate-pulse opacity-70" alt="Pace Icon">
             </div>
         </div>
 
-<!-- FOOTER INTEGRADO INTERACTIVO: Flujo de Capas Corregido -->
-        <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
-                
-                <!-- Extremo Izquierdo: Cierra Manifesto temporalmente y abre el Axis Tech-Lab -->
-                <div class="justify-self-start">
-                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Open Axis Menu">
-                        <img src="img/back.png" class="w-4 h-4 object-contain opacity-35 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300" alt="Axis Tech-Lab">
-                    </button>
-                </div>    
-                
-                <!-- Centro: Rango de Copyright Unificado -->
-                <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
-                </div>
-                
-                <!-- Extremo Derecho: Cierra todo el ecosistema y regresa al Main principal -->
-                <div class="justify-self-end">
-                    <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Return to Main Framework">
-                        <img src="img/logo.png" class="w-4 h-4 object-contain opacity-35 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_0_4px_rgba(255,255,255,0.2)]" alt="Main Framework">
-                    </button>
-                </div>
+        <div class="w-full max-w-md mx-auto border-t border-white/10 pt-6 space-y-2 font-mono">
+            <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(1)">
+                <span class="text-xs text-white/60 group-hover:text-white tracking-wider">THE COGNITIVE SYSTEM</span>
             </div>
-        </footer>
+            <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(2)">
+                <span class="text-xs text-white/60 group-hover:text-white tracking-wider">INVISIBLE ARCHITECTURE</span>
+            </div>
+            <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(3)">
+                <span class="text-xs text-white/60 group-hover:text-white tracking-wider">BIOCINETIC SYNTAX</span>
+            </div>
+        </div>
     </div>
+
+    <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
+            <div class="justify-self-start">
+                <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Open Axis Menu">
+                    <img src="img/back.png" class="w-4 h-4 object-contain opacity-35 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300" alt="Axis Tech-Lab">
+                </button>
+            </div>    
+            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
+            </div>
+            <div class="justify-self-end">
+                <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Return to Main Framework">
+                    <img src="img/logo.png" class="w-4 h-4 object-contain opacity-35 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_0_4px_rgba(255,255,255,0.2)]" alt="Main Framework">
+                </button>
+            </div>
+        </div>
+    </footer>
+</div>
 
 
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
@@ -721,12 +711,14 @@
     let readSpeed = 250; 
     let rsvpIntervalId = null;
 
+// 3. INTERACTIVE RSVP MANIFESTO ENGINE (ACTUALIZADO)
     function loadManifestoChapter(chapterNum) {
         if (manifestoChapters[chapterNum]) {
             stopRSVPStream();
             activeWords = manifestoChapters[chapterNum].split(/\s+/);
             wordIndex = 0;
-            if ($('rsvp-word-display')) $('rsvp-word-display').innerText = `CHAPTER 0${chapterNum}`;
+            // CORRECCIÓN: Reemplaza "CHAPTER 0X" por "READ"
+            if ($('rsvp-word-display')) $('rsvp-word-display').innerText = "READ";
             if ($('rsvp-status-indicator')) $('rsvp-status-indicator').innerText = "LOADED";
             if (navigator.vibrate) navigator.vibrate(20);
         }
@@ -742,11 +734,14 @@
         rsvpIntervalId = setInterval(() => {
             if (wordIndex < activeWords.length) {
                 let word = activeWords[wordIndex];
+                
                 if (word === word.toUpperCase() && word.length > 3 && !/[0-9]/.test(word) && word !== "//") {
                     word = word.charAt(0) + word.slice(1).toLowerCase();
                 }
+                
                 if (displayWord) displayWord.textContent = word;
                 if (displayStatus) displayStatus.innerText = `${readSpeed}MS`;
+                
                 wordIndex++;
             } else {
                 stopRSVPStream();
@@ -760,10 +755,16 @@
     function stopRSVPStream() {
         isReading = false;
         clearInterval(rsvpIntervalId);
+        
         const displayWord = $('rsvp-word-display');
         const displayStatus = $('rsvp-status-indicator');
+
         if (displayStatus) displayStatus.innerText = `PAUSED`;
-        if (displayWord && wordIndex === 0) displayWord.textContent = "READY";
+        
+        // CORRECCIÓN: Si el flujo vuelve a cero/reposo, reinyectamos el Glypho de Pace
+        if (displayWord && wordIndex === 0) {
+            displayWord.innerHTML = `<img src="img/pace.png" class="w-9 h-9 object-contain animate-pulse opacity-70" alt="Pace Icon">`;
+        }
     }
 
     // 4. MOTOR DE DETECCIÓN INVERSA (INSPECCIÓN TÁCTIL SOBRE ARCOS DEL DIAL CENTRAL)
