@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -76,19 +76,19 @@
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
             
             <div class="flex items-center cursor-pointer group justify-self-start p-2">
-                <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center cursor-pointer" aria-label="Abrir Axis Drawer">
+                <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center cursor-pointer" aria-label="Open Axis Drawer">
                     <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Axis Trigger"> 
                 </button>
             </div>
 
             <div class="justify-self-center text-center">
-                <span id="z-dial" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.25em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    --
+                <span id="z-dial-nav" class="text-white/80 font-mono font-bold text-[9px] tracking-[0.25em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    BIO-KINETIC PORTFOLIO
                 </span>
             </div>
                             
             <div class="justify-self-end">
-                <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Abrir Pulsor Drawer">
+                <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
                     <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
                 </button>
             </div>
@@ -108,7 +108,7 @@
                 <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PROTO_PULSOR // LAB MATRIX</span>
             </div>
             <div class="justify-self-end">
-                <button onclick="toggleDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return to Core Interface">
+                <button onclick="toggleDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return Core Interfaz">
                     <img src="img/lift.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300" alt="Home">
                 </button>
             </div>
@@ -158,7 +158,7 @@
 
         <div class="w-full max-w-xs border border-white/5 bg-white/[0.01] p-4 rounded-xs space-y-4">
             <h3 class="font-sans font-black text-[8px] uppercase tracking-[0.3em] text-white/80 text-center border-b border-white/5 pb-2">
-                SINTAXIS GEOMÉTRICA DE LAS ONDAS
+                GEOMETRIC WAVE SYNTAX
             </h3>
             <div class="grid grid-cols-4 gap-1.5 text-center font-mono text-[8px]">
                 <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
@@ -178,29 +178,29 @@
                     <div class="text-white text-xs leading-none">∘</div>
                 </div>
             </div>
-            <p class="text-[10px] text-white/60 font-body tracking-[0.05em] leading-relaxed normal-case text-center">
-                Anillo Interno = <span class="text-white">Sets</span> | Anillo Medio = <span class="text-white">Acción</span> | Anillo Externo = <span class="text-white">Reps</span>. El pulsor traduce el tiempo en partitura sagrada de movimiento.
+            <p class="text-[9px] text-white/40 font-mono tracking-[0.1em] leading-relaxed uppercase text-center">
+                INNER = <span class="text-white/70">SETS</span> // MID = <span class="text-white/70">ACTION</span> // OUTER = <span class="text-white/70">REPS</span>
             </p>
         </div>
     </div>
 
-    <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
-            <div></div>    
-            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020
+        <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
+            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
+                <div></div>    
+                <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020
+                </div>
+                <div></div>
             </div>
-            <div></div>
-        </div>
-    </footer>
-</div>
+        </footer>
+    </div>
 
     <div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
         
         <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start">
-                    <button onclick="openManifesto()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Abrir Manifesto">
+                    <button onclick="openManifesto()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Open Manifesto">
                         <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">MANIFESTO</span>
                         <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Manifesto">
                     </button>
@@ -209,7 +209,7 @@
                     <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">AXIS // TECH-LAB</span>
                 </div>
                 <div class="justify-self-end">
-                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
+                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
                         <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Back">
                     </button>
                 </div>
@@ -268,7 +268,7 @@
         <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start">
-                    <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1" aria-label="Volver">
+                    <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1" aria-label="Home">
                         <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Home">
                     </button>
                 </div>
@@ -276,7 +276,7 @@
                     <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOMANIFESTO // CORE</span>
                 </div>
                 <div class="justify-self-end">
-                    <button onclick="closeManifesto()" class="group flex items-center justify-center p-1" aria-label="Cerrar">
+                    <button onclick="closeManifesto()" class="group flex items-center justify-center p-1" aria-label="Close">
                         <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90" alt="Close">
                     </button>
                 </div>
@@ -298,13 +298,13 @@
 
             <div class="w-full flex justify-between items-center gap-2 px-1">
                 <div class="flex items-center gap-2 select-none">
-                    <span class="text-[9px] text-zinc-400 font-bold tracking-wider uppercase">Z_READ // INTERFAZ RSVP</span>
+                    <span class="text-[9px] text-zinc-400 font-bold tracking-wider uppercase">Z_READ // RSVP INTERFACE</span>
                     <span id="speed-indicator" class="text-[8px] bg-white/5 text-zinc-300 font-mono px-2 py-0.5 border border-white/10 rounded-sm">250ms</span>
                 </div>
                 <div class="flex gap-1.5">
                     <button onclick="changeSpeed(50)" class="text-[9px] font-mono font-bold text-zinc-400 hover:text-white border border-white/5 px-2.5 py-0.5 bg-white/5 rounded-sm">++</button>
                     <button onclick="changeSpeed(-50)" class="text-[9px] font-mono font-bold text-zinc-400 hover:text-white border border-white/5 px-2.5 py-0.5 bg-white/5 rounded-sm">--</button>
-                    <button id="btn-trigger" onclick="toggleZRead()" class="text-[9px] text-black border border-white bg-white px-4 py-0.5 tracking-widest font-black rounded-sm hover:bg-zinc-200 transition-all uppercase">INICIAR</button>
+                    <button id="btn-trigger" onclick="toggleZRead()" class="text-[9px] text-black border border-white bg-white px-4 py-0.5 tracking-widest font-black rounded-sm hover:bg-zinc-200 transition-all uppercase">STREAM</button>
                 </div>
             </div>
 
@@ -338,7 +338,7 @@
 
                     <div class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none px-6">
                         <div id="z-word-display" class="text-sm sm:text-base font-normal tracking-wide text-zinc-600 normal-case transition-all duration-75 text-center">
-                            esperando_señal...
+                            awaiting_pulse...
                         </div>
                         <div id="quad-indicator" class="text-[7px] font-mono tracking-[0.2em] text-white/20 font-bold mt-4 uppercase transition-all duration-300">
                             ORBIT_IDLE
@@ -393,21 +393,22 @@
     window.selectedNodeFromMesh = null;
     let biokineticInterval = null;
 
-    // THE BIO-VECTOR GLYPH MOTOR (12-STAGE POLARITY CONSTRAINTS)
+    // THE BIO-VECTOR GLYPH MOTOR (12-STAGE POLARITY SPECTRUM)
     function updateZ() {
         const now = new Date();
         const hours = now.getHours();
         const minutes = now.getMinutes();
 
-        // 1. Solar Drift & Quadrant Calculation
+        // 1. Solar Drift & Quadrant Calculation (15°/hour + 0.25°/minute)
         const solarDegrees = ((hours * 15) + (minutes * 0.25)) % 360;
         
         let currentAction = 'UST'; 
-        if (solarDegrees >= 0 && solarDegrees < 90) currentAction = 'UL';  
-        else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  
-        else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; 
+        if (solarDegrees >= 0 && solarDegrees < 90) currentAction = 'UL';       // UNDER-LIFT (0° - 90°)
+        else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  // PACE-LIFT (90° - 180°)
+        else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; // LIFT-SURGE-TRANSITION (180° - 270°)
+        // 270° - 360° defaults to UST (UNDER-SURGE-TRANSITION)
 
-        // 2. Biokinetic Modulation using 12 Harmonic Density Stages (Strict Mathematical Zero Suppression)
+        // 2. Biokinetic Modulation using 12 Harmonic Density Stages
         let rawSetsValue = Math.floor(Math.abs(Math.sin((solarDegrees * Math.PI) / 180)) * 8) + 3;
         let rawRepsValue = Math.floor(((minutes + 1) * PHI) % 10) + 3;
 
@@ -415,35 +416,39 @@
         const setsStage = Math.min(12, Math.max(1, rawSetsValue));
         const repsStage = Math.min(12, Math.max(1, rawRepsValue));
 
+        // Strict Mathematical Zero Suppression (e.g., 4UL5 instead of 04UL05)
         const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
         
-        // 4. Interface Telemetry Sync (Suppressing leading zeros globally)
-        if (!window.selectedNodeFromMesh) {
-            if ($('z-dial')) $('z-dial').innerText = biokineticCoordinate;
-            if ($('z-dial-footer')) $('z-dial-footer').innerText = biokineticCoordinate;
-        }
-
+        // 4. Telemetry Synchronization
         if ($('z-dial-left')) $('z-dial-left').innerText = biokineticCoordinate;
         if ($('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
         if ($('z-dial-pulsor')) $('z-dial-pulsor').textContent = biokineticCoordinate;
+        if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate; // Footer Dynamic Sinc
 
-        // 5. Angular Wave Vector Rendering
+        // 5. Angular Wave Vector Rendering (Vector Polarities & Specular Symmetry)
         const wOuter = $('wave-outer'); 
         const wMid = $('wave-mid');     
         const wInner = $('wave-inner'); 
 
         if (wOuter && wMid && wInner) {
             // Circle Perimeters (2 * PI * r)
-            const perimetroOuter = 2 * Math.PI * 75; // ~471.23
-            const perimetroMid = 2 * Math.PI * 53;   // ~333.01
-            const perimetroInner = 2 * Math.PI * 31; // ~194.77
+            const perimetroOuter = 2 * Math.PI * 75; 
+            const perimetroMid = 2 * Math.PI * 53;   
+            const perimetroInner = 2 * Math.PI * 31; 
 
-            // INNER RING: Absorption Vector (-180° / 12 Scale)
+            // DETERMINACIÓN DE POLARIDAD VECTORIAL:
+            // Fase Ascendente (0° - 180°): Polaridad Positiva (+1 Horario - Compresión/Tracción)
+            // Fase Descendente (180° - 360°): Polaridad Negativa (-1 Antihorario - Expansión/Liberación)
+            const polaridad = (solarDegrees >= 180) ? -1 : 1;
+
+            // INNER RING: Absorption Vector (-90° baseline multiplied by vector polarity)
             const innerArcLength = perimetroInner * (setsStage / 12);
             wInner.style.strokeDasharray = `${innerArcLength} ${perimetroInner}`;
+            wInner.style.transform = `rotate(${-90 * polaridad}deg)`;
+            wInner.style.transformOrigin = '100px 100px';
 
-            // MID RING: Action Pivot Vector (Solar Trajectory Alignment)
-            let midArcLength = perimetroMid * 0.5; // Half-circle default for directional archetypes
+            // MID RING: Action Pivot Vector & Glyph Realignment
+            let midArcLength = perimetroMid * 0.5; // Open arcs for ∪, ∩, ⊂
             let midVectorRotation = -90;
 
             if (currentAction === 'UL') {
@@ -457,13 +462,16 @@
                 midVectorRotation = -90;
             }
 
+            // Specular integration multiplying the baseline transform by the dynamic cosmic sign
             wMid.style.strokeDasharray = `${midArcLength} ${perimetroMid}`;
-            wMid.style.transform = `rotate(${midVectorRotation}deg)`;
+            wMid.style.transform = `rotate(${midVectorRotation * polaridad}deg)`;
             wMid.style.transformOrigin = '100px 100px';
 
-            // OUTER RING: Projection Vector (+180° / 12 Scale)
+            // OUTER RING: Projection Vector (Kinetic volume driven by dynamic rotation polarity)
             const outerArcLength = perimetroOuter * (repsStage / 12);
             wOuter.style.strokeDasharray = `${outerArcLength} ${perimetroOuter}`;
+            wOuter.style.transform = `rotate(${-90 * polaridad}deg)`;
+            wOuter.style.transformOrigin = '100px 100px';
         }
     }
 
@@ -471,13 +479,6 @@
         const specPanel = $('dynamic-node-spec');
         if (nodeString) {
             const cleanNodeString = nodeString.replace(/^0+/, '');
-            if ($('z-dial')) {
-                $('z-dial').innerText = `N${cleanNodeString}`; 
-                $('z-dial').className = "text-white font-mono font-bold tracking-[0.2em]";
-            }
-            if ($('z-dial-footer')) {
-                $('z-dial-footer').innerText = `NODE // ${cleanNodeString}`;
-            }
             if (specPanel) {
                 specPanel.classList.remove('hidden');
                 if ($('spec-id')) $('spec-id').innerText = `NODE-T1-${cleanNodeString}`;
@@ -485,7 +486,6 @@
             }
         } else {
             if (specPanel) specPanel.classList.add('hidden');
-            if ($('z-dial')) $('z-dial').className = "justify-self-center text-center text-white/80 font-mono font-bold tracking-[0.2em]";
             window.selectedNodeFromMesh = null;
             updateZ();
         }
@@ -563,7 +563,7 @@
         if (navigator.vibrate) navigator.vibrate(10);
     }
 
-    // RSVP STREAM MANIFESTO CORPUS
+    // RSVP STREAM MANIFESTO CORPUS (REDUCED LOG LEVEL)
     const manifiestoText = "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. To keep this gap open, we code the functional movements of the body into a live language. The unconscious mind operates through kinetic traction: attracting and pushing away thoughts. By mapping these sequences into mechanical blocks, we ignite constant creativity. Inside the nodes, integrated z_dials beats act as passive piezo-electrical interfaces—converting the raw tension of the footsteps into micro-voltage stimuli that accelerate the bio-welding of the living mycelium. THE ALGORITHMIC DIAL // TRANSLATION MANUAL The algorithm does not invent data; it is a translator. It takes the Earth's rotation relative to the Sun in a 24-hour cycle and converts it into a unique 'bio-kinetic coordinate.' Time becomes a matrix of movement. 1. SOLAR DRIFT: Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°. 2. ALGORITHMIC QUADRANTS: Divides the 360° matrix into 4 biomechanical actions: 0°-90° [UL], 90°-180° [PL], 180°-270° [LST], and 270°-360° [UST]. 3. GOLDEN RATIO (PHI): Sets fluctuate through a sine function (from 2 to 8), while Repetitions are multiplied by PHI (1.618033), mimicking the fractal geometry of mycelium. Formula: FilteredSets + QuadrantAction + FilteredReps";
 
     const wordsArray = manifiestoText.split(/\s+/);
@@ -668,23 +668,6 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function adquirirNodoActual() {
-        const currentHash = Math.floor(Math.random() * 65535).toString(16).toUpperCase();
-        const dialText = $('z-dial-footer') ? $('z-dial-footer').innerText : '--';
-        const whatsappBaseUrl = "https://api.whatsapp.com/send";
-        const phoneNumber = "573146175110";
-        
-        const message = encodeURIComponent(
-            `[Z_ARPA TELEMETRY - LAUNCH TOKEN]\n\n` +
-            `• Coordinate: ${dialText}\n` +
-            `• Variant: zenergy.world TECH-LAB\n` +
-            `• Lab Log: #${currentHash}\n` +
-            `• System: zenergy.world TECH-LAB`
-        );
-        if (navigator.vibrate) navigator.vibrate(40);
-        window.open(`${whatsappBaseUrl}?phone=${phoneNumber}&text=${message}`, '_blank');
-    }
-
     // LIFE CYCLE INITIALIZATION
     document.addEventListener("DOMContentLoaded", () => {
         if (biokineticInterval) clearInterval(biokineticInterval);
@@ -706,7 +689,8 @@
                 entries.forEach(entry => {
                     zDialNav.style.opacity = '0';
                     setTimeout(() => {
-                        zDialNav.textContent = entry.isIntersecting ? 'node gallery' : generateZDialCoordinateDisplay();
+                        // Keeps navigation display locked to the core identity clean matrix
+                        zDialNav.textContent = 'BIO-KINETIC PORTFOLIO';
                         zDialNav.style.opacity = '1';
                     }, 200);
                 });
@@ -715,25 +699,6 @@
             navObserver.observe(gallerySection);
         }
     });
-
-    // Nav fallback function to keep sync with the new 12-stage vector engine when not over the matrix gallery
-    function generateZDialCoordinateDisplay() {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const solarDegrees = ((hours * 15) + (minutes * 0.25)) % 360;
-        
-        let currentAction = 'UST'; 
-        if (solarDegrees >= 0 && solarDegrees < 90) currentAction = 'UL';  
-        else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  
-        else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; 
-
-        let setsStage = Math.min(12, Math.max(1, Math.floor(Math.abs(Math.sin((solarDegrees * Math.PI) / 180)) * 8) + 3));
-        let repsStage = Math.min(12, Math.max(1, Math.floor(((minutes + 1) * PHI) % 10) + 3));
-
-        return `${setsStage}${currentAction}${repsStage}`;
-    }
 </script>
-    
 </body>
 </html>
