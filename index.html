@@ -206,7 +206,7 @@
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
                 <div></div>    
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020
+                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022 - 2026
                 </div>
                 <div></div>
             </div>
@@ -274,16 +274,16 @@
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
                 <div></div>    
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020
+                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020-2026
                 </div>
                 <div></div>
             </div>
         </footer>
     </div>
     
-    <div id="manifesto" class="fixed inset-0 w-screen h-screen z-[60] transform -translate-y-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
+    <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
         
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
+        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start">
                     <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1" aria-label="Home">
@@ -301,53 +301,40 @@
             </div>
         </header>
 
-        <div class="flex-1 overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-8 max-w-xl mx-auto w-full pb-24 scrollbar-none">
+        <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-8 max-w-xl mx-auto w-full pb-12 scrollbar-none">
             
             <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
-                
                 <div class="axis-x-overlay"></div>
-                
                 <div class="flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none">
                     <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold" id="rsvp-status-indicator">
                         READY
                     </div>
                 </div>
-
-                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-up">
-                    ++
-                </button>
-
-                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-down">
-                    --
-                </button>
-
-                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-stop" aria-label="Stop Stream">
+                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-up">++</button>
+                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-down">--</button>
+                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-stop">
                     <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Stop">
                 </button>
-
-                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-start" aria-label="Start Stream">
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-start">
                     <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" alt="Stream">
                 </button>
             </div>
 
-            <div class="w-full max-w-sm flex items-center justify-center text-center py-8 my-2 font-mono select-none">
+            <div class="w-full max-w-sm flex items-center justify-center text-center py-6 my-1 font-mono select-none">
                 <div class="text-2xl font-bold text-white tracking-wide min-h-[36px] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-70" id="rsvp-word-display">
                     READY
                 </div>
             </div>
 
             <div class="w-full max-w-md mx-auto border-t border-white/10 pt-6 space-y-2 font-mono">
-                
                 <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(1)">
                     <span class="text-xs text-white/60 group-hover:text-white">EP_1: THE COGNITIVE SYSTEM</span>
                     <span class="text-[9px] text-white/30">2Hz FREQ</span>
                 </div>
-
                 <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(2)">
                     <span class="text-xs text-white/60 group-hover:text-white">EP_2: INVISIBLE ARCHITECTURE</span>
                     <span class="text-[9px] text-white/30">PHI MATRX</span>
                 </div>
-
                 <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(3)">
                     <span class="text-xs text-white/60 group-hover:text-white">EP_3: BIOCINETIC SYNTAX</span>
                     <span class="text-[9px] text-white/30">VCTR CLPS</span>
@@ -355,13 +342,15 @@
             </div>
         </div>
 
-        <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
-                <div></div>    
+        <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
+            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
+                <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors">
+                    </div>    
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020
+                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020–2026
                 </div>
-                <div></div>
+                <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors">
+                    </div>
             </div>
         </footer>
     </div>
