@@ -136,24 +136,12 @@
             </div>
         </div>
     </header>
-<div class="w-full max-w-md mx-auto flex flex-col justify-between items-center px-4 flex-1 py-4 min-h-[58dvh]">
+<div class="w-full max-w-md mx-auto flex flex-col justify-between items-center px-4 flex-1 py-4 min-h-[60dvh]">
         
-        <div class="w-full text-center border-b border-white/5 pb-1 shrink-0 z-30">
-            <p class="text-[9px] font-mono tracking-[0.2em] text-white/40 uppercase select-none">
-                BIOKINETIC 
-                <span onclick="triggerPulsProtocol()" class="cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">PULS</span> 
-                DROP CODE
-            </p>
-            <div id="puls-protocol-list" class="max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out flex justify-center space-x-3 text-[8px] font-mono tracking-[0.15em] text-cyan-400/70 uppercase pt-0">
-                <span>Pace</span> • <span>Under</span> • <span>Lift</span> • <span>Surge</span>
-            </div>
-        </div>
-
-        <div class="relative w-40 h-40 flex items-center justify-center flex-1 my-auto overflow-hidden group/pulsor z-10">
+        <div class="relative w-44 h-44 flex items-center justify-center flex-1 my-auto overflow-hidden group/pulsor z-10">
             <div class="absolute inset-0 w-full h-full pointer-events-none z-10">
                 <div class="absolute inset-0 flex items-center justify-center p-1 z-20 pointer-events-auto">
                     <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.02)]">
-                        
                         <circle id="wave-outer" cx="120" cy="120" r="95" 
                                 onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
                                 ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
@@ -181,26 +169,36 @@
             </div>
         </div>
 
-        <div class="w-full border-t border-white/5 pt-2 shrink-0 z-30">
+        <div class="w-full shrink-0 z-30 flex flex-col items-center">
             
-            <div class="w-full flex justify-between items-center font-mono text-[10px] text-white/20 px-2 mb-2 select-none">
+            <div id="puls-protocol-list" class="w-full flex justify-center space-x-3 text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase pb-2 border-b border-white/5">
+                <span id="proto-p" class="transition-colors duration-300 px-0.5">Pace</span> • 
+                <span id="proto-u" class="transition-colors duration-300 px-0.5">Under</span> • 
+                <span id="proto-l" class="transition-colors duration-300 px-0.5">Lift</span> • 
+                <span id="proto-s" class="transition-colors duration-300 px-0.5">Surge</span>
+            </div>
+
+            <div class="w-full flex justify-between items-center font-mono text-[9px] text-white/20 px-4 py-2 select-none">
                 <span id="sub-reps-tension" class="transition-colors duration-300">0.00 N</span>
-                
-                <div class="flex items-center space-x-2">
-                    <span id="z-dial-pulsor" class="font-bold text-white tracking-wide transition-all duration-300 uppercase min-w-[20px] text-center text-cyan-400">--</span>
-                    <span class="text-white/10">•</span>
-                    <span id="sub-actions-quadrant" class="text-white/40 transition-colors duration-300">Φ 54.7°</span>
-                </div>
-                
+                <span id="sub-actions-quadrant" class="text-white/40 transition-colors duration-300">Φ 54.7°</span>
                 <span id="sub-sets-solar" class="transition-colors duration-300">180° AM</span>
             </div>
 
-            <div class="grid grid-cols-3 text-center font-mono select-none border-t border-white/[0.02] pt-1.5">
-                <span id="tag-sets" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')" class="interactive-tag cursor-pointer text-white/30 text-[8px] tracking-[0.11em] font-bold transition-all duration-300">SETS</span>
-                <span id="tag-actions" onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')" class="interactive-tag cursor-pointer text-white/30 text-[8px] tracking-[0.11em] font-bold transition-all duration-300 border-x border-white/[0.03]">ACTIONS</span>
-                <span id="tag-reps" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')" class="interactive-tag cursor-pointer text-white/30 text-[8px] tracking-[0.11em] font-bold transition-all duration-300">REPS</span>
+            <div id="z-dial-wrapper" class="font-mono text-sm tracking-[0.1em] font-bold text-center select-none py-1 transition-all duration-300">
+                <span id="dial-part-sets" class="text-white/30 transition-colors duration-300">--</span><span id="dial-part-action" class="text-white/30 transition-colors duration-300">--</span><span id="dial-part-reps" class="text-white/30 transition-colors duration-300">--</span>
             </div>
-            
+
+            <div class="flex justify-center space-x-4 font-mono select-none py-2 text-[8px] tracking-[0.12em]">
+                <span id="tag-sets" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300 px-1">SETS</span>
+                <span class="text-white/10 select-none">//</span>
+                <span id="tag-actions" onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300 px-1">ACTIONS</span>
+                <span class="text-white/10 select-none">//</span>
+                <span id="tag-reps" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300 px-1">REPS</span>
+            </div>
+
+            <div class="w-full text-center border-t border-white/5 pt-1.5 mt-1">
+                <span onclick="triggerPulsProtocol()" class="cursor-pointer text-white/30 font-mono text-[8px] tracking-[0.22em] whitespace-nowrap uppercase hover:text-cyan-400 transition-colors">BIOKINETIC PULS DROP CODE</span>
+            </div>
         </div>
     </div>
 
@@ -410,9 +408,14 @@
     function inspectKineticWave(type, targetRing) {
         waveInspectionActive = true;
 
-        // Reset de anillos y de los tags principales
+        // Reset de anillos de la gota
         ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { if($(id)) $(id).style.stroke = "rgba(255,255,255,0.15)"; });
-        ['tag-sets', 'tag-actions', 'tag-reps'].forEach(id => { if($(id)) { $(id).classList.replace('text-white/30', 'text-white/10'); $(id).classList.remove('text-cyan-400'); } });
+        
+        // Reset de opacidades en etiquetas de control
+        ['tag-sets', 'tag-actions', 'tag-reps'].forEach(id => { if($(id)) { $(id).classList.replace('text-white/40', 'text-white/10'); $(id).classList.remove('text-cyan-400'); } });
+        
+        // Reset de la lista superior de movimientos PULS
+        ['proto-p', 'proto-u', 'proto-l', 'proto-s'].forEach(id => { if($(id)) $(id).className = "transition-colors duration-300 px-0.5 text-white/20"; });
 
         const rings = { 'OUTER': $('wave-outer'), 'MID': $('wave-mid'), 'INNER': $('wave-inner') };
         if(rings[targetRing]) {
@@ -420,62 +423,84 @@
             rings[targetRing].style.filter = "drop-shadow(0 0 8px rgba(0,210,255,0.6))";
         }
 
-        // Iluminación selectiva de tags y datos perimetrales correspondientes
+        // Iluminación selectiva de etiquetas y sub-datos periféricos
         if (type === 'SETS' && $('tag-sets')) { $('tag-sets').classList.add('text-cyan-400'); $('sub-sets-solar').classList.replace('text-white/20', 'text-cyan-400'); }
         if ((type === 'ACTION' || type === 'ONLY_ACTION') && $('tag-actions')) { $('tag-actions').classList.add('text-cyan-400'); $('sub-actions-quadrant').classList.replace('text-white/40', 'text-cyan-400'); }
         if (type === 'REPS' && $('tag-reps')) { $('tag-reps').classList.add('text-cyan-400'); $('sub-reps-tension').classList.replace('text-white/20', 'text-cyan-400'); }
 
-        const dialDisplay = $('z-dial-pulsor');
-        if (!dialDisplay) return;
-
-        const rawTelemetry = window.currentTelemetryValue || "--";
+        const rawTelemetry = window.currentTelemetryValue || "00VOID00";
         const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
-        let isolatedValue = "--";
 
-        if (type === 'CORE') {
-            isolatedValue = rawTelemetry;
-        } else if (match) {
-            const [_, sets, action, reps] = match;
-            if (type === 'SETS') isolatedValue = sets;
-            else if (type === 'REPS') isolatedValue = reps;
-            else if (type === 'ACTION' || type === 'ONLY_ACTION') isolatedValue = action;
+        if (match) {
+            const [_, setsStr, actionStr, repsStr] = match;
+            
+            // Asignación de texto a cada segmento del dial
+            if($('dial-part-sets')) $('dial-part-sets').textContent = setsStr;
+            if($('dial-part-action')) $('dial-part-action').textContent = actionStr;
+            if($('dial-part-reps')) $('dial-part-reps').textContent = repsStr;
+
+            // Apagar opacidad general del dial para encender solo el tramo seleccionado
+            $('dial-part-sets').className = "text-white/20 transition-colors duration-300";
+            $('dial-part-action').className = "text-white/20 transition-colors duration-300";
+            $('dial-part-reps').className = "text-white/20 transition-colors duration-300";
+
+            if (type === 'SETS') {
+                $('dial-part-sets').className = "text-cyan-400 drop-shadow-[0_0_5px_rgba(0,210,255,0.5)] font-bold";
+            } else if (type === 'ACTION' || type === 'ONLY_ACTION') {
+                $('dial-part-action').className = "text-cyan-400 drop-shadow-[0_0_5px_rgba(0,210,255,0.5)] font-bold";
+            } else if (type === 'REPS') {
+                $('dial-part-reps').className = "text-cyan-400 drop-shadow-[0_0_5px_rgba(0,210,255,0.5)] font-bold";
+                // Cálculo dinámico de tensión en base a reps reales
+                const dynamicTension = (parseInt(repsStr, 10) * 1.45).toFixed(2);
+                if($('sub-reps-tension')) $('sub-reps-tension').textContent = `${dynamicTension} N`;
+            }
+
+            // DETECCIÓN INTELIGENTE DE SECUENCIAS PULS EN CUALQUIER TRIGGER
+            if (actionStr.includes('P') && $('proto-p')) $('proto-p').className = "text-cyan-400 font-bold px-0.5 transition-colors duration-300";
+            if (actionStr.includes('U') && $('proto-u')) $('proto-u').className = "text-cyan-400 font-bold px-0.5 transition-colors duration-300";
+            if (actionStr.includes('L') && $('proto-l')) $('proto-l').className = "text-cyan-400 font-bold px-0.5 transition-colors duration-300";
+            if (actionStr.includes('S') && $('proto-s')) $('proto-s').className = "text-cyan-400 font-bold px-0.5 transition-colors duration-300";
         }
 
-        dialDisplay.textContent = isolatedValue;
-        dialDisplay.classList.add('text-cyan-400');
         if (navigator.vibrate) navigator.vibrate(5);
     }
 
     function clearKineticWave() {
         waveInspectionActive = false;
-        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { const r = $(id); if(r) { r.style.stroke = ""; r.style.filter = ""; } });
-        ['tag-sets', 'tag-actions', 'tag-reps'].forEach(id => { if($(id)) { $(id).className = $(id).className.replace(/text-white\/10|text-cyan-400/, 'text-white/30'); } });
         
-        // Restaurar opacidades y colores de telemetría de extremos
+        // Restaurar anillos de la gota
+        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { const r = $(id); if(r) { r.style.stroke = ""; r.style.filter = ""; } });
+        
+        // Restaurar etiquetas inferiores
+        ['tag-sets', 'tag-actions', 'tag-reps'].forEach(id => { if($(id)) { $(id).className = "interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300 px-1"; } });
+        
+        // Restaurar lista de movimientos PULS
+        ['proto-p', 'proto-u', 'proto-l', 'proto-s'].forEach(id => { if($(id)) $(id).className = "transition-colors duration-300 px-0.5 text-white/20"; });
+
+        // Retornar líneas de sub-datos a opacidad neutra de reposo
         if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/20';
         if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-white/40';
-        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/20';
+        if($('sub-reps-tension')) {
+            $('sub-reps-tension').className = 'transition-colors duration-300 text-white/20';
+            $('sub-reps-tension').textContent = "0.00 N";
+        }
         
-        if ($('z-dial-pulsor')) {
-            $('z-dial-pulsor').textContent = "--";
-            $('z-dial-pulsor').className = "font-bold text-white tracking-wide transition-all duration-300 uppercase min-w-[20px] text-center";
+        // Retornar todos los segmentos del dial a su lectura integrada unificada
+        const rawTelemetry = window.currentTelemetryValue || "00VOID00";
+        const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
+        if (match) {
+            if($('dial-part-sets')) { $('dial-part-sets').textContent = match[1]; $('dial-part-sets').className = "text-white/50 transition-colors duration-300"; }
+            if($('dial-part-action')) { $('dial-part-action').textContent = match[2]; $('dial-part-action').className = "text-white/50 transition-colors duration-300"; }
+            if($('dial-part-reps')) { $('dial-part-reps').textContent = match[3]; $('dial-part-reps').className = "text-white/50 transition-colors duration-300"; }
         }
     }
 
+    // DISPARADOR MANUAL DEL PIE DE PÁGINA (OPCIONAL PARA VER HIGHLIGHTS)
     function triggerPulsProtocol() {
-        const list = $('puls-protocol-list');
-        const tagActions = $('tag-actions');
-        
-        if(list && list.classList.contains('max-h-0')) {
-            list.classList.replace('max-h-0', 'max-h-8');
-            list.classList.replace('opacity-0', 'opacity-100');
-            list.classList.add('pt-1');
-            if(tagActions) tagActions.classList.add('text-cyan-400', 'animate-pulse');
-        } else if(list) {
-            list.classList.replace('max-h-8', 'max-h-0');
-            list.classList.replace('opacity-100', 'opacity-0');
-            list.classList.remove('pt-1');
-            if(tagActions) tagActions.classList.remove('text-cyan-400', 'animate-pulse');
+        const actionStr = (window.currentTelemetryValue || "").match(/[A-Z]+/);
+        if(actionStr) {
+            inspectKineticWave('ONLY_ACTION', 'MID');
+            setTimeout(clearKineticWave, 2000); // Destello de sincronización de 2 segundos
         }
     }
 
