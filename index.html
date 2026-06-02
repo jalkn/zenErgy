@@ -112,8 +112,9 @@
             </div>
         </div>
     </nav>
+
 <!-- ========================================================================= -->
-<!-- NODES DRAWER RESTRUCTURADO CON SOPORTE TÁCTIL (PULSOR) -->
+<!-- NODES DRAWER: ESTRUCTURA UNIFICADA CON SOPORTE TÁCTIL (PULSOR) -->
 <!-- ========================================================================= -->
 <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]" ontouchstart="checkResetTouch(event)">
     
@@ -126,7 +127,7 @@
                 </button>
             </div>
             <div class="justify-self-center text-center">
-                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PULSOR // BIOKINETIC WAVE CODE</span>
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PULSOR</span>
             </div>
             <div class="justify-self-end">
                 <button onclick="toggleDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return Core Interfaz">
@@ -136,48 +137,58 @@
         </div>
     </header>
 
-    <!-- CUERPO CENTRAL: Lente circular primitiva sin esquinas -->
-    <div class="relative w-48 h-48 mx-auto flex items-center justify-center shrink-0 mt-4 overflow-hidden rounded-full bg-black/20 border border-white/5 shadow-[inset_0_0_20px_rgba(0,0,0,0.6)] group/pulsor">
-        <div class="absolute inset-0 w-full h-full p-2 z-20">
-            <svg viewBox="0 0 200 200" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                <circle id="wave-outer" cx="100" cy="100" r="95" 
-                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
-                        stroke-linecap="round" transform="rotate(-90 100 100)" />
-                
-                <circle id="wave-mid" cx="100" cy="100" r="67" 
-                        onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
-                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
-                        stroke-linecap="round" transform="rotate(-90 100 100)" />
-                
-                <circle id="wave-inner" cx="100" cy="100" r="39" 
-                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
-                        stroke-linecap="round" transform="rotate(-90 100 100)" />
-            </svg>
+<div class="w-full max-w-md mx-auto flex flex-col justify-between items-center px-4 flex-1 py-4 min-h-[55dvh]">
+        
+        <div class="w-full text-center border-b border-white/5 pb-0.5 shrink-0">
+            <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOKINETIC PULS DROP CODE</span>
+        </div>
+
+        <div class="relative w-52 h-52 flex items-center justify-center flex-1 my-auto overflow-hidden group/pulsor">
+            <div class="absolute inset-0 w-full h-full pointer-events-none z-10">
+                <div class="absolute inset-0 flex items-center justify-center p-1 z-20 pointer-events-auto">
+                    <svg viewBox="0 0 200 200" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.03)]">
+                        
+                        <circle id="wave-outer" cx="100" cy="100" r="95" 
+                                onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                                ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                                stroke-linecap="round" transform="rotate(-90 100 100)" />
+                        
+                        <circle id="wave-mid" cx="100" cy="100" r="67" 
+                                onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                                ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
+                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                                stroke-linecap="round" transform="rotate(-90 100 100)" />
+                        
+                        <circle id="wave-inner" cx="100" cy="100" r="39" 
+                                onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                                ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                                stroke-linecap="round" transform="rotate(-90 100 100)" />
+
+                        <text id="z-dial-pulsor" x="100" y="104" text-anchor="middle" class="font-mono text-[12px] font-bold fill-white tracking-wide opacity-0 transition-all duration-300 pointer-events-none select-none uppercase drop-shadow-[0_0_4px_rgba(255,255,255,0.4)]">
+                            --
+                        </text>
+
+                        <circle id="wave-center-trigger" cx="100" cy="100" r="28"
+                                onmouseenter="inspectKineticWave('CORE', 'CENTER')" onmouseleave="clearKineticWave()"
+                                ontouchstart="handleTouchInspect(event, 'CORE', 'CENTER')"
+                                class="fill-transparent stroke-none cursor-pointer touch-none" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full border-t border-white/5 pt-0.5 shrink-0">
+            <p class="text-[8px] text-white/30 font-mono tracking-[0.11em] leading-relaxed uppercase text-center select-none">
+                <span onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">SETS</span> // 
+                <span onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">ACTIONS</span> // 
+                <span onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">REPS</span>
+            </p>
         </div>
     </div>
 
-    <!-- DISPLAY ALFANUMÉRICO CENTRAL -->
-    <div class="w-full max-w-sm flex items-center justify-center text-center py-2 mx-auto font-mono select-none shrink-0">
-        <div id="z-dial-pulsor" class="text-2xl font-bold text-white tracking-wide min-h-[36px] flex items-center justify-center drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-300 uppercase">
-            --
-        </div>
-    </div>
-
-    <!-- LEYENDA INFERIOR INTERACTIVA TÁCTIL -->
-    <div class="w-full max-w-md mx-auto border-t border-white/5 pt-4 pb-6 space-y-4 shrink-0">
-        <p class="text-[9px] text-white/30 font-mono tracking-[0.15em] leading-relaxed uppercase text-center select-none">
-            <span onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 transition-colors font-bold px-2 py-1">SETS</span> // 
-            <span onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 transition-colors font-bold px-2 py-1">ACTIONS</span> // 
-            <span onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 transition-colors font-bold px-2 py-1">REPS</span>
-        </p>
-    </div>
-
-    <!-- FOOTER (FIJO ABAJO) -->
+    <!-- FOOTER INTERNO DEL DRAWER -->
     <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
             <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors"></div>    
@@ -380,8 +391,83 @@
     let biokineticInterval = null;
     let isReading = false;
 
+function inspectKineticWave(type, targetRing) {
+        waveInspectionActive = true;
+
+        const rings = {
+            'OUTER': $('wave-outer'),
+            'MID': $('wave-mid'),
+            'INNER': $('wave-inner')
+        };
+
+        Object.values(rings).forEach(ring => { 
+            if(ring) ring.style.stroke = "rgba(255,255,255,0.15)"; 
+        });
+        
+        if(rings[targetRing]) {
+            rings[targetRing].style.stroke = "#00d2ff";
+            rings[targetRing].style.filter = "drop-shadow(0 0 8px rgba(0,210,255,0.8))";
+        }
+
+        const dialDisplay = $('z-dial-pulsor');
+        if (!dialDisplay) return;
+
+        const rawTelemetry = window.currentTelemetryValue || "--";
+        const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
+        let isolatedValue = "--";
+
+        if (type === 'CORE') {
+            isolatedValue = rawTelemetry;
+            dialDisplay.setAttribute('fill', '#ffffff');
+        } else if (match) {
+            const [_, sets, action, reps] = match;
+            if (type === 'SETS') isolatedValue = `${sets}S`;
+            else if (type === 'REPS') isolatedValue = `${reps}R`;
+            else if (type === 'ACTION') isolatedValue = action;
+            else if (type === 'ONLY_ACTION') isolatedValue = action;
+            dialDisplay.setAttribute('fill', '#00d2ff');
+        }
+
+        dialDisplay.textContent = isolatedValue;
+        dialDisplay.style.opacity = "1";
+
+        if (navigator.vibrate) navigator.vibrate(5);
+    }
+
+    function clearKineticWave() {
+        waveInspectionActive = false;
+
+        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => {
+            const ring = $(id);
+            if(ring) {
+                ring.style.stroke = "";
+                ring.style.filter = "";
+            }
+        });
+
+        const dialDisplay = $('z-dial-pulsor');
+        if (dialDisplay) {
+            dialDisplay.style.opacity = "0"; // Vuelve a ocultarse por defecto
+        }
+    }
+
+
+    function handleTouchInspect(event, type, targetRing) {
+        if (event) event.stopPropagation(); // Prevenir propagaciones erráticas en webview móvil
+        inspectKineticWave(type, targetRing);
+        if (navigator.vibrate) navigator.vibrate(15);
+    }
+
+    function checkResetTouch(event) {
+        const isCircle = event.target.tagName === 'circle';
+        const isTag = event.target.classList.contains('interactive-tag');
+        if (!isCircle && !isTag) {
+            clearKineticWave();
+        }
+    }
+
     // ========================================================
-    // FASE 1: ALGORITMO ALFANUMÉRICO DE TELEMETRÍA CORE
+    // ALGORITMO ALFANUMÉRICO DE TELEMETRÍA CORE
     // ========================================================
     function updateZ() {
         let biokineticCoordinate = "";
@@ -393,7 +479,6 @@
             const hours = now.getHours();
             const minutes = now.getMinutes();
 
-            // Ciclo Solar base para los cuadrantes de acción
             const solarDegrees = ((hours * 15) + (minutes * 0.25)) % 360;
             
             let currentAction = 'UST'; 
@@ -401,7 +486,6 @@
             else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  
             else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; 
 
-            // Mapeo lineal estricto sin residuos caóticos
             const setsStage = (hours % 12 === 0) ? 12 : hours % 12;
             const repsStage = Math.min(12, Math.max(1, Math.ceil(minutes / 5)));
 
@@ -410,7 +494,6 @@
 
         window.currentTelemetryValue = biokineticCoordinate;
 
-        // Sincronización de pantallas alfanuméricas
         if ($('z-dial-left')) $('z-dial-left').innerText = biokineticCoordinate;
         if (!isReading && $('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
         if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate; 
@@ -424,9 +507,6 @@
             }
         }
 
-        // ========================================================
-        // FASE 2: TRADUCTOR GEOMÉTRICO (DIAL CENTRAL GIANT)
-        // ========================================================
         const match = biokineticCoordinate.match(/^(\d+)([A-Z]+)(\d+)$/);
         if (!match) return;
 
@@ -439,28 +519,25 @@
         const wInner = $('wave-inner'); 
 
         if (wOuter && wMid && wInner) {
-            // Reset de transformaciones para limpiar herencias de Illustrator
             wInner.style.transform = 'none';
             wOuter.style.transform = 'none';
 
-            // 1. Arco Interior (Sets) - Medición dinámica de longitud real
             const totalLengthInner = wInner.getTotalLength ? wInner.getTotalLength() : (2 * Math.PI * 31);
             const innerArcLength = totalLengthInner * (setsRealValue / 12);
             wInner.style.strokeDasharray = `${innerArcLength} ${totalLengthInner}`;
 
-            // 2. Arco Medio (Acción) - REGLA SAGRADA DEL PROTOCOLO PULS
             const totalLengthMid = wMid.getTotalLength ? wMid.getTotalLength() : (2 * Math.PI * 53);
-            let midArcLength = totalLengthMid * 0.5; // Semicírculo estándar (180°)
+            let midArcLength = totalLengthMid * 0.5; 
             let midVectorRotation = 0;
 
             if (actionRealValue === 'UL') {
-                midVectorRotation = 0;       // ABAJO (Base nativa del archivo)
+                midVectorRotation = 0;       
             } else if (actionRealValue === 'PL') {
-                midVectorRotation = 180;     // ARRIBA (Inversión total perfecta)
+                midVectorRotation = 180;     
             } else if (actionRealValue === 'LST') {
-                midVectorRotation = 90;      // IZQUIERDA (Giro de cuadrante horario)
+                midVectorRotation = 90;      
             } else if (actionRealValue === 'UST') {
-                midArcLength = totalLengthMid; // CÍRCULO COMPLETO
+                midArcLength = totalLengthMid; 
                 midVectorRotation = 0;
             }
 
@@ -468,7 +545,6 @@
             wMid.style.transform = `rotate(${midVectorRotation}deg)`;
             wMid.style.transformOrigin = '100px 100px';
 
-            // 3. Arco Exterior (Reps) - Medición dinámica de longitud real
             const totalLengthOuter = wOuter.getTotalLength ? wOuter.getTotalLength() : (2 * Math.PI * 75);
             const outerArcLength = totalLengthOuter * (repsRealValue / 12);
             wOuter.style.strokeDasharray = `${outerArcLength} ${totalLengthOuter}`;
@@ -546,20 +622,19 @@
                 outerArc.style.transform = 'none';
             }
 
-            // APLICACIÓN COHERENTE DEL LENGUAJE VISUAL EN LA MALLA
             if (midArc) {
                 const len = midArc.getTotalLength ? midArc.getTotalLength() : (2 * Math.PI * 53);
                 let arcLen = len * 0.5;
                 let rot = 0;
 
                 if (action === 'UL') {
-                    rot = 0;       // ABAJO
+                    rot = 0;       
                 } else if (action === 'PL') {
-                    rot = 180;     // ARRIBA
+                    rot = 180;     
                 } else if (action === 'LST') {
-                    rot = 90;      // IZQUIERDA
+                    rot = 90;      
                 } else if (action === 'UST') {
-                    arcLen = len;  // CÍRCULO COMPLETO
+                    arcLen = len;  
                     rot = 0;
                 }
 
@@ -568,7 +643,6 @@
                 midArc.style.transformOrigin = 'center'; 
             }
 
-            // Volver interactivos los nodos pequeños al hacer Click
             node.style.cursor = 'pointer';
             node.addEventListener('click', () => {
                 window.selectedNodeFromMesh = nodeId;
@@ -580,7 +654,7 @@
         });
     }
 
-    // 2. DRAWER INTERACTION ENGINE
+    // DRAWER INTERACTION INTERFACE
     function toggleDrawer() {
         const drawer = $('nodes-drawer');
         const overlay = $('drawer-overlay');
@@ -653,12 +727,7 @@
         if (navigator.vibrate) navigator.vibrate(10);
     }
 
-    function scrollToSection(id) {
-        const target = $(id);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // 3. INTERACTIVE RSVP MANIFESTO ENGINE
+    // RSVP MANIFESTO ENGINE
     const manifestoChapters = {
         1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. To keep this gap open, we code the functional movements of the body into a live language. The unconscious mind operates through kinetic traction: attracting and pushing away thoughts. By mapping these sequences into mechanical blocks, we ignite constant creativity.",
         2: "THE ALGORITHMIC DIAL // TRANSLATION MANUAL The algorithm does not invent data; it is a translator. It takes the Earth's rotation relative to the Sun in a 24-hour cycle and converts it into a unique 'bio-kinetic coordinate.' Time becomes a matrix of movement. 1. SOLAR DRIFT: Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.",
@@ -670,13 +739,11 @@
     let readSpeed = 250; 
     let rsvpIntervalId = null;
 
-// 3. INTERACTIVE RSVP MANIFESTO ENGINE (ACTUALIZADO)
     function loadManifestoChapter(chapterNum) {
         if (manifestoChapters[chapterNum]) {
             stopRSVPStream();
             activeWords = manifestoChapters[chapterNum].split(/\s+/);
             wordIndex = 0;
-            // CORRECCIÓN: Reemplaza "CHAPTER 0X" por "READ"
             if ($('rsvp-word-display')) $('rsvp-word-display').innerText = "READ";
             if ($('rsvp-status-indicator')) $('rsvp-status-indicator').innerText = "LOADED";
             if (navigator.vibrate) navigator.vibrate(20);
@@ -693,14 +760,11 @@
         rsvpIntervalId = setInterval(() => {
             if (wordIndex < activeWords.length) {
                 let word = activeWords[wordIndex];
-                
                 if (word === word.toUpperCase() && word.length > 3 && !/[0-9]/.test(word) && word !== "//") {
                     word = word.charAt(0) + word.slice(1).toLowerCase();
                 }
-                
                 if (displayWord) displayWord.textContent = word;
                 if (displayStatus) displayStatus.innerText = `${readSpeed}MS`;
-                
                 wordIndex++;
             } else {
                 stopRSVPStream();
@@ -719,75 +783,18 @@
         const displayStatus = $('rsvp-status-indicator');
 
         if (displayStatus) displayStatus.innerText = `PAUSED`;
-        
-        // CORRECCIÓN: Si el flujo vuelve a cero/reposo, reinyectamos el Glypho de Pace
         if (displayWord && wordIndex === 0) {
             displayWord.innerHTML = `<img src="img/pace.png" class="w-9 h-9 object-contain animate-pulse opacity-70" alt="Pace Icon">`;
         }
     }
 
-    // 4. MOTOR DE DETECCIÓN INVERSA (INSPECCIÓN TÁCTIL SOBRE ARCOS DEL DIAL CENTRAL)
-    function inspectKineticWave(type, targetRing) {
-        waveInspectionActive = true;
-
-        const rings = {
-            'OUTER': $('wave-outer'),
-            'MID': $('wave-mid'),
-            'INNER': $('wave-inner')
-        };
-
-        Object.values(rings).forEach(ring => { 
-            if(ring) ring.style.stroke = "rgba(255,255,255,0.15)"; 
-        });
-        
-        if(rings[targetRing]) {
-            rings[targetRing].style.stroke = "#00d2ff";
-            rings[targetRing].style.filter = "drop-shadow(0 0 8px rgba(0,210,255,0.8))";
-        }
-
-        const dialDisplay = $('z-dial-pulsor');
-        if (!dialDisplay) return;
-
-        const rawTelemetry = window.currentTelemetryValue || "--";
-        const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
-        let isolatedValue = "--";
-
-        if (match) {
-            const [_, sets, action, reps] = match;
-            if (type === 'SETS') isolatedValue = `${sets} <span class="text-[10px] text-white/30 ml-1">SETS</span>`;
-            else if (type === 'REPS') isolatedValue = `${reps} <span class="text-[10px] text-white/30 ml-1">REPS</span>`;
-            else if (type === 'ACTION') isolatedValue = `<span class="text-[11px] text-white/30 mr-1">ACT:</span>${action}`;
-            else if (type === 'ONLY_ACTION') isolatedValue = `PULS // ${action}`;
-        }
-
-        dialDisplay.innerHTML = isolatedValue;
-        dialDisplay.classList.add('text-cyan-400', 'drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]');
-        dialDisplay.classList.remove('text-white');
-
-        if (navigator.vibrate) navigator.vibrate(5);
-    }
-
-    function clearKineticWave() {
-        waveInspectionActive = false;
-
-        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => {
-            const ring = $(id);
-            if(ring) {
-                ring.style.stroke = "";
-                ring.style.filter = "";
-            }
-        });
-
-        const dialDisplay = $('z-dial-pulsor');
-        if (dialDisplay) {
-            dialDisplay.classList.remove('text-cyan-400', 'drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]');
-            dialDisplay.classList.add('text-white');
-            dialDisplay.innerHTML = window.currentTelemetryValue;
-        }
+    function scrollToSection(id) {
+        const target = $(id);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
     // ========================================================
-    // 5. INITIALIZATION & ASYNC BINDING
+    // INITIALIZATION & EVENT ASYNC BINDING
     // ========================================================
     document.addEventListener("DOMContentLoaded", () => {
         if ($('btn-stream-start')) {
@@ -830,23 +837,20 @@
             });
         }
 
-        // CONTROL DE RELOJ DE TIEMPO REAL
         if (biokineticInterval) clearInterval(biokineticInterval);
         updateZ(); 
         biokineticInterval = setInterval(updateZ, 1000); 
 
-        // CARGA ASÍNCRONA DE LA MATRIZ DE DISEÑO + ARMONIZACIÓN INMEDIATA
         fetch('img/bigPicture.svg')
             .then(response => response.text())
             .then(data => {
                 if ($('mesh-container')) {
                     $('mesh-container').innerHTML = data;
-                    harmonizeMeshNodes(); // Reorientar "fantasmas" y volver interactivo el portafolio
+                    harmonizeMeshNodes();
                 }
             })
             .catch(err => console.error('[-] Error loading bio-matrix:', err));
 
-        // Observer del Encabezado del Portafolio
         const gallerySection = document.getElementById('node-gallery-section');
         const zDialNav = document.getElementById('z-dial-nav');
         if (gallerySection && zDialNav) {
@@ -863,33 +867,6 @@
             }, { threshold: 0.3 });
             navObserver.observe(gallerySection);
         }
-// ========================================================
-    // MOTOR DE DETECCIÓN INVERSA Y SOPORTE INTERACTIVO TÁCTIL
-    // ========================================================
-    function handleTouchInspect(event, type, targetRing) {
-        // Detener propagación para evitar que el ontouchstart del contenedor limpie el estado inmediatamente
-        if (event) {
-            event.stopPropagation();
-        }
-        
-        // Ejecutar la inspección geométrica principal
-        inspectKineticWave(type, targetRing);
-        
-        // Feedback háptico premium para interfaz táctil/reloj
-        if (navigator.vibrate) {
-            navigator.vibrate(15);
-        }
-    }
-
-    function checkResetTouch(event) {
-        // Si el usuario toca el fondo oscuro del drawer (fuera de los anillos o las etiquetas), restauramos el tiempo real
-        const isCircle = event.target.tagName === 'circle';
-        const isTag = event.target.classList.contains('interactive-tag');
-        
-        if (!isCircle && !isTag) {
-            clearKineticWave();
-        }
-    }
     });
 </script>
 </body>
