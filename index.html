@@ -162,25 +162,27 @@
             </div>
         </div>
 
-        <div class="w-full max-w-md mx-auto flex flex-col items-center px-6 pb-4 shrink-0 relative z-30">
+<!-- Contenedor del Bloque Alfanumérico: La Gota Flotante Independiente -->
+        <!-- Extraído de la consola. 'tracking-[0.25em]' homogeneiza el espacio interno eliminando saltos visuales -->
+        <div id="z-dial-wrapper" class="w-full max-w-md mx-auto mb-4 font-mono text-base font-bold text-center select-none text-white tracking-[0.25em] flex items-center justify-center relative z-30 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+            <span id="dial-part-sets" 
+                onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                class="transition-colors duration-300 cursor-pointer">0</span>
+            <span id="dial-part-action" 
+                onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                class="font-black transition-colors duration-300 cursor-pointer">VOID</span>
+            <span id="dial-part-reps" 
+                onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                class="transition-colors duration-300 cursor-pointer">0</span>
+        </div>
+
+       <div class="w-full max-w-md mx-auto flex flex-col items-center px-6 pb-4 shrink-0 relative z-30">
             <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-xl p-5 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
                 
-                <div id="z-dial-wrapper" class="font-mono text-sm tracking-[0.15em] font-bold text-center select-none pb-3 transition-all duration-300 flex items-center justify-center">
-                    <span id="dial-part-sets" 
-                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                        class="text-white transition-colors duration-300 cursor-pointer px-1">0</span>
-                    <span id="dial-part-action" 
-                        onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                        class="text-white font-black transition-colors duration-300 cursor-pointer px-1">VOID</span>
-                    <span id="dial-part-reps" 
-                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                        class="text-white transition-colors duration-300 cursor-pointer px-1">0</span>
-                </div>
-
-                <div class="w-full flex justify-between items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40">
+                <div class="w-full flex justify-between items-center font-mono text-[9px] px-2 pb-3 select-none text-white/40">
                     <span id="sub-sets-solar" 
                           onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
@@ -197,6 +199,12 @@
                           class="transition-colors duration-300 cursor-pointer hover:text-white/80">-- N</span>
                 </div>
 
+                <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40 tracking-[0.05em]">
+                    <span id="telemetry-time" class="text-left">--:--:--</span>
+                    <span id="telemetry-date" class="text-center">--.--.--</span>
+                    <span id="telemetry-geo" class="text-right">-.---° N</span>
+                </div>
+
                 <div class="flex justify-center space-x-6 font-mono select-none pt-3 text-[9px] tracking-[0.2em] border-t border-white/5 w-full">
                     <span id="tag-sets" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
                     <span class="text-white/10 select-none">//</span>
@@ -207,7 +215,7 @@
 
                 <div class="w-full text-center border-t border-white/5 pt-3 mt-3 min-h-[16px] flex items-center justify-center">
                     <span id="footer-default-text" class="text-white/20 font-mono text-[8px] tracking-[0.3em] uppercase select-none block">
-                        BIOCINETIC PULS SYNTAX
+                        BIOCINETIC PULS DROP SYNTAX
                     </span>
                     <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">
                         <span id="proto-p" class="px-0.5">Pace</span> • 
@@ -219,12 +227,11 @@
 
             </div>
         </div>
-
         <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
                 <div class="justify-self-start text-white/20"></div>    
-                <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    <a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2017-2026
+                <div class="text-white/20 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                    <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
                 </div>
                 <div class="justify-self-end text-white/20"></div>
             </div>
@@ -494,22 +501,25 @@
 
     function updateZ() {
         let biokineticCoordinate = "";
+        
+        // 1. REGISTRO HORARIO PRIMARIO
+        const now = new Date();
+        const hours = now.getHours(); 
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        // Ángulo de deriva de la Tierra en tiempo real
+        const currentSolarAngle = ((hours * 15) + (minutes * 0.25)) % 360;
 
         if (window.selectedNodeFromMesh) {
             biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
         } else {
-            const now = new Date();
-            const hours = now.getHours(); 
-            const minutes = now.getMinutes();
-
-            const solarDegrees = ((hours * 15) + (minutes * 0.25)) % 360;
-            
             let currentAction = 'UST'; 
-            if (solarDegrees >= 0 && solarDegrees < 90) currentAction = 'UL';       
-            else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  
-            else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; 
+            if (currentSolarAngle >= 0 && currentSolarAngle < 90) currentAction = 'UL';       
+            else if (currentSolarAngle >= 90 && currentSolarAngle < 180) currentAction = 'PL';  
+            else if (currentSolarAngle >= 180 && currentSolarAngle < 270) currentAction = 'LST'; 
 
-            const setsStage = Math.min(12, Math.max(3, Math.floor(Math.abs(Math.sin(solarDegrees * Math.PI / 180)) * 9) + 3));
+            const setsStage = Math.min(12, Math.max(3, Math.floor(Math.abs(Math.sin(currentSolarAngle * Math.PI / 180)) * 9) + 3));
             const repsStage = Math.min(12, Math.max(3, Math.floor(((minutes * PHI) % 9) + 3)));
 
             biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
@@ -527,16 +537,16 @@
         const actionRealValue = match[2];
         const repsRealValue = parseInt(match[3], 10);
 
+        // Inyección en la Gota Alfanumérica Independiente flotante
         if (!waveInspectionActive) {
             if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsRealValue);
             if ($('dial-part-action')) $('dial-part-action').textContent = actionRealValue;
             if ($('dial-part-reps')) $('dial-part-reps').textContent = String(repsRealValue);
         }
 
-        const nowSec = new Date();
+        // 2. CONSTRUCCIÓN DE DATA BIOCINÉTICA (FILA 1)
         const calculatedTension = (14.2 + (repsRealValue * 0.8)).toFixed(2);
-        const currentSolarAngle = ((nowSec.getHours() * 15) + (nowSec.getMinutes() * 0.25)) % 360;
-        const ampm = nowSec.getHours() >= 12 ? 'PM' : 'AM';
+        const ampm = hours >= 12 ? 'PM' : 'AM';
 
         if (!waveInspectionActive) {
             if ($('sub-sets-solar'))       $('sub-sets-solar').textContent = `Φ ${currentSolarAngle.toFixed(1)}° ${ampm}`;
@@ -544,6 +554,23 @@
             if ($('sub-reps-tension'))     $('sub-reps-tension').textContent = `${calculatedTension} N`;
         }
 
+        // 3. CONSTRUCCIÓN DE DATA ESPACIO-TEMPORAL REAL (FILA 2)
+        const textTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+        const day = now.getDate();
+        const month = now.getMonth() + 1;
+        const year = String(now.getFullYear()).slice(-2);
+        const textDate = `${day}.${month}.${year}`;
+
+        const geoNode = "6.244° N"; // Santa Elena Node base
+
+        // Esta fila de telemetría cronológica corre libre y fija
+        if ($('telemetry-time'))       $('telemetry-time').textContent = textTime;
+        if ($('telemetry-date'))       $('telemetry-date').textContent = textDate;
+        if ($('telemetry-geo'))        $('telemetry-geo').textContent = geoNode;
+
+
+        // 4. TRADUCCIÓN VECTORIAL (ANIMACIÓN DE ANILLOS SVG)
         const wOuter = $('wave-outer'); 
         const wMid = $('wave-mid');     
         const wInner = $('wave-inner'); 
@@ -654,10 +681,11 @@
         if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
     }
 
+    // 3. INTERACTIVE RSVP MANIFESTO ENGINE
     const manifestoChapters = {
-        1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality...",
-        2: "THE ALGORITHMIC DIAL // TRANSLATION MANUAL El motor toma la rotación constante de la Tierra...",
-        3: "BIOCINETIC SYNTAX // Formula: FilteredSets + QuadrantAction + FilteredReps"
+        1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. To keep this gap open, we code the functional movements of the body into a live language. The unconscious mind operates through kinetic traction: attracting and pushing away thoughts. By mapping these sequences into mechanical blocks, we ignite constant creativity.",
+        2: "THE ALGORITHMIC DIAL // TRANSLATION MANUAL The algorithm does not invent data; it is a translator. It takes the Earth's rotation relative to the Sun in a 24-hour cycle and converts it into a unique 'bio-kinetic coordinate.' Time becomes a matrix of movement. 1. SOLAR DRIFT: Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.",
+        3: "BIOMECHANICAL INTEGRATION // FRACTAL GEOMETRY 2. ALGORITHMIC QUADRANTS: Divides the 360° matrix into 4 biomechanical actions: 0°-90° [UL], 90°-180° [PL], 180°-270° [LST], and 270°-360° [UST]. 3. GOLDEN RATIO (PHI): Sets fluctuate through a sine function (from 2 to 8), while Repetitions are multiplied by PHI (1.618033), mimicking the fractal geometry of mycelium. Formula: FilteredSets + QuadrantAction + FilteredReps"
     };
 
     let activeWords = manifestoChapters[1].split(/\s+/);
