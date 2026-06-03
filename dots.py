@@ -187,7 +187,7 @@ def save_image_to_pdf(image, pdf_output_path, total_dots, target_print_height_cm
 
 # --- Main part of the script ---
 if __name__ == "__main__":
-    input_file = 'img/5.JPG'
+    input_file = 'img/4.JPG'
     output_image_file = 'img/image.png'
     output_pdf_file = 'img/pages.pdf'
     output_svg_file = 'img/bigPicture.svg'
