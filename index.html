@@ -427,13 +427,20 @@
         if ($('footer-default-text')) $('footer-default-text').classList.add('hidden');
         if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('hidden'); $('puls-protocol-list').classList.add('flex'); }
 
+        // Opacidad atenuada para la Gota Alfanumérica
         if($('dial-part-sets')) $('dial-part-sets').className = "text-white/15 transition-colors duration-300 cursor-pointer";
         if($('dial-part-action')) $('dial-part-action').className = "text-white/15 transition-colors duration-300 cursor-pointer px-1";
         if($('dial-part-reps')) $('dial-part-reps').className = "text-white/15 transition-colors duration-300 cursor-pointer";
 
+        // Opacidad atenuada para la Fila 1 (Data Biocinética)
         if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
         if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
         if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
+
+        // --- ADICIÓN: Opacidad atenuada para la Fila 2 (Data Espacio-Temporal) ---
+        if($('telemetry-time')) $('telemetry-time').className = "text-left text-white/10 transition-colors duration-300";
+        if($('telemetry-date')) $('telemetry-date').className = "text-center text-white/10 transition-colors duration-300";
+        if($('telemetry-geo'))  $('telemetry-geo').className  = "text-right text-white/10 transition-colors duration-300";
 
         const rawTelemetry = window.currentTelemetryValue || "3UST7";
         const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
@@ -445,11 +452,17 @@
                 if($('tag-sets')) $('tag-sets').className = 'interactive-tag cursor-pointer text-cyan-400 font-bold transition-all duration-300';
                 if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer';
                 if($('dial-part-sets')) $('dial-part-sets').className = "text-cyan-400 font-bold cursor-pointer";
+                
+                // --- ADICIÓN: Iluminación de Columna 1 (Hora) ---
+                if($('telemetry-time')) $('telemetry-time').className = "text-left text-cyan-400 font-bold transition-colors duration-300";
             } 
             else if (type === 'ACTION' || type === 'ONLY_ACTION') {
                 if($('tag-actions')) $('tag-actions').className = 'interactive-tag cursor-pointer text-cyan-400 font-bold transition-all duration-300';
                 if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer';
                 if($('dial-part-action')) $('dial-part-action').className = "text-cyan-400 font-bold cursor-pointer px-1";
+                
+                // --- ADICIÓN: Iluminación de Columna 2 (Fecha) ---
+                if($('telemetry-date')) $('telemetry-date').className = "text-center text-cyan-400 font-bold transition-colors duration-300";
                 
                 if (actionStr.includes('P') && $('proto-p')) $('proto-p').className = "text-cyan-400 font-bold px-0.5";
                 if (actionStr.includes('U') && $('proto-u')) $('proto-u').className = "text-cyan-400 font-bold px-0.5";
@@ -460,6 +473,9 @@
                 if($('tag-reps')) $('tag-reps').className = 'interactive-tag cursor-pointer text-cyan-400 font-bold transition-all duration-300';
                 if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer';
                 if($('dial-part-reps')) $('dial-part-reps').className = "text-cyan-400 font-bold cursor-pointer";
+                
+                // --- ADICIÓN: Iluminación de Columna 3 (Coordenada) ---
+                if($('telemetry-geo')) $('telemetry-geo').className = "text-right text-cyan-400 font-bold transition-colors duration-300";
                 
                 const dynamicTension = (parseInt(repsStr, 10) * 1.45).toFixed(2);
                 if($('sub-reps-tension')) $('sub-reps-tension').textContent = `${dynamicTension} N`;
@@ -477,16 +493,24 @@
         if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('flex'); $('puls-protocol-list').classList.add('hidden'); }
         if ($('footer-default-text')) $('footer-default-text').classList.remove('hidden');
 
+        // Restablecer Fila 1 (Data Biocinética Neutra)
         if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
         if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
         if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
         
-        if($('dial-part-sets')) $('dial-part-sets').className = "text-white transition-colors duration-300 cursor-pointer px-1";
-        if($('dial-part-action')) $('dial-part-action').className = "text-white font-black transition-colors duration-300 cursor-pointer px-1";
-        if($('dial-part-reps')) $('dial-part-reps').className = "text-white transition-colors duration-300 cursor-pointer px-1";
+        // --- ADICIÓN: Restablecer Fila 2 (Data Espacio-Temporal Neutra) ---
+        if($('telemetry-time')) $('telemetry-time').className = "text-left text-white/40 transition-colors duration-300";
+        if($('telemetry-date')) $('telemetry-date').className = "text-center text-white/40 transition-colors duration-300";
+        if($('telemetry-geo'))  $('telemetry-geo').className  = "text-right text-white/40 transition-colors duration-300";
+
+        // Restablecer Gota Alfanumérica Independiente sin paddings artificiales
+        if($('dial-part-sets')) $('dial-part-sets').className = "text-white transition-colors duration-300 cursor-pointer";
+        if($('dial-part-action')) $('dial-part-action').className = "text-white font-black transition-colors duration-300 cursor-pointer";
+        if($('dial-part-reps')) $('dial-part-reps').className = "text-white transition-colors duration-300 cursor-pointer";
 
         updateZ();
     }
+
 
     function handleTouchInspect(event, type, targetRing) {
         if (event) event.stopPropagation();
