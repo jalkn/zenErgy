@@ -114,327 +114,318 @@
             </div>
         </div>
     </nav>
-
-<!-- CORRECCIÓN: Cambiado flex-col a grid grid-rows-[auto_1fr_auto] para asegurar que el footer conserve su espacio -->
-   <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none bg-[#070707]" ontouchstart="checkResetTouch(event)">
-        
-        <!-- HEADER (Fila Superior) -->
-        <header class="w-full bg-gradient-to-b from-black/60 via-white/[0.02] to-transparent backdrop-blur-lg shrink-0">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                
-                <div class="justify-self-start flex items-center">
-                    <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-                    </button>
-                </div>
-                
-                <div class="justify-self-center text-center">
-                    <span class="text-white/80 font-mono font-bold text-[9px] tracking-[0.25em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] whitespace-nowrap">
-                        PULSOR
-                    </span>
-                </div>
-                
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return Core Interfaz">
-                        <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
-                    </button>
-                </div>
-
-            </div>
-        </header>
-
-        <!-- CONTENIDO INTERMEDIO (Fila Central: se vuelve scrolleable verticalmente si la pantalla es muy pequeña) -->
-        <div class="w-full h-full overflow-y-auto flex flex-col justify-start sm:justify-center items-center gap-4 px-6 pb-6 scrollbar-none min-h-0">
-            
-            <!-- Contenedor del Pulsor SVG (Ajustado un poco su tamaño en móviles muy pequeños) -->
-            <div class="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center overflow-hidden group/pulsor shrink-0 mt-4 sm:mt-0">
-                <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.01)]">
-                    <circle id="wave-outer" cx="120" cy="120" r="95" 
-                            onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
-                            stroke-linecap="round" transform="rotate(-90 120 120)" />
-                    
-                    <circle id="wave-mid" cx="120" cy="120" r="67" 
-                            onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
-                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
-                            stroke-linecap="round" transform="rotate(-90 120 120)" />
-                    
-                    <circle id="wave-inner" cx="120" cy="120" r="39" 
-                            onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
-                            stroke-linecap="round" transform="rotate(-90 120 120)" />
-
-                    <circle id="wave-center-trigger" cx="120" cy="120" r="28"
-                            onmouseenter="inspectKineticWave('CORE', 'CENTER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'CORE', 'CENTER')"
-                            class="fill-transparent stroke-none cursor-pointer touch-none" />
-                </svg>
-            </div>
-
-            <!-- Panel HUD de Telemetría -->
-            <div class="w-full max-w-md mx-auto flex flex-col items-center shrink-0 relative z-30">
-                <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-xl p-4 sm:p-5 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
-                    
-                    <div id="z-dial-wrapper" class="w-full font-mono text-base font-bold text-center select-none text-white pb-3 flex items-center justify-center tracking-[0.2em]">
-                        <span id="dial-part-sets" 
-                            onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                            class="transition-colors duration-300 cursor-pointer text-right w-[2ch]">0</span>
-                        
-                        <span id="dial-part-action" 
-                            onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                            class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-1">VOID</span>
-                        
-                        <span id="dial-part-reps" 
-                            onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                            class="transition-colors duration-300 cursor-pointer text-left w-[2ch]">0</span>
-                    </div>
-
-                    <div class="w-full flex justify-between items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40">
-                        <span id="sub-sets-solar" 
-                              onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                              ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                              class="transition-colors duration-300 cursor-pointer hover:text-white/80">--° --</span>
-
-                        <span id="sub-actions-quadrant" 
-                              onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                              ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                              class="transition-colors duration-300 cursor-pointer hover:text-white/80">Φ --°</span>
-
-                        <span id="sub-reps-tension" 
-                              onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                              ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                              class="transition-colors duration-300 cursor-pointer hover:text-white/80">-- N</span>
-                    </div>
-
-                    <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40 tracking-[0.05em]">
-                        <span id="telemetry-time" class="text-left">--:--:--</span>
-                        <span id="telemetry-date" class="text-center">--.--.--</span>
-                        <span id="telemetry-geo" class="text-right">-.---° N</span>
-                    </div>
-
-                    <div class="flex justify-center space-x-6 font-mono select-none pt-3 text-[9px] tracking-[0.2em] border-t border-white/5 w-full">
-                        <span id="tag-sets" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
-                        <span class="text-white/10 select-none">//</span>
-                        <span id="tag-actions" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()">ACTIONS</span>
-                        <span class="text-white/10 select-none">//</span>
-                        <span id="tag-reps" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()">REPS</span>
-                    </div>
-
-                    <div class="w-full text-center border-t border-white/5 pt-3 mt-3 min-h-[16px] flex items-center justify-center">
-                        <span id="footer-default-text" class="text-white/20 font-mono text-[8px] tracking-[0.3em] uppercase select-none block">
-                            BIOCINETIC PULS DROP SYNTAX
-                        </span>
-                        <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">
-                            <span id="proto-p" class="px-0.5">Pace</span> • 
-                            <span id="proto-u" class="px-0.5">Under</span> • 
-                            <span id="proto-l" class="px-0.5">Lift</span> • 
-                            <span id="proto-s" class="px-0.5">Surge</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- FOOTER (Fila Inferior - Ahora se mantendrá 100% visible sin importar el tamaño del viewport) -->
-        <footer class="w-full p-4 sm:p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono min-h-[16px]">
-                
-                <!-- Extremo Izquierdo -->
-                <div class="justify-self-start flex items-center">
-                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Toggle Axis Left Drawer">
-                        <img src="img/surge.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Surge Axis">
-                    </button>
-                </div>    
-                
-                <!-- Centro -->
-                <div class="justify-self-center text-center whitespace-nowrap text-white/20 tracking-[0.3em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
-                </div>
-                
-                <!-- Extremo Derecho -->
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close Drawer">
-                        <img src="img/back.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-                    </button>
-                </div>
-
-            </div>
-        </footer>
-    </div>
-
-<!-- CORRECCIÓN: Estructurado con grid-rows-[auto_1fr_auto] para fijar header/footer y permitir scroll central fluido -->
-    <div id="left-core-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform -translate-x-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
-        
-        <!-- HEADER (Fila Superior) -->
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start">
-                    <button onclick="openManifesto()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Open Manifesto">
-                        <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">MANIFESTO</span>
-                        <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Manifesto">
-                    </button>
-                </div>
-                <div class="justify-self-center text-center">
-                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">AXIS // TECH-LAB</span>
-                </div>
-                <div class="justify-self-end">
-                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Back">
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- CONTENIDO INTERMEDIO (Fila Central: Scrolleable, resguarda el Isósceles/Reloj de arena simétrico) -->
-        <div class="overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-12">
-            <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
-                <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
-                    <div class="absolute inset-0 pointer-events-none z-0">
-                        <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.7]">
-                            <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/30 transition-all duration-700 group-hover:stroke-white/60" />
-                            <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/15" stroke-dasharray="2 2" />
-                        </svg>
-                    </div>
-                    <div class="absolute inset-0 z-10">
-                        <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-portfolio'); toggleLeftDrawer();">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">RESONANCE</span>
-                            <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 shadow-[0_0_8px_#fff]"></div>
-                        </div>
-                        <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="toggleLeftDrawer(); toggleDrawer();">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
-                            <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2">...</span>
-                        </div>
-                        <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="openNodesDrawer(); toggleLeftDrawer();">
-                            <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 shadow-[0_0_8px_#fff]"></div>
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">NODE</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- FOOTER (Fila Inferior - Corregida simetría de 3 columnas HUD y botón de cierre a la derecha añadido) -->
-        <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none shrink-0">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono min-h-[16px]">
-                
-                <!-- Extremo Izquierdo -->
-                <div class="justify-self-start flex items-center">
-                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                        <img src="img/surge.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300" alt="Back">
-                    </button>
-                </div>    
-                
-                <!-- Centro -->
-                <div class="justify-self-center text-center whitespace-nowrap text-white/20 tracking-[0.3em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
-                </div>
-                
-                <!-- Extremo Derecho (Botón faltante añadido) -->
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close Left Drawer">
-                        <img src="img/back.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-                    </button>
-                </div>
-
-            </div>
-        </footer>
-    </div>
+<!-- CORRECCIÓN: Fondo .glass con desenfoque profundo y grid-rows estricto para simular superposición flotante sobre el vidrio -->
+<div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none glass backdrop-blur-xl" ontouchstart="checkResetTouch(event)">
     
-    <!-- CORRECCIÓN: Estructura geométrica robusta grid-rows-[auto_1fr_auto] para fijar la telemetría del HUD y aislar el scroll central -->
-    <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
-        
-        <!-- HEADER (Fila Superior) -->
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 select-none shrink-0">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start">
-                    <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Home">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300" alt="Home">
-                    </button>
-                </div>
-                <div class="justify-self-center text-center">
-                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOMANIFESTO // CORE</span>
-                </div>
-                <div class="justify-self-end">
-                    <button onclick="closeManifesto()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Close">
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- CONTENIDO INTERMEDIO (Fila Central Scrolleable: Motor RSVP e Interfaces Táctiles) -->
-        <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-4 max-w-xl mx-auto w-full pb-12 scrollbar-none min-h-0">
+    <!-- HEADER (Fila Superior) - Sin líneas duras, idéntico al estilo del main nav -->
+    <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent shrink-0">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             
-            <!-- Tacómetro RSVP Central -->
-            <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
-                <div class="axis-x-overlay"></div>
-                <div class="flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none">
-                    <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold" id="rsvp-status-indicator">READ</div>
-                </div>
-                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-up">++</button>
-                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-down">--</button>
-                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-stop">
-                    <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Stop">
+            <div class="justify-self-start flex items-center">
+                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
+                    <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
                 </button>
-                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-start">
-                    <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Stream">
+            </div>
+            
+            <div class="justify-self-center text-center">
+                <span class="text-white/80 font-mono font-bold text-[9px] tracking-[0.25em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] whitespace-nowrap">
+                    PULSOR
+                </span>
+            </div>
+            
+            <div class="justify-self-end flex items-center">
+                <button onclick="toggleDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return Core Interfaz">
+                    <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
                 </button>
             </div>
 
-            <!-- Display de Palabra Única Fija -->
-            <div class="w-full max-w-sm flex items-center justify-center text-center py-2 font-mono select-none shrink-0">
-                <div class="text-2xl font-bold text-white tracking-wide min-h-[32px] flex items-center justify-center" id="rsvp-word-display">
-                    <img src="img/pace.png" class="w-8 h-8 object-contain opacity-70" alt="Pace Icon">
+        </div>
+    </header>
+
+    <!-- CONTENIDO INTERMEDIO (Fila Central Scrolleable) -->
+    <div class="w-full h-full overflow-y-auto flex flex-col justify-start sm:justify-center items-center gap-4 px-6 pb-6 scrollbar-none min-h-0">
+        
+        <!-- Contenedor del Pulsor SVG -->
+        <div class="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center overflow-hidden group/pulsor shrink-0 mt-4 sm:mt-0">
+            <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.01)]">
+                <circle id="wave-outer" cx="120" cy="120" r="95" 
+                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                        stroke-linecap="round" transform="rotate(-90 120 120)" />
+                
+                <circle id="wave-mid" cx="120" cy="120" r="67" 
+                        onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
+                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                        stroke-linecap="round" transform="rotate(-90 120 120)" />
+                
+                <circle id="wave-inner" cx="120" cy="120" r="39" 
+                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                        stroke-linecap="round" transform="rotate(-90 120 120)" />
+
+                <circle id="wave-center-trigger" cx="120" cy="120" r="28"
+                        onmouseenter="inspectKineticWave('CORE', 'CENTER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'CORE', 'CENTER')"
+                        class="fill-transparent stroke-none cursor-pointer touch-none" />
+            </svg>
+        </div>
+
+        <!-- Panel HUD de Telemetría -->
+        <div class="w-full max-w-md mx-auto flex flex-col items-center shrink-0 relative z-30">
+            <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-xl p-4 sm:p-5 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
+                
+                <div id="z-dial-wrapper" class="w-full font-mono text-base font-bold text-center select-none text-white pb-3 flex items-center justify-center tracking-[0.2em]">
+                    <span id="dial-part-sets" 
+                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                        class="transition-colors duration-300 cursor-pointer text-right w-[2ch]">0</span>
+                    
+                    <span id="dial-part-action" 
+                        onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                        class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-1">VOID</span>
+                    
+                    <span id="dial-part-reps" 
+                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                        class="transition-colors duration-300 cursor-pointer text-left w-[2ch]">0</span>
                 </div>
+
+                <div class="w-full flex justify-between items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40">
+                    <span id="sub-sets-solar" 
+                          onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                          ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">--° --</span>
+
+                    <span id="sub-actions-quadrant" 
+                          onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                          ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">Φ --°</span>
+
+                    <span id="sub-reps-tension" 
+                          onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                          ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">-- N</span>
+                </div>
+
+                <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40 tracking-[0.05em]">
+                    <span id="telemetry-time" class="text-left">--:--:--</span>
+                    <span id="telemetry-date" class="text-center">--.--.--</span>
+                    <span id="telemetry-geo" class="text-right">-.---° N</span>
+                </div>
+
+                <div class="flex justify-center space-x-6 font-mono select-none pt-3 text-[9px] tracking-[0.2em] border-t border-white/5 w-full">
+                    <span id="tag-sets" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
+                    <span class="text-white/10 select-none">//</span>
+                    <span id="tag-actions" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()">ACTIONS</span>
+                    <span class="text-white/10 select-none">//</span>
+                    <span id="tag-reps" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()">REPS</span>
+                </div>
+
+                <div class="w-full text-center border-t border-white/5 pt-3 mt-3 min-h-[16px] flex items-center justify-center">
+                    <span id="footer-default-text" class="text-white/20 font-mono text-[8px] tracking-[0.3em] uppercase select-none block">
+                        BIOCINETIC PULS DROP SYNTAX
+                    </span>
+                    <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">
+                        <span id="proto-p" class="px-0.5">Pace</span> • 
+                        <span id="proto-u" class="px-0.5">Under</span> • 
+                        <span id="proto-l" class="px-0.5">Lift</span> • 
+                        <span id="proto-s" class="px-0.5">Surge</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER (Fila Inferior) - Desvanecimiento de degradado puro sin bordes sólidos -->
+    <footer class="w-full p-4 sm:p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent shrink-0 select-none">
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono min-h-[16px]">
+            
+            <div class="justify-self-start flex items-center">
+                <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Toggle Axis Left Drawer">
+                    <img src="img/surge.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Surge Axis">
+                </button>
+            </div>    
+            
+            <div class="justify-self-center text-center whitespace-nowrap text-white/20 tracking-[0.3em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
+            </div>
+            
+            <div class="justify-self-end flex items-center">
+                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close Drawer">
+                    <img src="img/back.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+                </button>
             </div>
 
-            <!-- Capítulos del Manifiesto Adaptogénico -->
-            <div class="w-full max-w-md mx-auto border-t border-white/10 pt-4 space-y-2 font-mono">
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(1)">
-                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">THE COGNITIVE SYSTEM</span>
+        </div>
+    </footer>
+</div>
+<!-- CORRECCIÓN: Migración de bg-[#070707] a .glass con desenfoque de fondo dinámico para integrarse con la malla -->
+<div id="left-core-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform -translate-x-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
+    
+    <!-- HEADER (Fila Superior) - Eliminado stroke y reconfigurado a gradiente HUD libre -->
+    <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent shrink-0 select-none">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
+            <div class="justify-self-start">
+                <button onclick="openManifesto()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Open Manifesto">
+                    <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">MANIFESTO</span>
+                    <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Manifesto">
+                </button>
+            </div>
+            <div class="justify-self-center text-center">
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">AXIS // TECH-LAB</span>
+            </div>
+            <div class="justify-self-end">
+                <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
+                    <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Back">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO INTERMEDIO (Fila Central Scrolleable - Geometría Isósceles intacta) -->
+    <div class="overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-12">
+        <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
+            <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
+                <div class="absolute inset-0 pointer-events-none z-0">
+                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.7]">
+                        <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/30 transition-all duration-700 group-hover:stroke-white/60" />
+                        <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/15" stroke-dasharray="2 2" />
+                    </svg>
                 </div>
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(2)">
-                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">INVISIBLE ARCHITECTURE</span>
+                <div class="absolute inset-0 z-10">
+                    <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-portfolio'); toggleLeftDrawer();">
+                        <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">RESONANCE</span>
+                        <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 shadow-[0_0_8px_#fff]"></div>
+                    </div>
+                    <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="toggleLeftDrawer(); toggleDrawer();">
+                        <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
+                        <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2">...</span>
+                    </div>
+                    <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="openNodesDrawer(); toggleLeftDrawer();">
+                        <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 shadow-[0_0_8px_#fff]"></div>
+                        <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">NODE</span>
+                    </div>
                 </div>
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(3)">
-                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">BIOCINETIC SYNTAX</span>
-                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER (Fila Inferior) - Reemplazado border-t por un degradado invertido HUD unificado -->
+    <footer class="w-full p-4 sm:p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent select-none shrink-0">
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono min-h-[16px]">
+            
+            <div class="justify-self-start flex items-center">
+                <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close Menu">
+                    <img src="img/surge.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300" alt="Back">
+                </button>
+            </div>    
+            
+            <div class="justify-self-center text-center whitespace-nowrap text-white/20 tracking-[0.3em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
+            </div>
+            
+            <div class="justify-self-end flex items-center">
+                <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close Left Drawer">
+                    <img src="img/back.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+                </button>
+            </div>
+
+        </div>
+    </footer>
+</div>
+    <!-- CORRECCIÓN: Alineación con el ecosistema de diseño usando .glass y eliminando opacidad plana destructiva -->
+<div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
+    
+    <!-- HEADER (Fila Superior) - Removido el border-b artificial en pro del degradado desvanecido -->
+    <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent select-none shrink-0">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
+            <div class="justify-self-start">
+                <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Home">
+                    <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300" alt="Home">
+                </button>
+            </div>
+            <div class="justify-self-center text-center">
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOMANIFESTO // CORE</span>
+            </div>
+            <div class="justify-self-end">
+                <button onclick="closeManifesto()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close">
+                    <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Close">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO INTERMEDIO (Fila Central Scrolleable) -->
+    <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-4 max-w-xl mx-auto w-full pb-12 scrollbar-none min-h-0">
+        
+        <!-- Tacómetro RSVP Central -->
+        <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
+            <div class="axis-x-overlay"></div>
+            <div class="flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none">
+                <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold" id="rsvp-status-indicator">READ</div>
+            </div>
+            <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-up">++</button>
+            <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-down">--</button>
+            <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-stop">
+                <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Stop">
+            </button>
+            <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-start">
+                <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Stream">
+            </button>
+        </div>
+
+        <!-- Display de Palabra Única Fija -->
+        <div class="w-full max-w-sm flex items-center justify-center text-center py-2 font-mono select-none shrink-0">
+            <div class="text-2xl font-bold text-white tracking-wide min-h-[32px] flex items-center justify-center" id="rsvp-word-display">
+                <img src="img/pace.png" class="w-8 h-8 object-contain opacity-70" alt="Pace Icon">
             </div>
         </div>
 
-        <!-- FOOTER (Fila Inferior - Depurado al 100% siguiendo la simetría exacta de la vista principal) -->
-        <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono min-h-[16px]">
-                
-                <!-- Extremo Izquierdo: Retorno Ordenado al Axis Left Drawer -->
-                <div class="justify-self-start flex items-center">
-                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Axis">
-                        <img src="img/back.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Axis">
-                    </button>
-                </div>    
-                
-                <!-- Centro Simétrico Estable -->
-                <div class="justify-self-center text-center whitespace-nowrap text-white/20 tracking-[0.3em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
-                </div>
-                
-                <!-- Extremo Derecho: Cierre Absoluto de Telones -->
-                <div class="justify-self-end flex items-center">
-                    <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Main Framework">
-                        <img src="img/logo.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Main Framework">
-                    </button>
-                </div>
-
+        <!-- Capítulos del Manifiesto Adaptogénico -->
+        <div class="w-full max-w-md mx-auto border-t border-white/10 pt-4 space-y-2 font-mono">
+            <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(1)">
+                <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">THE COGNITIVE SYSTEM</span>
             </div>
-        </footer>
+            <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(2)">
+                <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">INVISIBLE ARCHITECTURE</span>
+            </div>
+            <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(3)">
+                <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">BIOCINETIC SYNTAX</span>
+            </div>
+        </div>
     </div>
+
+    <!-- FOOTER (Fila Inferior) - Removido border-t, reemplazado por gradiente HUD ascendente -->
+    <footer class="w-full p-4 sm:p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent shrink-0 select-none">
+        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono min-h-[16px]">
+            
+            <!-- Extremo Izquierdo -->
+            <div class="justify-self-start flex items-center">
+                <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Axis">
+                    <img src="img/back.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Axis">
+                </button>
+            </div>    
+            
+            <!-- Centro Simétrico Stable -->
+            <div class="justify-self-center text-center whitespace-nowrap text-white/20 tracking-[0.3em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
+            </div>
+            
+            <!-- Extremo Derecho -->
+            <div class="justify-self-end flex items-center">
+                <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Main Framework">
+                    <img src="img/logo.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Main Framework">
+                </button>
+            </div>
+
+        </div>
+    </footer>
+</div>
 
     <main class="w-full h-screen pt-[68px] pb-[69px] sm:pb-[81px] flex flex-col justify-center items-center overflow-hidden relative z-10">
         <section id="biokinetic-portfolio" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
