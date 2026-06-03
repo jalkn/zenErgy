@@ -347,79 +347,91 @@
         </footer>
     </div>
     
+    <!-- CORRECCIÓN: Estructura geométrica robusta grid-rows-[auto_1fr_auto] para fijar la telemetría del HUD y aislar el scroll central -->
     <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 select-none">
+        
+        <!-- HEADER (Fila Superior) -->
+        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 select-none shrink-0">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start">
-                    <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1" aria-label="Home">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40" alt="Home">
+                    <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Home">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300" alt="Home">
                     </button>
                 </div>
                 <div class="justify-self-center text-center">
                     <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">BIOMANIFESTO // CORE</span>
                 </div>
                 <div class="justify-self-end">
-                    <button onclick="closeManifesto()" class="group flex items-center justify-center p-1" aria-label="Close">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:rotate-90" alt="Close">
+                    <button onclick="closeManifesto()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Close">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Close">
                     </button>
                 </div>
             </div>
         </header>
 
-        <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-4 max-w-xl mx-auto w-full pb-12 scrollbar-none">
+        <!-- CONTENIDO INTERMEDIO (Fila Central Scrolleable: Motor RSVP e Interfaces Táctiles) -->
+        <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-4 max-w-xl mx-auto w-full pb-12 scrollbar-none min-h-0">
+            
+            <!-- Tacómetro RSVP Central -->
             <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
                 <div class="axis-x-overlay"></div>
                 <div class="flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none">
                     <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold" id="rsvp-status-indicator">READ</div>
                 </div>
-                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2" id="btn-speed-up">++</button>
-                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2" id="btn-speed-down">--</button>
-                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full" id="btn-stream-stop">
-                    <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40" alt="Stop">
+                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-up">++</button>
+                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-down">--</button>
+                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-stop">
+                    <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Stop">
                 </button>
-                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full" id="btn-stream-start">
-                    <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40" alt="Stream">
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-start">
+                    <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Stream">
                 </button>
             </div>
 
-            <div class="w-full max-w-sm flex items-center justify-center text-center py-2 font-mono select-none">
-                <div class="text-2xl font-bold text-white tracking-wide min-h-[28px] flex items-center justify-center" id="rsvp-word-display">
+            <!-- Display de Palabra Única Fija -->
+            <div class="w-full max-w-sm flex items-center justify-center text-center py-2 font-mono select-none shrink-0">
+                <div class="text-2xl font-bold text-white tracking-wide min-h-[32px] flex items-center justify-center" id="rsvp-word-display">
                     <img src="img/pace.png" class="w-8 h-8 object-contain opacity-70" alt="Pace Icon">
                 </div>
             </div>
 
+            <!-- Capítulos del Manifiesto Adaptogénico -->
             <div class="w-full max-w-md mx-auto border-t border-white/10 pt-4 space-y-2 font-mono">
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] cursor-pointer rounded" onclick="loadManifestoChapter(1)">
-                    <span class="text-xs text-white/60 group-hover:text-white tracking-wider">THE COGNITIVE SYSTEM</span>
+                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(1)">
+                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">THE COGNITIVE SYSTEM</span>
                 </div>
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] cursor-pointer rounded" onclick="loadManifestoChapter(2)">
-                    <span class="text-xs text-white/60 group-hover:text-white tracking-wider">INVISIBLE ARCHITECTURE</span>
+                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(2)">
+                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">INVISIBLE ARCHITECTURE</span>
                 </div>
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] cursor-pointer rounded" onclick="loadManifestoChapter(3)">
-                    <span class="text-xs text-white/60 group-hover:text-white tracking-wider">BIOCINETIC SYNTAX</span>
+                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(3)">
+                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">BIOCINETIC SYNTAX</span>
                 </div>
             </div>
         </div>
 
+        <!-- FOOTER (Fila Inferior - Depurado al 100% siguiendo la simetría exacta de la vista principal) -->
         <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
-            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
-                <div class="justify-self-start">
-                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1">
-                        <img src="img/back.png" class="w-4 h-4 object-contain opacity-35" alt="Axis">
+            <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono min-h-[16px]">
+                
+                <!-- Extremo Izquierdo: Retorno Ordenado al Axis Left Drawer -->
+                <div class="justify-self-start flex items-center">
+                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Axis">
+                        <img src="img/back.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Axis">
                     </button>
                 </div>    
-                <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
-                    <div class="justify-self-start text-white/20"></div>    
-                    <div class="text-white/20 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                        <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
-                    </div>
-                    <div class="justify-self-end text-white/20"></div>
+                
+                <!-- Centro Simétrico Estable -->
+                <div class="justify-self-center text-center whitespace-nowrap text-white/20 tracking-[0.3em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
                 </div>
-                <div class="justify-self-end">
-                    <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1">
-                        <img src="img/logo.png" class="w-4 h-4 object-contain opacity-35" alt="Main Framework">
+                
+                <!-- Extremo Derecho: Cierre Absoluto de Telones -->
+                <div class="justify-self-end flex items-center">
+                    <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Main Framework">
+                        <img src="img/logo.png" class="w-4 h-4 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Main Framework">
                     </button>
                 </div>
+
             </div>
         </footer>
     </div>
