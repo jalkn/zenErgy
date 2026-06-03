@@ -181,67 +181,63 @@
             </svg>
         </div>
 
-        <!-- Panel HUD de Telemetría -->
-        <div class="w-full max-w-md mx-auto flex flex-col items-center shrink-0 relative z-30">
-            <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-xl p-4 sm:p-5 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
+  <div class="w-full max-w-md mx-auto flex flex-col items-center shrink-0 relative z-30 font-mono text-[9px] text-white/40 tracking-widest uppercase select-none">
+            <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-sm p-5 shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
                 
-                <div id="z-dial-wrapper" class="w-full font-mono text-base font-bold text-center select-none text-white pb-3 flex items-center justify-center tracking-[0.2em]">
+                <div id="z-dial-wrapper" class="w-full text-base font-bold text-center text-white/80 pb-4 flex items-center justify-center tracking-[0.25em]">
                     <span id="dial-part-sets" 
                         onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                        class="transition-colors duration-300 cursor-pointer text-right w-[2ch]">0</span>
+                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')",
+                        class="transition-all duration-300 cursor-pointer text-right w-[2ch]">0</span>
                     
                     <span id="dial-part-action" 
                         onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
                         ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                        class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-1">VOID</span>
+                        class="transition-all duration-300 cursor-pointer text-center w-[5ch] inline-block mx-2 text-white font-black">VOID</span>
                     
                     <span id="dial-part-reps" 
                         onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
                         ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                        class="transition-colors duration-300 cursor-pointer text-left w-[2ch]">0</span>
+                        class="transition-all duration-300 cursor-pointer text-left w-[2ch]">0</span>
                 </div>
 
-                <div class="w-full flex justify-between items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40">
+                <div class="w-full flex justify-between items-center py-2 text-white/40 tracking-[0.15em]">
                     <span id="sub-sets-solar" 
                           onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">--° --</span>
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">000° SOL</span>
 
                     <span id="sub-actions-quadrant" 
                           onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">Φ --°</span>
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">Φ 0.00°</span>
 
                     <span id="sub-reps-tension" 
                           onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">-- N</span>
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">00.0 N</span>
                 </div>
 
-                <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40 tracking-[0.05em]">
-                    <span id="telemetry-time" class="text-left">--:--:--</span>
-                    <span id="telemetry-date" class="text-center">--.--.--</span>
-                    <span id="telemetry-geo" class="text-right">-.---° N</span>
+                <div class="w-full flex justify-between items-center py-2 text-white/30 tracking-[0.1em] border-t border-white/5">
+                    <span id="telemetry-time" class="text-left text-white/40">22:15:07</span>
+                    <span id="telemetry-date" class="text-center">02.06.26</span>
+                    <span id="telemetry-geo" class="text-right">6.251° N</span>
                 </div>
 
-                <div class="flex justify-center space-x-6 font-mono select-none pt-3 text-[9px] tracking-[0.2em] border-t border-white/5 w-full">
-                    <span id="tag-sets" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
-                    <span class="text-white/10 select-none">//</span>
-                    <span id="tag-actions" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()">ACTIONS</span>
-                    <span class="text-white/10 select-none">//</span>
-                    <span id="tag-reps" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()">REPS</span>
+                <div class="flex justify-between items-center pt-3 tracking-[0.2em] border-t border-white/5 w-full text-center">
+                    <span id="tag-sets" class="cursor-pointer font-bold transition-all duration-300 hover:text-white/80 w-1/3 text-left" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
+                    <span class="text-white/10 select-none w-1/6">//</span>
+                    <span id="tag-actions" class="cursor-pointer font-bold transition-all duration-300 hover:text-white/80 w-1/3 text-center" onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()">ACTIONS</span>
+                    <span class="text-white/10 select-none w-1/6">//</span>
+                    <span id="tag-reps" class="cursor-pointer font-bold transition-all duration-300 hover:text-white/80 w-1/3 text-right" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()">REPS</span>
                 </div>
 
                 <div class="w-full text-center border-t border-white/5 pt-3 mt-3 min-h-[16px] flex items-center justify-center">
-                    <span id="footer-default-text" class="text-white/20 font-mono text-[8px] tracking-[0.3em] uppercase select-none block">
-                        BIOCINETIC PULS DROP SYNTAX
-                    </span>
-                    <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">
-                        <span id="proto-p" class="px-0.5">Pace</span> • 
-                        <span id="proto-u" class="px-0.5">Under</span> • 
-                        <span id="proto-l" class="px-0.5">Lift</span> • 
-                        <span id="proto-s" class="px-0.5">Surge</span>
+                    <div id="puls-protocol-list" class="flex justify-center space-x-3 text-[8px] tracking-[0.2em] text-white/20">
+                        <span id="proto-p" class="transition-colors duration-300">PACE</span> • 
+                        <span id="proto-u" class="transition-colors duration-300 text-white/80 font-bold">UNDER</span> • 
+                        <span id="proto-l" class="transition-colors duration-300">LIFT</span> • 
+                        <span id="proto-s" class="transition-colors duration-300">SURGE</span>
                     </div>
                 </div>
 
