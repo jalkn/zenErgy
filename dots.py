@@ -185,24 +185,34 @@ def save_image_to_pdf(image, pdf_output_path, total_dots, target_print_height_cm
         print("No pages to save.")
 
 
-# --- Main part of the script ---
 if __name__ == "__main__":
     input_file = 'img/4.JPG'
     output_image_file = 'img/image.png'
     output_pdf_file = 'img/pages.pdf'
     output_svg_file = 'img/bigPicture.svg'
     
-    # Desired final print height in cm
+    # 1. VALORES CLAVE PARA LOGRAR LOS 8640 PUNTOS
+    mi_spacing = 30
+    
+    # Abrimos y forzamos la imagen a una matriz exacta de 120x72 bloques de 30 píxeles
+    img_temp = Image.open(input_file)
+    # 120 * 30 = 3600 píxeles de ancho | 72 * 30 = 2160 píxeles de alto
+    img_preparada = img_temp.resize((3600, 2160), Image.Resampling.LANCZOS)
+    
+    # Guardamos temporalmente para que las funciones del script la lean
+    input_file_preparada = 'img/4_modificada.jpg'
+    img_preparada.save(input_file_preparada)
+
     target_print_height_cm = 200
 
-    # Configuración de previsualización de imagen (Fondo Negro)
+    # 2. LLAMAMOS LAS FUNCIÓNES CON LA IMAGEN CONFIGURADA
     halftone_img, original_width, original_height, total_dots, dots_high, dots_wide = halftone_image(
-        input_file,
+        input_file_preparada, # Usar la imagen redimensionada
         output_image_file,
-        dot_size=12,
-        spacing=30,
+        dot_size=12,          # Puedes ajustar el tamaño del punto a tu gusto
+        spacing=mi_spacing,   # 30
         angle=45,
-        background_color=(0, 0, 0) # Fondo negro para el PNG/PDF de muestra
+        background_color=(0, 0, 0)
     )
 
     # Calculate target dimensions in pixels for a 200cm high print

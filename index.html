@@ -136,14 +136,15 @@
                 <button onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Manifesto">
                     <img src="img/under.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Manifesto">
                 </button>
-                <span id="telemetry-mision-time" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    Y16.153
+                <span id="telemetry-footer-alt" class="tracking-[0.15em] text-white/50 select-none border-l border-white/10 pl-3">
+                    H.84°25'36"
                 </span>
             </div>
             
-            <!-- Centro: Métrica de Rotación Planetaria de la Esfera (360°) -->
             <div class="justify-self-center text-center tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                <span id="telemetry-sphere-rotation">360°//ROT</span>
+                <span id="telemetry-sphere-actions" class="transition-colors duration-300 text-white/60 font-bold select-none">
+                    Φ 000.0°
+                </span>
             </div>
             
             <!-- Derecha: Coordenada Alfanumérica Unificada (Fuera de la caja) + Trigger -->
@@ -686,13 +687,20 @@ function updateZ() {
             if ($('dial-part-reps')) $('dial-part-reps').textContent = String(repsRealValue);
         }
 
-        // 5. CONSTRUCCIÓN DE DATA BIOCINÉTICA (FILA 1 - NODES DRAWER)
+        // 5. CONSTRUCCIÓN DE DATA BIOCINÉTICA (FILA 1 - NODES DRAWER + MAIN HEADER)
         const calculatedTension = (14.2 + (repsRealValue * 0.8)).toFixed(2);
         const ampm = hours >= 12 ? 'PM' : 'AM';
+        const currentAngleText = `Φ ${currentSolarAngle.toFixed(1)}°`;
 
+        // INYECCIÓN PERMANENTE Y PASIVA EN EL MAIN HEADER (CENTRO)
+        if ($('telemetry-sphere-actions')) {
+            $('telemetry-sphere-actions').textContent = currentAngleText;
+        }
+
+        // El Nodes Drawer mantiene su renderizado base si no hay inspección activa
         if (!waveInspectionActive) {
-            if ($('sub-sets-solar'))       $('sub-sets-solar').textContent = `Φ ${currentSolarAngle.toFixed(1)}° ${ampm}`;
-            if ($('sub-actions-quadrant')) $('sub-actions-quadrant').textContent = `Φ ${currentSolarAngle.toFixed(1)}°`;
+            if ($('sub-actions-quadrant')) $('sub-actions-quadrant').textContent = currentAngleText;
+            if ($('sub-sets-solar'))       $('sub-sets-solar').textContent = `${currentAngleText} ${ampm}`;
             if ($('sub-reps-tension'))     $('sub-reps-tension').textContent = `${calculatedTension} N`;
         }
 
