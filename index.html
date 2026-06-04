@@ -131,13 +131,12 @@
 <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md transition-opacity duration-500 select-none">
         <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
             
-            <!-- Izquierda: Trigger + Tiempo de Misión -->
-            <div class="justify-self-start flex items-center space-x-3">
+            <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
                 <button onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Manifesto">
                     <img src="img/under.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Manifesto">
                 </button>
-                <span id="telemetry-footer-alt" class="tracking-[0.15em] text-white/50 select-none border-l border-white/10 pl-3">
-                    H.84°25'36"
+                <span id="telemetry-footer-alt" class="tracking-[0.15em] text-white/50 border-l border-white/10 pl-2 sm:pl-3 flex items-center h-5 leading-none">
+                    H.00°00'
                 </span>
             </div>
             
@@ -147,8 +146,7 @@
                 </span>
             </div>
             
-            <!-- Derecha: Coordenada Alfanumérica Unificada (Fuera de la caja) + Trigger -->
-            <div class="justify-self-end flex items-center space-x-3">
+            <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
                 <button onclick="scrollToSection('biokinetic-portfolio')" class="focus:outline-none transition-colors duration-300 hover:text-white/80 tracking-[0.25em] font-bold text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer">
                     <span id="z-dial-footer">8UST11</span>
                 </button>
@@ -238,21 +236,29 @@
                         class="transition-colors duration-300 cursor-pointer text-left w-[2ch]">0</span>
                 </div>
 
-                <div class="w-full flex justify-between items-center border-t border-white/[0.05] py-3 text-white/40">
+                <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] py-3 text-white/40 text-[10px] font-mono tracking-wider">
+                    
                     <span id="sub-sets-solar" 
                           onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">--° --</span>
+                          class="text-left transition-colors duration-300 cursor-pointer hover:text-white/80">
+                        0.00 Hz
+                    </span>
 
                     <span id="sub-actions-quadrant" 
                           onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">Φ --°</span>
+                          class="text-center transition-colors duration-300 cursor-pointer hover:text-white/80 text-white/60">
+                        Φ 000°
+                    </span>
 
                     <span id="sub-reps-tension" 
                           onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">-- N</span>
+                          class="text-right transition-colors duration-300 cursor-pointer hover:text-white/80">
+                        00.0 N
+                    </span>
+                    
                 </div>
 
                 <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] py-3 text-white/40 tracking-[0.05em]">
@@ -607,7 +613,8 @@
 
         updateZ();
     }
-function updateZ() {
+
+    function updateZ() {
         let biokineticCoordinate = "";
         
         // 1. REGISTRO HORARIO PRIMARIO
@@ -687,27 +694,41 @@ function updateZ() {
             if ($('dial-part-reps')) $('dial-part-reps').textContent = String(repsRealValue);
         }
 
-        // 5. CONSTRUCCIÓN DE DATA BIOCINÉTICA (FILA 1 - NODES DRAWER + MAIN HEADER)
-        const calculatedTension = (14.2 + (repsRealValue * 0.8)).toFixed(2);
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const currentAngleText = `Φ ${currentSolarAngle.toFixed(1)}°`;
+        // 5. TRINIDAD DE INSPECCIÓN CINÉTICA (FILA 1 - NODES DRAWER) + MAIN HEADER (CENTRO)
+        const calculatedTension = (14.2 + (repsRealValue * 0.8)).toFixed(1);
+        const currentAngleText = `Φ ${String(Math.floor(currentSolarAngle)).padStart(3, '0')}°`;
+
+        // Modulación matemática para simular frecuencia de oscilación (Hertz) vinculada a los Sets (3 a 12)
+        const currentHz = (0.05 + (minutes / 1200)).toFixed(3);
 
         // INYECCIÓN PERMANENTE Y PASIVA EN EL MAIN HEADER (CENTRO)
         if ($('telemetry-sphere-actions')) {
-            $('telemetry-sphere-actions').textContent = currentAngleText;
+            $('telemetry-sphere-actions').textContent = `Φ ${currentSolarAngle.toFixed(1)}°`;
         }
 
-        // El Nodes Drawer mantiene su renderizado base si no hay inspección activa
+        // El Nodes Drawer mantiene su trinidad limpia en su lugar si no hay inspección activa
         if (!waveInspectionActive) {
+            if ($('sub-sets-solar'))       $('sub-sets-solar').textContent = `${currentHz} Hz`;
             if ($('sub-actions-quadrant')) $('sub-actions-quadrant').textContent = currentAngleText;
-            if ($('sub-sets-solar'))       $('sub-sets-solar').textContent = `${currentAngleText} ${ampm}`;
             if ($('sub-reps-tension'))     $('sub-reps-tension').textContent = `${calculatedTension} N`;
         }
 
-        // 6. CONSTRUCCIÓN DE DATA ESPACIO-TEMPORAL FIJA (FILA 2 - NODES DRAWER)
+        // 6. TELEMETRÍA DE ENTORNO EN EL NODES DRAWER (FILA 2) + MAIN FOOTER
         const geoNode = "6.251° N"; 
 
-        if ($('telemetry-solar-alt'))    $('telemetry-solar-alt').textContent = "H.84°25'36\"";
+        // Cálculo dinámico para la altitud solar del Main Footer (H.XX°XX')
+        const solarRad = (currentSolarAngle * Math.PI) / 180;
+        const calculatedAltitude = Math.abs(Math.sin(solarRad)) * 84.426; 
+        const altDegrees = Math.floor(calculatedAltitude);
+        const altMinutes = Math.floor((calculatedAltitude - altDegrees) * 60);
+        const solarAltitudeText = `H.${String(altDegrees).padStart(2, '0')}°${String(altMinutes).padStart(2, '0')}'`;
+
+        // Formato exacto conceptual solicitado para la Fila Inferior del Nodes Drawer
+        const explicitSolarAltText = `ALT.${calculatedAltitude.toFixed(2)}°`;
+
+        // Inyección dirigida por IDs unificados
+        if ($('telemetry-footer-alt'))    $('telemetry-footer-alt').textContent = solarAltitudeText;
+        if ($('telemetry-solar-alt'))     $('telemetry-solar-alt').textContent = explicitSolarAltText;
         if ($('telemetry-solstice-node')) $('telemetry-solstice-node').textContent = "SS.54 • EQ.54";
         if ($('telemetry-geo'))           $('telemetry-geo').textContent = geoNode;
 
