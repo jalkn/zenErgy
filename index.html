@@ -549,7 +549,6 @@
                 
                 <div class="w-full h-full rounded-full bg-[#0d0d0d] border border-white/10 p-1 relative overflow-hidden opacity-90 shadow-[inset_0_4px_12px_rgba(255,255,255,0.02),_inset_0_-8px_25px_rgba(0,0,0,0.95)] transition-all duration-500 group-hover:opacity-100 group-hover:border-white/20">
                     
-                    <div class="absolute inset-0 bg-cover bg-center opacity-10 brightness-110 dynamic-texture rounded-full" style="background-image: url('img/miscelio.png');"></div>
 
                     <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
                         <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
@@ -570,7 +569,7 @@
                                 <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
                             </g>
 
-                            <text id="big-dial" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle" class="fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]">
+                            <text class="big-dial-target fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
                                 ------
                             </text>
 
@@ -599,86 +598,55 @@
             </div>
         </div>
 
-        <!-- ================= SLIDE 2 (SEGUNDO ÍTEM DUPLICADO) ================= -->
+<!-- ================= SLIDE 2 (SEGUNDO ÍTEM DUPLICADO) ================= -->
         <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
             
             <div class="relative w-full max-w-[240px] sm:max-w-[290px] md:max-w-[320px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
                 
-                <div class="w-full h-full rounded-full bg-[#0d0d0d] border border-white/10 p-1 relative overflow-hidden opacity-90 shadow-[inset_0_4px_12px_rgba(255,255,255,0.02),_inset_0_-8px_25px_rgba(0,0,0,0.95)] transition-all duration-500 group-hover:opacity-100 group-hover:border-white/20">
+                <!-- Contenedor preservado: Se removió el bg-[#0d0d0d], el rounded-full y los sombreados CSS antiguos -->
+                <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
                     
-                    <div class="absolute inset-0 bg-cover bg-center opacity-10 brightness-110 dynamic-texture rounded-full" style="background-image: url('img/miscelio.png');"></div>
+                    <img src="img/cap.png" alt="Cap Backing" class="absolute inset-0 w-full h-full object-cover scale-115 pointer-events-none z-0 transition-transform duration-500 group-hover:scale-120" />
 
                     <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
                         <svg id="laser-vector-target-2" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
-                            <defs>
-                                <path id="textPath-top-2" d="M 35,200 A 165,165 0 0,1 365,200" />
-                                <path id="textPath-bottom-2" d="M 35,200 A 165,165 0 0,0 365,200" />
-                            </defs>
 
-                            <text class="fill-white font-black text-[15px] sm:text-[17px] tracking-[0.3em] sm:tracking-[0.4em] uppercase transition-all duration-500">
-                                <textPath id="laser-variant-title-2" href="#textPath-top-2" startOffset="50%" text-anchor="middle">
-                                    BIORUSH MENTAL FOCUS
-                                </textPath>
-                            </text>
-
-                            <g class="opacity-30 stroke-[1.2]">
-                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                <path d="M 110,120 Q 200,150 290,120" />
-                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
-                            </g>
-
-                            <text id="big-dial-2" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle" class="fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]">
+                            <text class="big-dial-target fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
                                 ------
-                            </text>
-
-                            <text class="fill-white/60 font-black text-[13px] tracking-[0.35em] uppercase transition-all duration-500 group-hover:fill-white/90">
-                                <textPath href="#textPath-bottom-2" startOffset="50%" text-anchor="middle">
-                                    ZENERGY.WORLD &bull; 3025333130
-                                </textPath>
                             </text>
                         </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Selector de Variantes (Duplicado) -->
-            <div class="mt-8 mb-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 text-[10px] tracking-[0.22em] font-mono select-none z-30 px-2">
-                <span id="opt-focus-2" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]">FOCUS</span>
-                <span id="opt-zen-2" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">ZEN</span>
-                <span id="opt-stamina-2" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">STAMINA</span>
-                <span id="opt-core-2" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">CORE</span>
-            </div>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
                 <button onclick="adquirirNodo('BIORUSH')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                    GET BIORUSH
+                    GET CAP
                 </button>
             </div>
         </div>
-
     </div>
+        <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent shrink-0 select-none">
+            <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
+                
+                <div class="justify-self-start flex items-center">
+                    <button onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault Menu">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                    </button>
+                </div>    
+                
+                <div class="justify-self-center text-center whitespace-nowrap font-mono text-[8px] tracking-[0.3em] text-white/20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    <span class="font-bold text-white/50">jalk&copy;</span> 2008-2026 - RESEARCH
+                </div>
+                
+                <div class="justify-self-end flex items-center">
+                    <button onclick="toggleVaultDrawer(); setTimeout(() => { openNodesDrawer(); }, 200);" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Link to Nodes Drawer">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Link Nodes">
+                    </button>
+                </div>
 
-    <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent shrink-0 select-none">
-        <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
-            
-            <div class="justify-self-start flex items-center">
-                <button onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault Menu">
-                    <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
-                </button>
-            </div>    
-            
-            <div class="justify-self-center text-center whitespace-nowrap font-mono text-[8px] tracking-[0.3em] text-white/20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                <span class="font-bold text-white/50">jalk&copy;</span> 2008-2026 - RESEARCH
             </div>
-            
-            <div class="justify-self-end flex items-center">
-                <button onclick="toggleVaultDrawer(); setTimeout(() => { openNodesDrawer(); }, 200);" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Link to Nodes Drawer">
-                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Link Nodes">
-                </button>
-            </div>
-
-        </div>
-    </footer>
+        </footer>
 </div>
 
 <script>
@@ -798,7 +766,7 @@
         updateZ();
     }
 
-function updateZ() {
+ function updateZ() {
         let biokineticCoordinate = "";
         
         // 1. REGISTRO HORARIO PRIMARIO
@@ -823,7 +791,7 @@ function updateZ() {
             $('telemetry-sphere-dens').textContent = "MAX.8640"; 
         }
 
-        // 3. PROCESAMIENTO DE COORDENADA BIOCINÉTICA
+        // 3. PROCESAMIENTO DE COORDENADA BIOCINÉTICA (PROTOCOLO PULS)
         if (window.selectedNodeFromMesh) {
             biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
         } else {
@@ -842,10 +810,17 @@ function updateZ() {
         window.currentTelemetryValue = biokineticCoordinate;
 
         if (!isReading && $('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
-        if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate; 
+        if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate;
 
-        // INYECCIÓN EN EL BOTÓN CENTRAL DE LA GALERÍA DEL VAULT (BIG DIAL)
+        // INYECCIÓN MULTICLASE ESCALABLE (Soporta N-cantidad de ítems en el slider del Vault)
         if ($('big-dial')) $('big-dial').textContent = biokineticCoordinate;
+        
+        const bigDialTargets = document.querySelectorAll('.big-dial-target');
+        bigDialTargets.forEach(target => {
+            if (target.textContent !== biokineticCoordinate) {
+                target.textContent = biokineticCoordinate;
+            }
+        });
 
         const match = biokineticCoordinate.match(/^(\d+)([A-Z]+)(\d+)$/);
         if (!match) return;
@@ -874,7 +849,7 @@ function updateZ() {
             }
         }
 
-        // Inyección en la Gota Alfanumérica Independiente flotante
+        // CORRECCIÓN INTERFAZ: Inyección en la Gota Alfanumérica Independiente flotante
         if (!waveInspectionActive) {
             if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsRealValue);
             if ($('dial-part-action')) $('dial-part-action').textContent = actionRealValue;
@@ -901,7 +876,7 @@ function updateZ() {
         }
 
         // 6. TELEMETRÍA DE ENTORNO UNIFICADA (MAIN FOOTER + NODES DRAWER)
-        const geoNode = "6.251° N"; 
+        const geoNode = "6.251° N";
 
         // Cálculo dinámico para la altitud solar simplificada con formato limpio (H.00°00')
         const solarRad = (currentSolarAngle * Math.PI) / 180;
@@ -919,9 +894,9 @@ function updateZ() {
         if ($('telemetry-geo'))           $('telemetry-geo').textContent = geoNode;
 
         // 7. TRADUCCIÓN VECTORIAL (ANIMACIÓN DE ANILLOS SVG)
-        const wOuter = $('wave-outer'); 
-        const wMid = $('wave-mid');     
-        const wInner = $('wave-inner'); 
+        const wOuter = $('wave-outer');
+        const wMid = $('wave-mid');    
+        const wInner = $('wave-inner');
 
         if (wOuter && wMid && wInner) {
             const polarity = (currentSolarAngle <= 180) ? 1 : -1; 
