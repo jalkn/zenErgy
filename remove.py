@@ -44,7 +44,7 @@ def quitar_fondo_perfecto_sin_ia(input_path, output_path, tolerancia=230, erosio
     print(f"¡Hecho en milisegundos! Render limpio guardado en: {output_path}")
 
 if __name__ == "__main__":
-    ruta_entrada = "img/hoodieW.png"
-    ruta_salida = "img/hoodie.png"
+    ruta_entrada = "img/biorushW.png"
+    ruta_salida = "img/biorush.png"
     
     quitar_fondo_perfecto_sin_ia(ruta_entrada, ruta_salida, tolerancia=230, erosion=1)

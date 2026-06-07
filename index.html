@@ -537,94 +537,89 @@
         </div>
     </header>
 
-<!-- CONTENIDO INTERMEDIO (Slider Horizontal Nativo) -->
-    <!-- `snap-x snap-mandatory` activa el anclaje; `overflow-x-auto` permite el desplazamiento lateral -->
-    <div class="overflow-x-auto w-full flex flex-row justify-start items-center gap-0 min-h-0 scrollbar-none pb-12 snap-x snap-mandatory">
-        
-        <!-- ================= SLIDE 1 (BIORUSH ACTUAL) ================= -->
-        <!-- `w-full shrink-0 snap-center` asegura que cada slide ocupe toda la pantalla y se imante al centro -->
-        <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
-            
-            <div class="relative w-full max-w-[210px] sm:max-w-[260px] md:max-w-[280px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
-                
-                <div class="w-full h-full rounded-full bg-[#0d0d0d] border border-white/10 p-1 relative overflow-hidden opacity-90 shadow-[inset_0_4px_12px_rgba(255,255,255,0.02),_inset_0_-8px_25px_rgba(0,0,0,0.95)] transition-all duration-500 group-hover:opacity-100 group-hover:border-white/20">
-                    
-                    <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-10 transform scale-105 sm:scale-110 transition-transform duration-500">
-                        <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
-                            <defs>
-                                <path id="textPath-top" d="M 35,200 A 165,165 0 0,1 365,200" />
-                                <path id="textPath-bottom" d="M 35,200 A 165,165 0 0,0 365,200" />
-                            </defs>
-
-                            <text class="fill-white font-black text-[15px] sm:text-[17px] tracking-[0.3em] sm:tracking-[0.4em] uppercase transition-all duration-500">
-                                <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
-                                    BIORUSH MENTAL FOCUS
-                                </textPath>
-                            </text>
-
-                            <g class="opacity-30 stroke-[1.2]">
-                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                <path d="M 110,120 Q 200,150 290,120" />
-                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
-                            </g>
-
-                            <text class="big-dial-target fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
-                                ------
-                            </text>
-
-                            <text class="fill-white/60 font-black text-[13px] tracking-[0.35em] uppercase transition-all duration-500 group-hover:fill-white/90">
-                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
-                                    ZENERGY.WORLD &bull; 3025333130
-                                </textPath>
-                            </text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 mb-6 flex flex-nowrap items-center justify-center gap-1.5 sm:gap-3.5 text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.22em] font-mono select-none z-30 px-1 w-full overflow-x-visible">
-                <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]">FOCUS</span>
-                <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">ZEN</span>
-                <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">STAMINA</span>
-                <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">CORE</span>
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
-                <button onclick="adquirirNodo('BIORUSH')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                    GET BIORUSH
-                </button>
-            </div>
-        </div>
-
-<!-- ================= SLIDE 2 (SEGUNDO ÍTEM DUPLICADO) ================= -->
+<div class="overflow-x-auto w-full flex flex-row justify-start items-center gap-0 min-h-0 scrollbar-none pb-12 snap-x snap-mandatory">
+    
     <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
+        
+        <div class="relative w-full max-w-[210px] sm:max-w-[260px] md:max-w-[280px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
             
-            <div class="relative w-full max-w-[240px] sm:max-w-[290px] md:max-w-[320px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
+            <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
                 
-                <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
-                    
-                    <img src="img/cap.png" alt="Cap Backing" class="absolute inset-0 w-full h-full object-cover scale-115 pointer-events-none z-0 transition-transform duration-500 group-hover:scale-120" />
+                <img src="img/biorush.png" alt="BioRush Pack" class="absolute inset-0 w-full h-full object-cover scale-175 pointer-events-none z-0 transition-transform duration-500 group-hover:scale-180" />
 
-                    <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
-                        <svg id="laser-vector-target-2" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
+                <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-10">
+                    <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
+                        <defs>
+                            <path id="textPath-top" d="M 35,200 A 165,165 0 0,1 365,200" />
+                            <path id="textPath-bottom" d="M 35,200 A 165,165 0 0,0 365,200" />
+                        </defs>
 
-                            <text class="big-dial-target fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
-                                ------
-                            </text>
-                        </svg>
-                    </div>
+                        <text class="fill-white font-black text-[15px] sm:text-[17px] tracking-[0.3em] sm:tracking-[0.4em] uppercase transition-all duration-500">
+                            <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
+                                BIORUSH MENTAL FOCUS
+                            </textPath>
+                        </text>
+
+                        <g class="opacity-30 stroke-[1.2] origin-center transform scale-75">
+                            <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
+                            <path d="M 110,120 Q 200,150 290,120" />
+                            <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                        </g>
+
+                        <text class="big-dial-target fill-white font-black text-[38px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="212" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
+                            ------
+                        </text>
+
+                        <text class="fill-white/60 font-black text-[13px] tracking-[0.35em] uppercase transition-all duration-500 group-hover:fill-white/90">
+                            <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
+                                ZENERGY.WORLD &bull; 3025333130
+                            </textPath>
+                        </text>
+                    </svg>
                 </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6 mt-12 sm:mt-16">
-                <button onclick="adquirirNodo('CAP')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                    GET CAP
-                </button>
             </div>
         </div>
 
+        <div class="mt-8 mb-6 flex flex-nowrap items-center justify-center gap-1.5 sm:gap-3.5 text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.22em] font-mono select-none z-30 px-1 w-full overflow-x-visible">
+            <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]">FOCUS</span>
+            <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">ZEN</span>
+            <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">STAMINA</span>
+            <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">CORE</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
+            <button onclick="adquirirNodo('BIORUSH')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                GET BIORUSH
+            </button>
+        </div>
+    </div>
+
+    <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
         
-<div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
+        <div class="relative w-full max-w-[240px] sm:max-w-[290px] md:max-w-[320px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
+            
+            <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
+                
+                <img src="img/cap.png" alt="Cap Backing" class="absolute inset-0 w-full h-full object-cover scale-115 pointer-events-none z-0 transition-transform duration-500 group-hover:scale-120" />
+
+                <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
+                    <svg id="laser-vector-target-2" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
+                        <text class="big-dial-target fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
+                            ------
+                        </text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6 mt-12 sm:mt-16">
+            <button onclick="adquirirNodo('CAP')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                GET CAP
+            </button>
+        </div>
+    </div>
+
+    <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
         <div class="relative w-full max-w-[240px] sm:max-w-[290px] md:max-w-[320px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]">
             <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
                 
@@ -633,7 +628,7 @@
                 <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
                     <svg id="laser-vector-target-3" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
                         
-                        <g class="opacity-30 stroke-[1.2] origin-center transform scale-75 translate-y-[-50px]">
+                        <g class="opacity-30 stroke-[1.2]" transform="translate(0, -35) scale(0.75)" style="transform-origin: 200px 200px;">
                             <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
                             <path d="M 110,120 Q 200,150 290,120" />
                             <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
@@ -653,7 +648,7 @@
             </button>
         </div>
     </div>
-    </div>
+</div>
 
 
 
