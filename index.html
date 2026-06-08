@@ -158,67 +158,81 @@
         </div>
     </footer>
     
-<!-- CORRECCIÓN: Fondo .glass con desenfoque profundo y grid-rows estricto para simular superposición flotante sobre el vidrio -->
 <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none glass backdrop-blur-xl" ontouchstart="checkResetTouch(event)">
     
-<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0">
-    <!-- Rejilla de 3 columnas idéntica al main header para simetría HUD absoluta -->
-    <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] select-none">
-        
-        <!-- Bloque Izquierdo: Control Surge + Telemetría Frecuencia (Anclados al extremo izquierdo) -->
-        <div class="justify-self-start flex items-center space-x-3">
-            <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-            </button>
-            <span id="sub-sets-solar" 
-                  onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                  ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                  class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap !text-left tracking-[0.25em] text-white/60">
-                0.00 Hz
-            </span>
-        </div>
-        
-        <!-- Bloque Central: Enrutador de Fuerzas Estricto (Centrado Absoluto) -->
-        <div class="justify-self-center text-center font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            <div id="z-dial-wrapper" class="w-full text-xs sm:text-sm text-center flex items-center justify-center tracking-[0.25em] transition-all duration-300">
-                <span id="dial-part-sets" 
-                    onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                    ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                    class="transition-colors duration-300 cursor-pointer text-right w-[2ch] hover:text-white">0</span>
-                
-                <span id="dial-part-action" 
-                    onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                    ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                    class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-2 text-white border-x border-white/[0.05] px-1 bg-white/[0.01]">VOID</span>
-                
-                <span id="dial-part-reps" 
-                    onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                    ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                    class="transition-colors duration-300 cursor-pointer text-left w-[2ch] hover:text-white">0</span>
+    <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 border-b border-white/[0.03] flex flex-col items-center">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full select-none">
+            
+            <div class="justify-self-start flex items-center space-x-3">
+                <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
+                    <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+                </button>
+                <span id="sub-sets-solar" 
+                      onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                      ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                      class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap !text-left tracking-[0.25em] text-white/60">
+                    0.00 Hz
+                </span>
+            </div>
+            
+            <div class="justify-self-center text-center font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <div id="z-dial-wrapper" class="w-full text-xs sm:text-sm text-center flex items-center justify-center tracking-[0.25em] transition-all duration-300">
+                    <span id="dial-part-sets" 
+                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                        class="transition-colors duration-300 cursor-pointer text-right w-[2ch] hover:text-white">0</span>
+                    
+                    <span id="dial-part-action" 
+                        onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                        class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-2 text-white border-x border-white/[0.05] px-1 bg-white/[0.01]">VOID</span>
+                    
+                    <span id="dial-part-reps" 
+                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                        class="transition-colors duration-300 cursor-pointer text-left w-[2ch] hover:text-white">0</span>
+                </div>
+            </div>
+
+            <div class="justify-self-end flex items-center space-x-3">
+                <span id="sub-reps-tension" 
+                      onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                      ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                      class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap !text-right tracking-[0.25em]">
+                    00.0 N
+                </span>
+                <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
+                    <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
+                </button>
             </div>
         </div>
 
-        <!-- Bloque Derecho: Telemetría Tensión + Control Lift (Anclados al extremo derecho) -->
-        <div class="justify-self-end flex items-center space-x-3">
-            <span id="sub-reps-tension" 
-                  onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                  ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                  class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap !text-right tracking-[0.25em]">
-                00.0 N
-            </span>
-            <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
-                <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
-            </button>
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 pb-4 flex flex-col items-center justify-center font-mono text-[9px] text-white/40 tracking-widest uppercase relative z-30">
+            <div class="flex justify-center space-x-6 select-none tracking-[0.2em] w-full">
+                <span id="tag-sets" class="interactive-tag cursor-pointer font-bold transition-all duration-300 hover:text-white" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
+                <span class="text-white/10 select-none">//</span>
+                <span id="tag-actions" class="interactive-tag cursor-pointer font-bold transition-all duration-300 hover:text-white" onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()">ACTIONS</span>
+                <span class="text-white/10 select-none">//</span>
+                <span id="tag-reps" class="interactive-tag cursor-pointer font-bold transition-all duration-300 hover:text-white" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()">REPS</span>
+            </div>
+
+            <div class="w-full text-center border-t border-white/[0.03] pt-2 mt-2 min-h-[14px] flex items-center justify-center">
+                <span id="footer-default-text" class="text-white/20 font-mono text-[8px] tracking-[0.3em] uppercase select-none block">
+                    BIOCINETIC PULS DROP SYNTAX
+                </span>
+                <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] tracking-[0.15em] text-white/20 uppercase">
+                    <span id="proto-p" class="px-0.5">Pace</span> • 
+                    <span id="proto-u" class="px-0.5">Under</span> • 
+                    <span id="proto-l" class="px-0.5">Lift</span> • 
+                    <span id="proto-s" class="px-0.5">Surge</span>
+                </div>
+            </div>
         </div>
+    </header>
 
-    </div>
-</header>
-
-    <!-- CONTENIDO INTERMEDIO (Fila Central Scrolleable) -->
-    <div class="w-full h-full overflow-y-auto flex flex-col justify-start sm:justify-center items-center gap-4 px-6 pb-6 scrollbar-none min-h-0">
+    <div class="w-full h-full overflow-y-auto flex flex-col justify-center items-center gap-4 px-6 pb-6 scrollbar-none min-h-0">
         
-        <!-- Contenedor del Pulsor SVG -->
-        <div class="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center overflow-hidden group/pulsor shrink-0 mt-4 sm:mt-0">
+        <div class="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center overflow-hidden group/pulsor shrink-0">
             <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.01)]">
                 <circle id="wave-outer" cx="120" cy="120" r="95" 
                         onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
@@ -245,39 +259,8 @@
             </svg>
         </div>
 
-  <div class="w-full max-w-md mx-auto flex flex-col items-center shrink-0 relative z-30 font-mono text-[9px] text-white/40 tracking-widest uppercase select-none">
-            <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-sm p-4 sm:p-5 shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
-
-
-
-
-                <div class="flex justify-center space-x-6 select-none pt-3 tracking-[0.2em] border-t border-white/5 w-full">
-                    <span id="tag-sets" class="interactive-tag cursor-pointer font-bold transition-all duration-300 hover:text-white" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
-                    <span class="text-white/10 select-none">//</span>
-                    <span id="tag-actions" class="interactive-tag cursor-pointer font-bold transition-all duration-300 hover:text-white" onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()">ACTIONS</span>
-                    <span class="text-white/10 select-none">//</span>
-                    <span id="tag-reps" class="interactive-tag cursor-pointer font-bold transition-all duration-300 hover:text-white" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()">REPS</span>
-                </div>
-
-                <div class="w-full text-center border-t border-white/5 pt-3 mt-3 min-h-[16px] flex items-center justify-center">
-                    <span id="footer-default-text" class="text-white/20 font-mono text-[8px] tracking-[0.3em] uppercase select-none block">
-                        BIOCINETIC PULS DROP SYNTAX
-                    </span>
-                    <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] tracking-[0.15em] text-white/20 uppercase">
-                        <span id="proto-p" class="px-0.5">Pace</span> • 
-                        <span id="proto-u" class="px-0.5">Under</span> • 
-                        <span id="proto-l" class="px-0.5">Lift</span> • 
-                        <span id="proto-s" class="px-0.5">Surge</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </div>
 
-
-    <!-- FOOTER (Fila Inferior) - Desvanecimiento de degradado puro sin bordes sólidos -->
     <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent shrink-0 select-none">
         <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
             
