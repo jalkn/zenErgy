@@ -627,104 +627,6 @@
     const $ = (id) => document.getElementById(id);
     const PHI = 1.618033;
 
-    window.selectedNodeFromMesh = null;
-    window.currentTelemetryValue = "--"; 
-    window.currentVariant = "FOCUS";
-    let waveInspectionActive = false;     
-    let biokineticInterval = null;
-    let isReading = false;
-
-    function inspectKineticWave(type, targetRing) {
-        waveInspectionActive = true;
-
-        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { if($(id)) $(id).style.stroke = "rgba(255,255,255,0.12)"; });
-        ['proto-p', 'proto-u', 'proto-l', 'proto-s'].forEach(id => { if($(id)) $(id).className = "transition-colors duration-300 px-0.5 text-white/10"; });
-
-        if(targetRing === 'INNER' && $('wave-inner')) {
-            $('wave-inner').style.stroke = "#00d2ff";
-        } else if (targetRing === 'MID' && $('wave-mid')) {
-            $('wave-mid').style.stroke = "#00d2ff";
-        } else if (targetRing === 'OUTER' && $('wave-outer')) {
-            $('wave-outer').style.stroke = "#00d2ff";
-        }
-
-        if ($('footer-default-text')) $('footer-default-text').classList.add('hidden');
-        if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('hidden'); $('puls-protocol-list').classList.add('flex'); }
-
-        // Opacidad atenuada por defecto para la Gota Alfanumérica
-        if($('dial-part-sets')) $('dial-part-sets').className = "text-white/15 transition-colors duration-300 cursor-pointer";
-        if($('dial-part-action')) $('dial-part-action').className = "text-white/15 transition-colors duration-300 cursor-pointer px-1";
-        if($('dial-part-reps')) $('dial-part-reps').className = "text-white/15 transition-colors duration-300 cursor-pointer";
-
-        // Opacidad atenuada para los costados del HUD
-        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
-        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
-
-        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/10 transition-colors duration-300";
-        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/10 transition-colors duration-300";
-        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/10 transition-colors duration-300";
-
-        const rawTelemetry = window.currentTelemetryValue || "3UST7";
-        const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
-
-        if (match) {
-            const [_, setsStr, actionStr, repsStr] = match;
-
-            if (type === 'SETS') {
-                if($('sub-sets-solar')) {
-                    $('sub-sets-solar').textContent = "SETS";
-                    $('sub-sets-solar').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer tracking-[0.25em]';
-                }
-                if($('dial-part-sets')) $('dial-part-sets').className = "text-cyan-400 font-bold cursor-pointer";
-                if($('telemetry-solar-alt')) $('telemetry-solar-alt').className = "text-left text-cyan-400 font-bold transition-colors duration-300";
-            } 
-            else if (type === 'ACTION' || type === 'ONLY_ACTION') {
-                if($('dial-part-action')) {
-                    $('dial-part-action').textContent = "ACTIONS";
-                    $('dial-part-action').className = "text-cyan-400 font-bold cursor-pointer px-1 text-[10px] tracking-[0.1em]";
-                }
-                if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-cyan-400 font-bold transition-colors duration-300";
-                
-                if (actionStr.includes('P') && $('proto-p')) $('proto-p').className = "text-cyan-400 font-bold px-0.5";
-                if (actionStr.includes('U') && $('proto-u')) $('proto-u').className = "text-cyan-400 font-bold px-0.5";
-                if (actionStr.includes('L') && $('proto-l')) $('proto-l').className = "text-cyan-400 font-bold px-0.5";
-                if (actionStr.includes('S') && $('proto-s')) $('proto-s').className = "text-cyan-400 font-bold px-0.5";
-            } 
-            else if (type === 'REPS') {
-                if($('sub-reps-tension')) {
-                    $('sub-reps-tension').textContent = "REPS";
-                    $('sub-reps-tension').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer tracking-[0.25em]';
-                }
-                if($('dial-part-reps')) $('dial-part-reps').className = "text-cyan-400 font-bold cursor-pointer";
-                if($('telemetry-geo')) $('telemetry-geo').className = "text-right text-cyan-400 font-bold transition-colors duration-300";
-            }
-        }
-        if (navigator.vibrate) navigator.vibrate(5);
-    }
-
-    function clearKineticWave() {
-        waveInspectionActive = false;
-        
-        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { const r = $(id); if(r) { r.style.stroke = ""; } });
-
-        if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('flex'); $('puls-protocol-list').classList.add('hidden'); }
-        if ($('footer-default-text')) $('footer-default-text').classList.remove('hidden');
-
-        // Restablecer estilos base del HUD
-        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-left tracking-[0.25em]';
-        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-right tracking-[0.25em]';
-        
-        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/40 transition-colors duration-300";
-        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/40 transition-colors duration-300";
-        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/40 transition-colors duration-300";
-
-        if($('dial-part-sets')) $('dial-part-sets').className = "text-white transition-colors duration-300 cursor-pointer";
-        if($('dial-part-action')) $('dial-part-action').className = "text-white font-black transition-colors duration-300 cursor-pointer text-center hover:text-cyan-400";
-        if($('dial-part-reps')) $('dial-part-reps').className = "text-white transition-colors duration-300 cursor-pointer";
-
-        updateZ();
-    }
-
     function updateZ() {
         let biokineticCoordinate = "";
         
@@ -883,6 +785,105 @@
             wOuter.style.transform = `rotate(${-baseRotation}deg)`;
         }
     }
+
+    window.selectedNodeFromMesh = null;
+    window.currentTelemetryValue = "--"; 
+    window.currentVariant = "FOCUS";
+    let waveInspectionActive = false;     
+    let biokineticInterval = null;
+    let isReading = false;
+
+    function inspectKineticWave(type, targetRing) {
+        waveInspectionActive = true;
+
+        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { if($(id)) $(id).style.stroke = "rgba(255,255,255,0.12)"; });
+        ['proto-p', 'proto-u', 'proto-l', 'proto-s'].forEach(id => { if($(id)) $(id).className = "transition-colors duration-300 px-0.5 text-white/10"; });
+
+        if(targetRing === 'INNER' && $('wave-inner')) {
+            $('wave-inner').style.stroke = "#00d2ff";
+        } else if (targetRing === 'MID' && $('wave-mid')) {
+            $('wave-mid').style.stroke = "#00d2ff";
+        } else if (targetRing === 'OUTER' && $('wave-outer')) {
+            $('wave-outer').style.stroke = "#00d2ff";
+        }
+
+        if ($('footer-default-text')) $('footer-default-text').classList.add('hidden');
+        if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('hidden'); $('puls-protocol-list').classList.add('flex'); }
+
+        // Opacidad atenuada por defecto para la Gota Alfanumérica
+        if($('dial-part-sets')) $('dial-part-sets').className = "text-white/15 transition-colors duration-300 cursor-pointer";
+        if($('dial-part-action')) $('dial-part-action').className = "text-white/15 transition-colors duration-300 cursor-pointer px-1";
+        if($('dial-part-reps')) $('dial-part-reps').className = "text-white/15 transition-colors duration-300 cursor-pointer";
+
+        // Opacidad atenuada para los costados del HUD
+        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
+        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
+
+        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/10 transition-colors duration-300";
+        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/10 transition-colors duration-300";
+        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/10 transition-colors duration-300";
+
+        const rawTelemetry = window.currentTelemetryValue || "3UST7";
+        const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
+
+        if (match) {
+            const [_, setsStr, actionStr, repsStr] = match;
+
+            if (type === 'SETS') {
+                if($('sub-sets-solar')) {
+                    $('sub-sets-solar').textContent = "SETS";
+                    $('sub-sets-solar').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer tracking-[0.25em]';
+                }
+                if($('dial-part-sets')) $('dial-part-sets').className = "text-cyan-400 font-bold cursor-pointer";
+                if($('telemetry-solar-alt')) $('telemetry-solar-alt').className = "text-left text-cyan-400 font-bold transition-colors duration-300";
+            } 
+            else if (type === 'ACTION' || type === 'ONLY_ACTION') {
+                if($('dial-part-action')) {
+                    $('dial-part-action').textContent = "ACTIONS";
+                    $('dial-part-action').className = "text-cyan-400 font-bold cursor-pointer px-1 text-[10px] tracking-[0.1em]";
+                }
+                if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-cyan-400 font-bold transition-colors duration-300";
+                
+                if (actionStr.includes('P') && $('proto-p')) $('proto-p').className = "text-cyan-400 font-bold px-0.5";
+                if (actionStr.includes('U') && $('proto-u')) $('proto-u').className = "text-cyan-400 font-bold px-0.5";
+                if (actionStr.includes('L') && $('proto-l')) $('proto-l').className = "text-cyan-400 font-bold px-0.5";
+                if (actionStr.includes('S') && $('proto-s')) $('proto-s').className = "text-cyan-400 font-bold px-0.5";
+            } 
+            else if (type === 'REPS') {
+                if($('sub-reps-tension')) {
+                    $('sub-reps-tension').textContent = "REPS";
+                    $('sub-reps-tension').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer tracking-[0.25em]';
+                }
+                if($('dial-part-reps')) $('dial-part-reps').className = "text-cyan-400 font-bold cursor-pointer";
+                if($('telemetry-geo')) $('telemetry-geo').className = "text-right text-cyan-400 font-bold transition-colors duration-300";
+            }
+        }
+        if (navigator.vibrate) navigator.vibrate(5);
+    }
+
+    function clearKineticWave() {
+        waveInspectionActive = false;
+        
+        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { const r = $(id); if(r) { r.style.stroke = ""; } });
+
+        if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('flex'); $('puls-protocol-list').classList.add('hidden'); }
+        if ($('footer-default-text')) $('footer-default-text').classList.remove('hidden');
+
+        // Restablecer estilos base del HUD
+        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-left tracking-[0.25em]';
+        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-right tracking-[0.25em]';
+        
+        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/40 transition-colors duration-300";
+        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/40 transition-colors duration-300";
+        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/40 transition-colors duration-300";
+
+        if($('dial-part-sets')) $('dial-part-sets').className = "text-white transition-colors duration-300 cursor-pointer";
+        if($('dial-part-action')) $('dial-part-action').className = "text-white font-black transition-colors duration-300 cursor-pointer text-center hover:text-cyan-400";
+        if($('dial-part-reps')) $('dial-part-reps').className = "text-white transition-colors duration-300 cursor-pointer";
+
+        updateZ();
+    }
+
 
     function harmonizeMeshNodes() {
         const nodes = document.querySelectorAll('#mesh-container svg [id^="node-"]');
