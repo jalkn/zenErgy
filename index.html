@@ -89,11 +89,10 @@
 <body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-jako-black text-white">
 
     <div id="page-bg-overlay"></div>
-    <div class="fixed inset-0 bg-gradient-to-b from-black/80 via-black/20 to-transparent pointer-events-none z-0"></div>
+    <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
 
     <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="closeAllDrawers()"></div>
 
-    <!-- MAIN NAV HUD -->
     <nav class="fixed top-0 w-full z-50 bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] select-none">
             
@@ -122,7 +121,6 @@
         </div>
     </nav>
 
-    <!-- MAIN PORTFOLIO LAYER -->
     <main class="w-full h-screen pt-[68px] pb-[69px] sm:pb-[81px] flex flex-col justify-center items-center overflow-hidden relative z-10">
         <section id="biokinetic-portfolio" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
             <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
@@ -130,7 +128,6 @@
         </section>
     </main>
 
-    <!-- DYNAMIC MAIN FOOTER -->
     <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md transition-opacity duration-500 select-none">
         <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
             
@@ -153,7 +150,7 @@
                 <button onclick="scrollToSection('biokinetic-portfolio')" class="focus:outline-none transition-colors duration-300 hover:text-white/80 tracking-[0.25em] font-bold text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer">
                     <span id="z-dial-footer">8UST11</span>
                 </button>
-                <button onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
+                <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
                     <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
                 </button>
             </div>
@@ -161,21 +158,24 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE PULSOR / NODES DRAWER (RIGHT) -->
-    <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none glass backdrop-blur-xl" ontouchstart="checkResetTouch(event)">
+    
+ <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none glass backdrop-blur-xl" ontouchstart="checkResetTouch(event)">
         
+        <!-- Header Estructural: Mantiene los extremos de control con el título centralizado -->
         <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 border-b border-white/[0.03] flex flex-col items-center">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full select-none">
                 
+                <!-- Extremo Izquierdo: Tu botón original de control -->
                 <div class="justify-self-start flex items-center">
                     <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
                     </button>
                 </div>
                 
+                <!-- Centro: Identificador de Sintaxis Centralizado -->
                 <div class="justify-self-center text-center min-h-[14px] flex items-center justify-center">
                     <span id="footer-default-text" class="text-white/50 font-mono text-[9px] tracking-[0.25em] font-bold uppercase select-none block transition-colors duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        BIOKINETIC PULS DROP SYNTAX
+                        BIOCINETIC PULS DROP SYNTAX
                     </span>
                     <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] tracking-[0.15em] text-cyan-400 font-bold uppercase">
                         <span id="proto-p" class="px-0.5">Pace</span> • 
@@ -185,6 +185,7 @@
                     </div>
                 </div>
 
+                <!-- Extremo Derecho: Tu botón original de acceso al Vault Archive -->
                 <div class="justify-self-end flex items-center">
                     <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
                         <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
@@ -193,6 +194,7 @@
             </div>
         </header>
 
+        <!-- Contenedor del Pulsor Central Interactivo -->
         <div class="w-full h-full overflow-y-auto flex flex-col justify-center items-center gap-4 px-6 pb-6 scrollbar-none min-h-0">
             <div class="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center overflow-hidden group/pulsor shrink-0">
                 <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.01)]">
@@ -222,12 +224,14 @@
             </div>
         </div>
 
+        <!-- Footer Deconstruido: Recibe los datos interactivos y de telemetría del header original -->
         <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
             <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
                 
+                <!-- Izquierda: Botón original Axis + Telemetría de Frecuencia (Mudada con borde divisorio) -->
                 <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
                     <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Toggle Axis Left Drawer">
-                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Surge Axis">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Surge Axis">
                     </button>
                     <span id="sub-sets-solar" 
                           onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
@@ -237,6 +241,7 @@
                     </span>
                 </div>    
                 
+                <!-- Centro: Dial Mecánico e Interactivo -->
                 <div class="justify-self-center text-center font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     <div id="z-dial-wrapper" class="w-full text-xs sm:text-sm text-center flex items-center justify-center tracking-widest font-mono transition-all duration-300 text-white">
                         <span id="dial-part-sets" 
@@ -247,7 +252,7 @@
                         <span id="dial-part-action" 
                             onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
                             ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                            class="font-black transition-colors duration-300 cursor-pointer text-center hover:text-cyan-400 px-1">VOID</span>
+                            class="font-black transition-colors duration-300 cursor-pointer text-center hover:text-cyan-400">VOID</span>
                         
                         <span id="dial-part-reps" 
                             onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
@@ -256,6 +261,7 @@
                     </div>
                 </div>
                 
+                <!-- Derecha: Telemetría de Tensión + Botón original de cierre -->
                 <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
                     <span id="sub-reps-tension" 
                           onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
@@ -272,14 +278,15 @@
         </footer>
     </div>
 
-    <!-- LEFT CORE DRAWER (AXIS HUB) -->
+    <!-- LEFT CORE DRAWER -->
     <div id="left-core-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform -translate-x-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
 
-        <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
+<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
                 
+                <!-- Lado Izquiercedo: Sincronizado con el disparador y telemetría del main -->
                 <div class="justify-self-start flex items-center space-x-3">
-                    <button id="z-logo-trigger-drawer" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Manifesto Layer">
+                    <button id="z-logo-trigger-drawer" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Axis Drawer">
                         <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-drawer" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
@@ -287,16 +294,18 @@
                     </span>
                 </div>
                 
+                <!-- Centro: Identidad fija preservada con los estilos HUD del main -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
                     <span id="drawer-axis-node">AXIS // LAB</span>
                 </div>
                 
+                <!-- Lado Derecho: Telemetría de nodo activo y disparador de retorno -->
                 <div class="justify-self-end flex items-center space-x-3">
                     <span id="telemetry-active-node-drawer" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                         ACT.0000
                     </span>
-                    <button id="z-dial-trigger-drawer" onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Axis Drawer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Trigger">
+                    <button id="z-dial-trigger-drawer" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
                     </button>
                 </div>
                 
@@ -321,7 +330,7 @@
                             <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
                             <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2">...</span>
                         </div>
-                        <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="openNodesDrawer();">
+                        <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="openNodesDrawer(); toggleLeftDrawer();">
                             <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 shadow-[0_0_8px_#fff]"></div>
                             <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">NODE</span>
                         </div>
@@ -329,26 +338,32 @@
                 </div>
             </section>
         </div>
-
+<!-- Footer: Left-Drawer calibrado a 5 elementos con estilos HUD unificados -->
         <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
             <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
                 
+                <!-- Componentes 1 & 2 (Izquierda): Tu botón de cierre original + Telemetría de balance -->
                 <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
-                    <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Left Core">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                    <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
                     </button>
                     <span id="telemetry-left-footer-alt" class="tracking-[0.15em] text-white/50 border-l border-white/10 pl-2 sm:pl-3 flex items-center h-5 leading-none">
                         H.00°00'
                     </span>
                 </div>    
                 
+                <!-- Componente 3 (Centro): Tu texto original con el peso, tracking y color del Header -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
                     <span class="whitespace-nowrap"><span class="font-bold">jak&copy;</span> 2008</span>
                 </div>
                 
+                <!-- Componentes 4 & 5 (Derecha): Telemetría interactiva + Tu botón de cierre derecho original -->
                 <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
                     <button onclick="toggleLeftDrawer()" class="focus:outline-none transition-colors duration-300 hover:text-white/80 tracking-[0.25em] font-bold text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer text-white/60">
                         <span id="z-dial-left-footer">AXI.0000</span>
+                    </button>
+                    <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Left Drawer">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
                     </button>
                 </div>
                 
@@ -356,29 +371,32 @@
         </footer>
     </div>
 
-    <!-- MANIFESTO DRAWER (TOP OVERLAY) -->
+    <!-- MANIFESTO DRAWER -->
     <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
-        <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
+<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
                 
+                <!-- Lado Izquierdo: Telemetría unificada y botón Home con comportamiento original -->
                 <div class="justify-self-start flex items-center space-x-3">
-                    <button id="z-logo-trigger-manifesto" onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Home Framework Node">
-                        <img src="img/logo.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
+                    <button id="z-logo-trigger-manifesto" onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Home">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-manifesto" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
                         SPH.0000
                     </span>
                 </div>
                 
+                <!-- Centro: Identidad del Manifesto con los estilos HUD estandarizados -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
                     <span id="drawer-manifesto-node">MANIFESTO</span>
                 </div>
                 
+                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Manifesto -->
                 <div class="justify-self-end flex items-center space-x-3">
                     <span id="telemetry-active-node-manifesto" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                         ACT.0000
                     </span>
-                    <button id="z-dial-trigger-manifesto" onclick="closeManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Manifesto Framework">
+                    <button id="z-dial-trigger-manifesto" onclick="closeManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Manifesto">
                         <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Manifesto">
                     </button>
                 </div>
@@ -420,22 +438,26 @@
             </div>
         </div>
 
+<!-- Footer: Manifesto Drawer calibrado a 5 elementos con estilos HUD unificados -->
         <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
             <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
                 
-                <div class="justify-self-start flex items-center text-left">
-                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Left Drawer">
-                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Axis Left">
+                <!-- Componentes 1 & 2 (Izquierda): Tu botón Axis original + Telemetría de balance -->
+                <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
+                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Axis">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Axis">
                     </button>
                 </div>    
                 
+                <!-- Componente 3 (Centro): Tu texto original con el peso, tracking y color del Header -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
                     <span class="whitespace-nowrap"><span class="font-bold">jak&copy;</span> 2008-2026 - RESEARCH</span>
                 </div>
                 
-                <div class="justify-self-end flex items-center">
-                    <button onclick="closeManifesto(); closeAllDrawers();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Manifesto Layer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Return Context">
+                <!-- Componentes 4 & 5 (Derecha): Telemetría interactiva con tu función de cierre + Tu botón Framework original -->
+                <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
+                    <button onclick="closeManifesto(); closeAllDrawers();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Main Framework">
+                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Main Framework">
                     </button>
                 </div>
                 
@@ -443,13 +465,14 @@
         </footer>
     </div>
 
-    <!-- VAULT DRAWER (PRODUCT HUB) -->
+    <!-- VAULT DRAWER -->
     <div id="vault-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none text-white font-mono">
-        <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
+<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
                 
+                <!-- Lado Izquierdo: Sincronizado con el disparador y telemetría del main -->
                 <div class="justify-self-start flex items-center space-x-3">
-                    <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Manifesto Layer">
+                    <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
                         <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
@@ -457,15 +480,17 @@
                     </span>
                 </div>
                 
+                <!-- Centro: Identidad del Vault con los estilos HUD estandarizados -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
                     <span id="drawer-vault-node">VAULT</span>
                 </div>
                 
+                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
                 <div class="justify-self-end flex items-center space-x-3">
                     <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                         ACT.0000
                     </span>
-                    <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault Menu">
+                    <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
                         <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
                     </button>
                 </div>
@@ -499,7 +524,7 @@
                                 </text>
                                 <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500 group-hover:fill-white/90">
                                     <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
-                                        jako.tech &bull; 3025333130
+                                        JAKO.WORLD &bull; 3025333130
                                     </textPath>
                                 </text>
                             </svg>
@@ -519,6 +544,7 @@
                 </div>
             </div>
 
+            <!-- Otros elementos de la galería (Cap y Hoodie) se mantienen idénticos -->
             <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
                 <div class="relative w-full max-w-[240px] sm:max-w-[290px] md:max-w-[320px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
                     <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
@@ -568,22 +594,28 @@
         <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
                 
+                <!-- Componentes 1 & 2 (Izquierda): Gatillo de Cierre + Telemetría con borde -->
                 <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
-                    <button onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault Menu Layer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                    <button onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault Menu">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
                     </button>
                     <span id="telemetry-vault-footer-alt" class="tracking-[0.15em] text-white/50 border-l border-white/10 pl-2 sm:pl-3 flex items-center h-5 leading-none">
                         H.00°00'
                     </span>
                 </div>    
                 
+                <!-- Componente 3 (Centro): Firma Unificada del Nodo -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
                     <span class="whitespace-nowrap">JAK&copy; 2008</span>
                 </div>
                 
+                <!-- Componentes 4 & 5 (Derecha): Telemetría Dinámica de Enlace + Gatillo Secuencial -->
                 <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
                     <button onclick="toggleVaultDrawer(); setTimeout(() => { openNodesDrawer(); }, 200);" class="focus:outline-none transition-colors duration-300 hover:text-white/80 tracking-[0.25em] font-bold text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer text-white/60">
                         <span id="z-dial-vault-footer">NOD.0000</span>
+                    </button>
+                    <button onclick="toggleVaultDrawer(); setTimeout(() => { openNodesDrawer(); }, 200);" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Link to Nodes Drawer">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Link Nodes">
                     </button>
                 </div>
                 
@@ -619,10 +651,12 @@
         if ($('footer-default-text')) $('footer-default-text').classList.add('hidden');
         if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('hidden'); $('puls-protocol-list').classList.add('flex'); }
 
+        // Opacidad atenuada por defecto para la Gota Alfanumérica
         if($('dial-part-sets')) $('dial-part-sets').className = "text-white/15 transition-colors duration-300 cursor-pointer";
         if($('dial-part-action')) $('dial-part-action').className = "text-white/15 transition-colors duration-300 cursor-pointer px-1";
         if($('dial-part-reps')) $('dial-part-reps').className = "text-white/15 transition-colors duration-300 cursor-pointer";
 
+        // Opacidad atenuada para los costados del HUD
         if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
         if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
 
@@ -676,6 +710,7 @@
         if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('flex'); $('puls-protocol-list').classList.add('hidden'); }
         if ($('footer-default-text')) $('footer-default-text').classList.remove('hidden');
 
+        // Restablecer estilos base del HUD
         if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-left tracking-[0.25em]';
         if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-right tracking-[0.25em]';
         
@@ -780,6 +815,7 @@
             }
         }
 
+        // Si la inspección no está activa, refrescar los valores numéricos del HUD en tiempo real
         if (!waveInspectionActive) {
             if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsStage);
             if ($('dial-part-action')) $('dial-part-action').textContent = currentAction;
@@ -893,19 +929,7 @@
 
     function toggleVaultDrawer() {
         const vault = document.getElementById('vault-drawer');
-        const overlay = $('drawer-overlay');
-        if (vault) {
-            if (vault.classList.contains('translate-y-full')) {
-                closeAllDrawers();
-                vault.classList.remove('translate-y-full');
-                overlay.classList.remove('hidden');
-                document.body.classList.add('drawer-active', 'overflow-hidden');
-                if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => overlay.classList.add('opacity-100'), 10);
-            } else {
-                closeAllDrawers();
-            }
-        }
+        if (vault) { vault.classList.toggle('translate-y-full'); }
     }
 
     function toggleLeftDrawer() {
@@ -926,7 +950,6 @@
     function closeAllDrawers() {
         if ($('nodes-drawer')) $('nodes-drawer').classList.add('translate-x-full');
         if ($('left-core-drawer')) $('left-core-drawer').classList.add('-translate-x-full');
-        if ($('vault-drawer')) $('vault-drawer').classList.add('translate-y-full');
         if ($('drawer-overlay')) {
             $('drawer-overlay').classList.remove('opacity-100');
             $('drawer-overlay').classList.add('hidden');
@@ -1020,9 +1043,9 @@
             const el = $(`opt-${opt}`);
             if (!el) return;
             if (opt === variante.toLowerCase()) {
-                el.className = "cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]";
+                el.className = "cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]";
             } else {
-                el.className = "cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80";
+                el.className = "cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80";
             }
         });
         if (navigator.vibrate) navigator.vibrate(8);
