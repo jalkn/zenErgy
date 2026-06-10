@@ -106,9 +106,7 @@
             </div>
             
             <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                <span id="footer-default-text" class="text-white/50 font-mono text-[9px] tracking-[0.25em] font-bold uppercase select-none block transition-colors duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        JAKO.TECH-LAB
-                    </span>
+                <span id="telemetry-sphere-dens">Q.8640</span>
             </div>
             
             <div class="justify-self-end flex items-center space-x-3">
@@ -610,6 +608,10 @@
         const sphereVaultElement = $('telemetry-sphere-idx-vault');
         if (sphereVaultElement && sphereVaultElement.textContent !== currentSphereIdx) {
             sphereVaultElement.textContent = currentSphereIdx;
+        }
+
+        if ($('telemetry-sphere-dens')) {
+            $('telemetry-sphere-dens').textContent = "Q.8640"; 
         }
 
         let setsStage = 1;  
