@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAKO.TECH-LAB</title>
+    <link class="icon" type="image/png" href="img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SUGARRUSH.WORLD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = { 
             theme: { 
                 extend: { 
-                    colors: { 'jako-black': '#0a0a0a' },
+                    screens: { 'xs': '400px' },
+                    colors: { 'jako-black': '#0a0705' },
                     fontFamily: { 
                         'sans': ['Orbitron', 'sans-serif'],
                         'mono': ['Orbitron', 'monospace'],
@@ -26,1104 +27,801 @@
             font-family: 'Orbitron', sans-serif; 
             scroll-behavior: smooth; 
             letter-spacing: 0.05em; 
-            background-color: #0a0a0a;
+            background-color: #0a0705;
         } 
-
-        #page-bg-overlay {
+        #page-bg-overlay, #sugar-bg-overlay {
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(15, 15, 15, 0.4) 0%, rgba(5, 5, 5, 0.95) 100%);
             z-index: -1;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .drawer-active #page-bg-overlay {
-            opacity: 0.3;
-            filter: brightness(15%);
-        }
+        #page-bg-overlay { background: radial-gradient(circle at 50% 50%, #4273c7 0%, #0f0212 100%); }
+        #sugar-bg-overlay { background: radial-gradient(circle at 50% 50%, #035d3f 0%, #272625 100%); }
         
-        .glass { 
-            background: rgba(8, 8, 8, 0.94); 
-            border-left: 1px solid rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(40px); 
-            -webkit-backdrop-filter: blur(40px);
-            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.95);
-        }
-
+        /* Transiciones fluidas para revelado de empaque */
         .img-glow-transition {
-            transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: filter, transform;
+            transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: filter, transform, opacity;
         }
-
-        .drawer-active .img-glow-transition {
-            opacity: 1 !important;
-            transform: scale(1.05);
-            filter: brightness(1.4) drop-shadow(0 0 8px rgba(8, 0, 255, 0.8));
-        }
-
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .axis-x-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            transform: rotate(45deg);
-            pointer-events: none;
-        }
-        .axis-x-overlay::before, .axis-x-overlay::after {
-            content: '';
-            position: absolute;
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .axis-x-overlay::before { top: 0; left: 50%; width: 1px; height: 100%; }
-        .axis-x-overlay::after { top: 50%; left: 0; width: 100%; height: 1px; }
-
-        #interactive-pulsor-svg circle {
-            transform-origin: 120px 120px;
-            transition: stroke-dasharray 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s ease;
-        }
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-jako-black text-white">
 
     <div id="page-bg-overlay"></div>
+    <div id="sugar-bg-overlay" class="opacity-0"></div>
     <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
 
-    <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="closeAllDrawers()"></div>
+    <main id="main-vault" class="w-full h-screen flex flex-col justify-between select-none text-white font-mono z-10 relative transition-all duration-500 ease-out overflow-hidden">
 
-    <nav class="fixed top-0 w-full z-50 bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md">
-        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] select-none">
-            
-            <div class="justify-self-start flex items-center space-x-3">
-                <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
-                    <img src="img/logo.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
-                </button>
-                <span id="telemetry-sphere-idx" class="tracking-[0.1em] text-white/70">
-                    <span class="text-white/40">.⨀</span> 0000
-                </span>
-            </div>
-            
-            <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                <span id="telemetry-sphere-dens">Q.8640</span>
-            </div>
-            
-            <div class="justify-self-end flex items-center space-x-3">
-                <span id="telemetry-active-node" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    ◯.0000
-                </span>
-                <button id="z-dial-trigger" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
-                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
-                </button>
-            </div>
-            
-        </div>
-    </nav>
-
-    <main class="w-full h-screen pt-[68px] pb-[69px] sm:pb-[81px] flex flex-col justify-center items-center overflow-hidden relative z-10">
-        <section id="biokinetic-portfolio" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
-            <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
-            </div>
-        </section>
-    </main>
-
-    <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md transition-opacity duration-500 select-none">
-        <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
-            
-            <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
-                <button onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Manifesto">
-                    <img src="img/under.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Manifesto">
-                </button>
-                <span id="telemetry-footer-alt" class="tracking-[0.15em] text-white/50 border-l border-white/10 pl-2 sm:pl-3 flex items-center h-5 leading-none">
-                    H.00°00'
-                </span>
-            </div>
-            
-            <div class="justify-self-center text-center tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                <span id="telemetry-sphere-actions" class="transition-colors duration-300 text-white/60 font-bold select-none">
-                    Φ 000.0°
-                </span>
-            </div>
-            
-            <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
-                <button onclick="scrollToSection('biokinetic-portfolio')" class="focus:outline-none transition-colors duration-300 hover:text-white/80 tracking-[0.25em] font-bold text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer">
-                    <span id="z-dial-footer">8UST11</span>
-                </button>
-                <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
-                    <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
-                </button>
-            </div>
-
-        </div>
-    </footer>
-
-    
- <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none glass backdrop-blur-xl" ontouchstart="checkResetTouch(event)">
-        
-        <!-- Header Estructural: Mantiene los extremos de control con el título centralizado -->
-        <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 border-b border-white/[0.03] flex flex-col items-center">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full select-none">
-                
-                <!-- Extremo Izquierdo: Tu botón original de control -->
+        <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start flex items-center">
-                    <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Bio Drawer">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Bio">
                     </button>
                 </div>
-                
-                <!-- Centro: Identificador de Sintaxis Centralizado -->
-                <div class="justify-self-center text-center min-h-[14px] flex items-center justify-center">
-                    <span id="footer-default-text" class="text-white/50 font-mono text-[9px] tracking-[0.25em] font-bold uppercase select-none block transition-colors duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        BIOCINETIC PULS DROP SYNTAX
-                    </span>
-                    <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] tracking-[0.15em] text-cyan-400 font-bold uppercase">
-                        <span id="proto-p" class="px-0.5">Pace</span> • 
-                        <span id="proto-u" class="px-0.5">Under</span> • 
-                        <span id="proto-l" class="px-0.5">Lift</span> • 
-                        <span id="proto-s" class="px-0.5">Surge</span>
-                    </div>
+                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white">
+                    <span id="drawer-sugar-node">POSTRE1</span>
                 </div>
-
-                <!-- Extremo Derecho: Tu botón original de acceso al Vault Archive -->
                 <div class="justify-self-end flex items-center">
-                    <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
-                        <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
+                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Bio Drawer">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Bio">
                     </button>
                 </div>
             </div>
         </header>
 
-        <!-- Contenedor del Pulsor Central Interactivo -->
-        <div class="w-full h-full overflow-y-auto flex flex-col justify-center items-center gap-4 px-6 pb-6 scrollbar-none min-h-0">
-            <div class="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center overflow-hidden group/pulsor shrink-0">
-                <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.01)]">
-                    <circle id="wave-outer" cx="120" cy="120" r="95" 
-                            onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
-                            stroke-linecap="round" transform="rotate(-90 120 120)" />
+        <div class="w-full flex-1 overflow-y-auto scrollbar-none flex flex-col items-center py-4 px-4 text-center z-20 justify-between">
+            
+            <div id="sugar-pack-container" class="relative w-full max-w-[180px] xs:max-w-[220px] sm:max-w-[280px] md:max-w-[320px] aspect-[13/15] transition-all duration-700 ease-out select-none drop-shadow-[0_20px_30px_rgba(0,0,0,0.9)] mt-auto z-10">
+                <div class="w-full h-full relative overflow-hidden bg-transparent">
+                    <img id="sugar-pack-img-back" src="img/sugar_choco_back.png" alt="SugarRush Pack Back" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.05] sm:scale-[1.15] opacity-0 pointer-events-none z-0" />
+                    <img id="sugar-pack-img" src="img/sugar_choco.png" alt="SugarRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.1] sm:scale-[1.2] pointer-events-none z-10" />
                     
-                    <circle id="wave-mid" cx="120" cy="120" r="67" 
-                            onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
-                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
-                            stroke-linecap="round" transform="rotate(-90 120 120)" />
-                    
-                    <circle id="wave-inner" cx="120" cy="120" r="39" 
-                            onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
-                            stroke-linecap="round" transform="rotate(-90 120 120)" />
-                </svg>
-            </div>
-        </div>
-
-        <!-- Footer Deconstruido: Recibe los datos interactivos y de telemetría del header original -->
-        <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
-                
-                <!-- Izquierda: Botón original Axis + Telemetría de Frecuencia (Mudada con borde divisorio) -->
-                <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
-                    <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Toggle Axis Left Drawer">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Surge Axis">
-                    </button>
-                    <span id="sub-sets-solar" 
-                          onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                          ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap tracking-[0.15em] text-white/50 border-l border-white/10 pl-2 sm:pl-3 flex items-center h-5 leading-none">
-                        0.00 Hz
-                    </span>
-                </div>    
-                
-                <!-- Centro: Dial Mecánico e Interactivo -->
-                <div class="justify-self-center text-center font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <div id="z-dial-wrapper" class="w-full text-xs sm:text-sm text-center flex items-center justify-center tracking-widest font-mono transition-all duration-300 text-white">
-                        <span id="dial-part-sets" 
-                            onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                            class="transition-colors duration-300 cursor-pointer text-right hover:text-cyan-400">0</span>
-                        
-                        <span id="dial-part-action" 
-                            onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                            class="font-black transition-colors duration-300 cursor-pointer text-center hover:text-cyan-400">VOID</span>
-                        
-                        <span id="dial-part-reps" 
-                            onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                            class="transition-colors duration-300 cursor-pointer text-left hover:text-cyan-400">0</span>
-                    </div>
-                </div>
-                
-                <!-- Derecha: Telemetría de Tensión + Botón original de cierre -->
-                <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
-                    <span id="sub-reps-tension" 
-                          onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                          ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                          class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap text-right tracking-[0.25em] text-white/60">
-                        00.0 N
-                    </span>
-                    <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Drawer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-                    </button>
-                </div>
-                
-            </div>
-        </footer>
-    </div>
-
-    <!-- LEFT CORE DRAWER -->
-    <div id="left-core-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform -translate-x-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
-
-<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                
-                <!-- Lado Izquiercedo: Sincronizado con el disparador y telemetría del main -->
-                <div class="justify-self-start flex items-center space-x-3">
-                    <button id="z-logo-trigger-drawer" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Axis Drawer">
-                        <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
-                    </button>
-                    <span id="telemetry-sphere-idx-drawer" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        0000.⨀
-                    </span>
-                </div>
-                
-                <!-- Centro: Identidad fija preservada con los estilos HUD del main -->
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span id="drawer-axis-node">AXIS // LAB</span>
-                </div>
-                
-                <!-- Lado Derecho: Telemetría de nodo activo y disparador de retorno -->
-                <div class="justify-self-end flex items-center space-x-3">
-                    <span id="telemetry-active-node-drawer" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        ◯.0000
-                    </span>
-                    <button id="z-dial-trigger-drawer" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
-                    </button>
-                </div>
-                
-            </div>
-        </header>        
-
-        <div class="overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-12">
-            <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
-                <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
-                    <div class="absolute inset-0 pointer-events-none z-0">
-                        <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.7]">
-                            <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/30 transition-all duration-700 group-hover:stroke-white/60" />
-                            <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/15" stroke-dasharray="2 2" />
+                    <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-20 pointer-events-none">
+                        <svg id="sugar-vector-target" viewBox="0 0 400 400" class="w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] fill-none stroke-pink-500/40 stroke-[1.5] transition-all duration-500 pointer-events-none">
+                            <defs>
+                                <path id="sugarPath-top" d="M 105,200 A 95,95 0 0,1 295,200" />
+                                <path id="sugarPath-bottom" d="M 105,200 A 95,95 0 0,0 295,200" />
+                            </defs>
+                            <text class="fill-white font-black text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase transition-all duration-500">
+                                <textPath id="sugar-variant-title" href="#sugarPath-top" startOffset="50%" text-anchor="middle">
+                                    SUGARRUSH ALFAJOR
+                                </textPath>
+                            </text>
+                            <g class="opacity-30 stroke-[1.2] origin-center transform scale-75 stroke-pink-500">
+                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
+                                <path d="M 110,120 Q 200,150 290,120" />
+                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                            </g>
+                            <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500">
+                                <textPath href="#sugarPath-bottom" startOffset="50%" text-anchor="middle">
+                                    SUGARRUSH.WORLD &bull; 3243770474
+                                </textPath>
+                            </text>
                         </svg>
                     </div>
-                    <div class="absolute inset-0 z-10">
-                        <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-portfolio'); toggleLeftDrawer();">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">RESONANCE</span>
-                            <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 shadow-[0_0_8px_#fff]"></div>
-                        </div>
-                        <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="toggleLeftDrawer(); toggleDrawer();">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
-                            <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2">...</span>
-                        </div>
-                        <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="openNodesDrawer(); toggleLeftDrawer();">
-                            <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 shadow-[0_0_8px_#fff]"></div>
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">NODE</span>
-                        </div>
+                </div>
+            </div>
+            
+            <div class="w-full flex flex-col items-center gap-4 mt-6 mb-auto px-4 shrink-0">
+                
+                <!-- BOTÓN DE INTERACCIÓN AGREGADO AQUÍ (SugarRush) -->
+                <button id="btn-reveal-sugar" class="flex flex-col items-center gap-1 group focus:outline-none active:scale-95 transition-transform duration-200" aria-label="Revelar reverso">
+                    <div class="w-8 h-8 rounded-full border border-pink-500/30 flex items-center justify-center bg-pink-950/20 group-hover:border-pink-500 group-hover:bg-pink-500/10 transition-all duration-300 shadow-[0_0_10px_rgba(236,72,153,0.05)]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white/70 group-hover:text-pink-400 transition-colors">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                    </div>
+                </button>
+
+                <p id="sugar-description" class="font-mono uppercase text-[9px] text-white/40 max-w-xl tracking-widest leading-relaxed min-h-[28px] transition-opacity duration-300">
+                    Chocolate amargo al 70% infusionado con destellos dorados comestibles.
+                </p>
+
+                <div id="sugar-variants-container" class="flex flex-nowrap items-center justify-center gap-2 text-[9px] tracking-widest font-mono select-none w-full overflow-x-visible">
+                </div>
+
+                <div class="flex items-center justify-center gap-4 font-mono text-[9px] tracking-widest text-white/40 uppercase">
+                    <span id="sugar-spec">250 GRS // DELI-SIZE</span>
+                    <span class="text-white/20">|</span>
+                    <span id="sugar-price">$35.000</span>
+                </div>
+
+                <div class="w-full max-w-md pt-2">
+                    <button onclick="adquirirNodoSugar()" class="w-full sm:w-auto px-12 py-3 bg-[#1a0c1e]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-pink-500/30 hover:border-pink-500 hover:bg-[#1a0022] transition-all duration-300 shadow-[0_0_20px_rgba(236,72,153,0.05)] hover:shadow-[0_0_25px_rgba(236,72,153,0.25)]">
+                        GET INFO
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
+                <div class="justify-self-start flex items-center">
+                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Next">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                    </button>
+                </div>    
+                <div id="sugar-items-menu" class="justify-self-center flex items-center justify-center space-x-4 sm:space-x-6 text-center">
+                </div>
+                <div class="justify-self-end flex items-center">
+                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Link to BioRush">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] rotate-180" alt="Link Nodes">
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div id="sugar-drawer" class="fixed inset-0 w-full h-screen flex flex-col justify-between select-none text-white font-mono z-40 transition-all duration-500 ease-in-out translate-x-full opacity-0 pointer-events-none overflow-hidden">
+        
+        <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
+                <div class="justify-self-start flex items-center">
+                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
+                    </button>
+                </div>
+                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white">
+                    <span id="drawer-vault-node">BIORUSH</span>
+                </div>
+                <div class="justify-self-end flex items-center">
+                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Bio Drawer">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Bio">
+                    </button>
+                </div>
+            </div>
+        </header>
+
+<div class="w-full flex-1 overflow-y-auto scrollbar-none flex flex-col items-center justify-center py-4 px-4 text-center z-20">
+            
+            <div id="biorush-pack-container" class="relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[400px] md:max-w-[460px] aspect-[13/15] transition-all duration-700 ease-out select-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] z-10">
+                <div class="w-full h-full relative overflow-hidden bg-transparent">
+                    <img id="biorush-pack-img-back" src="img/back.png" alt="BioRush Pack Back" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.05] sm:scale-[1.15] opacity-0 pointer-events-none z-0" />
+                    <img id="biorush-pack-img" src="img/caps.png" alt="BioRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.9] sm:scale-[1.8] pointer-events-none z-10" />
+                    
+                    <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-20 pointer-events-none">
+                        <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 pointer-events-none">
+                            <defs>
+                                <path id="textPath-top" d="M 105,200 A 95,95 0 0,1 295,200" />
+                                <path id="textPath-bottom" d="M 105,200 A 95,95 0 0,0 295,200" />
+                            </defs>
+                            <text class="fill-white font-black text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase transition-all duration-500">
+                                <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
+                                    BIORUSH MENTAL FOCUS
+                                </textPath>
+                            </text>
+                            <g class="opacity-30 stroke-[1.2] origin-center transform scale-75">
+                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
+                                <path d="M 110,120 Q 200,150 290,120" />
+                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                            </g>
+                            <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500">
+                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
+                                    BIORUSH.WORLD &bull; 3243770474
+                                </textPath>
+                            </text>
+                        </svg>
                     </div>
                 </div>
-            </section>
-        </div>
-<!-- Footer: Left-Drawer calibrado a 5 elementos con estilos HUD unificados -->
-        <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
-                
-                <!-- Componentes 1 & 2 (Izquierda): Tu botón de cierre original + Telemetría de balance -->
-                <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
-                    <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
-                    </button>
-                    <span id="telemetry-left-footer-alt" class="tracking-[0.15em] text-white/50 border-l border-white/10 pl-2 sm:pl-3 flex items-center h-5 leading-none">
-                        H.00°00'
-                    </span>
-                </div>    
-                
-                <!-- Componente 3 (Centro): Tu texto original con el peso, tracking y color del Header -->
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span class="whitespace-nowrap"><span class="font-bold">JAKO</span> 2008</span>
-                </div>
-                
-                <!-- Componentes 4 & 5 (Derecha): Telemetría interactiva + Tu botón de cierre derecho original -->
-                <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
-                    <button onclick="toggleLeftDrawer()" class="focus:outline-none transition-colors duration-300 hover:text-white/80 tracking-[0.25em] font-bold text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer text-white/60">
-                        <span id="z-dial-left-footer">AXI.0000</span>
-                    </button>
-                    <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Left Drawer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-                    </button>
-                </div>
-                
             </div>
-        </footer>
-    </div>
-
-    <!-- MANIFESTO DRAWER -->
-    <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
-<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                
-                <!-- Lado Izquierdo: Telemetría unificada y botón Home con comportamiento original -->
-                <div class="justify-self-start flex items-center space-x-3">
-                    <button id="z-logo-trigger-manifesto" onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Home">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
-                    </button>
-                    <span id="telemetry-sphere-idx-manifesto" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        0000.⨀
-                    </span>
-                </div>
-                
-                <!-- Centro: Identidad del Manifesto con los estilos HUD estandarizados -->
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span id="drawer-manifesto-node">MANIFESTO</span>
-                </div>
-                
-                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Manifesto -->
-                <div class="justify-self-end flex items-center space-x-3">
-                    <span id="telemetry-active-node-manifesto" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        ◯.0000
-                    </span>
-                    <button id="z-dial-trigger-manifesto" onclick="closeManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Manifesto">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Manifesto">
-                    </button>
-                </div>
-                
-            </div>
-        </header>
-
-        <div class="overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-4 max-w-xl mx-auto w-full pb-12 scrollbar-none min-h-0">
-            <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
-                <div class="axis-x-overlay"></div>
-                <button class="flex flex-col items-center justify-center text-center z-10 font-mono focus:outline-none cursor-pointer group" id="btn-stream-start">
-                    <img src="img/pace.png" class="w-4 h-4 object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300" id="rsvp-status-icon" alt="Play">
-                    <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold mt-1" id="rsvp-status-indicator">READ</div>
-                </button>
-                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-up">++</button>
-                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/40 hover:text-white transition-colors duration-300 p-2 focus:outline-none cursor-pointer" id="btn-speed-down">--</button>
-                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-stop">
-                    <img src="img/stop.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Stop">
-                </button>
-                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 border border-white/5 rounded-full focus:outline-none cursor-pointer hover:border-white/20 transition-colors duration-300" id="btn-stream-pause">
-                    <img src="img/pause.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 transition-opacity duration-300" alt="Pause">
-                </button>
-            </div>
-            <div class="w-full max-w-sm flex items-center justify-center text-center py-2 font-mono select-none shrink-0">
-                <div class="text-2xl font-bold text-white tracking-wide min-h-[32px] flex items-center justify-center" id="rsvp-word-display">
-                    <img src="img/pace.png" class="w-8 h-8 object-contain opacity-70" alt="Pace Icon">
-                </div>
-            </div>
-            <div class="w-full max-w-md mx-auto border-t border-white/10 pt-4 space-y-2 font-mono">
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(1)">
-                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">THE COGNITIVE SYSTEM</span>
-                </div>
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(2)">
-                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">INVISIBLE ARCHITECTURE</span>
-                </div>
-                <div class="group flex items-center justify-center text-center p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 cursor-pointer rounded" onclick="loadManifestoChapter(3)">
-                    <span class="text-[10px] text-white/50 group-hover:text-white tracking-[0.18em] transition-colors duration-300 uppercase">BIOCINETIC SYNTAX</span>
-                </div>
-            </div>
-        </div>
-
-<!-- Footer: Manifesto Drawer calibrado a 5 elementos con estilos HUD unificados -->
-        <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px]">
-                
-                <!-- Componentes 1 & 2 (Izquierda): Tu botón Axis original + Telemetría de balance -->
-                <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
-                    <button onclick="closeManifesto(); toggleLeftDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Axis">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Axis">
-                    </button>
-                </div>    
-                
-                <!-- Componente 3 (Centro): Tu texto original con el peso, tracking y color del Header -->
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span class="whitespace-nowrap"><span class="font-bold">JAKO</span> 2008-2026 - RESEARCH</span>
-                </div>
-                
-                <!-- Componentes 4 & 5 (Derecha): Telemetría interactiva con tu función de cierre + Tu botón Framework original -->
-                <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
-                    <button onclick="closeManifesto(); closeAllDrawers();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Main Framework">
-                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Main Framework">
-                    </button>
-                </div>
-                
-            </div>
-        </footer>
-    </div>
-
-    <!-- VAULT DRAWER -->
-    <div id="vault-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none text-white font-mono">
-<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                
-                <!-- Lado Izquierdo: Sincronizado con el disparador y telemetría del main -->
-                <div class="justify-self-start flex items-center space-x-3">
-                    <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
-                        <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
-                    </button>
-                    <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        0000.⨀
-                    </span>
-                </div>
-                
-                <!-- Centro: Identidad del Vault con los estilos HUD estandarizados -->
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span id="drawer-vault-node">VAULT</span>
-                </div>
-                
-                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
-                <div class="justify-self-end flex items-center space-x-3">
-                    <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        ◯.0000
-                    </span>
-                    <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
-                    </button>
-                </div>
-                
-            </div>
-        </header>
-
-<div class="overflow-x-auto w-full flex flex-row justify-start items-center gap-0 min-h-0 scrollbar-none pb-12 snap-x snap-mandatory">
-    <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
-        
-<div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[420px] aspect-square flex items-center justify-center select-none mt-6 transition-all duration-500 ease-out">
-    
-    <img src="img/dial.png" alt="BioRush Pack" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain pointer-events-none z-0 transform scale-[1.35] transition-transform duration-500" />
-
-    <div id="vault-view-signal" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center z-20 transition-opacity duration-300">
-        <svg viewBox="0 0 240 240" id="interactive-pulsor-svg-vault" class="w-full h-full transform scale-[0.55] origin-center drop-shadow-[0_0_8px_rgba(255,255,255,0.08)]">
-            <circle id="wave-outer-vault" cx="120" cy="120" r="95" 
-                    class="stroke-white/80 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
-                    stroke-linecap="round" transform="rotate(-90 120 120)" />
             
-            <circle id="wave-mid-vault" cx="120" cy="120" r="67" 
-                    class="stroke-white/80 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
-                    stroke-linecap="round" transform="rotate(-90 120 120)" />
-            
-            <circle id="wave-inner-vault" cx="120" cy="120" r="39" 
-                    class="stroke-white/80 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
-                    stroke-linecap="round" transform="rotate(-90 120 120)" />
-        </svg>
-    </div>
-
-    <div id="vault-view-dial" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center z-20 hidden opacity-0 transition-opacity duration-300">
-        <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5]">
-            <g id="dial-display-content">
-                <g class="opacity-35 stroke-[1.5] origin-center transform scale-[0.55] transition-all duration-500">
-                    <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                    <path d="M 110,120 Q 200,150 290,120" />
-                    <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="3 3" />
-                </g>
+            <div class="w-full flex flex-col items-center gap-1.5 -mt-4 sm:-mt-6 px-4 shrink-0">
                 
-                <text class="big-dial-target fill-white font-black text-[34px] tracking-[0.05em] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" x="200" y="212" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
-                    --
-                </text>
-            </g>
-        </svg>
-    </div>
-</div>
+                <button id="btn-reveal-bio" class="flex flex-col items-center gap-1 group focus:outline-none active:scale-95 transition-transform duration-200" aria-label="Revelar reverso">
+                    <div class="w-7 h-7 rounded-full border border-emerald-500/30 flex items-center justify-center bg-emerald-950/20 group-hover:border-emerald-400 group-hover:bg-emerald-500/10 transition-all duration-300 shadow-[0_0_10px_rgba(16,185,129,0.05)]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-white/70 group-hover:text-emerald-400 transition-colors">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                    </div>
+                </button>
 
-        <div class="mt-4 mb-6 flex flex-nowrap items-center justify-center gap-3 text-[10px] tracking-[0.2em] font-mono select-none z-30 w-full">
-            <button id="btn-mode-signal" onclick="switchVaultMode('SIGNAL')" class="transition-all duration-300 cursor-pointer px-4 py-1.5 bg-[#141414]/80 text-white border border-white/40 rounded-sm">SIGNAL</button>
-            <button id="btn-mode-dial" onclick="switchVaultMode('DIAL')" class="transition-all duration-300 cursor-pointer px-4 py-1.5 bg-black/40 text-white/40 border border-white/5 rounded-sm hover:text-white/80">DIAL</button>
+                <p id="biorush-description" class="font-mono uppercase text-[9px] text-white/40 max-w-xl tracking-widest leading-relaxed min-h-[28px] transition-opacity duration-300">
+                    Nootrópico de alta optimización cerebral para estados de flujo prolongados.
+                </p>
+
+                <div id="biorush-variants-container" class="flex flex-nowrap items-center justify-center gap-2 text-[9px] tracking-widest font-mono select-none w-full overflow-x-visible">
+                </div>
+
+                <div class="flex items-center justify-center gap-4 font-mono text-[9px] tracking-widest text-white/40 uppercase">
+                    <span id="biorush-spec">45 CAPS // 500 MGRS</span>
+                    <span class="text-white/20">|</span>
+                    <span id="biorush-price">$70.000</span>
+                </div>
+
+                <div class="w-full max-w-md pt-1">
+                    <button onclick="adquirirNodo()" class="w-full sm:w-auto px-12 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                        GET INFO
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
-            <button onclick="adquirirNodo('BIORUSH')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                GET INFO
-            </button>
-        </div>
-    </div>
-</div>
-
-        
-
-        <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
+        <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                
-                <!-- Componentes 1 & 2 (Izquierda): Gatillo de Cierre + Telemetría con borde -->
-                <div class="justify-self-start flex items-center space-x-2 sm:space-x-3 text-left">
-                    <button onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault Menu">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                <div class="justify-self-start flex items-center">
+                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Back to Main">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
                     </button>
-                    <span id="telemetry-vault-footer-alt" class="tracking-[0.15em] text-white/50 border-l border-white/10 pl-2 sm:pl-3 flex items-center h-5 leading-none">
-                        H.00°00'
-                    </span>
                 </div>    
-                
-                <!-- Componente 3 (Centro): Firma Unificada del Nodo -->
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span class="whitespace-nowrap">JAKO 2008</span>
+                <div id="biorush-items-menu" class="justify-self-center flex items-center justify-center space-x-4 sm:space-x-6 text-center">
                 </div>
-                
-                <!-- Componentes 4 & 5 (Derecha): Telemetría Dinámica de Enlace + Gatillo Secuencial -->
-                <div class="justify-self-end flex items-center space-x-2 sm:space-x-3">
-                    <button onclick="toggleVaultDrawer(); setTimeout(() => { openNodesDrawer(); }, 200);" class="focus:outline-none transition-colors duration-300 hover:text-white/80 tracking-[0.25em] font-bold text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer text-white/60">
-                        <span id="z-dial-vault-footer">NOD.0000</span>
-                    </button>
-                    <button onclick="toggleVaultDrawer(); setTimeout(() => { openNodesDrawer(); }, 200);" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Link to Nodes Drawer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Link Nodes">
+                <div class="justify-self-end flex items-center">
+                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Return">
                     </button>
                 </div>
-                
             </div>
         </footer>
     </div>
 
 <script>
-    const $ = (id) => document.getElementById(id);
-// ==========================================
-    // PROTOCOLO DE MOVIMIENTO: PULS (MECÁNICA MAESTRA)
-    // ==========================================
-    const GOLDEN_RATIO = 1.61803398875; // Proporción Áurea para Densidad Dinámica
-
-    function updateZ() {
-        let biokineticCoordinate = "";
-        
-        const now = new Date();
-        const hours = now.getHours(); 
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-        const milliseconds = now.getMilliseconds();
-
-        const currentSolarAngle = ((hours * 15) + (minutes * 0.25)) % 360;
-        const currentSphereIdx = calculateSphereIndex();
-        const sphereElement = $('telemetry-sphere-idx');
-        
-        if (sphereElement && sphereElement.textContent !== currentSphereIdx) {
-            sphereElement.textContent = currentSphereIdx;
-        }
-
-        // NUEVA ACTUALIZACIÓN para el Vault-Drawer
-        const sphereVaultElement = $('telemetry-sphere-idx-vault');
-        if (sphereVaultElement && sphereVaultElement.textContent !== currentSphereIdx) {
-            sphereVaultElement.textContent = currentSphereIdx;
-        }
-
-        if ($('telemetry-sphere-dens')) {
-            $('telemetry-sphere-dens').textContent = "Q.8640"; 
-        }
-
-        let setsStage = 1;  
-        let repsStage = 1;  
-        let currentAction = 'P'; 
-
-        if (window.selectedNodeFromMesh) {
-            biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
-            const matchMesh = biokineticCoordinate.match(/^(\d+)([A-Z]+)(\d+)$/);
-            if (matchMesh) {
-                setsStage = Math.max(1, Math.min(12, parseInt(matchMesh[1], 10)));
-                currentAction = matchMesh[2];
-                repsStage = Math.max(1, Math.min(12, parseInt(matchMesh[3], 10)));
-            }
-        } else {
-            // RESTRUCTURACIÓN COHERENTE CON LA MATRIZ DE 12 VARIABLES ÓPTIMAS
-            if (seconds % 2 !== 0) {
-                // A. Fase del Impulso Puro (4 Monádicas // Cero Resistencia // Segundos Impares)
-                const progress1s = milliseconds / 1000; 
-                setsStage = Math.floor(progress1s * 12) + 1;
-                repsStage = 13 - setsStage; 
-
-                if (progress1s < 0.25) currentAction = 'P';        // Pace
-                else if (progress1s < 0.5) currentAction = 'U';     // Under
-                else if (progress1s < 0.75) currentAction = 'L';    // Lift
-                else currentAction = 'S';                           // Surge
-            } else {
-                // Segundos Pares: Distribución Basal por Minutos % 12
-                setsStage = Math.max(1, Math.min(12, Math.floor((minutes % 12) + 1)));
-                
-                if (seconds < 30) {
-                    // B. Fase de Transferencia (4 Binarias // Desplazamiento de Carga)
-                    const subSlot = Math.floor((seconds % 30) / 7.5); // 4 ranuras uniformes en 30s
-                    const binaryMatrix = ["PL", "PU", "LU", "SU"];
-                    currentAction = binaryMatrix[subSlot] || "PL";
-                    repsStage = Math.max(1, Math.min(12, Math.floor((seconds % 10) + 2)));
-                } else {
-                    // C. Fase de Bloqueo Estructural (4 Ternarias // Isometría y Densidad)
-                    const subSlot = Math.floor(((seconds - 30) % 30) / 7.5); // 4 ranuras uniformes
-                    const ternaryMatrix = ["PUL", "PLS", "LUP", "UTS"];
-                    currentAction = ternaryMatrix[subSlot] || "UTS";
-                    repsStage = Math.max(1, Math.min(12, Math.floor(((seconds - 30) % 10) + 3)));
-
-                    // Disparador háptico en punto crítico de bloqueo isométrico (UTS)
-                    if (currentAction === 'UTS' && navigator.vibrate && milliseconds < 40) {
-                        navigator.vibrate(12);
-                    }
+// =========================================================================
+    // 1. CONFIGURACIÓN DE CATÁLOGOS EXTENDIDOS: LÍNEA BIORUSH (ADAPTÓGENOS)
+    // =========================================================================
+    const BIORUSH_CATALOG = {
+        'BIORUSH': {
+            defaultVariant: 'FOCUS',
+            variants: {
+                'FOCUS': { 
+                    desc: 'Enfoque y claridad cognitiva.', 
+                    label: 'BIORUSH METAL FOCUS', 
+                    img: 'img/biorush.png', 
+                    imgBack: 'img/back.png', 
+                    spec: 'FLAN DE AVENA // LION’S MANE', 
+                    price: '$8.000', 
+                    id: 'BR-01-FOC' 
+                },
+                'ZEN': { 
+                    desc: 'Reducción del ruido mental.', 
+                    label: 'BIORUSH MENTAL ZEN', 
+                    img: 'img/biorush.png', 
+                    imgBack: 'img/biorush_zen_back.png', 
+                    spec: 'FLAN DE AVENA // REISHI', 
+                    price: '$8.000', 
+                    id: 'BR-01-ZEN' 
+                },
+                'STAMINA': { 
+                    desc: 'Optimización del rendimiento energético celular.', 
+                    label: 'BIORUSH BODY STAMINA', 
+                    img: 'img/biorush.png', 
+                    imgBack: 'img/biorush_stamina_back.png', 
+                    spec: 'FLAN DE AVENA // CORDYCEPS', 
+                    price: '$8.000', 
+                    id: 'BR-01-STA' 
+                },
+                'CORE': { 
+                    desc: 'Sincronización inmunológica integral.', 
+                    label: 'BIORUSH BODY CORE', 
+                    img: 'img/biorush.png', 
+                    imgBack: 'img/biorush_core_back.png', 
+                    spec: 'FLAN DE AVENA // TURKEY TAIL', 
+                    price: '$8.000', 
+                    id: 'BR-01-COR' 
                 }
             }
-
-            setsStage = Math.max(1, Math.min(12, setsStage));
-            repsStage = Math.max(1, Math.min(12, repsStage));
-            biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
-        }
-
-        window.currentTelemetryValue = biokineticCoordinate;
-
-        if (!isReading && $('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
-        if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate;
-        if ($('big-dial')) $('big-dial').textContent = biokineticCoordinate;
-        
-        document.querySelectorAll('.big-dial-target').forEach(target => {
-            if (target.textContent !== biokineticCoordinate) {
-                target.textContent = biokineticCoordinate;
-            }
-        });
-
-        if ($('telemetry-active-node')) {
-            if (window.selectedNodeFromMesh) {
-                const nodeNum = window.selectedNodeFromMesh.replace('node-', '').padStart(4, '0');
-                $('telemetry-active-node').textContent = `◯.${nodeNum}`;
-            } else {
-                const totalSecondsToday = (hours * 3600) + (minutes * 60) + seconds;
-                const preciseDialIndex = Math.floor(totalSecondsToday / 10) + 1;
-                $('telemetry-active-node').textContent = `◯.${String(preciseDialIndex).padStart(4, '0')}`;
-            }
-        }
-
-        if (!waveInspectionActive) {
-            if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsStage);
-            if ($('dial-part-action')) $('dial-part-action').textContent = currentAction;
-            if ($('dial-part-reps')) $('dial-part-reps').textContent = String(repsStage);
-
-            const calculatedTension = (14.2 + (repsStage * 0.8)).toFixed(1);
-            const currentHz = (0.05 + (setsStage / 240)).toFixed(3);
-
-            if ($('sub-sets-solar')) $('sub-sets-solar').textContent = `${currentHz} Hz`;
-            if ($('sub-reps-tension')) $('sub-reps-tension').textContent = `${calculatedTension} N`;
-        }
-
-        if ($('telemetry-sphere-actions')) {
-            $('telemetry-sphere-actions').textContent = `Φ ${currentSolarAngle.toFixed(1)}°`;
-        }
-
-        // Cálculos astronómicos estables
-        const geoNode = "6.251° N";
-        const solarRad = (currentSolarAngle * Math.PI) / 180;
-        const calculatedAltitude = Math.abs(Math.sin(solarRad)) * 84.426; 
-        const altDegrees = Math.floor(calculatedAltitude);
-        const altMinutes = Math.floor((calculatedAltitude - altDegrees) * 60);
-        const solarAltitudeText = `H.${String(altDegrees).padStart(2, '0')}°${String(altMinutes).padStart(2, '0')}'`;
-
-        if ($('telemetry-footer-alt'))    $('telemetry-footer-alt').textContent = solarAltitudeText;
-        if ($('telemetry-solar-alt'))     $('telemetry-solar-alt').textContent = solarAltitudeText;
-        if ($('telemetry-solstice-node')) $('telemetry-solstice-node').textContent = "SS.54 • EQ.54";
-        if ($('telemetry-geo'))           $('telemetry-geo').textContent = geoNode;
-
-        // ONDAS NODES-DRAWER (MENÚ PRINCIPAL)
-        const wOuter = $('wave-outer');
-        const wMid = $('wave-mid');    
-        const wInner = $('wave-inner');
-
-        // ONDAS VAULT-DRAWER (NUEVO CONTROL INTEGRADO)
-        const wOuterVault = $('wave-outer-vault');
-        const wMidVault = $('wave-mid-vault');
-        const wInnerVault = $('wave-inner-vault');
-
-        if (wOuter && wMid && wInner) {
-            const polarity = (currentSolarAngle <= 180) ? 1 : -1; 
-            const baseRotation = currentSolarAngle * polarity;
-
-            // 1. ONDA INTERNA
-            const totalLengthInner = 2 * Math.PI * 39;
-            const innerArcLength = totalLengthInner * (setsStage / 12);
-            wInner.style.strokeDasharray = `${innerArcLength} ${totalLengthInner}`;
-            wInner.style.transform = `rotate(${baseRotation * 0.5}deg)`;
-            
-            if (wInnerVault) {
-                wInnerVault.style.strokeDasharray = `${innerArcLength} ${totalLengthInner}`;
-                wInnerVault.style.transform = `rotate(${baseRotation * 0.5}deg)`;
-            }
-
-            // 2. ONDA MEDIA
-            const totalLengthMid = 2 * Math.PI * 67;
-            let midArcLength = totalLengthMid * 0.5; 
-            let midVectorRotation = currentSolarAngle;
-
-            if (currentAction.length === 1) {
-                midArcLength = totalLengthMid * 0.25; 
-                midVectorRotation = baseRotation;
-            } else if (currentAction.length === 2) {
-                midArcLength = totalLengthMid * 0.5;  
-                midVectorRotation = -baseRotation * 1.5;
-            } else if (currentAction.length === 3) {
-                midArcLength = totalLengthMid * 0.85; 
-                midVectorRotation = 0; 
-            }
-
-            wMid.style.strokeDasharray = `${midArcLength} ${totalLengthMid}`;
-            wMid.style.transform = `rotate(${midVectorRotation}deg)`;
-            
-            if (wMidVault) {
-                wMidVault.style.strokeDasharray = `${midArcLength} ${totalLengthMid}`;
-                wMidVault.style.transform = `rotate(${midVectorRotation}deg)`;
-            }
-
-            // 3. ONDA EXTERNA
-            const totalLengthOuter = 2 * Math.PI * 95;
-            const outerArcLength = totalLengthOuter * (repsStage / 12);
-            wOuter.style.strokeDasharray = `${outerArcLength} ${totalLengthOuter}`;
-            wOuter.style.transform = `rotate(${-baseRotation}deg)`;
-            
-            if (wOuterVault) {
-                wOuterVault.style.strokeDasharray = `${outerArcLength} ${totalLengthOuter}`;
-                wOuterVault.style.transform = `rotate(${-baseRotation}deg)`;
-            }
-        }
-    }
-
-    function switchVaultMode(mode) {
-        const viewSignal = $('vault-view-signal');
-        const viewDial = $('vault-view-dial');
-        const btnSignal = $('btn-mode-signal');
-        const btnDial = $('btn-mode-dial');
-
-        if (mode === 'SIGNAL') {
-            // Mostrar Ondas Animadas
-            viewSignal.classList.remove('hidden');
-            setTimeout(() => viewSignal.classList.remove('opacity-0'), 10);
-            
-            // Ocultar Dial
-            viewDial.classList.add('opacity-0');
-            setTimeout(() => viewDial.classList.add('hidden'), 300);
-
-            // Estilos de botones HUD
-            btnSignal.className = "transition-all duration-300 cursor-pointer px-4 py-1.5 bg-[#141414]/80 text-white border border-white/40 rounded-sm";
-            btnDial.className = "transition-all duration-300 cursor-pointer px-4 py-1.5 bg-black/40 text-white/40 border border-white/5 rounded-sm hover:text-white/80";
-        } else if (mode === 'DIAL') {
-            // Mostrar Dial Vectorial
-            viewDial.classList.remove('hidden');
-            setTimeout(() => viewDial.classList.remove('opacity-0'), 10);
-            
-            // Ocultar Ondas
-            viewSignal.classList.add('opacity-0');
-            setTimeout(() => viewSignal.classList.add('hidden'), 300);
-
-            // Estilos de botones HUD
-            btnDial.className = "transition-all duration-300 cursor-pointer px-4 py-1.5 bg-[#141414]/80 text-white border border-white/40 rounded-sm";
-            btnSignal.className = "transition-all duration-300 cursor-pointer px-4 py-1.5 bg-black/40 text-white/40 border border-white/5 rounded-sm hover:text-white/80";
-        }
-        
-        if (navigator.vibrate) navigator.vibrate(8);
-    }
-
-    window.selectedNodeFromMesh = null;
-    window.currentTelemetryValue = "--"; 
-    window.currentVariant = "FOCUS";
-    let waveInspectionActive = false;     
-    let biokineticInterval = null;
-    let isReading = false;
-
-    function inspectKineticWave(type, targetRing) {
-        waveInspectionActive = true;
-
-        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { if($(id)) $(id).style.stroke = "rgba(255,255,255,0.12)"; });
-        ['proto-p', 'proto-u', 'proto-l', 'proto-s'].forEach(id => { if($(id)) $(id).className = "transition-colors duration-300 px-0.5 text-white/10"; });
-
-        if(targetRing === 'INNER' && $('wave-inner')) {
-            $('wave-inner').style.stroke = "#00d2ff";
-        } else if (targetRing === 'MID' && $('wave-mid')) {
-            $('wave-mid').style.stroke = "#00d2ff";
-        } else if (targetRing === 'OUTER' && $('wave-outer')) {
-            $('wave-outer').style.stroke = "#00d2ff";
-        }
-
-        if ($('footer-default-text')) $('footer-default-text').classList.add('hidden');
-        if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('hidden'); $('puls-protocol-list').classList.add('flex'); }
-
-        // Opacidad atenuada por defecto para la Gota Alfanumérica
-        if($('dial-part-sets')) $('dial-part-sets').className = "text-white/15 transition-colors duration-300 cursor-pointer";
-        if($('dial-part-action')) $('dial-part-action').className = "text-white/15 transition-colors duration-300 cursor-pointer px-1";
-        if($('dial-part-reps')) $('dial-part-reps').className = "text-white/15 transition-colors duration-300 cursor-pointer";
-
-        // Opacidad atenuada para los costados del HUD
-        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
-        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
-
-        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/10 transition-colors duration-300";
-        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/10 transition-colors duration-300";
-        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/10 transition-colors duration-300";
-
-        const rawTelemetry = window.currentTelemetryValue || "3UST7";
-        const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
-
-        if (match) {
-            const [_, setsStr, actionStr, repsStr] = match;
-
-            if (type === 'SETS') {
-                if($('sub-sets-solar')) {
-                    $('sub-sets-solar').textContent = "SETS";
-                    $('sub-sets-solar').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer tracking-[0.25em]';
+        },
+        'CAPS_45': {
+            defaultVariant: 'FOCUS',
+            variants: {
+                'FOCUS': { 
+                    desc: 'Enfoque y claridad cognitiva.', 
+                    label: 'CAPS 45 MENTAL FOCUS', 
+                    img: 'img/caps.png', 
+                    imgBack: 'img/item2_raw_back.png', 
+                    spec: '45 CAPS // 500 MG', 
+                    price: '$85.000', 
+                    id: 'BR-02-FOC' 
+                },
+                'ZEN': { 
+                    desc: 'Reducción del ruido mental.', 
+                    label: 'CAPS 45 MENTAL ZEN', 
+                    img: 'img/caps.png', 
+                    imgBack: 'img/item2_boost_back.png', 
+                    spec: '45 CAPS // 500 MG', 
+                    price: '$89.000', 
+                    id: 'BR-02-ZEN' 
+                },
+                'STAMINA': { 
+                    desc: 'Optimización del rendimiento energético celular.', 
+                    label: 'CAPS 45 BODY STAMINA', 
+                    img: 'img/caps.png', 
+                    imgBack: 'img/item2_stamina_back.png', 
+                    spec: '45 CAPS // 500 MG', 
+                    price: '$85.000', 
+                    id: 'BR-02-STA' 
+                },
+                'CORE': { 
+                    desc: 'Sincronización inmunológica integral.', 
+                    label: 'CAPS 45 BODY CORE', 
+                    img: 'img/caps.png', 
+                    imgBack: 'img/item2_core_back.png', 
+                    spec: '45 CAPS // 500 MG', 
+                    price: '$80.000', 
+                    id: 'BR-02-COR' 
                 }
-                if($('dial-part-sets')) $('dial-part-sets').className = "text-cyan-400 font-bold cursor-pointer";
-                if($('telemetry-solar-alt')) $('telemetry-solar-alt').className = "text-left text-cyan-400 font-bold transition-colors duration-300";
-            } 
-            else if (type === 'ACTION' || type === 'ONLY_ACTION') {
-                if($('dial-part-action')) {
-                    $('dial-part-action').textContent = "ACTIONS";
-                    $('dial-part-action').className = "text-cyan-400 font-bold cursor-pointer px-1 text-[10px] tracking-[0.1em]";
+            }
+        },
+        'CAPS_24': {
+            defaultVariant: 'FOCUS',
+            variants: {
+                'FOCUS': { 
+                    desc: 'Enfoque y claridad cognitiva.', 
+                    label: 'CAPS 24 LION’S MANE FOCUS', 
+                    img: 'img/item3_calm.png', 
+                    imgBack: 'img/item3_calm_back.png', 
+                    spec: '24 CAPS // 500 MG', 
+                    price: '$48.000', 
+                    id: 'BR-03-FOC' 
+                },
+                'ZEN': { 
+                    desc: 'Reducción del ruido mental.', 
+                    label: 'CAPS 24 REISHI ZEN', 
+                    img: 'img/item3_sleep.png', 
+                    imgBack: 'img/item3_sleep_back.png', 
+                    spec: '24 CAPS // 500 MG', 
+                    price: '$52.000', 
+                    id: 'BR-03-ZEN' 
+                },
+                'STAMINA': { 
+                    desc: 'Optimización del rendimiento energético celular.', 
+                    label: 'CAPS 24 CORDYCEPS STAMINA', 
+                    img: 'img/item3_stamina.png', 
+                    imgBack: 'img/item3_stamina_back.png', 
+                    spec: '24 CAPS // 500 MG', 
+                    price: '$48.000', 
+                    id: 'BR-03-STA' 
+                },
+                'CORE': { 
+                    desc: 'Sincronización inmunológica integral.', 
+                    label: 'CAPS 24 TURKEY TAIL CORE', 
+                    img: 'img/item3_core.png', 
+                    imgBack: 'img/item3_core_back.png', 
+                    spec: '24 CAPS // 500 MG', 
+                    price: '$45.000', 
+                    id: 'BR-03-COR' 
                 }
-                if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-cyan-400 font-bold transition-colors duration-300";
-                
-                if (actionStr.includes('P') && $('proto-p')) $('proto-p').className = "text-cyan-400 font-bold px-0.5";
-                if (actionStr.includes('U') && $('proto-u')) $('proto-u').className = "text-cyan-400 font-bold px-0.5";
-                if (actionStr.includes('L') && $('proto-l')) $('proto-l').className = "text-cyan-400 font-bold px-0.5";
-                if (actionStr.includes('S') && $('proto-s')) $('proto-s').className = "text-cyan-400 font-bold px-0.5";
-            } 
-            else if (type === 'REPS') {
-                if($('sub-reps-tension')) {
-                    $('sub-reps-tension').textContent = "REPS";
-                    $('sub-reps-tension').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer tracking-[0.25em]';
-                }
-                if($('dial-part-reps')) $('dial-part-reps').className = "text-cyan-400 font-bold cursor-pointer";
-                if($('telemetry-geo')) $('telemetry-geo').className = "text-right text-cyan-400 font-bold transition-colors duration-300";
             }
         }
-        if (navigator.vibrate) navigator.vibrate(5);
-    }
-
-    function clearKineticWave() {
-        waveInspectionActive = false;
-        
-        ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => { const r = $(id); if(r) { r.style.stroke = ""; } });
-
-        if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('flex'); $('puls-protocol-list').classList.add('hidden'); }
-        if ($('footer-default-text')) $('footer-default-text').classList.remove('hidden');
-
-        // Restablecer estilos base del HUD
-        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-left tracking-[0.25em]';
-        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80 whitespace-nowrap !text-right tracking-[0.25em]';
-        
-        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/40 transition-colors duration-300";
-        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/40 transition-colors duration-300";
-        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/40 transition-colors duration-300";
-
-        if($('dial-part-sets')) $('dial-part-sets').className = "text-white transition-colors duration-300 cursor-pointer";
-        if($('dial-part-action')) $('dial-part-action').className = "text-white font-black transition-colors duration-300 cursor-pointer text-center hover:text-cyan-400";
-        if($('dial-part-reps')) $('dial-part-reps').className = "text-white transition-colors duration-300 cursor-pointer";
-
-        updateZ();
-    }
-
-
-    function harmonizeMeshNodes() {
-        const nodes = document.querySelectorAll('#mesh-container svg [id^="node-"]');
-        nodes.forEach(node => {
-            node.addEventListener('mouseenter', (e) => {
-                const rawId = e.target.id; 
-                const nodeNum = rawId.replace('node-', '').padStart(3, '0');
-                if ($('telemetry-active-node')) {
-                    $('telemetry-active-node').textContent = `◯.${nodeNum}`;
-                    $('telemetry-active-node').className = "tracking-[0.25em] text-right text-cyan-400 font-bold transition-all duration-300";
-                }
-            });
-            node.addEventListener('mouseleave', () => { updateZ(); });
-        });
-    }
-
-    function handleTouchInspect(event, type, targetRing) {
-        if (event) event.stopPropagation();
-        inspectKineticWave(type, targetRing);
-    }
-
-    function checkResetTouch(event) {
-        const isCircle = event.target.tagName === 'circle';
-        if (!isCircle) clearKineticWave();
-    }
-
-    function openNodesDrawer() {
-        const drawer = $('nodes-drawer');
-        const overlay = $('drawer-overlay');
-        if (drawer) {
-            closeAllDrawers();
-            drawer.classList.remove('translate-x-full');
-            overlay.classList.remove('hidden');
-            document.body.classList.add('drawer-active', 'overflow-hidden');
-            if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => overlay.classList.add('opacity-100'), 10);
-        }
-    }
-
-    function toggleDrawer() {
-        const drawer = $('nodes-drawer');
-        if (drawer.classList.contains('translate-x-full')) { openNodesDrawer(); } else { closeAllDrawers(); }
-    }
-
-    function toggleVaultDrawer() {
-        const vault = document.getElementById('vault-drawer');
-        if (vault) { vault.classList.toggle('translate-y-full'); }
-    }
-
-    function toggleLeftDrawer() {
-        const leftDrawer = $('left-core-drawer');
-        const overlay = $('drawer-overlay');
-        if (leftDrawer.classList.contains('-translate-x-full')) {
-            closeAllDrawers();
-            leftDrawer.classList.remove('-translate-x-full');
-            overlay.classList.remove('hidden');
-            document.body.classList.add('drawer-active', 'overflow-hidden'); 
-            if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => overlay.classList.add('opacity-100'), 10);
-        } else {
-            closeAllDrawers();
-        }
-    }
-
-    function closeAllDrawers() {
-        if ($('nodes-drawer')) $('nodes-drawer').classList.add('translate-x-full');
-        if ($('left-core-drawer')) $('left-core-drawer').classList.add('-translate-x-full');
-        if ($('drawer-overlay')) {
-            $('drawer-overlay').classList.remove('opacity-100');
-            $('drawer-overlay').classList.add('hidden');
-        }
-        document.body.classList.remove('drawer-active', 'overflow-hidden');
-        if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function openManifesto() { 
-        closeAllDrawers();
-        $('manifesto').classList.remove('-translate-y-full'); 
-        if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
-    }
-    
-    function closeManifesto() { 
-        $('manifesto').classList.add('-translate-y-full'); 
-        stopRSVPStream(); 
-        if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    const manifestoChapters = {
-        1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. To keep this gap open, we code the functional movements of the body into a live language. The unconscious mind operates through kinetic traction: attracting and pushing away thoughts. By mapping these sequences into mechanical blocks, we ignite constant creativity.",
-        2: "THE ALGORITHMIC DIAL // TRANSLATION MANUAL The algorithm does not invent data; it is a translator. It takes the Earth's rotation relative to the Sun in a 24-hour cycle and converts it into a unique 'bio-kinetic coordinate.' Time becomes a matrix of movement. 1. SOLAR DRIFT: Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.",
-        3: "BIOMECHANICAL INTEGRATION // FRACTAL GEOMETRY 2. ALGORITHMIC QUADRANTS: Divides the 360° matrix into 4 biomechanical actions: 0°-90° [UL], 90°-180° [PL], 180°-270° [LST], and 270°-360° [UST]. 3. GOLDEN RATIO (PHI): Sets fluctuate through a sine function (from 2 to 8), while Repetitions are multiplied by PHI (1.618033), mimicking the fractal geometry of mycelium. Formula: FilteredSets + QuadrantAction + FilteredReps"
     };
 
-    let activeWords = manifestoChapters[1].split(/\s+/);
-    let wordIndex = 0;
-    let readSpeed = 250; 
-    let rsvpIntervalId = null;
 
-    function loadManifestoChapter(chapterNum) {
-        if (manifestoChapters[chapterNum]) {
-            stopRSVPStream();
-            activeWords = manifestoChapters[chapterNum].split(/\s+/);
-            wordIndex = 0;
-            if ($('rsvp-word-display')) $('rsvp-word-display').innerText = "READ";
-        }
-    }
 
-    function startRSVPStream() {
-        if (isReading) return;
-        isReading = true;
-        rsvpIntervalId = setInterval(() => {
-            if (wordIndex < activeWords.length) {
-                if ($('rsvp-word-display')) $('rsvp-word-display').textContent = activeWords[wordIndex];
-                wordIndex++;
-            } else {
-                stopRSVPStream();
-                wordIndex = 0;
+    // =========================================================================
+    // 2. CONFIGURACIÓN DE CATÁLOGOS EXTENDIDOS: LÍNEA SUGARRUSH (REPOSTERÍA)
+    // =========================================================================
+    const SUGARRUSH_CATALOG = {
+        'ALFAJORES': {
+            defaultVariant: 'ALFAJOR X1',
+            variants: {
+                'ALFAJOR X1': {
+                    desc: 'Suave alfajor clásico para un antojo rápido.',
+                    label: 'SUGARRUSH ALFAJOR INDIVIDUAL',
+                    img: 'img/sugar_choco.png',
+                    imgBack: 'img/sugar_choco_back.png',
+                    spec: '1 UNIDAD // ANTOJO PERSONAL',
+                    price: '$3.500',
+                    id: 'SR-01-AX1'
+                },
+                'ALFAJOR X5': {
+                    desc: 'Suaves y tradicionales, perfectos para compartir.',
+                    label: 'SUGARRUSH ALFAJORES X5',
+                    img: 'img/sugar_vanilla.png',
+                    imgBack: 'img/sugar_vanilla_back.png',
+                    spec: '5 UNIDADES // PACK CLÁSICO',
+                    price: '$16.000',
+                    id: 'SR-01-AX5' 
+                },
+                'ALFAJOR X6': {
+                    desc: 'Variados: Maní x2, Coco x2, Leche Polvo x2.',
+                    label: 'SUGARRUSH ALFAJORES VARIADOS X6',
+                    img: 'img/sugar_berry.png',
+                    imgBack: 'img/sugar_berry_back.png',
+                    spec: '6 UNIDADES // RECOMENDADO',
+                    price: '$20.000',
+                    id: 'SR-01-AX6' 
+                }
             }
-        }, readSpeed);
-    }
-
-    function stopRSVPStream() {
-        isReading = false;
-        clearInterval(rsvpIntervalId);
-        if ($('rsvp-word-display') && wordIndex === 0) {
-            $('rsvp-word-display').innerHTML = `<img src="img/pace.png" class="w-9 h-9 object-contain opacity-70" alt="Pace Icon">`;
+        },
+        'POSTRES': {
+            defaultVariant: 'LECHE ASADA',
+            variants: {
+                'LECHE ASADA': {
+                    desc: 'Postre tradicional horneado con textura suave y cremosa.',
+                    label: 'POSTRE LECHE ASADA',
+                    img: 'img/sugar_choco.png',
+                    imgBack: 'img/sugar_choco_back.png',
+                    spec: 'PORCIÓN // TRADICIONAL',
+                    price: '$7.000', 
+                    id: 'SR-02-LAS'
+                },
+                'LECHE ASADA ESPECIAL': {
+                    desc: 'Nuestra receta clásica con un toque secreto especial.',
+                    label: 'POSTRE LECHE ASADA ESPECIAL',
+                    img: 'img/sugar_vanilla.png',
+                    imgBack: 'img/sugar_vanilla_back.png',
+                    spec: 'PORCIÓN // RECETA PREMIUM',
+                    price: '$9.500', 
+                    id: 'SR-02-LAE' 
+                }
+            }
+        },
+        'BROWNIES': {
+            defaultVariant: 'BROWNIE X1',
+            variants: {
+                'BROWNIE X1': { 
+                    desc: 'Porción melcochuda con el mejor cacao concentrado.', 
+                    label: 'BROWNIE INDIVIDUAL', 
+                    img: 'img/brownie_x1.png', 
+                    imgBack: 'img/back.png', 
+                    spec: '1 UNIDAD // SNACK PREMIUM', 
+                    price: '$5.000', 
+                    id: 'SR-03-BX1' 
+                },
+                'BROWNIE X20': { 
+                    desc: 'Caja de brownies melcochudos listos para compartir.', 
+                    label: 'BROWNIES X20 PACK', 
+                    img: 'img/brownies_x6.png', 
+                    imgBack: 'img/back.png', 
+                    spec: '20 UNIDADES // PACK COMPARTIR', 
+                    price: '$28.000', 
+                    id: 'SR-03-BX20' 
+                },
+                'BROWNIE X50': { 
+                    desc: 'Melcochudos con el toque justo de cacao.', 
+                    label: 'BROWNIES X50 PARTY PACK', 
+                    img: 'img/brownies_x50.png', 
+                    imgBack: 'img/back.png', 
+                    spec: '50 UNIDADES // EVENTOS', 
+                    price: '$100.000', 
+                    id: 'SR-03-BX50' 
+                }
+            }
+        },
+        'FIAMBRES': {
+            defaultVariant: 'POLLO',
+            variants: {
+                'POLLO': { 
+                    desc: 'Pollo, queso, bechamel y pasta artesanal.', 
+                    label: 'LASAÑA DE POLLO ARTESANAL', 
+                    img: 'img/lasagna_pollo.png', 
+                    imgBack: 'img/back.png', 
+                    spec: '14 X 11.5 CM // ARTESANAL', 
+                    price: '$20.000', 
+                    id: 'SR-04-LPO' 
+                },
+                'MIXTA': { 
+                    desc: 'Combinación artesanal de pollo, carne y queso.', 
+                    label: 'LASAÑA MIXTA PREMIUM', 
+                    img: 'img/lasagna_mixta.png', 
+                    imgBack: 'img/back.png', 
+                    spec: '14 X 11.5 CM // ARTESANAL', 
+                    price: '$22.000', 
+                    id: 'SR-04-LMX' 
+                },
+                'FIAMBRES': { 
+                    desc: 'Almuerzo tradicional empacado con sazón casera.', 
+                    label: 'FIAMBRE TRADICIONAL', 
+                    img: 'img/fiambres.png', 
+                    imgBack: 'img/back.png', 
+                    spec: 'PORCIÓN INDIVIDUAL // ALMUERZO', 
+                    price: '$30.000', 
+                    id: 'SR-04-FIA' 
+                }
+            }
         }
-    }
+    };
 
-    function calculateSphereIndex() {
-        const epoch = new Date('2012-12-21T00:00:00Z'); 
-        const daysSinceEpoch = Math.floor((new Date() - epoch) / (1000 * 60 * 60 * 24));
-        const symbol = '.⨀'; 
-        return `${String(daysSinceEpoch).padStart(4, '0')}${symbol}`;
-    }
+    let currentBioItem = 'BIORUSH';
+    let currentBioVariant = 'FOCUS';
+    let currentSugarItem = 'POSTRE1';
+    let currentSugarVariant = 'ALFAJOR X1';
+    const numeroCelular = "573243770474";
 
-    function scrollToSection(id) {
-        const target = $(id);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-    }
+    // ==========================================
+    // 2. SISTEMA UNIFICADO DE REVELADO (POINTERS)
+    // ==========================================
+    // Actualizamos la función para recibir un cuarto parámetro: 'vectorId'
+    function vincularBotonRevelado(btnId, frontImgId, backImgId, vectorId) {
+        const btn = document.getElementById(btnId);
+        const frontImg = document.getElementById(frontImgId);
+        const backImg = document.getElementById(backImgId);
+        const vectorSvg = document.getElementById(vectorId); // Captura el SVG correcto sin alterar su ID
 
+        if (!btn || !frontImg || !backImg) return;
 
-    function adquirirNodo(producto) {
-        const varianteActiva = window.currentVariant || "FOCUS";
-        const dialActual = window.currentTelemetryValue || "--";
-        const esferaActual = typeof calculateSphereIndex === "function" ? calculateSphereIndex() : "0000◉";
-
-        const lineMap = {
-            'FOCUS': 'BIORUSH MENTAL FOCUS 🧠',
-            'ZEN': 'BIORUSH MENTAL ZEN 🌌',
-            'STAMINA': 'BIORUSH BODY STAMINA ⚡',
-            'CORE': 'BIORUSH BODY CORE 🧬'
+        const mostrarReverso = (e) => {
+            e.preventDefault();
+            frontImg.style.opacity = '';
+            backImg.style.opacity = '';
+            
+            frontImg.classList.remove('opacity-100');
+            frontImg.classList.add('opacity-0', 'scale-[1.02]');
+            
+            backImg.classList.remove('opacity-0');
+            backImg.classList.add('opacity-100', 'scale-[1.12]');
+            
+            // Desvanece el SVG (gracias a la clase transition-all duration-500 que ya tienen tus SVGs)
+            if (vectorSvg) {
+                vectorSvg.classList.add('opacity-0', 'pointer-events-none');
+            }
+            
+            if (navigator.vibrate) navigator.vibrate(10);
         };
 
-        const productoSeleccionado = lineMap[varianteActiva] || `${producto} ${varianteActiva}`;
-        const numeroCelular = "573025333130"; 
-        const mensaje = `⚡ *NUEVA ORDEN DE NODO - JAKO* ⚡\n\n` +
-                        `• *Producto:* ${productoSeleccionado}\n` +
-                        `• *Coordenada Dial:* \`${dialActual}\`\n` +
-                        `• *Registro Esfera:* \`${esferaActual}\`\n\n` +
-                        `Solicito la inicialización y el despacho de este nodo funcional.`;
+        const ocultarReverso = () => {
+            frontImg.classList.remove('opacity-0', 'scale-[1.02]');
+            frontImg.classList.add('opacity-100');
+            
+            backImg.classList.remove('opacity-100', 'scale-[1.12]');
+            backImg.classList.add('opacity-0');
+            
+            // Restaura el SVG a su estado visible original
+            if (vectorSvg) {
+                vectorSvg.classList.remove('opacity-0', 'pointer-events-none');
+            }
+        };
+
+        btn.addEventListener('pointerdown', mostrarReverso);
+        btn.addEventListener('pointerup', ocultarReverso);
+        btn.addEventListener('pointerleave', ocultarReverso);
+        btn.addEventListener('touchstart', mostrarReverso, { passive: false });
+        btn.addEventListener('touchend', ocultarReverso);
+    }
+
+    // ==========================================
+    // 3. LÓGICA DE INTERFAZ BIORUSH
+    // ==========================================
+    function inicializarBioRush() {
+        const menuContainer = document.getElementById('biorush-items-menu');
+        if (menuContainer) {
+            menuContainer.innerHTML = Object.keys(BIORUSH_CATALOG).map(item => `
+                <span id="menu-bio-${item}" onclick="cambiarBioItem('${item}')" class="cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold">
+                    ${item}
+                </span>
+            `).join('');
+        }
+        
+        vincularBotonRevelado('btn-reveal-bio', 'biorush-pack-img', 'biorush-pack-img-back');
+        actualizarBioUI();
+
+        vincularBotonRevelado('btn-reveal-bio', 'biorush-pack-img', 'biorush-pack-img-back', 'laser-vector-target');actualizarBioUI();
+    }
+    
+
+    function cambiarBioItem(itemKey) {
+        currentBioItem = itemKey;
+        currentBioVariant = BIORUSH_CATALOG[itemKey].defaultVariant;
+        actualizarBioUI();
+        if (navigator.vibrate) navigator.vibrate(12);
+    }
+
+    function cambiarBioVariant(variantKey) {
+        currentBioVariant = variantKey;
+        actualizarBioUI();
+        if (navigator.vibrate) navigator.vibrate(12);
+    }
+
+    function actualizarBioUI() {
+        const itemConfig = BIORUSH_CATALOG[currentBioItem];
+        const variantConfig = itemConfig.variants[currentBioVariant];
+        
+        const drawerNode = document.getElementById('drawer-vault-node');
+        if (drawerNode) drawerNode.textContent = currentBioItem;
+
+        const descEl = document.getElementById('biorush-description');
+        const packImg = document.getElementById('biorush-pack-img');
+        const packImgBack = document.getElementById('biorush-pack-img-back');
+        
+        if (descEl && packImg && packImgBack) {
+            descEl.style.opacity = 0;
+            packImg.style.opacity = 0;
+            packImgBack.style.opacity = 0;
+
+            setTimeout(() => {
+                descEl.textContent = variantConfig.desc;
+                packImg.src = variantConfig.img;
+                packImgBack.src = variantConfig.imgBack;
+                
+                const labelTitle = document.getElementById('laser-variant-title');
+                const specEl = document.getElementById('biorush-spec');
+                const priceEl = document.getElementById('biorush-price');
+                
+                if (labelTitle) labelTitle.textContent = variantConfig.label;
+                if (specEl) specEl.textContent = variantConfig.spec;
+                if (priceEl) priceEl.textContent = variantConfig.price;
+                
+                descEl.style.opacity = 1;
+                packImg.style.opacity = 1;
+            }, 150);
+        }
+
+        Object.keys(BIORUSH_CATALOG).forEach(item => {
+            const el = document.getElementById(`menu-bio-${item}`);
+            if (el) {
+                el.className = (item === currentBioItem) 
+                    ? "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold text-white scale-105 border-b border-emerald-400 pb-0.5" 
+                    : "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none text-white/40 hover:text-white/80";
+            }
+        });
+
+        const variantContainer = document.getElementById('biorush-variants-container');
+        if (variantContainer) {
+            variantContainer.innerHTML = Object.keys(itemConfig.variants).map(vKey => {
+                const isSelected = (vKey === currentBioVariant);
+                return `
+                    <span onclick="cambiarBioVariant('${vKey}')" 
+                          class="cursor-pointer transition-all duration-300 px-3 py-1 bg-black/40 backdrop-blur-md rounded-sm border ${isSelected ? 'border-white text-white font-black shadow-[0_0_12px_rgba(255,255,255,0.1)]' : 'border-white/5 text-white/40 hover:border-white/20 hover:text-white/80'}">
+                        ${vKey}
+                    </span>
+                `;
+            }).join('');
+        }
+    }
+
+    function adquirirNodo() {
+        const variantConfig = BIORUSH_CATALOG[currentBioItem].variants[currentBioVariant];
+        const mensaje = `⚡ *NUEVA ORDEN - BIORUSH* ⚡\n\n` +
+                        `• *Ítem Base:* ${currentBioItem}\n` +
+                        `• *Variante:* ${currentBioVariant}\n` +
+                        `• *Especificación:* ${variantConfig.spec}\n` +
+                        `• *Ref Label:* ${variantConfig.label}\n` +
+                        `• *Precio:* $${variantConfig.price}\n` +
+                        `• *ID Seguridad:* \`${variantConfig.id}\`\n\n` +
+                        `Solicito la inicialización y el despacho inmediato de esta orden.`;
 
         const urlWhatsapp = `https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`;
         if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
         window.open(urlWhatsapp, '_blank');
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const startBtn = $('btn-stream-start');
-        const pauseBtn = $('btn-stream-pause');
-        const stopBtn = $('btn-stream-stop');
-
-        if (startBtn) {
-            startBtn.addEventListener('click', () => {
-                if (!isReading) {
-                    startRSVPStream();
-                    if ($('rsvp-status-indicator')) $('rsvp-status-indicator').textContent = 'PLAYING';
-                }
-            });
-        }
-        if (pauseBtn) {
-            pauseBtn.addEventListener('click', () => {
-                if (isReading) {
-                    stopRSVPStream(); 
-                    if ($('rsvp-status-indicator')) $('rsvp-status-indicator').textContent = 'PAUSED';
-                }
-            });
-        }
-        if (stopBtn) {
-            stopBtn.addEventListener('click', () => {
-                stopRSVPStream();
-                wordIndex = 0; 
-                if ($('rsvp-status-indicator')) $('rsvp-status-indicator').textContent = 'READ';
-                if ($('rsvp-word-display')) {
-                    $('rsvp-word-display').innerHTML = `<img src="img/pace.png" class="w-8 h-8 object-contain opacity-70" alt="Pace Icon">`;
-                }
-            });
+    // ==========================================
+    // 4. LÓGICA DE INTERFAZ SUGARRUSH
+    // ==========================================
+    function inicializarSugarRush() {
+        const menuContainer = document.getElementById('sugar-items-menu');
+        if (menuContainer) {
+            menuContainer.innerHTML = Object.keys(SUGARRUSH_CATALOG).map(item => `
+                <span id="menu-sugar-${item}" onclick="cambiarSugarItem('${item}')" class="cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold">
+                    ${item}
+                </span>
+            `).join('');
         }
         
-        updateZ(); 
-        setInterval(updateZ, 1000); 
+        vincularBotonRevelado('btn-reveal-sugar', 'sugar-pack-img', 'sugar-pack-img-back');
+        actualizarSugarUI();
+        vincularBotonRevelado('btn-reveal-sugar', 'sugar-pack-img', 'sugar-pack-img-back', 'sugar-vector-target');
+        actualizarSugarUI();
+    }
 
-        fetch('img/bigPicture.svg')
-            .then(res => res.text())
-            .then(data => {
-                if ($('mesh-container')) {
-                    $('mesh-container').innerHTML = data;
-                    harmonizeMeshNodes();
-                }
-            }).catch(err => console.error(err));
+    function cambiarSugarItem(itemKey) {
+        currentSugarItem = itemKey;
+        currentSugarVariant = SUGARRUSH_CATALOG[itemKey].defaultVariant;
+        actualizarSugarUI();
+        if (navigator.vibrate) navigator.vibrate(12);
+    }
+
+    function cambiarSugarVariant(variantKey) {
+        currentSugarVariant = variantKey;
+        actualizarSugarUI();
+        if (navigator.vibrate) navigator.vibrate(12);
+    }
+
+    function actualizarSugarUI() {
+        const itemConfig = SUGARRUSH_CATALOG[currentSugarItem];
+        const variantConfig = itemConfig.variants[currentSugarVariant];
+        
+        const drawerSugarNode = document.getElementById('drawer-sugar-node');
+        if (drawerSugarNode) drawerSugarNode.textContent = currentSugarItem;
+
+        const descEl = document.getElementById('sugar-description');
+        const packImg = document.getElementById('sugar-pack-img');
+        const packImgBack = document.getElementById('sugar-pack-img-back');
+        
+        if (descEl && packImg && packImgBack) {
+            descEl.style.opacity = 0;
+            packImg.style.opacity = 0;
+            packImgBack.style.opacity = 0;
+
+            setTimeout(() => {
+                descEl.textContent = variantConfig.desc;
+                packImg.src = variantConfig.img;
+                packImgBack.src = variantConfig.imgBack;
+                
+                const sugarLabel = document.getElementById('sugar-variant-title');
+                const sugarSpec = document.getElementById('sugar-spec');
+                const sugarPrice = document.getElementById('sugar-price');
+                
+                if (sugarLabel) sugarLabel.textContent = variantConfig.label;
+                if (sugarSpec) sugarSpec.textContent = variantConfig.spec;
+                if (sugarPrice) sugarPrice.textContent = variantConfig.price;
+                
+                descEl.style.opacity = 1;
+                packImg.style.opacity = 1;
+            }, 150);
+        }
+
+        Object.keys(SUGARRUSH_CATALOG).forEach(item => {
+            const el = document.getElementById(`menu-sugar-${item}`);
+            if (el) {
+                el.className = (item === currentSugarItem) 
+                    ? "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold text-white scale-105 border-b border-pink-500 pb-0.5" 
+                    : "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none text-white/30 hover:text-white/70";
+            }
+        });
+
+        const variantContainer = document.getElementById('sugar-variants-container');
+        if (variantContainer) {
+            variantContainer.innerHTML = Object.keys(itemConfig.variants).map(vKey => {
+                const isSelected = (vKey === currentSugarVariant);
+                return `
+                    <span onclick="cambiarSugarVariant('${vKey}')" 
+                          class="cursor-pointer transition-all duration-300 px-3 py-1 bg-black/40 backdrop-blur-md rounded-sm border ${isSelected ? 'border-pink-500 text-white font-black shadow-[0_0_12px_rgba(236,72,153,0.15)]' : 'border-white/5 text-white/40 hover:border-pink-500/30 hover:text-white/80'}">
+                        ${vKey}
+                    </span>
+                `;
+            }).join('');
+        }
+    }
+
+    function adquirirNodoSugar() {
+        const variantConfig = SUGARRUSH_CATALOG[currentSugarItem].variants[currentSugarVariant];
+        const mensaje = `🧁 *NUEVA ORDEN - SUGARRUSH* 🧁\n\n` +
+                        `• *Línea:* Dulce / Postres\n` +
+                        `• *Ítem Base:* ${currentSugarItem}\n` +
+                        `• *Variante:* ${currentSugarVariant}\n` +
+                        `• *Volumen:* ${variantConfig.spec}\n` +
+                        `• *Precio:* $${variantConfig.price}\n` +
+                        `• *ID Seguridad:* \`${variantConfig.id}\`\n\n` +
+                        `Solicito información de despacho para esta orden molecular.`;
+
+        const urlWhatsapp = `https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`;
+        if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+        window.open(urlWhatsapp, '_blank');
+    }
+
+    // ==========================================
+    // 5. CONTROL DEL PANEL LATERAL (DRAWER)
+    // ==========================================
+    function toggleSugarDrawer(open) {
+        const sugarDrawer = document.getElementById('sugar-drawer');
+        const mainVault = document.getElementById('main-vault');
+        const bioBg = document.getElementById('page-bg-overlay');
+        const sugarBg = document.getElementById('sugar-bg-overlay');
+
+        if (!sugarDrawer || !mainVault) return;
+
+        if (open) {
+            sugarDrawer.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+            sugarDrawer.classList.add('translate-x-0', 'opacity-100');
+            mainVault.classList.add('opacity-0', 'pointer-events-none');
+            if (bioBg) bioBg.classList.add('opacity-0');
+            if (sugarBg) {
+                sugarBg.classList.remove('opacity-0', 'pointer-events-none');
+                sugarBg.classList.add('opacity-100');
+            }
+        } else {
+            sugarDrawer.classList.remove('translate-x-0', 'opacity-100');
+            sugarDrawer.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+            mainVault.classList.remove('opacity-0', 'pointer-events-none');
+            if (sugarBg) {
+                sugarBg.classList.remove('opacity-100');
+                sugarBg.classList.add('opacity-0', 'pointer-events-none');
+            }
+            if (bioBg) bioBg.classList.remove('opacity-0');
+        }
+        if (navigator.vibrate) navigator.vibrate(15);
+    }
+
+    // Inicialización al cargar la carga del DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        inicializarBioRush();
+        inicializarSugarRush();
     });
 </script>
 </body>
