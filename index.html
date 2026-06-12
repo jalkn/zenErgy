@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link class="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SUGARRUSH.WORLD</title>
+    <title>BIORUSH.CO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -29,14 +29,13 @@
             letter-spacing: 0.05em; 
             background-color: #0a0705;
         } 
-        #page-bg-overlay, #sugar-bg-overlay {
+        #page-bg-overlay {
             position: fixed;
             inset: 0;
             z-index: -1;
             transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: radial-gradient(circle at 50% 50%, #2f2e2e 0%, #0f0212 100%);
         }
-        #page-bg-overlay { background: radial-gradient(circle at 50% 50%, #4273c7 0%, #0f0212 100%); }
-        #sugar-bg-overlay { background: radial-gradient(circle at 50% 50%, #035d3f 0%, #272625 100%); }
         
         /* Transiciones fluidas para revelado de empaque */
         .img-glow-transition {
@@ -50,140 +49,35 @@
 <body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-jako-black text-white">
 
     <div id="page-bg-overlay"></div>
-    <div id="sugar-bg-overlay" class="opacity-0"></div>
     <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
 
     <main id="main-vault" class="w-full h-screen flex flex-col justify-between select-none text-white font-mono z-10 relative transition-all duration-500 ease-out overflow-hidden">
 
+        <!-- HEADER HUD -->
         <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center">
-                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Bio Drawer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Bio">
-                    </button>
+                <div class="justify-self-start flex items-center font-bold tracking-[0.15em]">
+                    SPH.0000
                 </div>
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white">
-                    <span id="drawer-sugar-node">POSTRE1</span>
-                </div>
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Bio Drawer">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Bio">
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <div class="w-full flex-1 overflow-y-auto scrollbar-none flex flex-col items-center py-4 px-4 text-center z-20 justify-between">
-            
-            <div id="sugar-pack-container" class="relative w-full max-w-[180px] xs:max-w-[220px] sm:max-w-[280px] md:max-w-[320px] aspect-[13/15] transition-all duration-700 ease-out select-none drop-shadow-[0_20px_30px_rgba(0,0,0,0.9)] mt-auto z-10">
-                <div class="w-full h-full relative overflow-hidden bg-transparent">
-                    <img id="sugar-pack-img-back" src="img/sugar_choco_back.png" alt="SugarRush Pack Back" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.05] sm:scale-[1.15] opacity-0 pointer-events-none z-0" />
-                    <img id="sugar-pack-img" src="img/sugar_choco.png" alt="SugarRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.1] sm:scale-[1.2] pointer-events-none z-10" />
-                    
-                    <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-20 pointer-events-none">
-                        <svg id="sugar-vector-target" viewBox="0 0 400 400" class="w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] fill-none stroke-pink-500/40 stroke-[1.5] transition-all duration-500 pointer-events-none">
-                            <defs>
-                                <path id="sugarPath-top" d="M 105,200 A 95,95 0 0,1 295,200" />
-                                <path id="sugarPath-bottom" d="M 105,200 A 95,95 0 0,0 295,200" />
-                            </defs>
-                            <text class="fill-white font-black text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase transition-all duration-500">
-                                <textPath id="sugar-variant-title" href="#sugarPath-top" startOffset="50%" text-anchor="middle">
-                                    SUGARRUSH ALFAJOR
-                                </textPath>
-                            </text>
-                            <g class="opacity-30 stroke-[1.2] origin-center transform scale-75 stroke-pink-500">
-                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                <path d="M 110,120 Q 200,150 290,120" />
-                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
-                            </g>
-                            <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500">
-                                <textPath href="#sugarPath-bottom" startOffset="50%" text-anchor="middle">
-                                    SUGARRUSH.WORLD &bull; 3243770474
-                                </textPath>
-                            </text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="w-full flex flex-col items-center gap-4 mt-6 mb-auto px-4 shrink-0">
-                
-                <!-- BOTÓN DE INTERACCIÓN AGREGADO AQUÍ (SugarRush) -->
-                <button id="btn-reveal-sugar" class="flex flex-col items-center gap-1 group focus:outline-none active:scale-95 transition-transform duration-200" aria-label="Revelar reverso">
-                    <div class="w-8 h-8 rounded-full border border-pink-500/30 flex items-center justify-center bg-pink-950/20 group-hover:border-pink-500 group-hover:bg-pink-500/10 transition-all duration-300 shadow-[0_0_10px_rgba(236,72,153,0.05)]">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-white/70 group-hover:text-pink-400 transition-colors">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                    </div>
-                </button>
-
-                <p id="sugar-description" class="font-mono uppercase text-[9px] text-white/40 max-w-xl tracking-widest leading-relaxed min-h-[28px] transition-opacity duration-300">
-                    Chocolate amargo al 70% infusionado con destellos dorados comestibles.
-                </p>
-
-                <div id="sugar-variants-container" class="flex flex-nowrap items-center justify-center gap-2 text-[9px] tracking-widest font-mono select-none w-full overflow-x-visible">
-                </div>
-
-                <div class="flex items-center justify-center gap-4 font-mono text-[9px] tracking-widest text-white/40 uppercase">
-                    <span id="sugar-spec">250 GRS // DELI-SIZE</span>
-                    <span class="text-white/20">|</span>
-                    <span id="sugar-price">$35.000</span>
-                </div>
-
-                <div class="w-full max-w-md pt-2">
-                    <button onclick="adquirirNodoSugar()" class="w-full sm:w-auto px-12 py-3 bg-[#1a0c1e]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-pink-500/30 hover:border-pink-500 hover:bg-[#1a0022] transition-all duration-300 shadow-[0_0_20px_rgba(236,72,153,0.05)] hover:shadow-[0_0_25px_rgba(236,72,153,0.25)]">
-                        GET INFO
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center">
-                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Next">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
-                    </button>
-                </div>    
-                <div id="sugar-items-menu" class="justify-self-center flex items-center justify-center space-x-4 sm:space-x-6 text-center">
-                </div>
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleSugarDrawer(true)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Link to BioRush">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] rotate-180" alt="Link Nodes">
-                    </button>
-                </div>
-            </div>
-        </footer>
-    </main>
-
-    <div id="sugar-drawer" class="fixed inset-0 w-full h-screen flex flex-col justify-between select-none text-white font-mono z-40 transition-all duration-500 ease-in-out translate-x-full opacity-0 pointer-events-none overflow-hidden">
-        
-        <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center">
-                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
-                    </button>
-                </div>
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white">
+                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white text-[10px] sm:text-[11px]">
                     <span id="drawer-vault-node">BIORUSH</span>
                 </div>
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Bio Drawer">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Bio">
-                    </button>
+                <div class="justify-self-end flex items-center font-bold tracking-[0.15em]">
+                    ACT.0000
                 </div>
             </div>
         </header>
 
-<div class="w-full flex-1 overflow-y-auto scrollbar-none flex flex-col items-center justify-center py-4 px-4 text-center z-20">
+        <!-- ESPACIO CENTRAL CONTENEDOR (DIAL / CONTROLES) -->
+        <div class="w-full flex-1 overflow-y-auto scrollbar-none flex flex-col items-center justify-center py-2 px-4 text-center z-20 gap-2">
             
-            <div id="biorush-pack-container" class="relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[400px] md:max-w-[460px] aspect-[13/15] transition-all duration-700 ease-out select-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] z-10">
+            <!-- CONTENEDOR DE EMPAQUE / DIAL -->
+            <div id="biorush-pack-container" class="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[360px] md:max-w-[420px] aspect-[13/15] transition-all duration-700 ease-out select-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] z-10">
                 <div class="w-full h-full relative overflow-hidden bg-transparent">
                     <img id="biorush-pack-img-back" src="img/back.png" alt="BioRush Pack Back" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.05] sm:scale-[1.15] opacity-0 pointer-events-none z-0" />
-                    <img id="biorush-pack-img" src="img/caps.png" alt="BioRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.9] sm:scale-[1.8] pointer-events-none z-10" />
+                    <img id="biorush-pack-img" src="img/biorush.png" alt="BioRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.9] sm:scale-[1.8] pointer-events-none z-10" />
                     
+                    <!-- SVG VECTOR HUD INTERACTIVO -->
                     <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-20 pointer-events-none">
                         <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 pointer-events-none">
                             <defs>
@@ -195,14 +89,23 @@
                                     BIORUSH MENTAL FOCUS
                                 </textPath>
                             </text>
-                            <g class="opacity-30 stroke-[1.2] origin-center transform scale-75">
-                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                <path d="M 110,120 Q 200,150 290,120" />
-                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                            
+                            <!-- CÓDIGO DROPD_DIAL INTEGRADO EN EL CENTRO CON MARCADOR DE CONTEXTO -->
+                            <g class="origin-center transform scale-[0.85]">
+                                <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" class="opacity-20 stroke-[1.2]" />
+                                <path d="M 110,120 Q 200,150 290,120" class="opacity-20 stroke-[1.2]" />
+                                <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" class="opacity-20 stroke-[1.2]" />
+                                
+                                <!-- Contexto Técnico sobre el Dial Cifrado para evitar confusión -->
+                                <text x="200" y="165" text-anchor="middle" class="fill-white/30 text-[7px] tracking-[0.3em] font-bold uppercase">PULS SYNCHRO</text>
+                                <!-- Dial Alfanumérico Dinámico -->
+                                <text id="hud-pulse-dial" x="200" y="215" text-anchor="middle" class="fill-white font-black text-[28px] tracking-[0.05em] font-sans">1PUL3</text>
+                                <text x="200" y="245" text-anchor="middle" class="fill-white/30 text-[6px] tracking-[0.4em] font-mono">COORD // LOT</text>
                             </g>
+                            
                             <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500">
                                 <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
-                                    BIORUSH.WORLD &bull; 3243770474
+                                    BIORUSH.CO &bull; 3025333130
                                 </textPath>
                             </text>
                         </svg>
@@ -210,8 +113,10 @@
                 </div>
             </div>
             
-            <div class="w-full flex flex-col items-center gap-1.5 -mt-4 sm:-mt-6 px-4 shrink-0">
+            <!-- SECCIÓN DE DETALLES, VARIANTES Y ACCIÓN -->
+            <div class="w-full flex flex-col items-center gap-2.5 -mt-2 sm:-mt-4 px-4 shrink-0">
                 
+                <!-- Botón de Revelado Háptico -->
                 <button id="btn-reveal-bio" class="flex flex-col items-center gap-1 group focus:outline-none active:scale-95 transition-transform duration-200" aria-label="Revelar reverso">
                     <div class="w-7 h-7 rounded-full border border-emerald-500/30 flex items-center justify-center bg-emerald-950/20 group-hover:border-emerald-400 group-hover:bg-emerald-500/10 transition-all duration-300 shadow-[0_0_10px_rgba(16,185,129,0.05)]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-white/70 group-hover:text-emerald-400 transition-colors">
@@ -221,48 +126,56 @@
                     </div>
                 </button>
 
+                <!-- Descripción Dinámica Sincronizada -->
                 <p id="biorush-description" class="font-mono uppercase text-[9px] text-white/40 max-w-xl tracking-widest leading-relaxed min-h-[28px] transition-opacity duration-300">
-                    Nootrópico de alta optimización cerebral para estados de flujo prolongados.
+                    Enfoque y claridad cognitiva.
                 </p>
 
-                <div id="biorush-variants-container" class="flex flex-nowrap items-center justify-center gap-2 text-[9px] tracking-widest font-mono select-none w-full overflow-x-visible">
+                <!-- Bloque de Variantes: Optimizado para pantallas pequeñas mediante Flex Wrap seguro y Padding Lateral -->
+                <div id="biorush-variants-container" class="flex flex-wrap items-center justify-center gap-2 text-[9px] tracking-widest font-mono select-none w-full max-w-md px-2">
                 </div>
 
-                <div class="flex items-center justify-center gap-4 font-mono text-[9px] tracking-widest text-white/40 uppercase">
-                    <span id="biorush-spec">45 CAPS // 500 MGRS</span>
+                <!-- Especificaciones Limpias y Homologadas a MG -->
+                <div class="flex items-center justify-center gap-4 font-mono text-[9px] tracking-widest text-white/40 uppercase mt-0.5">
+                    <span id="biorush-spec">FLAN DE AVENA // LION’S MANE</span>
                     <span class="text-white/20">|</span>
-                    <span id="biorush-price">$70.000</span>
+                    <span id="biorush-price">$8.000</span>
                 </div>
 
-                <div class="w-full max-w-md pt-1">
-                    <button onclick="adquirirNodo()" class="w-full sm:w-auto px-12 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                        GET INFO
+                <!-- CTA Comercial Directo de Alta Conversión -->
+                <div class="w-full max-w-md pt-1 flex flex-col items-center gap-4">
+                    <button onclick="adquirirNodo()" class="w-full sm:w-auto px-14 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                        ORDENAR VÍA WHATSAPP
                     </button>
+                    
+                    <!-- Menú de Catálogo (Subido desde el Footer al bloque de control) -->
+                    <div id="biorush-items-menu" class="flex items-center justify-center space-x-5 sm:space-x-6 text-center text-[9px] tracking-widest font-mono text-white/40 uppercase">
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- FOOTER HUD UNIFICADO LABS -->
         <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center">
-                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Back to Main">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
-                    </button>
+                <div class="justify-self-start flex items-center font-bold tracking-[0.15em]">
+                    H.00°00'
                 </div>    
-                <div id="biorush-items-menu" class="justify-self-center flex items-center justify-center space-x-4 sm:space-x-6 text-center">
+                <div class="justify-self-center text-center tracking-[0.18em] font-bold text-white/50 hover:text-white transition-colors duration-300">
+                    <a href="https://jako.world" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                        POWERED BY JAKO.TECH-LAB
+                    </a>
                 </div>
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleSugarDrawer(false)" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Return">
-                    </button>
+                <div class="justify-self-end flex items-center font-bold tracking-[0.15em]">
+                    NOD.0000
                 </div>
             </div>
         </footer>
-    </div>
+    </main>
 
 <script>
-// =========================================================================
-    // 1. CONFIGURACIÓN DE CATÁLOGOS EXTENDIDOS: LÍNEA BIORUSH (ADAPTÓGENOS)
+    // =========================================================================
+    // 1. CONFIGURACIÓN DE CATÁLOGOS: CORREGIDOS DATOS INICIALES Y UNIDADES MG
     // =========================================================================
     const BIORUSH_CATALOG = {
         'BIORUSH': {
@@ -275,7 +188,8 @@
                     imgBack: 'img/back.png', 
                     spec: 'FLAN DE AVENA // LION’S MANE', 
                     price: '$8.000', 
-                    id: 'BR-01-FOC' 
+                    id: 'BR-01-FOC',
+                    dial: '1PUL3'
                 },
                 'ZEN': { 
                     desc: 'Reducción del ruido mental.', 
@@ -284,7 +198,8 @@
                     imgBack: 'img/biorush_zen_back.png', 
                     spec: 'FLAN DE AVENA // REISHI', 
                     price: '$8.000', 
-                    id: 'BR-01-ZEN' 
+                    id: 'BR-01-ZEN',
+                    dial: '2PUL8'
                 },
                 'STAMINA': { 
                     desc: 'Optimización del rendimiento energético celular.', 
@@ -293,7 +208,8 @@
                     imgBack: 'img/biorush_stamina_back.png', 
                     spec: 'FLAN DE AVENA // CORDYCEPS', 
                     price: '$8.000', 
-                    id: 'BR-01-STA' 
+                    id: 'BR-01-STA',
+                    dial: '3UST4'
                 },
                 'CORE': { 
                     desc: 'Sincronización inmunológica integral.', 
@@ -302,7 +218,8 @@
                     imgBack: 'img/biorush_core_back.png', 
                     spec: 'FLAN DE AVENA // TURKEY TAIL', 
                     price: '$8.000', 
-                    id: 'BR-01-COR' 
+                    id: 'BR-01-COR',
+                    dial: '4LST2'
                 }
             }
         },
@@ -316,7 +233,8 @@
                     imgBack: 'img/item2_raw_back.png', 
                     spec: '45 CAPS // 500 MG', 
                     price: '$85.000', 
-                    id: 'BR-02-FOC' 
+                    id: 'BR-02-FOC',
+                    dial: '5PUL1'
                 },
                 'ZEN': { 
                     desc: 'Reducción del ruido mental.', 
@@ -325,7 +243,8 @@
                     imgBack: 'img/item2_boost_back.png', 
                     spec: '45 CAPS // 500 MG', 
                     price: '$89.000', 
-                    id: 'BR-02-ZEN' 
+                    id: 'BR-02-ZEN',
+                    dial: '6PUL9'
                 },
                 'STAMINA': { 
                     desc: 'Optimización del rendimiento energético celular.', 
@@ -334,7 +253,8 @@
                     imgBack: 'img/item2_stamina_back.png', 
                     spec: '45 CAPS // 500 MG', 
                     price: '$85.000', 
-                    id: 'BR-02-STA' 
+                    id: 'BR-02-STA',
+                    dial: '7UST3'
                 },
                 'CORE': { 
                     desc: 'Sincronización inmunológica integral.', 
@@ -343,7 +263,8 @@
                     imgBack: 'img/item2_core_back.png', 
                     spec: '45 CAPS // 500 MG', 
                     price: '$80.000', 
-                    id: 'BR-02-COR' 
+                    id: 'BR-02-COR',
+                    dial: '8LST6'
                 }
             }
         },
@@ -357,7 +278,8 @@
                     imgBack: 'img/item3_calm_back.png', 
                     spec: '24 CAPS // 500 MG', 
                     price: '$48.000', 
-                    id: 'BR-03-FOC' 
+                    id: 'BR-03-FOC',
+                    dial: '9PUL2'
                 },
                 'ZEN': { 
                     desc: 'Reducción del ruido mental.', 
@@ -366,7 +288,8 @@
                     imgBack: 'img/item3_sleep_back.png', 
                     spec: '24 CAPS // 500 MG', 
                     price: '$52.000', 
-                    id: 'BR-03-ZEN' 
+                    id: 'BR-03-ZEN',
+                    dial: '1PUL7'
                 },
                 'STAMINA': { 
                     desc: 'Optimización del rendimiento energético celular.', 
@@ -375,7 +298,8 @@
                     imgBack: 'img/item3_stamina_back.png', 
                     spec: '24 CAPS // 500 MG', 
                     price: '$48.000', 
-                    id: 'BR-03-STA' 
+                    id: 'BR-03-STA',
+                    dial: '2UST9'
                 },
                 'CORE': { 
                     desc: 'Sincronización inmunológica integral.', 
@@ -384,134 +308,8 @@
                     imgBack: 'img/item3_core_back.png', 
                     spec: '24 CAPS // 500 MG', 
                     price: '$45.000', 
-                    id: 'BR-03-COR' 
-                }
-            }
-        }
-    };
-
-
-
-    // =========================================================================
-    // 2. CONFIGURACIÓN DE CATÁLOGOS EXTENDIDOS: LÍNEA SUGARRUSH (REPOSTERÍA)
-    // =========================================================================
-    const SUGARRUSH_CATALOG = {
-        'ALFAJORES': {
-            defaultVariant: 'ALFAJOR X1',
-            variants: {
-                'ALFAJOR X1': {
-                    desc: 'Suave alfajor clásico para un antojo rápido.',
-                    label: 'SUGARRUSH ALFAJOR INDIVIDUAL',
-                    img: 'img/sugar_choco.png',
-                    imgBack: 'img/sugar_choco_back.png',
-                    spec: '1 UNIDAD // ANTOJO PERSONAL',
-                    price: '$3.500',
-                    id: 'SR-01-AX1'
-                },
-                'ALFAJOR X5': {
-                    desc: 'Suaves y tradicionales, perfectos para compartir.',
-                    label: 'SUGARRUSH ALFAJORES X5',
-                    img: 'img/sugar_vanilla.png',
-                    imgBack: 'img/sugar_vanilla_back.png',
-                    spec: '5 UNIDADES // PACK CLÁSICO',
-                    price: '$16.000',
-                    id: 'SR-01-AX5' 
-                },
-                'ALFAJOR X6': {
-                    desc: 'Variados: Maní x2, Coco x2, Leche Polvo x2.',
-                    label: 'SUGARRUSH ALFAJORES VARIADOS X6',
-                    img: 'img/sugar_berry.png',
-                    imgBack: 'img/sugar_berry_back.png',
-                    spec: '6 UNIDADES // RECOMENDADO',
-                    price: '$20.000',
-                    id: 'SR-01-AX6' 
-                }
-            }
-        },
-        'POSTRES': {
-            defaultVariant: 'LECHE ASADA',
-            variants: {
-                'LECHE ASADA': {
-                    desc: 'Postre tradicional horneado con textura suave y cremosa.',
-                    label: 'POSTRE LECHE ASADA',
-                    img: 'img/sugar_choco.png',
-                    imgBack: 'img/sugar_choco_back.png',
-                    spec: 'PORCIÓN // TRADICIONAL',
-                    price: '$7.000', 
-                    id: 'SR-02-LAS'
-                },
-                'LECHE ASADA ESPECIAL': {
-                    desc: 'Nuestra receta clásica con un toque secreto especial.',
-                    label: 'POSTRE LECHE ASADA ESPECIAL',
-                    img: 'img/sugar_vanilla.png',
-                    imgBack: 'img/sugar_vanilla_back.png',
-                    spec: 'PORCIÓN // RECETA PREMIUM',
-                    price: '$9.500', 
-                    id: 'SR-02-LAE' 
-                }
-            }
-        },
-        'BROWNIES': {
-            defaultVariant: 'BROWNIE X1',
-            variants: {
-                'BROWNIE X1': { 
-                    desc: 'Porción melcochuda con el mejor cacao concentrado.', 
-                    label: 'BROWNIE INDIVIDUAL', 
-                    img: 'img/brownie_x1.png', 
-                    imgBack: 'img/back.png', 
-                    spec: '1 UNIDAD // SNACK PREMIUM', 
-                    price: '$5.000', 
-                    id: 'SR-03-BX1' 
-                },
-                'BROWNIE X20': { 
-                    desc: 'Caja de brownies melcochudos listos para compartir.', 
-                    label: 'BROWNIES X20 PACK', 
-                    img: 'img/brownies_x6.png', 
-                    imgBack: 'img/back.png', 
-                    spec: '20 UNIDADES // PACK COMPARTIR', 
-                    price: '$28.000', 
-                    id: 'SR-03-BX20' 
-                },
-                'BROWNIE X50': { 
-                    desc: 'Melcochudos con el toque justo de cacao.', 
-                    label: 'BROWNIES X50 PARTY PACK', 
-                    img: 'img/brownies_x50.png', 
-                    imgBack: 'img/back.png', 
-                    spec: '50 UNIDADES // EVENTOS', 
-                    price: '$100.000', 
-                    id: 'SR-03-BX50' 
-                }
-            }
-        },
-        'FIAMBRES': {
-            defaultVariant: 'POLLO',
-            variants: {
-                'POLLO': { 
-                    desc: 'Pollo, queso, bechamel y pasta artesanal.', 
-                    label: 'LASAÑA DE POLLO ARTESANAL', 
-                    img: 'img/lasagna_pollo.png', 
-                    imgBack: 'img/back.png', 
-                    spec: '14 X 11.5 CM // ARTESANAL', 
-                    price: '$20.000', 
-                    id: 'SR-04-LPO' 
-                },
-                'MIXTA': { 
-                    desc: 'Combinación artesanal de pollo, carne y queso.', 
-                    label: 'LASAÑA MIXTA PREMIUM', 
-                    img: 'img/lasagna_mixta.png', 
-                    imgBack: 'img/back.png', 
-                    spec: '14 X 11.5 CM // ARTESANAL', 
-                    price: '$22.000', 
-                    id: 'SR-04-LMX' 
-                },
-                'FIAMBRES': { 
-                    desc: 'Almuerzo tradicional empacado con sazón casera.', 
-                    label: 'FIAMBRE TRADICIONAL', 
-                    img: 'img/fiambres.png', 
-                    imgBack: 'img/back.png', 
-                    spec: 'PORCIÓN INDIVIDUAL // ALMUERZO', 
-                    price: '$30.000', 
-                    id: 'SR-04-FIA' 
+                    id: 'BR-03-COR',
+                    dial: '3LST5'
                 }
             }
         }
@@ -519,19 +317,16 @@
 
     let currentBioItem = 'BIORUSH';
     let currentBioVariant = 'FOCUS';
-    let currentSugarItem = 'POSTRE1';
-    let currentSugarVariant = 'ALFAJOR X1';
-    const numeroCelular = "573243770474";
+    const numeroCelular = "573025333130";
 
     // ==========================================
-    // 2. SISTEMA UNIFICADO DE REVELADO (POINTERS)
+    // 2. SISTEMA DE REVELADO (POINTERS & HAPTICS)
     // ==========================================
-    // Actualizamos la función para recibir un cuarto parámetro: 'vectorId'
     function vincularBotonRevelado(btnId, frontImgId, backImgId, vectorId) {
         const btn = document.getElementById(btnId);
         const frontImg = document.getElementById(frontImgId);
         const backImg = document.getElementById(backImgId);
-        const vectorSvg = document.getElementById(vectorId); // Captura el SVG correcto sin alterar su ID
+        const vectorSvg = document.getElementById(vectorId);
 
         if (!btn || !frontImg || !backImg) return;
 
@@ -546,12 +341,11 @@
             backImg.classList.remove('opacity-0');
             backImg.classList.add('opacity-100', 'scale-[1.12]');
             
-            // Desvanece el SVG (gracias a la clase transition-all duration-500 que ya tienen tus SVGs)
             if (vectorSvg) {
                 vectorSvg.classList.add('opacity-0', 'pointer-events-none');
             }
             
-            if (navigator.vibrate) navigator.vibrate(10);
+            if (navigator.vibrate) navigator.vibrate(12);
         };
 
         const ocultarReverso = () => {
@@ -561,7 +355,6 @@
             backImg.classList.remove('opacity-100', 'scale-[1.12]');
             backImg.classList.add('opacity-0');
             
-            // Restaura el SVG a su estado visible original
             if (vectorSvg) {
                 vectorSvg.classList.remove('opacity-0', 'pointer-events-none');
             }
@@ -587,24 +380,21 @@
             `).join('');
         }
         
-        vincularBotonRevelado('btn-reveal-bio', 'biorush-pack-img', 'biorush-pack-img-back');
+        vincularBotonRevelado('btn-reveal-bio', 'biorush-pack-img', 'biorush-pack-img-back', 'laser-vector-target');
         actualizarBioUI();
-
-        vincularBotonRevelado('btn-reveal-bio', 'biorush-pack-img', 'biorush-pack-img-back', 'laser-vector-target');actualizarBioUI();
     }
-    
 
     function cambiarBioItem(itemKey) {
         currentBioItem = itemKey;
         currentBioVariant = BIORUSH_CATALOG[itemKey].defaultVariant;
         actualizarBioUI();
-        if (navigator.vibrate) navigator.vibrate(12);
+        if (navigator.vibrate) navigator.vibrate(15);
     }
 
     function cambiarBioVariant(variantKey) {
         currentBioVariant = variantKey;
         actualizarBioUI();
-        if (navigator.vibrate) navigator.vibrate(12);
+        if (navigator.vibrate) navigator.vibrate(10);
     }
 
     function actualizarBioUI() {
@@ -631,14 +421,16 @@
                 const labelTitle = document.getElementById('laser-variant-title');
                 const specEl = document.getElementById('biorush-spec');
                 const priceEl = document.getElementById('biorush-price');
+                const dialEl = document.getElementById('hud-pulse-dial');
                 
                 if (labelTitle) labelTitle.textContent = variantConfig.label;
                 if (specEl) specEl.textContent = variantConfig.spec;
                 if (priceEl) priceEl.textContent = variantConfig.price;
+                if (dialEl) dialEl.textContent = variantConfig.dial; // Actualización en caliente del Dial HUD
                 
                 descEl.style.opacity = 1;
                 packImg.style.opacity = 1;
-            }, 150);
+            }, 120);
         }
 
         Object.keys(BIORUSH_CATALOG).forEach(item => {
@@ -671,157 +463,19 @@
                         `• *Variante:* ${currentBioVariant}\n` +
                         `• *Especificación:* ${variantConfig.spec}\n` +
                         `• *Ref Label:* ${variantConfig.label}\n` +
-                        `• *Precio:* $${variantConfig.price}\n` +
+                        `• *Precio:* ${variantConfig.price}\n` +
+                        `• *PULS Dial:* \`${variantConfig.dial}\`\n` +
                         `• *ID Seguridad:* \`${variantConfig.id}\`\n\n` +
                         `Solicito la inicialización y el despacho inmediato de esta orden.`;
 
         const urlWhatsapp = `https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`;
-        if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+        if (navigator.vibrate) navigator.vibrate([15, 40, 15]);
         window.open(urlWhatsapp, '_blank');
     }
 
-    // ==========================================
-    // 4. LÓGICA DE INTERFAZ SUGARRUSH
-    // ==========================================
-    function inicializarSugarRush() {
-        const menuContainer = document.getElementById('sugar-items-menu');
-        if (menuContainer) {
-            menuContainer.innerHTML = Object.keys(SUGARRUSH_CATALOG).map(item => `
-                <span id="menu-sugar-${item}" onclick="cambiarSugarItem('${item}')" class="cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold">
-                    ${item}
-                </span>
-            `).join('');
-        }
-        
-        vincularBotonRevelado('btn-reveal-sugar', 'sugar-pack-img', 'sugar-pack-img-back');
-        actualizarSugarUI();
-        vincularBotonRevelado('btn-reveal-sugar', 'sugar-pack-img', 'sugar-pack-img-back', 'sugar-vector-target');
-        actualizarSugarUI();
-    }
-
-    function cambiarSugarItem(itemKey) {
-        currentSugarItem = itemKey;
-        currentSugarVariant = SUGARRUSH_CATALOG[itemKey].defaultVariant;
-        actualizarSugarUI();
-        if (navigator.vibrate) navigator.vibrate(12);
-    }
-
-    function cambiarSugarVariant(variantKey) {
-        currentSugarVariant = variantKey;
-        actualizarSugarUI();
-        if (navigator.vibrate) navigator.vibrate(12);
-    }
-
-    function actualizarSugarUI() {
-        const itemConfig = SUGARRUSH_CATALOG[currentSugarItem];
-        const variantConfig = itemConfig.variants[currentSugarVariant];
-        
-        const drawerSugarNode = document.getElementById('drawer-sugar-node');
-        if (drawerSugarNode) drawerSugarNode.textContent = currentSugarItem;
-
-        const descEl = document.getElementById('sugar-description');
-        const packImg = document.getElementById('sugar-pack-img');
-        const packImgBack = document.getElementById('sugar-pack-img-back');
-        
-        if (descEl && packImg && packImgBack) {
-            descEl.style.opacity = 0;
-            packImg.style.opacity = 0;
-            packImgBack.style.opacity = 0;
-
-            setTimeout(() => {
-                descEl.textContent = variantConfig.desc;
-                packImg.src = variantConfig.img;
-                packImgBack.src = variantConfig.imgBack;
-                
-                const sugarLabel = document.getElementById('sugar-variant-title');
-                const sugarSpec = document.getElementById('sugar-spec');
-                const sugarPrice = document.getElementById('sugar-price');
-                
-                if (sugarLabel) sugarLabel.textContent = variantConfig.label;
-                if (sugarSpec) sugarSpec.textContent = variantConfig.spec;
-                if (sugarPrice) sugarPrice.textContent = variantConfig.price;
-                
-                descEl.style.opacity = 1;
-                packImg.style.opacity = 1;
-            }, 150);
-        }
-
-        Object.keys(SUGARRUSH_CATALOG).forEach(item => {
-            const el = document.getElementById(`menu-sugar-${item}`);
-            if (el) {
-                el.className = (item === currentSugarItem) 
-                    ? "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold text-white scale-105 border-b border-pink-500 pb-0.5" 
-                    : "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none text-white/30 hover:text-white/70";
-            }
-        });
-
-        const variantContainer = document.getElementById('sugar-variants-container');
-        if (variantContainer) {
-            variantContainer.innerHTML = Object.keys(itemConfig.variants).map(vKey => {
-                const isSelected = (vKey === currentSugarVariant);
-                return `
-                    <span onclick="cambiarSugarVariant('${vKey}')" 
-                          class="cursor-pointer transition-all duration-300 px-3 py-1 bg-black/40 backdrop-blur-md rounded-sm border ${isSelected ? 'border-pink-500 text-white font-black shadow-[0_0_12px_rgba(236,72,153,0.15)]' : 'border-white/5 text-white/40 hover:border-pink-500/30 hover:text-white/80'}">
-                        ${vKey}
-                    </span>
-                `;
-            }).join('');
-        }
-    }
-
-    function adquirirNodoSugar() {
-        const variantConfig = SUGARRUSH_CATALOG[currentSugarItem].variants[currentSugarVariant];
-        const mensaje = `🧁 *NUEVA ORDEN - SUGARRUSH* 🧁\n\n` +
-                        `• *Línea:* Dulce / Postres\n` +
-                        `• *Ítem Base:* ${currentSugarItem}\n` +
-                        `• *Variante:* ${currentSugarVariant}\n` +
-                        `• *Volumen:* ${variantConfig.spec}\n` +
-                        `• *Precio:* $${variantConfig.price}\n` +
-                        `• *ID Seguridad:* \`${variantConfig.id}\`\n\n` +
-                        `Solicito información de despacho para esta orden molecular.`;
-
-        const urlWhatsapp = `https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`;
-        if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
-        window.open(urlWhatsapp, '_blank');
-    }
-
-    // ==========================================
-    // 5. CONTROL DEL PANEL LATERAL (DRAWER)
-    // ==========================================
-    function toggleSugarDrawer(open) {
-        const sugarDrawer = document.getElementById('sugar-drawer');
-        const mainVault = document.getElementById('main-vault');
-        const bioBg = document.getElementById('page-bg-overlay');
-        const sugarBg = document.getElementById('sugar-bg-overlay');
-
-        if (!sugarDrawer || !mainVault) return;
-
-        if (open) {
-            sugarDrawer.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
-            sugarDrawer.classList.add('translate-x-0', 'opacity-100');
-            mainVault.classList.add('opacity-0', 'pointer-events-none');
-            if (bioBg) bioBg.classList.add('opacity-0');
-            if (sugarBg) {
-                sugarBg.classList.remove('opacity-0', 'pointer-events-none');
-                sugarBg.classList.add('opacity-100');
-            }
-        } else {
-            sugarDrawer.classList.remove('translate-x-0', 'opacity-100');
-            sugarDrawer.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
-            mainVault.classList.remove('opacity-0', 'pointer-events-none');
-            if (sugarBg) {
-                sugarBg.classList.remove('opacity-100');
-                sugarBg.classList.add('opacity-0', 'pointer-events-none');
-            }
-            if (bioBg) bioBg.classList.remove('opacity-0');
-        }
-        if (navigator.vibrate) navigator.vibrate(15);
-    }
-
-    // Inicialización al cargar la carga del DOM
+    // Inicialización nativa al cargar DOM
     document.addEventListener('DOMContentLoaded', () => {
         inicializarBioRush();
-        inicializarSugarRush();
     });
 </script>
 </body>
