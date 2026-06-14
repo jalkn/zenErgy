@@ -54,14 +54,14 @@
 
         <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center font-bold tracking-[0.15em]">
-                    SPH.0000
+                <div id="telemetry-sphere-idx" class="justify-self-start flex items-center font-bold tracking-[0.15em]">
+                    0000.⨀
                 </div>
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white text-[10px] sm:text-[11px]">
                     <span id="drawer-vault-node">BIORUSH</span>
                 </div>
-                <div class="justify-self-end flex items-center font-bold tracking-[0.15em]">
-                    NOD.0000
+                <div id="telemetry-active-node" class="justify-self-end flex items-center font-bold tracking-[0.15em]">
+                    ◯.0000
                 </div>
             </div>
         </header>
@@ -92,7 +92,7 @@
                                 <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" class="opacity-20 stroke-[1.2]" />
                                 
                                 <text x="200" y="165" text-anchor="middle" class="fill-white/30 text-[7px] tracking-[0.3em] font-bold uppercase"></text>
-                                <text id="" x="200" y="215" text-anchor="middle" class="fill-white font-black text-[28px] tracking-[0.05em] font-sans">--PUL--</text>
+                                <text id="z-dial" x="200" y="215" text-anchor="middle" class="fill-white font-black text-[28px] tracking-[0.05em] font-sans">8UST11</text>
                                 <text x="200" y="245" text-anchor="middle" class="fill-white/30 text-[6px] tracking-[0.4em] font-mono"></text>
                             </g>
                             
@@ -146,24 +146,25 @@
             </div>
 
         <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
+            
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                <div id="" class="justify-self-start flex items-center font-bold tracking-[0.15em]">
+                <div id="sub-sets-solar" class="justify-self-start flex items-center font-bold tracking-[0.15em]">
                     0.00 Hz
                 </div>    
                 <div class="justify-self-center text-center tracking-[0.18em] font-bold text-white/50 hover:text-white transition-colors duration-300">
                     <a href="https://jako.world" target="_blank" rel="noopener noreferrer" class="hover:underline">
-                        POWERED BY JAKO
                     </a>
                 </div>
-                <div id="" class="justify-self-end flex items-center font-bold tracking-[0.15em]">
+                <div id="sub-reps-tension" class="justify-self-end flex items-center font-bold tracking-[0.15em]">
                     00.0 N
                 </div>
             </div>
+            
         </footer>
     </main>
 
 <script>
-// =========================================================================
+    // =========================================================================
     // 1. CONFIGURACIÓN DE CATÁLOGOS COMERCIALES
     // =========================================================================
     const BIORUSH_CATALOG = {
@@ -175,7 +176,7 @@
                 'STAMINA': { desc: 'Optimización del rendimiento energético celular.', label: 'BIORUSH BODY STAMINA', img: 'img/biorush.png', imgBack: 'img/biorush_stamina_back.png', spec: 'FLAN DE AVENA // CORDYCEPS', price: '$8.000', id: 'BR-01-STA' },
                 'CORE': { desc: 'Sincronización inmunológica integral.', label: 'BIORUSH BODY CORE', img: 'img/biorush.png', imgBack: 'img/biorush_core_back.png', spec: 'FLAN DE AVENA // TURKEY TAIL', price: '$8.000', id: 'BR-01-COR' }
             }
-        },
+        }, 
         'CAPS_45': {
             defaultVariant: 'FOCUS',
             variants: {
@@ -198,59 +199,62 @@
 
     let currentBioItem = 'BIORUSH';
     let currentBioVariant = 'FOCUS';
-    
-    // VARIABLES COMPATIBLES CON EL PROTOCOLO MAESTRO DE JAKO.TECH-LAB
-    let biokineticCoordinate = "1P1"; 
     const numeroCelular = "573025333130";
 
-    // Selector nativo abreviado
+    // ==========================================
+    // 2. CACHÉ DE ELEMENTOS DE UI (OPTIMIZADO)
+    // ==========================================
     const $ = (id) => document.getElementById(id);
+    const cachedElements = {};
+    
+    function getCachedEl(id) {
+        if (!cachedElements[id]) {
+            cachedElements[id] = $(id);
+        }
+        return cachedElements[id];
+    }
+
+    const triggerHaptic = (ms) => { if (navigator.vibrate) navigator.vibrate(ms); };
 
     // ==========================================
-    // 2. SISTEMA DE REVELADO (POINTERS & HAPTICS)
+    // 3. SISTEMA DE REVELADO (POINTER EVENTS)
     // ==========================================
     function vincularBotonRevelado(btnId, frontImgId, backImgId, vectorId) {
-        const btn = $(btnId);
-        const frontImg = $(frontImgId);
-        const backImg = $(backImgId);
-        const vectorSvg = $(vectorId);
+        const btn = getCachedEl(btnId);
+        const frontImg = getCachedEl(frontImgId);
+        const backImg = getCachedEl(backImgId);
+        const vectorSvg = getCachedEl(vectorId);
 
         if (!btn || !frontImg || !backImg) return;
 
         const mostrarReverso = (e) => {
             e.preventDefault();
-            frontImg.style.opacity = '';
-            backImg.style.opacity = '';
-            frontImg.classList.remove('opacity-100');
-            frontImg.classList.add('opacity-0', 'scale-[1.02]');
-            backImg.classList.remove('opacity-0');
-            backImg.classList.add('opacity-100', 'scale-[1.12]');
+            frontImg.classList.replace('opacity-100', 'opacity-0');
+            frontImg.classList.add('scale-[1.02]');
+            backImg.classList.replace('opacity-0', 'opacity-100');
+            backImg.classList.add('scale-[1.12]');
             if (vectorSvg) vectorSvg.classList.add('opacity-0', 'pointer-events-none');
-            if (navigator.vibrate) navigator.vibrate(12);
+            triggerHaptic(12);
         };
 
         const ocultarReverso = () => {
-            frontImg.classList.remove('opacity-0', 'scale-[1.02]');
-            frontImg.classList.add('opacity-100');
-            backImg.classList.remove('opacity-100', 'scale-[1.12]');
-            backImg.classList.add('opacity-0');
+            frontImg.classList.replace('opacity-0', 'opacity-100');
+            frontImg.classList.remove('scale-[1.02]');
+            backImg.classList.replace('opacity-100', 'opacity-0');
+            backImg.classList.remove('scale-[1.12]');
             if (vectorSvg) vectorSvg.classList.remove('opacity-0', 'pointer-events-none');
         };
 
         btn.addEventListener('pointerdown', mostrarReverso);
         btn.addEventListener('pointerup', ocultarReverso);
         btn.addEventListener('pointerleave', ocultarReverso);
-        btn.addEventListener('touchstart', mostrarReverso, { passive: false });
-        btn.addEventListener('touchend', ocultarReverso);
     }
-
-
 
     // ==========================================
     // 4. CONTROLADORES DE INTERFAZ DE USUARIO
     // ==========================================
     function inicializarBioRush() {
-        const menuContainer = $('biorush-items-menu');
+        const menuContainer = getCachedEl('biorush-items-menu');
         if (menuContainer) {
             menuContainer.innerHTML = Object.keys(BIORUSH_CATALOG).map(item => `
                 <span id="menu-bio-${item}" onclick="cambiarBioItem('${item}')" class="cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold">
@@ -267,51 +271,51 @@
         currentBioItem = itemKey;
         currentBioVariant = BIORUSH_CATALOG[itemKey].defaultVariant;
         actualizarBioUI();
-        if (navigator.vibrate) navigator.vibrate(15);
+        triggerHaptic(15);
     }
 
     function cambiarBioVariant(variantKey) {
         currentBioVariant = variantKey;
         actualizarBioUI();
-        if (navigator.vibrate) navigator.vibrate(10);
+        triggerHaptic(10);
     }
 
     function actualizarBioUI() {
         const itemConfig = BIORUSH_CATALOG[currentBioItem];
         const variantConfig = itemConfig.variants[currentBioVariant];
         
-        const drawerNode = $('drawer-vault-node');
+        const drawerNode = getCachedEl('drawer-vault-node');
         if (drawerNode) drawerNode.textContent = currentBioItem;
 
-        const descEl = $('biorush-description');
-        const packImg = $('biorush-pack-img');
-        const packImgBack = $('biorush-pack-img-back');
+        const descEl = getCachedEl('biorush-description');
+        const packImg = getCachedEl('biorush-pack-img');
+        const packImgBack = getCachedEl('biorush-pack-img-back');
         
         if (descEl && packImg && packImgBack) {
-            descEl.style.opacity = 0;
-            packImg.style.opacity = 0;
-            packImgBack.style.opacity = 0;
+            descEl.classList.add('opacity-0');
+            packImg.classList.replace('opacity-100', 'opacity-0');
+            packImgBack.classList.replace('opacity-100', 'opacity-0');
 
             setTimeout(() => {
                 descEl.textContent = variantConfig.desc;
                 packImg.src = variantConfig.img;
                 packImgBack.src = variantConfig.imgBack;
                 
-                const labelTitle = $('laser-variant-title');
-                const specEl = $('biorush-spec');
-                const priceEl = $('biorush-price');
+                const labelTitle = getCachedEl('laser-variant-title');
+                const specEl = getCachedEl('biorush-spec');
+                const priceEl = getCachedEl('biorush-price');
                 
                 if (labelTitle) labelTitle.textContent = variantConfig.label;
                 if (specEl) specEl.textContent = variantConfig.spec;
                 if (priceEl) priceEl.textContent = variantConfig.price;
                 
-                descEl.style.opacity = 1;
-                packImg.style.opacity = 1;
+                descEl.classList.remove('opacity-0');
+                packImg.classList.replace('opacity-0', 'opacity-100');
             }, 120);
         }
 
         Object.keys(BIORUSH_CATALOG).forEach(item => {
-            const el = $(`menu-bio-${item}`);
+            const el = getCachedEl(`menu-bio-${item}`);
             if (el) {
                 el.className = (item === currentBioItem) 
                     ? "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold text-white scale-105 border-b border-emerald-400 pb-0.5" 
@@ -319,7 +323,7 @@
             }
         });
 
-        const variantContainer = $('biorush-variants-container');
+        const variantContainer = getCachedEl('biorush-variants-container');
         if (variantContainer) {
             variantContainer.innerHTML = Object.keys(itemConfig.variants).map(vKey => {
                 const isSelected = (vKey === currentBioVariant);
@@ -334,30 +338,95 @@
     }
 
     // =========================================================================
-    // 5. CAPTURA DE TELEMETRÍA DE COMPRA (GENERACIÓN DE PAYLOAD AUDITABLE)
+    // 5. MOTOR DE TELEMETRÍA (PROTOCOLO PULS)
+    // =========================================================================
+    function calculateSphereIndex() {
+        const epoch = new Date('2012-12-21T00:00:00Z'); 
+        const daysSinceEpoch = Math.floor((new Date() - epoch) / 86400000);
+        return `${String(daysSinceEpoch).padStart(4, '0')}.⨀`;
+    }
+
+    function updateZ() {
+        let biokineticCoordinate = "";
+        const now = new Date();
+        const hours = now.getHours(); 
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        const currentSphereIdx = calculateSphereIndex();
+        
+        const elIdx = getCachedEl('telemetry-sphere-idx');
+        if (elIdx && elIdx.textContent !== currentSphereIdx) elIdx.textContent = currentSphereIdx;
+
+        let setsStage = 1;  
+        let repsStage = 1;  
+        let currentAction = 'P'; 
+
+        if (seconds % 2 !== 0) {
+            const progress1s = now.getMilliseconds() / 1000; 
+            setsStage = Math.floor(progress1s * 12) + 1;
+            repsStage = 13 - setsStage; 
+
+            if (progress1s < 0.25) currentAction = 'P';
+            else if (progress1s < 0.5) currentAction = 'U';
+            else if (progress1s < 0.75) currentAction = 'L';
+            else currentAction = 'S';
+        } else {
+            setsStage = Math.floor((minutes % 12) + 1);
+            
+            if (seconds < 30) {
+                const subSlot = Math.floor((seconds % 30) / 7.5);
+                currentAction = ["PL", "PU", "LU", "SU"][subSlot] || "PL";
+                repsStage = Math.floor((seconds % 10) + 2);
+            } else {
+                const subSlot = Math.floor(((seconds - 30) % 30) / 7.5);
+                currentAction = ["PUL", "PLS", "LUP", "ULS"][subSlot] || "ULS";
+                repsStage = Math.floor(((seconds - 30) % 10) + 3);
+            }
+        }
+        setsStage = Math.max(1, Math.min(12, setsStage));
+        repsStage = Math.max(1, Math.min(12, repsStage));
+        biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
+
+        const elDial = getCachedEl('z-dial');
+        if (elDial) elDial.textContent = biokineticCoordinate;
+        
+        const activeNodeText = `◯.${String(Math.floor(((hours * 3600) + (minutes * 60) + seconds) / 10) + 1).padStart(4, '0')}`;
+        const elActiveNode = getCachedEl('telemetry-active-node');
+        if (elActiveNode) elActiveNode.textContent = activeNodeText;
+
+        const subSetsSolar = getCachedEl('sub-sets-solar');
+        const subRepsTension = getCachedEl('sub-reps-tension');
+        if (subSetsSolar) subSetsSolar.textContent = `${(0.05 + (setsStage / 240)).toFixed(3)} Hz`;
+        if (subRepsTension) subRepsTension.textContent = `${(14.2 + (repsStage * 0.8)).toFixed(1)} N`;
+    }
+
+    // =========================================================================
+    // 6. CAPTURA DE TELEMETRÍA DE COMPRA (GENERACIÓN DE PAYLOAD)
     // =========================================================================
     function adquirirNodo() {
         const variantConfig = BIORUSH_CATALOG[currentBioItem].variants[currentBioVariant];
+        const currentCoord = getCachedEl('z-dial')?.textContent || "N/A";
         
-        // Mapea de manera estricta y limpia la coordenada calculada en tiempo real en el payload
         const mensaje = `⚡ *NUEVA ORDEN - BIORUSH* ⚡\n\n` +
                         `• *Ítem Base:* ${currentBioItem}\n` +
                         `• *Variante:* ${currentBioVariant}\n` +
                         `• *Especificación:* ${variantConfig.spec}\n` +
                         `• *Ref Label:* ${variantConfig.label}\n` +
                         `• *Precio:* ${variantConfig.price}\n` +
-                        `• *PULS Dial:* \`${biokineticCoordinate}\`\n` +
+                        `• *Coordenada Bioléctrica:* \`${currentCoord}\`\n` +
                         `• *ID Seguridad:* \`${variantConfig.id}\`\n\n` +
                         `Solicito la inicialización y el despacho inmediato de esta orden.`;
 
-        const urlWhatsapp = `https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`;
-        if (navigator.vibrate) navigator.vibrate([15, 40, 15]);
-        window.open(urlWhatsapp, '_blank');
+        triggerHaptic([15, 40, 15]);
+        window.open(`https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`, '_blank');
     }
 
-    // Inicialización nativa del DOM
+    // Inicialización coordinada del Ciclo de Vida del DOM
     document.addEventListener('DOMContentLoaded', () => {
         inicializarBioRush();
+        updateZ(); 
+        setInterval(updateZ, 1000);
     });
 </script>
 </body>
