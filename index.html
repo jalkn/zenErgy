@@ -56,7 +56,7 @@
     <div id="page-bg-overlay"></div>
     <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
 
-    <main id="main-vault" class="w-full h-screen flex flex-col justify-between items-center select-none text-white font-mono z-10 relative overflow-hidden py-4">
+    <main id="main-vault" class="w-full h-screen min-h-0 overflow-y-auto flex flex-col justify-center items-center select-none text-white font-mono z-10 relative gap-y-6 py-6">
 
         <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 absolute top-0 z-50">
             <div class="p-6 flex justify-center items-center w-full min-h-[72px]">
@@ -69,9 +69,9 @@
             </div>
         </header>
 
-        <div class="w-full flex-1 flex flex-col items-center justify-evenly py-2 px-4 text-center z-20">
+        <div class="w-full flex flex-col items-center justify-center gap-y-6 px-4 mt-[72px] mb-[72px]">
             
-            <div id="biorush-pack-container" class="relative w-full max-w-[180px] xs:max-w-[200px] sm:max-w-[240px] md:max-w-[280px] aspect-[13/15] transition-all duration-700 ease-out select-none drop-shadow-[0_20px_30px_rgba(0,0,0,0.85)] z-10">
+            <div id="biorush-pack-container" class="relative w-full max-w-[180px] xs:max-w-[200px] sm:max-w-[240px] md:max-w-[280px] aspect-[13/15]">
                 <div class="w-full h-full relative overflow-hidden bg-transparent">
                     <img id="biorush-pack-img-back" src="img/45capsBack.png" alt="BioRush Pack Back" class="img-glow-transition absolute inset-0 w-full h-full object-contain opacity-0 pointer-events-none z-0" />
                     <img id="biorush-pack-img" src="img/45caps.png" alt="BioRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain pointer-events-auto z-10" />
@@ -122,7 +122,7 @@
                 </div>
             </div>
             
-            <div class="w-full flex flex-col items-center gap-4 mt-2 px-4 shrink-0 relative z-20">
+            <div class="w-full flex flex-col items-center gap-4 shrink-0 relative z-20">
                 
                 <div class="flex flex-col items-center gap-3 w-full">
                     <div id="biorush-items-menu" class="flex items-center justify-center space-x-6 text-[9px] tracking-[0.25em] font-bold text-white/50 uppercase"></div>
