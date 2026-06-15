@@ -34,4 +34,4 @@ def procesar_croma_biorush_pro(input_path, output_path):
     print(f"Asset limpio guardado: {output_path}")
 
 if __name__ == "__main__":
-    procesar_croma_biorush_pro("img/3.png", "img/45capsBack.png")
+    procesar_croma_biorush_pro("img/6.png", "img/45capsBackCordy.png")
