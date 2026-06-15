@@ -119,7 +119,7 @@
                     Enfoque y claridad cognitiva.
                 </p>
 
-                <p class="font-mono uppercase text-[7.5px] text-emerald-400/50 tracking-[0.2em] mb-0.5">
+                <p id="telemetry-feedback-panel" class="font-mono uppercase text-[7.5px] text-emerald-400/50 tracking-[0.2em] mb-0.5">
                     Tu compra incluye un protocolo biocinético encriptado.
                 </p>
 
@@ -411,6 +411,44 @@
         if (subRepsTension) subRepsTension.textContent = `${(14.2 + (repsStage * 0.8)).toFixed(1)} N`;
     }
 
+    const TELEMETRY_MEANINGS = {
+        'telemetry-sphere-idx': "CICLO OPERATIVO DEL ECOSISTEMA",
+        'telemetry-active-node': "ÍNDICE DE SATURACIÓN DE NODO",
+        'sub-sets-solar': "FRECUENCIA BIOCINÉTICA BASE",
+        'sub-reps-tension': "TENSIÓN DE INTEGRIDAD MOLECULAR"
+    };
+
+    function habilitarReveladoTelemetria() {
+        const feedbackPanel = getCachedEl('telemetry-feedback-panel');
+        const mensajeOriginal = "Tu compra incluye un protocolo biocinético encriptado.";
+
+        Object.keys(TELEMETRY_MEANINGS).forEach(id => {
+            const el = getCachedEl(id);
+            if (!el) return;
+
+            el.classList.add('cursor-pointer', 'hover:text-white', 'transition-colors');
+            
+            el.addEventListener('click', () => {
+                const significado = TELEMETRY_MEANINGS[id];
+                
+                // 1. Destacar el nodo presionado
+                el.style.color = '#34d399'; // Verde esmeralda
+                triggerHaptic(20);
+
+                // 2. Actualizar el panel inferior con el significado
+                feedbackPanel.textContent = significado;
+                feedbackPanel.classList.add('text-white'); // Que resalte al activarse
+                
+                // 3. Restaurar después de 3 segundos
+                setTimeout(() => {
+                    el.style.color = ''; // Reset color nodo
+                    feedbackPanel.textContent = mensajeOriginal; // Reset texto panel
+                    feedbackPanel.classList.remove('text-white');
+                }, 3000);
+            });
+        });
+    }
+
     // =========================================================================
     // 6. CAPTURA DE TELEMETRÍA DE COMPRA (GENERACIÓN DE PAYLOAD)
     // =========================================================================
@@ -437,6 +475,7 @@
         inicializarBioRush();
         updateZ(); 
         setInterval(updateZ, 1000);
+        habilitarReveladoTelemetria();
     });
 </script>
 </body>
