@@ -150,7 +150,7 @@
                     Enfoque y claridad cognitiva.
                 </p>
                 <p id="telemetry-feedback-panel" class="telemetry-text-style text-[9px] sm:text-[10px] text-sky-400/80 tracking-[0.05em] mb-0.5 leading-snug transition-colors duration-300">
-                    Tu compra incluye un protocolo biocinético encriptado.
+                    Tu compra incluye un protocolo de encriptacion biocinética.
                 </p>
 
 
@@ -479,15 +479,25 @@
         const variantConfig = BIORUSH_CATALOG[currentBioItem].variants[currentBioVariant];
         const currentCoord = getCachedEl('z-dial')?.textContent || "N/A";
         
+        const currentSphere = getCachedEl('telemetry-sphere-idx')?.textContent || "N/A";
+        const currentNode = getCachedEl('telemetry-active-node')?.textContent || "N/A";
+        
+        // Traducción del Dial ajustada a "Acciones"
+        const dialInterpretation = currentCoord.replace(/(\d+)([A-Z]+)(\d+)/, "$1 SETS, $3 REPS - ACCIONES $2");
+
+        const configuracion = `${currentBioItem} ${currentBioVariant}`;
+        
         const mensaje = `⚡ *NUEVA ORDEN - BIORUSH* ⚡\n\n` +
-                        `• *Ítem Base:* ${currentBioItem}\n` +
-                        `• *Variante:* ${currentBioVariant}\n` +
+                        `• *Configuración:* ${configuracion}\n` +
                         `• *Especificación:* ${variantConfig.spec}\n` +
-                        `• *Ref Label:* ${variantConfig.label}\n` +
-                        `• *Precio:* ${variantConfig.price}\n` +
-                        `• *Coordenada Bioléctrica:* \`${currentCoord}\`\n` +
-                        `• *ID Seguridad:* \`${variantConfig.id}\`\n\n` +
-                        `Solicito la inicialización y el despacho inmediato de esta orden.`;
+                        `• *ID Seguridad:* \`${variantConfig.id}\`\n` +
+                        `• *Precio:* ${variantConfig.price}\n\n` +
+                        `--- *PROTOCOLO DE ENCRIPTACIÓN BIOCINÉTICA* ---\n` +
+                        `• *Dial Biocinético:* \`${currentCoord}\`\n` +
+                        `   └ *Lectura:* ${dialInterpretation}\n` +
+                        `• *Esfera:* \`${currentSphere}\`\n` +
+                        `• *Nodo:* \`${currentNode}\`\n\n` +
+                        `Solicito la activación y el despacho de esta configuración.`;
 
         triggerHaptic([15, 40, 15]);
         window.open(`https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`, '_blank');
