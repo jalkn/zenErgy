@@ -34,11 +34,18 @@
             inset: 0;
             z-index: -1;
             transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            background: radial-gradient(circle at 50% 50%, #2f2e2e 0%, #0f0212 100%);
+            /* Cobre industrial sutil */
+            /* Naranja industrial oxidado */
+            background: radial-gradient(circle at 50% 50%, #3d2b1f 0%, #1e130a 70%, #050505 100%);
         }
         
         .img-glow-transition {
             transition: opacity 0.6s ease-in-out;
+        }
+        .telemetry-text-style {
+            font-family: 'Orbitron', sans-serif;
+            font-variant: normal;
+            text-transform: capitalize; /* Esto le dice a la fuente que use "minúsculas", pero font-variant las convierte en versiones pequeñas de las mayúsculas */
         }
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
@@ -135,7 +142,7 @@
                 <p id="biorush-description" class="font-sans text-[9px] sm:text-[10px] text-white/70 max-w-xl tracking-[0.05em] leading-relaxed min-h-[30px] transition-opacity duration-300">
                     Enfoque y claridad cognitiva.
                 </p>
-                <p id="telemetry-feedback-panel" class="font-sans text-[9px] sm:text-[10px] text-sky-400/80 tracking-[0.05em] mb-0.5 leading-snug transition-colors duration-300">
+                <p id="telemetry-feedback-panel" class="telemetry-text-style text-[9px] sm:text-[10px] text-sky-400/80 tracking-[0.05em] mb-0.5 leading-snug transition-colors duration-300">
                     Tu compra incluye un protocolo biocinético encriptado.
                 </p>
 
@@ -356,9 +363,18 @@
     // 5. MOTOR DE TELEMETRÍA (PROTOCOLO PULS)
     // =========================================================================
     function calculateSphereIndex() {
-        const epoch = new Date('2012-12-21T00:00:00Z'); 
-        const daysSinceEpoch = Math.floor((new Date() - epoch) / 86400000);
-        return `${String(daysSinceEpoch).padStart(4, '0')}.⨀`;
+        const now = new Date();
+        const epoch = new Date('2012-12-21T00:00:00Z');
+        const daysSinceEpoch = Math.floor((now - epoch) / 86400000);
+        
+        // Calculamos qué parte del día es (0 a 3, representando los 4 bloques de 6 horas)
+        const currentHour = now.getHours();
+        const sphereQuadrant = Math.floor(currentHour / 6);
+        
+        // El índice total será (Días * 4) + el cuadrante actual
+        const totalSpheres = (daysSinceEpoch * 4) + sphereQuadrant;
+        
+        return `${String(totalSpheres).padStart(4, '0')}.⨀`;
     }
 
     function updateZ() {
@@ -405,8 +421,10 @@
 
         const elDial = getCachedEl('z-dial');
         if (elDial) elDial.textContent = biokineticCoordinate;
-        
-        const activeNodeText = `◯.${String(Math.floor(((hours * 3600) + (minutes * 60) + seconds) / 10) + 1).padStart(4, '0')}`;
+                
+        // Dentro de la función updateZ(), reemplaza la línea de activeNodeText por esta:
+        const totalSecondsSinceMidnight = (hours * 3600) + (minutes * 60) + seconds;
+        const activeNodeText = `◯.${String(totalSecondsSinceMidnight + 1).padStart(4, '0')}`;
         const elActiveNode = getCachedEl('telemetry-active-node');
         if (elActiveNode) elActiveNode.textContent = activeNodeText;
 
@@ -425,6 +443,7 @@
 
     function habilitarReveladoTelemetria() {
         const feedbackPanel = getCachedEl('telemetry-feedback-panel');
+        // Aseguramos que el mensaje original también esté en formato lowercase base
         const mensajeOriginal = "Tu compra incluye un protocolo biocinético encriptado.";
 
         Object.keys(TELEMETRY_MEANINGS).forEach(id => {
@@ -432,12 +451,13 @@
             if (!el) return;
 
             el.addEventListener('click', () => {
-                feedbackPanel.style.color = '#38bdf8'; // Fuerza color azul cian
-                feedbackPanel.textContent = TELEMETRY_MEANINGS[id];
+                feedbackPanel.style.color = '#38bdf8';
+                // .toLowerCase() prepara el texto para que 'capitalize' lo formatee correctamente
+                feedbackPanel.textContent = TELEMETRY_MEANINGS[id].toLowerCase(); 
                 
                 setTimeout(() => {
-                    feedbackPanel.style.color = ''; // Regresa al estado original
-                    feedbackPanel.textContent = mensajeOriginal;
+                    feedbackPanel.style.color = '';
+                    feedbackPanel.textContent = mensajeOriginal.toLowerCase();
                 }, 8000);
             });
         });
