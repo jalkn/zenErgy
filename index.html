@@ -131,11 +131,6 @@
                     <button onclick="adquirirNodo()" class="w-full max-w-[280px] py-3 bg-white/5 backdrop-blur-md text-white font-black text-[11px] tracking-[0.3em] uppercase rounded-sm border border-white/10 hover:border-sky-500/50 hover:bg-sky-500/10 transition-all duration-300">
                         ACTIVAR
                     </button>
-
-                    <div id="qr-container" class="mt-6 flex flex-col items-center opacity-80 transition-opacity hover:opacity-100">
-                        <div id="qr-code-img" class="bg-white p-1 rounded-sm"></div>
-                        <span class="text-[7px] tracking-[0.2em] text-white/40 mt-2 uppercase">QR Configuración rápida</span>
-                    </div>
                     
                     <div class="flex items-center justify-center gap-3 font-mono text-[8px] tracking-[0.2em] text-white/30 uppercase">
                         <span id="biorush-spec">LION’S MANE</span>
@@ -508,55 +503,9 @@
         window.open(`https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`, '_blank');
     }
 
-    // ==========================================
-    // 7. MOTOR DE RUTAS Y QR (NUEVO)
-    // ==========================================
-    
-    // RUTA 1: Auto-configuración por URL
-    function procesarRutaConfiguracion() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const item = urlParams.get('item');
-        const variant = urlParams.get('variant');
-
-        if (item && BIORUSH_CATALOG[item]) {
-            cambiarBioItem(item);
-            if (variant && BIORUSH_CATALOG[item].variants[variant]) {
-                cambiarBioVariant(variant);
-            }
-        }
-    }
-
-    // RUTA 2: Generador de QR dinámico para WhatsApp
-    function generarQR() {
-        // Obtenemos el link actual de WhatsApp (reutilizando lógica de adquirirNodo)
-        const currentCoord = getCachedEl('z-dial')?.textContent || "N/A";
-
-        const linkWhatsApp = `https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent("Solicito activación de configuración.")}`;
-        const urlQR = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(linkWhatsApp)}`;
-        
-        console.log("QR generado:", urlQR);
-        return urlQR;
-    }
-
-    function actualizarQR() {
-        const qrContainer = getCachedEl('qr-code-img');
-        if (!qrContainer) return;
-        
-        // URL base de tu sitio con la configuración actual
-        const baseUrl = window.location.origin + window.location.pathname;
-        const shareUrl = `${baseUrl}?item=${currentBioItem}&variant=${currentBioVariant}`;
-        
-        // Usamos el API de QRServer para generar el código QR que lleva a esta misma URL configurada
-        const qrSource = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(shareUrl)}`;
-        
-        qrContainer.innerHTML = `<img src="${qrSource}" alt="QR Configuración" class="w-[120px] h-[120px]">`;
-    }
-
     // Inicialización coordinada del Ciclo de Vida del DOM
     document.addEventListener('DOMContentLoaded', () => {
         inicializarBioRush();
-        procesarRutaConfiguracion();
-        const qrUrl = generarQR();
         updateZ(); 
         setInterval(updateZ, 1000);
         habilitarReveladoTelemetria();
