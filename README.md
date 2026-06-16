@@ -1,4 +1,4 @@
-# ⚡ BIORUSH.CO // Functional Food Core
+# ⚡ BIORUSH // Functional Food Core
 
 E-commerce minimalista y de alta conversión optimizado para entornos móviles. Distribución y despliegue del catálogo oficial de alimentos funcionales y nootrópicos adaptógenos desde Santa Elena, Antioquia.
 
