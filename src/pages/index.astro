@@ -1,30 +1,17 @@
 ---
 import VaultLayout from '../layouts/VaultLayout.astro';
-
-// Aquí procesaremos lógica del servidor o variables HUD más adelante si es necesario
+import QuantumBg from '../components/QuantumBg.astro';
 ---
 
 <VaultLayout title="JAKO VAULT">
-  <main class="relative w-full h-screen bg-[#030712] overflow-hidden">
-    
-    <div id="quantum-bg-overlay" class="absolute inset-0 z-0 pointer-events-none opacity-40">
-      </div>
-
-    <div id="hud-interface-container" class="absolute inset-0 z-10 flex flex-col justify-between pointer-events-none">
-      
-      <header class="w-full pointer-events-auto">
-        </header>
-
-      <section class="flex-1 w-full flex items-center justify-center pointer-events-auto">
-        <div class="text-center font-mono text-xs tracking-widest text-cyan-400/60 animate-pulse">
-          [ NODO CENTRAL: SISTEMA INICIALIZADO ]
-        </div>
-      </section>
-
-      <footer class="w-full pointer-events-auto">
-        </footer>
-
+  <QuantumBg />
+  
+  <main class="relative w-full h-screen overflow-hidden">
+    <!-- El resto del HUD vendrá aquí -->
+    <div class="flex items-center justify-center h-full">
+      <span class="font-mono text-[10px] tracking-[0.3em] text-white/40 uppercase">
+        [ MATRIZ CUÁNTICA: PREPARADA ]
+      </span>
     </div>
-
   </main>
 </VaultLayout>
