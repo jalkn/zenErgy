@@ -1,0 +1,64 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "JAKO VAULT" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link class="icon" type="image/png" href="/img/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      /* Mapeo del Sistema de Diseño Original */
+      @theme {
+        --screen-xs: 400px;
+        --color-jako-black: #050508;
+        --color-jako-darkblue: #030712;
+        --font-sans: 'Orbitron', sans-serif;
+        --font-mono: 'Orbitron', monospace;
+        --font-body: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      /* Inicialización Aséptica del Entorno de Pantalla Completa */
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #030712; /* jako-darkblue */
+        font-family: 'Orbitron', sans-serif; 
+        scroll-behavior: smooth; 
+        letter-spacing: 0.05em;
+        overflow: hidden;
+      }
+      
+      /* Utilidades de Barras de Desplazamiento Estilo HUD */
+      ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgba(5, 5, 8, 0.5);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(0, 255, 204, 0.2);
+        border-radius: 2px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 255, 204, 0.5);
+      }
+    </style>
+  </head>
+  <body class="w-full h-full text-gray-200 antialiased selection:bg-cyan-500/30">
+    <slot />
+  </body>
+</html>
