@@ -31,9 +31,28 @@ $PackageJsonCode = @'
 }
 '@
 
+# Configuración extendida de TypeScript para eliminar errores de resolución de rutas y tipos de Astro
 $TsConfigCode = @'
 {
-  "extends": "astro/tsconfigs/strict"
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"]
+    }
+  },
+  "include": ["src/**/*", ".astro/**/*"]
 }
 '@
 
@@ -437,7 +456,7 @@ Write-Host "=========================================" -ForegroundColor Cyan
 Write-Host "     JAKO-CORE ECOSYSTEM AUTOWRITER      " -ForegroundColor Cyan
 Write-Host "=========================================" -ForegroundColor Cyan
 
-# [PASO EXTRA]: Purga completa de configuraciones anteriores y estados corruptos
+# [PASO 1]: Purga completa de configuraciones anteriores y estados corruptos
 Write-Host "`n[1/4] Ejecutando purga e higienización estructural..." -ForegroundColor Yellow
 $DirsToPurge = @("src/layouts", "src/pages", "src/components")
 foreach ($Dir in $DirsToPurge) {
@@ -453,21 +472,14 @@ foreach ($Dir in $DirsToPurge) {
     Write-Host "✔ Directorio creado en limpio: $Dir" -ForegroundColor Green
 }
 
-# [PASO EXTRA]: Auditoría y restauración de Archivos de Infraestructura
+# [PASO 2]: Auditoría y restauración de Archivos de Infraestructura
 Write-Host "`n[2/4] Auditando archivos de configuración raíz (.json)..." -ForegroundColor Yellow
-if (-not (Test-Path "package.json")) {
-    [System.IO.File]::WriteAllText((Get-Item .).FullName + "/package.json", $PackageJsonCode)
-    Write-Host "✔ package.json restaurado con scripts estables de Astro." -ForegroundColor Green
-} else {
-    # Si existe pero está corrupto o le faltan los scripts, lo sobreescribimos para asegurar estabilidad
-    [System.IO.File]::WriteAllText((Get-Item .).FullName + "/package.json", $PackageJsonCode)
-    Write-Host "✔ package.json alineado y verificado con éxito." -ForegroundColor Green
-}
+[System.IO.File]::WriteAllText((Get-Item .).FullName + "/package.json", $PackageJsonCode)
+Write-Host "✔ package.json restaurado con scripts estables de Astro." -ForegroundColor Green
 
-if (-not (Test-Path "tsconfig.json")) {
-    [System.IO.File]::WriteAllText((Get-Item .).FullName + "/tsconfig.json", $TsConfigCode)
-    Write-Host "✔ tsconfig.json estructurado con éxito." -ForegroundColor Green
-}
+# Sobrescribir siempre con la configuración robusta anti-errores
+[System.IO.File]::WriteAllText((Get-Item .).FullName + "/tsconfig.json", $TsConfigCode)
+Write-Host "✔ tsconfig.json alineado y optimizado sin conflictos de tipo." -ForegroundColor Green
 
 # =========================================================================
 # 3. Inyección Limpia de Componentes del Ecosistema HUD
@@ -489,20 +501,25 @@ foreach ($File in $FilesToProcess.Keys) {
 }
 
 # =========================================================================
-# 4. Verificación de Módulos y Lanzamiento del Servidor Local
+# 4. Verificación de Módulos y Lanzamiento Multiplataforma
 # =========================================================================
 Write-Host "`n[4/4] Verificando dependencias e iniciando servidor..." -ForegroundColor Yellow
 
-if (-not (Test-Path "node_modules")) {
-    Write-Host "⚠️ No se detectó la carpeta node_modules. Ejecutando instalación de emergencia..." -ForegroundColor Magenta
+# Resolución de rutas unificada e infalible mediante Join-Path nativo
+$AstroCliPath = Join-Path (Join-Path "node_modules" "astro") "package.json"
+
+if (-not (Test-Path $AstroCliPath)) {
+    Write-Host "⚠️ No se detectaron los módulos locales estables. Forzando instalación aséptica..." -ForegroundColor Magenta
     npm install
+} else {
+    Write-Host "✔ Módulos verificados. Saltando instalación para acelerar el despliegue." -ForegroundColor Green
 }
 
-Write-Host "Utilizando binario local estable (npm run dev)..." -ForegroundColor Gray
+Write-Host "Invocando directamente al CLI local de Astro..." -ForegroundColor Gray
 Write-Host "--------------------------------------------------------" -ForegroundColor Gray
 
 try {
-    npm run dev
+    npx --no-install astro dev
 }
 catch {
     Write-Host "`n❌ Proceso de ejecución finalizado." -ForegroundColor Red
