@@ -1,68 +1,237 @@
 ---
 ---
-<div class="w-full max-w-7xl mx-auto px-4 pb-4 relative select-none">
-  <div class="relative bg-[#050508]/40 backdrop-blur-md border border-cyan-500/20 rounded-xl p-3 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] font-mono tracking-wider text-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.02)] overflow-hidden">
-    <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+<div class="w-full flex flex-col font-mono uppercase text-xs">
+  <div class="w-full flex items-center justify-center px-4 h-8 bg-black/20">
+      <span id="panel-telemetry-data" class="text-[8.5px] xs:text-[9.5px] sm:text-[10px] text-center tracking-[0.25em] sm:tracking-[0.35em] text-white/70 font-medium transition-all duration-300 whitespace-normal block leading-none uppercase select-none">
+          (MODELO 1:1) COMPRAS TU PIEZA Y FINANCIAS OTRA PARA LA COMUNIDAD
+      </span>
+  </div>
 
-    <div class="flex items-center gap-2 w-full md:w-auto overflow-hidden">
-      <span class="text-emerald-400 font-bold animate-pulse">[STREAM]:</span>
-      <div class="relative w-48 h-4 overflow-hidden">
-        <div id="hud-stream-ticker" class="absolute whitespace-nowrap transition-transform duration-500 ease-out">
-          INITIALIZING CORE SERVICES...
-        </div>
+  <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+  <div class="w-full bg-white/[0.01]">
+      <div class="w-full grid grid-cols-5 items-center justify-between px-4 sm:px-8 h-12 gap-1 sm:gap-4 text-center select-none">
+          <div class="flex flex-col-reverse items-start text-left cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Medio</span>
+              <span id="telemetry-product-media" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white/90">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Dim Cms</span>
+              <span id="telemetry-product-dim" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Precio</span>
+              <span id="telemetry-product-price" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-black text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Rate</span>
+              <span id="telemetry-product-rate" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-end text-right cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Dials</span>
+              <span id="telemetry-product-dial" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white/90">--</span>
+          </div>
       </div>
-    </div>
+  </div>
 
-    <div class="flex items-center gap-4 text-right text-[9px] text-cyan-400/40">
-      <div>NODE: <span class="text-white font-bold">Z-STRUM.v1</span></div>
-      <div>LATENCY: <span id="hud-latency-val" class="text-emerald-400 font-bold">-- ms</span></div>
-      <div>SECURE: <span class="text-white font-bold">SSL_ECC_256</span></div>
-    </div>
+  <div class="w-full h-[1px] bg-white/5"></div>
+
+  <div class="w-full h-12 relative z-10">
+      <div class="w-full grid grid-cols-[54px_54px_1fr_54px_54px] items-center h-full px-4 sm:px-8">
+          <button id="btn-lock-telemetry" class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-r border-white/5">
+              <svg id="lock-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+              </svg>
+          </button>
+          <button id="btn-reveal-raw" class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-r border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+              </svg>
+          </button>
+          <button id="btn-activar-nodo" class="h-full w-full bg-transparent hover:bg-white/[0.05] text-white/90 font-black text-[11px] tracking-[0.35em] transition-all duration-300 focus:outline-none">
+              ACTIVAR NODE
+          </button>
+          <button id="btn-reveal-bio" class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-l border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+          </button>
+          <button class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-l border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.767a1.123 1.123 0 0 0-.417 1.03c.004.074.006.148.006.222 0 .074-.002.148-.006.222a1.123 1.123 0 0 0 .417 1.03l1.003.767a1.125 1.125 0 0 1 .26 1.43l-1.296 2.247a1.125 1.125 0 0 1-1.37.49l-1.216-.456a1.125 1.125 0 0 0-1.075.124c-.073.044-.146.087-.22.128-.332.183-.582.495-.645.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281a1.125 1.125 0 0 0-.646-.869c-.074-.041-.147-.084-.22-.129a1.125 1.125 0 0 0-1.075-.124l-1.216.456a1.125 1.125 0 0 1-1.37-.49l-1.296-2.247a1.125 1.125 0 0 1 .26-1.43l1.003-.767c.318-.243.483-.646.417-1.03a1.121 1.121 0 0 0-.006-.222c0-.074.002-.148.006-.222a1.122 1.122 0 0 0-.417-1.03l-1.003-.767a1.125 1.125 0 0 1-.26-1.43l1.296-2.247a1.125 1.125 0 0 1 1.37-.49l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.646-.869L9.593 3.94Z" /></svg>
+          </button>
+      </div>
+  </div>
+
+  <div class="w-full h-[1px] bg-white/5"></div>
+
+  <div class="w-full h-12 relative z-10 bg-black/20 p-1">
+      <div class="w-full grid grid-cols-[1fr_1fr] gap-3 h-full px-4 sm:px-8">
+          <div class="grid grid-cols-[32px_1fr_32px] gap-1 h-full w-full items-center">
+              <button id="btn-stencil-prev" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&lt;</button>
+              <div id="menu-bio-STENCIL-holder" class="h-full w-full flex items-center justify-center select-none"></div>
+              <button id="btn-stencil-next" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&gt;</button>
+          </div>
+          <div class="grid grid-cols-[32px_1fr_32px] gap-1 h-full w-full items-center">
+              <button id="btn-panel-prev" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&lt;</button>
+              <div id="menu-bio-PANEL-holder" class="h-full w-full flex items-center justify-center select-none"></div>
+              <button id="btn-panel-next" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&gt;</button>
+          </div>
+      </div>
+  </div>
+
+  <div class="w-full h-[1px] bg-white/5"></div>
+
+  <div class="w-full h-11 relative z-10">
+      <div class="w-full grid grid-cols-[54px_1fr_54px] items-center h-full px-4 sm:px-8 text-[8px] tracking-[0.4em]">
+          <div class="h-full flex items-center justify-start border-r border-white/5">
+              <a href="https://jako.world" class="group w-full h-full flex items-center justify-start hover:bg-white/[0.02] transition-all cursor-pointer"><img src="/img/back.png" alt="Back" class="w-3.5 h-3.5 object-contain opacity-30 group-hover:opacity-80" /></a>
+          </div>    
+          <div class="h-full flex items-center justify-center text-center font-bold text-white/20">
+              <a href="https://jako.world" class="h-full w-full flex items-center justify-center hover:text-white/60 hover:bg-white/[0.005] transition-all">POWERED BY JAKO.WORLD</a>
+          </div>
+          <div class="h-full flex items-center justify-end border-l border-white/5">
+              <a href="https://biorush.shop" class="group w-full h-full flex items-center justify-end hover:bg-white/[0.02] transition-all cursor-pointer"><img src="/img/pace.png" alt="Pace" class="w-3.5 h-3.5 object-contain opacity-30 group-hover:opacity-80" /></a>
+          </div>
+      </div>
   </div>
 </div>
 
 <script>
-  const logs = [
-    "Z-STRUM CORE CONNECTED...",
-    "ASYNC MATRIX OPERATIONAL...",
-    "FETCHING LIVE PROTOCOLS...",
-    "PULS BIOMETRICS BUFFER READY...",
-    "SECURE ENVELOPE: ACTIVE"
-  ];
-
-  const initFooterHud = () => {
-    const ticker = document.getElementById('hud-stream-ticker');
-    const latencyVal = document.getElementById('hud-latency-val');
-    if (!ticker) return;
-
-    let logIndex = 0;
-    const rotateLog = () => {
-      ticker.style.opacity = '0';
-      setTimeout(() => {
-        ticker.innerText = logs[logIndex];
-        ticker.style.opacity = '1';
-        logIndex = (logIndex + 1) % logs.length;
-      }, 500);
-    };
-
-    const logInterval = setInterval(rotateLog, 4500);
-    const updateLatency = () => {
-      if (latencyVal) {
-        latencyVal.innerText = `${Math.floor(Math.random() * 30) + 12} ms`;
+  const ARTEPANEL_DATABASE = {
+      'STENCIL': {
+          defaultVariant: '40X40',
+          variants: {
+              '25X25': { label: 'STENCIL 25X25', desc: 'Murales participativos y espacio táctico', price: '$12USD', id: 'ST-25X25', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '25x25', MEDIA: 'STENCIL', DIAL: '⧗240', RATE: '$0.05USD' } },
+              '40X40': { label: 'MICROSTENCIL FOCUS', desc: 'Optimización de enfoque y claridad cognitiva', price: '$29USD', id: 'ST-MICRO', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '40x40', MEDIA: 'STENCIL', DIAL: '⧗240', RATE: '$0.05USD' } },
+              '80X80': { label: 'MACROSTENCIL SURGE', desc: 'Expansión de masa crítica y vector de salto', price: '$125USD', id: 'ST-MACRO', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '80x80', MEDIA: 'STENCIL', DIAL: '⧗2500', RATE: '$0.05USD' } }
+          }
+      },
+      'PANEL': {
+          defaultVariant: '20X20',
+          variants: {
+              '20X20': { label: 'PANEL 20X20', desc: 'Premium Inkjet ADH montado sobre MDF', price: '$12USD', id: 'FP-20X20', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '20x20', MEDIA: 'MDF_PRINT', DIAL: '⧗240', RATE: '$0.05USD' } },
+              '30X30': { label: 'PANEL 30X30', desc: 'Estructura equilibrada de galería contemporánea', price: '$29USD', id: 'FP-30X30', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '30x30', MEDIA: 'MDF_PRINT', DIAL: '⧗576', RATE: '$0.05USD' } },
+              '40X40': { label: 'PANEL 40X40', desc: 'Máxima densidad espacial para eje vertical', price: '$55USD', id: 'FP-40X40', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '40x40', MEDIA: 'MDF_PRINT', DIAL: '⧗1100', RATE: '$0.05USD' } }
+          }
       }
-    };
-    
-    updateLatency();
-    const latencyInterval = setInterval(updateLatency, 6000);
-    document.addEventListener('astro:before-swap', () => {
-      clearInterval(logInterval); clearInterval(latencyInterval);
-    }, { once: true });
   };
 
-  initFooterHud();
-  document.addEventListener('astro:page-load', initFooterHud);
-</script>
+  let activeCatalog = 'STENCIL';
+  let activeVariant = '40X40';
+  let isDialFrozen = false;
+  let freezeTimeoutId: number | null = null;
+  const phoneEndpoint = "573025333130";
+  const VECTORS = ["P", "U", "L", "S", "PU", "UL", "LS", "SP", "PUL", "ULS", "LSP", "SPU"];
+  
+  const $ = (id: string) => document.getElementById(id);
 
-<style>
-  #hud-stream-ticker { transition: opacity 0.4s ease-in-out; }
-</style>
+  function aplicarModoVisual(modo: string) {
+      const front = $('artepanel-pack-img'); const back = $('artepanel-pack-img-back'); const raw = $('artepanel-pack-img-raw'); const svg = $('laser-vector-target');
+      if(!front || !back || !raw) return;
+      [front, back, raw].forEach(el => el.style.opacity = '0');
+      if (modo === 'front') { front.style.opacity = '1'; if (svg) { svg.style.opacity = '1'; svg.style.pointerEvents = 'auto'; } }
+      else if (modo === 'back') { back.style.opacity = '1'; if (svg) { svg.style.opacity = '0'; svg.style.pointerEvents = 'none'; } }
+      else if (modo === 'raw') { raw.style.opacity = '1'; if (svg) { svg.style.opacity = '0'; svg.style.pointerEvents = 'none'; } }
+  }
+
+  function syncUI() {
+      const config = ARTEPANEL_DATABASE[activeCatalog as 'STENCIL'|'PANEL'].variants[activeVariant];
+      const txtTitle = $('laser-variant-title'); const txtDesc = $('artepanel-description');
+      const imgFront = $('artepanel-pack-img') as HTMLImageElement; const imgBack = $('artepanel-pack-img-back') as HTMLImageElement; const imgRaw = $('artepanel-pack-img-raw') as HTMLImageElement;
+
+      if (txtTitle) txtTitle.textContent = config.label; if (txtDesc) txtDesc.textContent = config.desc;
+      if (imgFront) imgFront.src = config.img; if (imgBack) imgBack.src = config.imgBack; if (imgRaw) imgRaw.src = config.imgRaw;
+
+      $('telemetry-product-media')!.textContent = config.telemetry.MEDIA;
+      $('telemetry-product-dim')!.textContent = config.telemetry.DIM;
+      $('telemetry-product-price')!.textContent = config.price;
+      $('telemetry-product-rate')!.textContent = config.telemetry.RATE;
+      $('telemetry-product-dial')!.textContent = config.telemetry.DIAL;
+
+      const textFluidClass = "text-[8px] xs:text-[9.5px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.35em] uppercase font-sans transition-all duration-300";
+      ['STENCIL', 'PANEL'].forEach(item => {
+          const el = $(`menu-bio-${item}`);
+          if (el) {
+              el.className = (item === activeCatalog) 
+                  ? `cursor-pointer font-black h-full w-full flex items-center justify-center text-white bg-white/[0.07] rounded-lg border border-white/20 shadow-[inset_0_1px_3px_rgba(255,255,255,0.25)] ${textFluidClass}` 
+                  : `cursor-pointer font-medium h-full w-full flex items-center justify-center text-white/20 bg-transparent rounded-lg hover:text-white/50 ${textFluidClass}`;
+          }
+      });
+  }
+
+  function toggleFreeze() {
+      isDialFrozen = !isDialFrozen; const icon = $('lock-icon'); const textGroup = $('laser-text-group');
+      if (isDialFrozen) {
+          if (icon) icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />';
+          if (textGroup) textGroup.classList.remove('opacity-0');
+          if (freezeTimeoutId) clearTimeout(freezeTimeoutId);
+          freezeTimeoutId = window.setTimeout(() => { isDialFrozen = false; toggleFreeze(); }, 8000);
+      } else {
+          if (icon) icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />';
+          if (textGroup) textGroup.classList.add('opacity-0'); if (freezeTimeoutId) clearTimeout(freezeTimeoutId);
+      }
+  }
+
+  function ciclarVariante(catalogo: 'STENCIL' | 'PANEL', direccion: number) {
+      if(activeCatalog !== catalogo) { activeCatalog = catalogo; activeVariant = ARTEPANEL_DATABASE[catalogo].defaultVariant; }
+      const variantes = Object.keys(ARTEPANEL_DATABASE[catalogo].variants);
+      let idx = variantes.indexOf(activeVariant); idx = (idx + direccion + variantes.length) % variantes.length;
+      activeVariant = variantes[idx]; syncUI();
+  }
+
+  function updateZ() {
+      const now = new Date(); const sec = now.getSeconds(); const min = now.getMinutes();
+      const epoch = new Date('2012-12-21T00:00:00Z');
+      const totalSpheres = (Math.floor((now.getTime() - epoch.getTime()) / 86400000) * 4) + Math.floor(now.getHours() / 6);
+      $('telemetry-sphere-idx')!.textContent = String(totalSpheres).padStart(4, '0');
+
+      if (!isDialFrozen) {
+          let sets = sec % 2 !== 0 ? Math.floor((now.getMilliseconds() / 1000) * 12) + 1 : Math.floor((min % 12) + 1);
+          let reps = 13 - sets; let vec = VECTORS[(sec + sets) % VECTORS.length]; const coord = `${sets}${vec}${reps}`;
+          $('z-dial')!.textContent = coord; $('z-dial-mirror')!.textContent = coord;
+          $('sub-sets-solar')!.textContent = (0.05 + (sets / 240)).toFixed(3); $('sub-reps-tension')!.textContent = (14.2 + (reps * 0.8)).toFixed(1);
+      }
+      $('telemetry-active-node')!.textContent = String((now.getHours() * 3600) + (min * 60) + sec + 1).padStart(4, '0');
+  }
+
+  const bindEvents = () => {
+      let modoActual = 'front';
+      $('btn-reveal-bio')?.addEventListener('click', () => { modoActual = modoActual==='back'?'front':'back'; aplicarModoVisual(modoActual); });
+      $('btn-reveal-raw')?.addEventListener('click', () => { modoActual = modoActual==='raw'?'front':'raw'; aplicarModoVisual(modoActual); });
+      $('z-dial')?.addEventListener('click', (e) => { e.stopPropagation(); toggleFreeze(); });
+      $('btn-lock-telemetry')?.addEventListener('click', toggleFreeze);
+
+      $('btn-stencil-prev')?.addEventListener('click', () => ciclarVariante('STENCIL', -1));
+      $('btn-stencil-next')?.addEventListener('click', () => ciclarVariante('STENCIL', 1));
+      $('btn-panel-prev')?.addEventListener('click', () => ciclarVariante('PANEL', -1));
+      $('btn-panel-next')?.addEventListener('click', () => ciclarVariante('PANEL', 1));
+
+      $('menu-bio-STENCIL-holder')!.innerHTML = `<span id="menu-bio-STENCIL">STENCIL</span>`;
+      $('menu-bio-PANEL-holder')!.innerHTML = `<span id="menu-bio-PANEL">PANEL</span>`;
+
+      $('btn-activar-nodo')?.addEventListener('click', () => {
+          const config = ARTEPANEL_DATABASE[activeCatalog as 'STENCIL'|'PANEL'].variants[activeVariant];
+          const msg = `⚡ *ORDEN ARTEPANEL* ⚡\n\n• *Vector:* ${activeCatalog} ${activeVariant}\n• *ID:* \`${config.id}\`\n• *Matriz:* \`${$('z-dial')?.textContent}\``;
+          window.open(`https://api.whatsapp.com/send?phone=${phoneEndpoint}&text=${encodeURIComponent(msg)}`, '_blank');
+      });
+
+      const PULS_MEANINGS: Record<string, string> = {
+          'sub-sets-solar-trigger': "FRECUENCIA COAXIAL VIVA TIERRA-LUNA-SOL.",
+          'sub-reps-tension-trigger': "COHESIÓN TENSIONAL Y MAGNETISMO GRAVITACIONAL.",
+          'telemetry-sphere-idx-trigger': "MATRIZ CUÁNTICA. CICLO DE ESFERA.",
+          'telemetry-active-node-trigger': "SATURACIÓN SINÁPTICA. NODOS ACUMULADOS REALES."
+      };
+      Object.keys(PULS_MEANINGS).forEach(id => {
+          $(id)?.addEventListener('click', () => {
+              $('panel-telemetry-data-secondary')!.textContent = PULS_MEANINGS[id];
+              setTimeout(() => { $('panel-telemetry-data-secondary')!.textContent = "LENGUAJE DE GOTA BIOCINÉTICA REGENERATIVA"; }, 8000);
+          });
+      });
+
+      setInterval(updateZ, 100); syncUI();
+  };
+
+  document.addEventListener('DOMContentLoaded', bindEvents);
+  document.addEventListener('astro:page-load', bindEvents);
+</script>

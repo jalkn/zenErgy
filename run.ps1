@@ -1,16 +1,30 @@
-<#
-.SYNOPSIS
-    Script unificado de aprovisionamiento, limpieza y ejecución para JAKO-CORE.
-.DESCRIPTION
-    Este script automatiza la purga de configuraciones previas, regenera la
-    arquitectura base (incluyendo package.json si falta), inyecta los componentes
-    del HUD y levanta el entorno local estable de Astro.
-#>
-
 $ErrorActionPreference = "Stop"
 
 # =========================================================================
-# 1. Configuración de Estructuras de Código Base e Infraestructura (Source Data)
+# 1. Purga de Seguridad y Destrucción de Caché Vieja
+# =========================================================================
+Write-Host "=========================================" -ForegroundColor Cyan
+Write-Host "     JAKO CORE - COMPILER ENGINE         " -ForegroundColor Cyan
+Write-Host "=========================================" -ForegroundColor Cyan
+
+Write-Host "`n[1/5] Ejecutando purga aséptica de caché anterior..." -ForegroundColor Magenta
+
+$CachePaths = @(
+    ".astro",
+    "dist",
+    "node_modules/.vite"
+)
+
+foreach ($Path in $CachePaths) {
+    if (Test-Path $Path) {
+        Write-Host "🧹 Eliminando residuos de: $Path" -ForegroundColor Gray
+        Remove-Item -Path $Path -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+Write-Host "✔ Entorno de desarrollo completamente limpio." -ForegroundColor Green
+
+# =========================================================================
+# 2. Configuración de Estructuras de Código Base e Infraestructura
 # =========================================================================
 
 $PackageJsonCode = @'
@@ -31,7 +45,6 @@ $PackageJsonCode = @'
 }
 '@
 
-# Configuración extendida de TypeScript oficial para Astro - Elimina errores visuales en VS Code
 $TsConfigCode = @'
 {
   "extends": "astro/tsconfigs/strict",
@@ -48,7 +61,7 @@ $TsConfigCode = @'
     "jsx": "preserve",
     "baseUrl": "."
   },
-  "include": ["src/**/*", ".astro/**/*"]
+  "include": ["src/**/*"]
 }
 '@
 
@@ -62,7 +75,7 @@ const { title = "JAKO VAULT" } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -83,31 +96,11 @@ const { title = "JAKO VAULT" } = Astro.props;
         padding: 0;
         width: 100%;
         height: 100%;
-        background-color: var(--jako-darkblue);
+        background-color: var(--jako-black);
         color: #e5e7eb;
         font-family: 'Orbitron', sans-serif; 
-        scroll-behavior: smooth; 
         letter-spacing: 0.05em;
         overflow: hidden;
-      }
-
-      .font-body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-      }
-      
-      ::-webkit-scrollbar {
-        width: 4px;
-        height: 4px;
-      }
-      ::-webkit-scrollbar-track {
-        background: rgba(3, 7, 18, 0.8);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: rgba(6, 182, 212, 0.3);
-        border-radius: 2px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: rgba(6, 182, 212, 0.5);
       }
     </style>
   </head>
@@ -120,407 +113,436 @@ const { title = "JAKO VAULT" } = Astro.props;
 $IndexCode = @'
 ---
 import VaultLayout from '../layouts/VaultLayout.astro';
-import QuantumBg from '../components/QuantumBg.astro';
 import HeaderHud from '../components/HeaderHud.astro';
-import FooterHud from '../components/FooterHud.astro';
 import TacticalDial from '../components/TacticalDial.astro';
+import FooterHud from '../components/FooterHud.astro';
 ---
 
 <VaultLayout title="JAKO VAULT">
-  <QuantumBg />
-  
-  <main class="relative w-full h-screen overflow-hidden flex flex-col justify-between">
-    
-    <header class="w-full z-10">
-      <HeaderHud />
-    </header>
+  <div id="page-bg-overlay"></div>
+  <div class="fixed inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25 z-0 pointer-events-none"></div>
 
-    <section class="flex-1 w-full flex items-center justify-center z-10">
-      <TacticalDial />
-    </section>
+  <main id="main-vault" class="w-screen h-screen flex flex-col relative overflow-hidden">
+      <header class="fixed top-0 w-full z-50 bg-[#050508]/35 backdrop-blur-[30px] border-b border-white/5">
+          <HeaderHud />
+      </header>
 
-    <footer class="w-full z-10">
-      <FooterHud />
-    </footer>
+      <div class="flex-1 w-full flex flex-col items-center justify-between p-4 sm:p-6 select-none relative z-10 overflow-hidden">
+          <TacticalDial />
+      </div>
 
+      <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-gradient-to-t from-black/90 via-black/75 to-transparent backdrop-blur-[30px] border-t border-white/5">
+          <FooterHud />
+      </footer>
   </main>
 </VaultLayout>
-'@
 
-$QuantumBgCode = @'
----
----
-<div id="page-bg-overlay" class="fixed inset-0 z-[-1] transition-all duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]">
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,_rgba(37,99,235,0.22)_0%,_rgba(15,23,42,0.75)_60%,_#030712_100%)]"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25 pointer-events-none"></div>
-  <canvas id="quantum-mesh-canvas" class="absolute inset-0 w-full h-full block opacity-45"></canvas>
-</div>
-
-<style>
+<style is:global>
   #page-bg-overlay {
-    will-change: filter, opacity;
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.22) 0%, rgba(15, 23, 42, 0.75) 60%, #030712 100%);
+      z-index: -1;
   }
 </style>
-
-<script>
-  const initQuantumMesh = () => {
-    const canvas = document.getElementById('quantum-mesh-canvas') as HTMLCanvasElement;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let points: Array<{ x: number; y: number; ox: number; oy: number; vx: number; vy: number }> = [];
-    const spacing = 32;
-    const mouse = { x: -1000, y: -1000, rx: -1000, ry: -1000, active: false };
-    const radius = 130;
-    let animationFrameId: number;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      setupPoints();
-    };
-
-    const setupPoints = () => {
-      points = [];
-      const cols = Math.ceil(canvas.width / spacing) + 1;
-      const rows = Math.ceil(canvas.height / spacing) + 1;
-
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const x = i * spacing;
-          const y = j * spacing;
-          points.push({ x, y, ox: x, oy: y, vx: 0, vy: 0 });
-        }
-      }
-    };
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      mouse.rx += (mouse.x - mouse.rx) * 0.12;
-      mouse.ry += (mouse.y - mouse.ry) * 0.12;
-      ctx.fillStyle = 'rgba(6, 182, 212, 0.35)';
-
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-        const dx = mouse.rx - p.ox;
-        const dy = mouse.ry - p.oy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < radius) {
-          const force = (radius - dist) / radius;
-          const angle = Math.atan2(dy, dx);
-          const tx = p.ox - Math.cos(angle) * force * 24;
-          const ty = p.oy - Math.sin(angle) * force * 24;
-          p.vx += (tx - p.x) * 0.08;
-          p.vy += (ty - p.y) * 0.08;
-        } else {
-          p.vx += (p.ox - p.x) * 0.05;
-          p.vy += (p.oy - p.y) * 0.05;
-        }
-
-        p.vx *= 0.82; p.vy *= 0.82;
-        p.x += p.vx; p.y += p.vy;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.1, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
-    });
-    window.addEventListener('mouseleave', () => {
-      mouse.x = -1000; mouse.y = -1000; mouse.active = false;
-    });
-
-    resizeCanvas();
-    animate();
-  };
-
-  initQuantumMesh();
-  document.addEventListener('astro:page-load', initQuantumMesh);
-</script>
 '@
 
 $HeaderHudCode = @'
 ---
 ---
-<div class="w-full max-w-7xl mx-auto px-4 pt-4 relative select-none">
-  <div class="relative bg-[#050508]/40 backdrop-blur-md border border-cyan-500/20 rounded-xl p-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-[0_0_30px_rgba(6,182,212,0.03)] overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
+<div class="w-full flex flex-col">
+  <div class="px-4 sm:px-8 grid grid-cols-3 items-center uppercase tracking-widest font-mono text-[11px] text-white/50 min-h-[65px] sm:min-h-[72px] select-none">
+    <div class="justify-self-start flex items-center justify-center">
+      <a href="https://jako.world" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer">
+        <img src="/img/back.png" alt="Back" class="h-[13px] sm:h-[15px] w-auto object-contain opacity-65 group-hover:opacity-100 transition-all duration-500 filter drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
+      </a>
+    </div>
     
-    <div class="flex items-center gap-4">
-      <div class="relative flex items-center justify-center w-10 h-10 border border-cyan-500/30 rounded-lg bg-cyan-950/20">
-        <div class="absolute w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
-        <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+    <div class="justify-self-center text-center tracking-[0.28em] font-black drop-shadow-[0_0_12px_rgba(255,255,255,0.45)] text-white text-[13px] sm:text-[15px]">
+      <span>VAULT</span>
+    </div>
+    
+    <div class="justify-self-end flex items-center justify-center">
+      <a href="https://biorush.shop" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer">
+        <img src="/img/pace.png" alt="Pace" class="h-[13px] sm:h-[15px] w-auto object-contain opacity-65 group-hover:opacity-100 transition-all duration-500 filter drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
+      </a>
+    </div>
+  </div>
+
+  <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+  <div class="w-full flex flex-col bg-white/[0.01]">
+    <div class="w-full grid grid-cols-5 items-center justify-between px-4 sm:px-8 h-12 gap-1 sm:gap-4 text-center select-none">
+      
+      <div id="telemetry-sphere-idx-trigger" class="flex flex-col-reverse items-start text-left cursor-pointer hover:text-white text-white/60 transition-colors">
+        <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Esfera</span>
+        <span id="telemetry-sphere-idx" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white/90">0000</span>
       </div>
-      <div>
-        <div class="text-[10px] uppercase tracking-[0.25em] text-cyan-400/50 font-mono">System Time Matrix</div>
-        <div id="hud-clock-display" class="text-lg font-bold font-mono tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">
-          00:00:00 <span class="text-xs text-cyan-400/70">Z</span>
-        </div>
+
+      <div id="sub-sets-solar-trigger" class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+        <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Hz</span>
+        <span id="sub-sets-solar" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">0.00</span>
       </div>
+
+      <div id="z-dial-trigger" class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+        <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Dial</span>
+        <span id="z-dial-mirror" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-black text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">0PU0</span>
+      </div>
+
+      <div id="sub-reps-tension-trigger" class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+        <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Tensión</span>
+        <span id="sub-reps-tension" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">0.0</span>
+      </div>
+
+      <div id="telemetry-active-node-trigger" class="flex flex-col-reverse items-end text-right cursor-pointer hover:text-white text-white/60 transition-colors">
+        <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Nodos</span>
+        <span id="telemetry-active-node" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white/90">0000</span>
+      </div>
+
     </div>
 
-    <div class="text-center md:text-right flex flex-col items-center md:items-end">
-      <div class="text-[10px] uppercase tracking-[0.3em] text-cyan-400/40 font-mono mb-0.5">Ecosistema Activo</div>
-      <div class="flex items-center gap-2">
-        <span class="font-black tracking-[0.2em] text-sm text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
-          JAKO VAULT
-        </span>
-        <span class="text-[9px] font-mono border border-emerald-500/30 bg-emerald-950/30 text-emerald-400 px-1.5 py-0.5 rounded uppercase tracking-widest">
-          ONLINE
-        </span>
-      </div>
+    <div class="w-full flex items-center justify-center px-4 h-8 bg-black/20 border-t border-white/[0.02]">
+      <span id="panel-telemetry-data-secondary" class="text-[8.5px] xs:text-[9.5px] sm:text-[10px] text-center tracking-[0.25em] sm:tracking-[0.35em] text-white/70 font-medium transition-all duration-300 whitespace-normal block leading-none uppercase select-none">
+        LENGUAJE DE GOTA BIOCINÉTICA REGENERATIVA
+      </span>
     </div>
   </div>
 </div>
-
-<script>
-  const initHudClock = () => {
-    const clockEl = document.getElementById('hud-clock-display');
-    if (!clockEl) return;
-    const updateClock = () => {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      clockEl.innerHTML = `${hours}:${minutes}:${seconds} <span class="text-xs text-cyan-400/60 font-medium">Z</span>`;
-    };
-    updateClock();
-    const intervalId = setInterval(updateClock, 1000);
-    document.addEventListener('astro:before-swap', () => clearInterval(intervalId), { once: true });
-  };
-  initHudClock();
-  document.addEventListener('astro:page-load', initHudClock);
-</script>
-'@
-
-$FooterHudCode = @'
----
----
-<div class="w-full max-w-7xl mx-auto px-4 pb-4 relative select-none">
-  <div class="relative bg-[#050508]/40 backdrop-blur-md border border-cyan-500/20 rounded-xl p-3 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] font-mono tracking-wider text-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.02)] overflow-hidden">
-    <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
-
-    <div class="flex items-center gap-2 w-full md:w-auto overflow-hidden">
-      <span class="text-emerald-400 font-bold animate-pulse">[STREAM]:</span>
-      <div class="relative w-48 h-4 overflow-hidden">
-        <div id="hud-stream-ticker" class="absolute whitespace-nowrap transition-transform duration-500 ease-out">
-          INITIALIZING CORE SERVICES...
-        </div>
-      </div>
-    </div>
-
-    <div class="flex items-center gap-4 text-right text-[9px] text-cyan-400/40">
-      <div>NODE: <span class="text-white font-bold">Z-STRUM.v1</span></div>
-      <div>LATENCY: <span id="hud-latency-val" class="text-emerald-400 font-bold">-- ms</span></div>
-      <div>SECURE: <span class="text-white font-bold">SSL_ECC_256</span></div>
-    </div>
-  </div>
-</div>
-
-<script>
-  const logs = [
-    "Z-STRUM CORE CONNECTED...",
-    "ASYNC MATRIX OPERATIONAL...",
-    "FETCHING LIVE PROTOCOLS...",
-    "PULS BIOMETRICS BUFFER READY...",
-    "SECURE ENVELOPE: ACTIVE"
-  ];
-
-  const initFooterHud = () => {
-    const ticker = document.getElementById('hud-stream-ticker');
-    const latencyVal = document.getElementById('hud-latency-val');
-    if (!ticker) return;
-
-    let logIndex = 0;
-    const rotateLog = () => {
-      ticker.style.opacity = '0';
-      setTimeout(() => {
-        ticker.innerText = logs[logIndex];
-        ticker.style.opacity = '1';
-        logIndex = (logIndex + 1) % logs.length;
-      }, 500);
-    };
-
-    const logInterval = setInterval(rotateLog, 4500);
-    const updateLatency = () => {
-      if (latencyVal) {
-        latencyVal.innerText = `${Math.floor(Math.random() * 30) + 12} ms`;
-      }
-    };
-    
-    updateLatency();
-    const latencyInterval = setInterval(updateLatency, 6000);
-    document.addEventListener('astro:before-swap', () => {
-      clearInterval(logInterval); clearInterval(latencyInterval);
-    }, { once: true });
-  };
-
-  initFooterHud();
-  document.addEventListener('astro:page-load', initFooterHud);
-</script>
-
-<style>
-  #hud-stream-ticker { transition: opacity 0.4s ease-in-out; }
-</style>
 '@
 
 $TacticalDialCode = @'
 ---
 ---
-<div class="relative flex items-center justify-center w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] select-none">
-  <div class="absolute inset-0 border border-cyan-500/10 rounded-full animate-[spin_120s_linear_infinite] pointer-events-none"></div>
-  <div class="absolute inset-4 border border-dashed border-cyan-500/5 rounded-full animate-[spin_80s_linear_infinite_reverse] pointer-events-none"></div>
+<div id="artepanel-pack-container" class="my-auto relative w-[68vw] h-[68vw] sm:w-[58vw] sm:h-[58vw] md:w-[35vh] md:h-[35vh] max-w-[350px] max-h-[350px] min-w-[210px] min-h-[210px] aspect-square shrink-0 drop-shadow-[0_25px_55px_rgba(0,0,0,0.95)] transition-all duration-300">
+  <div class="w-full h-full relative overflow-hidden rounded-md bg-transparent">
+    
+    <img id="artepanel-pack-img-back" src="/img/surface.png" alt="Back" class="img-glow-transition absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none z-0" />
+    <img id="artepanel-pack-img" src="/img/surface.png" alt="Front" class="img-glow-transition absolute inset-0 w-full h-full object-cover pointer-events-auto z-10" />
+    <img id="artepanel-pack-img-raw" src="/img/surface.png" alt="Raw" class="img-glow-transition absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none z-[5]" />
+    
+    <div class="absolute inset-0 flex items-center justify-center p-0 z-20 pointer-events-none">
+        <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/25 stroke-[1.2] transition-all duration-500 origin-center">
+            <defs>
+                <path id="textPath-top" d="M 65,200 A 135,135 0 0,1 335,200" />
+                <path id="textPath-bottom" d="M 65,200 A 135,135 0 0,0 335,200" />
+            </defs>
+            <g class="origin-center">
+                <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="opacity-15 stroke-[1]" />
+                <path d="M 90,90 Q 200,125 310,90" class="opacity-15 stroke-[1]" />
+                <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="opacity-15 stroke-[1]" />
+                
+                <text id="z-dial" x="200" y="218" text-anchor="middle" class="fill-white font-black text-[45px] tracking-[0.35em] font-sans">8PU10</text>
+            </g>
+            <g id="laser-text-group" class="opacity-0 transition-opacity duration-500">
+                <text class="fill-white font-black text-[10px] tracking-[0.25em] uppercase transition-all duration-500">
+                    <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">MACROPULSOR FOCUS</textPath>
+                </text>
+                <text class="fill-white/60 font-black text-[10px] tracking-[0.25em] uppercase transition-all duration-500">
+                    <textPath id="artepanel-description" href="#textPath-bottom" startOffset="50%" text-anchor="middle">Enfoque y claridad cognitiva</textPath>
+                </text>
+            </g>
+        </svg>
+    </div>
+  </div>
+</div>
 
-  <div id="hud-tactical-wheel" class="absolute inset-8 rounded-full border border-cyan-500/20 bg-[#050508]/30 backdrop-blur-sm transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
-    <button data-index="0" data-angle="0" class="dial-node absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center group pointer-events-auto focus:outline-none">
-      <div class="w-2 h-2 border border-cyan-400 bg-cyan-950 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
-      <span class="font-mono text-[9px] tracking-widest text-cyan-400/40 group-hover:text-cyan-300 mt-1.5">CORE</span>
-    </button>
+<style is:global>
+  .img-glow-transition {
+      transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: filter, transform;
+  }
+</style>
+'@
 
-    <button data-index="1" data-angle="120" class="dial-node absolute bottom-12 right-6 flex flex-col items-center group pointer-events-auto focus:outline-none">
-      <div class="w-2 h-2 border border-cyan-400 bg-cyan-950 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
-      <span class="font-mono text-[9px] tracking-widest text-cyan-400/40 group-hover:text-cyan-300 mt-1.5">BIORUSH</span>
-    </button>
-
-    <button data-index="2" data-angle="240" class="dial-node absolute bottom-12 left-6 flex flex-col items-center group pointer-events-auto focus:outline-none">
-      <div class="w-2 h-2 border border-cyan-400 bg-cyan-950 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
-      <span class="font-mono text-[9px] tracking-widest text-cyan-400/40 group-hover:text-cyan-300 mt-1.5">FOTO.ART</span>
-    </button>
+$FooterHudCode = @'
+---
+---
+<div class="w-full flex flex-col font-mono uppercase text-xs">
+  <div class="w-full flex items-center justify-center px-4 h-8 bg-black/20">
+      <span id="panel-telemetry-data" class="text-[8.5px] xs:text-[9.5px] sm:text-[10px] text-center tracking-[0.25em] sm:tracking-[0.35em] text-white/70 font-medium transition-all duration-300 whitespace-normal block leading-none uppercase select-none">
+          (MODELO 1:1) COMPRAS TU PIEZA Y FINANCIAS OTRA PARA LA COMUNIDAD
+      </span>
   </div>
 
-  <div class="absolute w-28 h-28 border border-cyan-500/30 rounded-full bg-[#050508]/80 shadow-[0_0_30px_rgba(6,182,212,0.05)] flex flex-col items-center justify-center pointer-events-none">
-    <div class="absolute inset-1.5 border border-dashed border-cyan-500/10 rounded-full animate-[spin_40s_linear_infinite]"></div>
-    <div id="dial-center-status" class="font-mono text-[10px] font-bold tracking-[0.2em] text-white">VAULT</div>
-    <div id="dial-center-index" class="font-mono text-[8px] tracking-widest text-cyan-400/50 mt-0.5">00 / 02</div>
+  <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+  <div class="w-full bg-white/[0.01]">
+      <div class="w-full grid grid-cols-5 items-center justify-between px-4 sm:px-8 h-12 gap-1 sm:gap-4 text-center select-none">
+          <div class="flex flex-col-reverse items-start text-left cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Medio</span>
+              <span id="telemetry-product-media" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white/90">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Dim Cms</span>
+              <span id="telemetry-product-dim" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Precio</span>
+              <span id="telemetry-product-price" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-black text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-center text-center cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Rate</span>
+              <span id="telemetry-product-rate" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">--</span>
+          </div>
+          <div class="flex flex-col-reverse items-end text-right cursor-pointer hover:text-white text-white/60 transition-colors">
+              <span class="text-[7.5px] sm:text-[8.5px] tracking-[0.2em] text-white/30 mt-0.5 uppercase font-mono">Dials</span>
+              <span id="telemetry-product-dial" class="font-mono tracking-[0.15em] text-[10px] sm:text-[12px] font-bold text-white/90">--</span>
+          </div>
+      </div>
+  </div>
+
+  <div class="w-full h-[1px] bg-white/5"></div>
+
+  <div class="w-full h-12 relative z-10">
+      <div class="w-full grid grid-cols-[54px_54px_1fr_54px_54px] items-center h-full px-4 sm:px-8">
+          <button id="btn-lock-telemetry" class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-r border-white/5">
+              <svg id="lock-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+              </svg>
+          </button>
+          <button id="btn-reveal-raw" class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-r border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+              </svg>
+          </button>
+          <button id="btn-activar-nodo" class="h-full w-full bg-transparent hover:bg-white/[0.05] text-white/90 font-black text-[11px] tracking-[0.35em] transition-all duration-300 focus:outline-none">
+              ACTIVAR NODE
+          </button>
+          <button id="btn-reveal-bio" class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-l border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+          </button>
+          <button class="h-full w-full flex items-center justify-center hover:bg-white/[0.03] text-white/40 hover:text-white transition-all duration-300 focus:outline-none border-l border-white/5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.767a1.123 1.123 0 0 0-.417 1.03c.004.074.006.148.006.222 0 .074-.002.148-.006.222a1.123 1.123 0 0 0 .417 1.03l1.003.767a1.125 1.125 0 0 1 .26 1.43l-1.296 2.247a1.125 1.125 0 0 1-1.37.49l-1.216-.456a1.125 1.125 0 0 0-1.075.124c-.073.044-.146.087-.22.128-.332.183-.582.495-.645.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281a1.125 1.125 0 0 0-.646-.869c-.074-.041-.147-.084-.22-.129a1.125 1.125 0 0 0-1.075-.124l-1.216.456a1.125 1.125 0 0 1-1.37-.49l-1.296-2.247a1.125 1.125 0 0 1 .26-1.43l1.003-.767c.318-.243.483-.646.417-1.03a1.121 1.121 0 0 0-.006-.222c0-.074.002-.148.006-.222a1.122 1.122 0 0 0-.417-1.03l-1.003-.767a1.125 1.125 0 0 1-.26-1.43l1.296-2.247a1.125 1.125 0 0 1 1.37-.49l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.646-.869L9.593 3.94Z" /></svg>
+          </button>
+      </div>
+  </div>
+
+  <div class="w-full h-[1px] bg-white/5"></div>
+
+  <div class="w-full h-12 relative z-10 bg-black/20 p-1">
+      <div class="w-full grid grid-cols-[1fr_1fr] gap-3 h-full px-4 sm:px-8">
+          <div class="grid grid-cols-[32px_1fr_32px] gap-1 h-full w-full items-center">
+              <button id="btn-stencil-prev" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&lt;</button>
+              <div id="menu-bio-STENCIL-holder" class="h-full w-full flex items-center justify-center select-none"></div>
+              <button id="btn-stencil-next" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&gt;</button>
+          </div>
+          <div class="grid grid-cols-[32px_1fr_32px] gap-1 h-full w-full items-center">
+              <button id="btn-panel-prev" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&lt;</button>
+              <div id="menu-bio-PANEL-holder" class="h-full w-full flex items-center justify-center select-none"></div>
+              <button id="btn-panel-next" class="h-full text-white/20 hover:text-white/50 focus:outline-none font-bold">&gt;</button>
+          </div>
+      </div>
+  </div>
+
+  <div class="w-full h-[1px] bg-white/5"></div>
+
+  <div class="w-full h-11 relative z-10">
+      <div class="w-full grid grid-cols-[54px_1fr_54px] items-center h-full px-4 sm:px-8 text-[8px] tracking-[0.4em]">
+          <div class="h-full flex items-center justify-start border-r border-white/5">
+              <a href="https://jako.world" class="group w-full h-full flex items-center justify-start hover:bg-white/[0.02] transition-all cursor-pointer"><img src="/img/back.png" alt="Back" class="w-3.5 h-3.5 object-contain opacity-30 group-hover:opacity-80" /></a>
+          </div>    
+          <div class="h-full flex items-center justify-center text-center font-bold text-white/20">
+              <a href="https://jako.world" class="h-full w-full flex items-center justify-center hover:text-white/60 hover:bg-white/[0.005] transition-all">POWERED BY JAKO.WORLD</a>
+          </div>
+          <div class="h-full flex items-center justify-end border-l border-white/5">
+              <a href="https://biorush.shop" class="group w-full h-full flex items-center justify-end hover:bg-white/[0.02] transition-all cursor-pointer"><img src="/img/pace.png" alt="Pace" class="w-3.5 h-3.5 object-contain opacity-30 group-hover:opacity-80" /></a>
+          </div>
+      </div>
   </div>
 </div>
 
 <script>
-  const initTacticalDial = () => {
-    const wheel = document.getElementById('hud-tactical-wheel');
-    const nodes = document.querySelectorAll('.dial-node');
-    const statusText = document.getElementById('dial-center-status');
-    const indexText = document.getElementById('dial-center-index');
-    if (!wheel || !statusText || !indexText) return;
-
-    const sections = [
-      { name: "VAULT", code: "00" },
-      { name: "BIORUSH", code: "01" },
-      { name: "FOTO.ART", code: "02" }
-    ];
-
-    nodes.forEach(node => {
-      node.addEventListener('click', (e) => {
-        const button = e.currentTarget as HTMLButtonElement;
-        const angle = button.getAttribute('data-angle');
-        const index = parseInt(button.getAttribute('data-index') || '0', 10);
-
-        if (angle !== null) {
-          const targetRotation = -parseInt(angle, 10);
-          wheel.style.transform = `rotate(${targetRotation}deg)`;
-          nodes.forEach(n => {
-            (n as HTMLButtonElement).style.transform = `rotate(${-targetRotation}deg) translateX(-50%)`;
-          });
-          statusText.innerText = sections[index].name;
-          indexText.innerText = `${sections[index].code} / 02`;
-        }
-      });
-    });
+  const ARTEPANEL_DATABASE = {
+      'STENCIL': {
+          defaultVariant: '40X40',
+          variants: {
+              '25X25': { label: 'STENCIL 25X25', desc: 'Murales participativos y espacio táctico', price: '$12USD', id: 'ST-25X25', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '25x25', MEDIA: 'STENCIL', DIAL: '⧗240', RATE: '$0.05USD' } },
+              '40X40': { label: 'MICROSTENCIL FOCUS', desc: 'Optimización de enfoque y claridad cognitiva', price: '$29USD', id: 'ST-MICRO', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '40x40', MEDIA: 'STENCIL', DIAL: '⧗240', RATE: '$0.05USD' } },
+              '80X80': { label: 'MACROSTENCIL SURGE', desc: 'Expansión de masa crítica y vector de salto', price: '$125USD', id: 'ST-MACRO', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '80x80', MEDIA: 'STENCIL', DIAL: '⧗2500', RATE: '$0.05USD' } }
+          }
+      },
+      'PANEL': {
+          defaultVariant: '20X20',
+          variants: {
+              '20X20': { label: 'PANEL 20X20', desc: 'Premium Inkjet ADH montado sobre MDF', price: '$12USD', id: 'FP-20X20', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '20x20', MEDIA: 'MDF_PRINT', DIAL: '⧗240', RATE: '$0.05USD' } },
+              '30X30': { label: 'PANEL 30X30', desc: 'Estructura equilibrada de galería contemporánea', price: '$29USD', id: 'FP-30X30', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '30x30', MEDIA: 'MDF_PRINT', DIAL: '⧗576', RATE: '$0.05USD' } },
+              '40X40': { label: 'PANEL 40X40', desc: 'Máxima densidad espacial para eje vertical', price: '$55USD', id: 'FP-40X40', img: '/img/surface.png', imgBack: '/img/surface.png', imgRaw: '/img/surface.png', telemetry: { DIM: '40x40', MEDIA: 'MDF_PRINT', DIAL: '⧗1100', RATE: '$0.05USD' } }
+          }
+      }
   };
-  initTacticalDial();
-  document.addEventListener('astro:page-load', initTacticalDial);
-</script>
 
-<style>
-  .dial-node { transform-origin: top left; }
-</style>
+  let activeCatalog = 'STENCIL';
+  let activeVariant = '40X40';
+  let isDialFrozen = false;
+  let freezeTimeoutId: number | null = null;
+  const phoneEndpoint = "573025333130";
+  const VECTORS = ["P", "U", "L", "S", "PU", "UL", "LS", "SP", "PUL", "ULS", "LSP", "SPU"];
+  
+  const $ = (id: string) => document.getElementById(id);
+
+  function aplicarModoVisual(modo: string) {
+      const front = $('artepanel-pack-img'); const back = $('artepanel-pack-img-back'); const raw = $('artepanel-pack-img-raw'); const svg = $('laser-vector-target');
+      if(!front || !back || !raw) return;
+      [front, back, raw].forEach(el => el.style.opacity = '0');
+      if (modo === 'front') { front.style.opacity = '1'; if (svg) { svg.style.opacity = '1'; svg.style.pointerEvents = 'auto'; } }
+      else if (modo === 'back') { back.style.opacity = '1'; if (svg) { svg.style.opacity = '0'; svg.style.pointerEvents = 'none'; } }
+      else if (modo === 'raw') { raw.style.opacity = '1'; if (svg) { svg.style.opacity = '0'; svg.style.pointerEvents = 'none'; } }
+  }
+
+  function syncUI() {
+      const config = ARTEPANEL_DATABASE[activeCatalog as 'STENCIL'|'PANEL'].variants[activeVariant];
+      const txtTitle = $('laser-variant-title'); const txtDesc = $('artepanel-description');
+      const imgFront = $('artepanel-pack-img') as HTMLImageElement; const imgBack = $('artepanel-pack-img-back') as HTMLImageElement; const imgRaw = $('artepanel-pack-img-raw') as HTMLImageElement;
+
+      if (txtTitle) txtTitle.textContent = config.label; if (txtDesc) txtDesc.textContent = config.desc;
+      if (imgFront) imgFront.src = config.img; if (imgBack) imgBack.src = config.imgBack; if (imgRaw) imgRaw.src = config.imgRaw;
+
+      $('telemetry-product-media')!.textContent = config.telemetry.MEDIA;
+      $('telemetry-product-dim')!.textContent = config.telemetry.DIM;
+      $('telemetry-product-price')!.textContent = config.price;
+      $('telemetry-product-rate')!.textContent = config.telemetry.RATE;
+      $('telemetry-product-dial')!.textContent = config.telemetry.DIAL;
+
+      const textFluidClass = "text-[8px] xs:text-[9.5px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.35em] uppercase font-sans transition-all duration-300";
+      ['STENCIL', 'PANEL'].forEach(item => {
+          const el = $(`menu-bio-${item}`);
+          if (el) {
+              el.className = (item === activeCatalog) 
+                  ? `cursor-pointer font-black h-full w-full flex items-center justify-center text-white bg-white/[0.07] rounded-lg border border-white/20 shadow-[inset_0_1px_3px_rgba(255,255,255,0.25)] ${textFluidClass}` 
+                  : `cursor-pointer font-medium h-full w-full flex items-center justify-center text-white/20 bg-transparent rounded-lg hover:text-white/50 ${textFluidClass}`;
+          }
+      });
+  }
+
+  function toggleFreeze() {
+      isDialFrozen = !isDialFrozen; const icon = $('lock-icon'); const textGroup = $('laser-text-group');
+      if (isDialFrozen) {
+          if (icon) icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />';
+          if (textGroup) textGroup.classList.remove('opacity-0');
+          if (freezeTimeoutId) clearTimeout(freezeTimeoutId);
+          freezeTimeoutId = window.setTimeout(() => { isDialFrozen = false; toggleFreeze(); }, 8000);
+      } else {
+          if (icon) icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />';
+          if (textGroup) textGroup.classList.add('opacity-0'); if (freezeTimeoutId) clearTimeout(freezeTimeoutId);
+      }
+  }
+
+  function ciclarVariante(catalogo: 'STENCIL' | 'PANEL', direccion: number) {
+      if(activeCatalog !== catalogo) { activeCatalog = catalogo; activeVariant = ARTEPANEL_DATABASE[catalogo].defaultVariant; }
+      const variantes = Object.keys(ARTEPANEL_DATABASE[catalogo].variants);
+      let idx = variantes.indexOf(activeVariant); idx = (idx + direccion + variantes.length) % variantes.length;
+      activeVariant = variantes[idx]; syncUI();
+  }
+
+  function updateZ() {
+      const now = new Date(); const sec = now.getSeconds(); const min = now.getMinutes();
+      const epoch = new Date('2012-12-21T00:00:00Z');
+      const totalSpheres = (Math.floor((now.getTime() - epoch.getTime()) / 86400000) * 4) + Math.floor(now.getHours() / 6);
+      $('telemetry-sphere-idx')!.textContent = String(totalSpheres).padStart(4, '0');
+
+      if (!isDialFrozen) {
+          let sets = sec % 2 !== 0 ? Math.floor((now.getMilliseconds() / 1000) * 12) + 1 : Math.floor((min % 12) + 1);
+          let reps = 13 - sets; let vec = VECTORS[(sec + sets) % VECTORS.length]; const coord = `${sets}${vec}${reps}`;
+          $('z-dial')!.textContent = coord; $('z-dial-mirror')!.textContent = coord;
+          $('sub-sets-solar')!.textContent = (0.05 + (sets / 240)).toFixed(3); $('sub-reps-tension')!.textContent = (14.2 + (reps * 0.8)).toFixed(1);
+      }
+      $('telemetry-active-node')!.textContent = String((now.getHours() * 3600) + (min * 60) + sec + 1).padStart(4, '0');
+  }
+
+  const bindEvents = () => {
+      let modoActual = 'front';
+      $('btn-reveal-bio')?.addEventListener('click', () => { modoActual = modoActual==='back'?'front':'back'; aplicarModoVisual(modoActual); });
+      $('btn-reveal-raw')?.addEventListener('click', () => { modoActual = modoActual==='raw'?'front':'raw'; aplicarModoVisual(modoActual); });
+      $('z-dial')?.addEventListener('click', (e) => { e.stopPropagation(); toggleFreeze(); });
+      $('btn-lock-telemetry')?.addEventListener('click', toggleFreeze);
+
+      $('btn-stencil-prev')?.addEventListener('click', () => ciclarVariante('STENCIL', -1));
+      $('btn-stencil-next')?.addEventListener('click', () => ciclarVariante('STENCIL', 1));
+      $('btn-panel-prev')?.addEventListener('click', () => ciclarVariante('PANEL', -1));
+      $('btn-panel-next')?.addEventListener('click', () => ciclarVariante('PANEL', 1));
+
+      $('menu-bio-STENCIL-holder')!.innerHTML = `<span id="menu-bio-STENCIL">STENCIL</span>`;
+      $('menu-bio-PANEL-holder')!.innerHTML = `<span id="menu-bio-PANEL">PANEL</span>`;
+
+      $('btn-activar-nodo')?.addEventListener('click', () => {
+          const config = ARTEPANEL_DATABASE[activeCatalog as 'STENCIL'|'PANEL'].variants[activeVariant];
+          const msg = `⚡ *ORDEN ARTEPANEL* ⚡\n\n• *Vector:* ${activeCatalog} ${activeVariant}\n• *ID:* \`${config.id}\`\n• *Matriz:* \`${$('z-dial')?.textContent}\``;
+          window.open(`https://api.whatsapp.com/send?phone=${phoneEndpoint}&text=${encodeURIComponent(msg)}`, '_blank');
+      });
+
+      const PULS_MEANINGS: Record<string, string> = {
+          'sub-sets-solar-trigger': "FRECUENCIA COAXIAL VIVA TIERRA-LUNA-SOL.",
+          'sub-reps-tension-trigger': "COHESIÓN TENSIONAL Y MAGNETISMO GRAVITACIONAL.",
+          'telemetry-sphere-idx-trigger': "MATRIZ CUÁNTICA. CICLO DE ESFERA.",
+          'telemetry-active-node-trigger': "SATURACIÓN SINÁPTICA. NODOS ACUMULADOS REALES."
+      };
+      Object.keys(PULS_MEANINGS).forEach(id => {
+          $(id)?.addEventListener('click', () => {
+              $('panel-telemetry-data-secondary')!.textContent = PULS_MEANINGS[id];
+              setTimeout(() => { $('panel-telemetry-data-secondary')!.textContent = "LENGUAJE DE GOTA BIOCINÉTICA REGENERATIVA"; }, 8000);
+          });
+      });
+
+      setInterval(updateZ, 100); syncUI();
+  };
+
+  document.addEventListener('DOMContentLoaded', bindEvents);
+  document.addEventListener('astro:page-load', bindEvents);
+</script>
 '@
 
 # =========================================================================
-# 2. Secuencia de Ejecución y Sanitización Completa del Entorno
+# 3. Mapeo e Inyección Estructural en Espacio de Trabajo
 # =========================================================================
-Clear-Host
-Write-Host "=========================================" -ForegroundColor Cyan
-Write-Host "     JAKO-CORE ECOSYSTEM AUTOWRITER      " -ForegroundColor Cyan
-Write-Host "=========================================" -ForegroundColor Cyan
-
-# [PASO 1]: Purga completa de configuraciones anteriores y estados corruptos
-Write-Host "`n[1/4] Ejecutando purga e higienización estructural..." -ForegroundColor Yellow
-$DirsToPurge = @("src/layouts", "src/pages", "src/components")
-foreach ($Dir in $DirsToPurge) {
-    if (Test-Path $Dir) {
-        Remove-Item -Path $Dir -Recurse -Force | Out-Null
-        Write-Host "✔ Removido directorio previo: $Dir" -ForegroundColor DarkGray
+Write-Host "`n[3/5] Generando mapa estructural de carpetas..." -ForegroundColor Yellow
+$Dirs = @("src/layouts", "src/pages", "src/components")
+foreach ($Dir in $Dirs) {
+    if (-not (Test-Path $Dir)) {
+        New-Item -ItemType Directory -Path $Dir -Force | Out-Null
     }
 }
+Write-Host "✔ Mapa de carpetas verificado." -ForegroundColor Green
 
-# Re-mapeo limpio de carpetas
-foreach ($Dir in $DirsToPurge) {
-    New-Item -ItemType Directory -Path $Dir -Force | Out-Null
-    Write-Host "✔ Directorio creado en limpio: $Dir" -ForegroundColor Green
-}
-
-# [PASO 2]: Auditoría y restauración de Archivos de Infraestructura
-Write-Host "`n[2/4] Auditando archivos de configuración raíz (.json)..." -ForegroundColor Yellow
-[System.IO.File]::WriteAllText((Get-Item .).FullName + "/package.json", $PackageJsonCode)
-Write-Host "✔ package.json restaurado con scripts estables de Astro." -ForegroundColor Green
-
-# Sobrescribir siempre con la configuración robusta anti-errores
-[System.IO.File]::WriteAllText((Get-Item .).FullName + "/tsconfig.json", $TsConfigCode)
-Write-Host "✔ tsconfig.json alineado y optimizado sin conflictos de tipo." -ForegroundColor Green
-
-# =========================================================================
-# 3. Inyección Limpia de Componentes del Ecosistema HUD
-# =========================================================================
-Write-Host "`n[3/4] Inyectando archivos de componentes del HUD..." -ForegroundColor Yellow
-
-$FilesToProcess = @{
+Write-Host "`n[4/5] Re-inyectando componentes de última generación..." -ForegroundColor Yellow
+$Files = @{
     "src/layouts/VaultLayout.astro"     = $LayoutCode
     "src/pages/index.astro"             = $IndexCode
-    "src/components/QuantumBg.astro"    = $QuantumBgCode
     "src/components/HeaderHud.astro"    = $HeaderHudCode
     "src/components/FooterHud.astro"    = $FooterHudCode
-    "src/components/TacticalDial.astro"  = $TacticalDialCode
+    "src/components/TacticalDial.astro" = $TacticalDialCode
 }
 
-foreach ($File in $FilesToProcess.Keys) {
-    [System.IO.File]::WriteAllText((Get-Item .).FullName + "/" + $File, $FilesToProcess[$File])
-    Write-Host "✔ Archivo aprovisionado: $File" -ForegroundColor Green
+foreach ($File in $Files.Keys) {
+    [System.IO.File]::WriteAllText((Get-Item .).FullName + "/" + $File, $Files[$File])
+    Write-Host "✔ Componente inyectado de forma aséptica: $File" -ForegroundColor Green
 }
 
 # =========================================================================
 # 4. Verificación de Módulos y Lanzamiento Multiplataforma
 # =========================================================================
-Write-Host "`n[4/4] Verificando dependencias e iniciando servidor..." -ForegroundColor Yellow
+Write-Host "`n[5/5] Verificando entorno de ejecución local..." -ForegroundColor Yellow
 
-# Resolución de rutas unificada e infalible mediante Join-Path nativo del OS
 $AstroCliPath = Join-Path (Join-Path "node_modules" "astro") "package.json"
 
 if (-not (Test-Path $AstroCliPath)) {
-    Write-Host "⚠️ No se detectaron los módulos locales estables. Forzando instalación aséptica..." -ForegroundColor Magenta
+    Write-Host "⚠️ Módulos no encontrados. Descargando dependencias de Node..." -ForegroundColor Magenta
     npm install
 } else {
-    Write-Host "✔ Módulos locales detectados correctamente." -ForegroundColor Green
+    Write-Host "✔ Entorno de módulos locales estable." -ForegroundColor Green
 }
 
-# Fuerza la generación de mapas de tipado dinámicos (.astro/types.d.ts) para limpiar el editor
-Write-Host "🔄 Sincronizando e inyectando metadatos de tipos de Astro..." -ForegroundColor Cyan
+Write-Host "🔄 Sincronizando mapas dinámicos de TypeScript de Astro..." -ForegroundColor Cyan
 npx astro sync
 
-Write-Host "`nInvocando directamente al CLI local de Astro..." -ForegroundColor Gray
+Write-Host "`nLanzando servidor de desarrollo en tiempo real..." -ForegroundColor Gray
 Write-Host "--------------------------------------------------------" -ForegroundColor Gray
 
 try {
     npx --no-install astro dev
 }
 catch {
-    Write-Host "`n❌ Proceso de ejecución finalizado." -ForegroundColor Red
+    Write-Host "`n❌ Servidor finalizado de forma segura." -ForegroundColor Red
 }

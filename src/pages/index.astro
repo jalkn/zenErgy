@@ -1,27 +1,34 @@
 ---
 import VaultLayout from '../layouts/VaultLayout.astro';
-import QuantumBg from '../components/QuantumBg.astro';
 import HeaderHud from '../components/HeaderHud.astro';
-import FooterHud from '../components/FooterHud.astro';
 import TacticalDial from '../components/TacticalDial.astro';
+import FooterHud from '../components/FooterHud.astro';
 ---
 
 <VaultLayout title="JAKO VAULT">
-  <QuantumBg />
-  
-  <main class="relative w-full h-screen overflow-hidden flex flex-col justify-between">
-    
-    <header class="w-full z-10">
-      <HeaderHud />
-    </header>
+  <div id="page-bg-overlay"></div>
+  <div class="fixed inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25 z-0 pointer-events-none"></div>
 
-    <section class="flex-1 w-full flex items-center justify-center z-10">
-      <TacticalDial />
-    </section>
+  <main id="main-vault" class="w-screen h-screen flex flex-col relative overflow-hidden">
+      <header class="fixed top-0 w-full z-50 bg-[#050508]/35 backdrop-blur-[30px] border-b border-white/5">
+          <HeaderHud />
+      </header>
 
-    <footer class="w-full z-10">
-      <FooterHud />
-    </footer>
+      <div class="flex-1 w-full flex flex-col items-center justify-between p-4 sm:p-6 select-none relative z-10 overflow-hidden">
+          <TacticalDial />
+      </div>
 
+      <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-gradient-to-t from-black/90 via-black/75 to-transparent backdrop-blur-[30px] border-t border-white/5">
+          <FooterHud />
+      </footer>
   </main>
 </VaultLayout>
+
+<style is:global>
+  #page-bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.22) 0%, rgba(15, 23, 42, 0.75) 60%, #030712 100%);
+      z-index: -1;
+  }
+</style>

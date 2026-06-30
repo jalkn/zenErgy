@@ -1,69 +1,41 @@
 ---
 ---
-<div class="relative flex items-center justify-center w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] select-none">
-  <div class="absolute inset-0 border border-cyan-500/10 rounded-full animate-[spin_120s_linear_infinite] pointer-events-none"></div>
-  <div class="absolute inset-4 border border-dashed border-cyan-500/5 rounded-full animate-[spin_80s_linear_infinite_reverse] pointer-events-none"></div>
-
-  <div id="hud-tactical-wheel" class="absolute inset-8 rounded-full border border-cyan-500/20 bg-[#050508]/30 backdrop-blur-sm transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
-    <button data-index="0" data-angle="0" class="dial-node absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center group pointer-events-auto focus:outline-none">
-      <div class="w-2 h-2 border border-cyan-400 bg-cyan-950 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
-      <span class="font-mono text-[9px] tracking-widest text-cyan-400/40 group-hover:text-cyan-300 mt-1.5">CORE</span>
-    </button>
-
-    <button data-index="1" data-angle="120" class="dial-node absolute bottom-12 right-6 flex flex-col items-center group pointer-events-auto focus:outline-none">
-      <div class="w-2 h-2 border border-cyan-400 bg-cyan-950 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
-      <span class="font-mono text-[9px] tracking-widest text-cyan-400/40 group-hover:text-cyan-300 mt-1.5">BIORUSH</span>
-    </button>
-
-    <button data-index="2" data-angle="240" class="dial-node absolute bottom-12 left-6 flex flex-col items-center group pointer-events-auto focus:outline-none">
-      <div class="w-2 h-2 border border-cyan-400 bg-cyan-950 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
-      <span class="font-mono text-[9px] tracking-widest text-cyan-400/40 group-hover:text-cyan-300 mt-1.5">FOTO.ART</span>
-    </button>
-  </div>
-
-  <div class="absolute w-28 h-28 border border-cyan-500/30 rounded-full bg-[#050508]/80 shadow-[0_0_30px_rgba(6,182,212,0.05)] flex flex-col items-center justify-center pointer-events-none">
-    <div class="absolute inset-1.5 border border-dashed border-cyan-500/10 rounded-full animate-[spin_40s_linear_infinite]"></div>
-    <div id="dial-center-status" class="font-mono text-[10px] font-bold tracking-[0.2em] text-white">VAULT</div>
-    <div id="dial-center-index" class="font-mono text-[8px] tracking-widest text-cyan-400/50 mt-0.5">00 / 02</div>
+<div id="artepanel-pack-container" class="my-auto relative w-[68vw] h-[68vw] sm:w-[58vw] sm:h-[58vw] md:w-[35vh] md:h-[35vh] max-w-[350px] max-h-[350px] min-w-[210px] min-h-[210px] aspect-square shrink-0 drop-shadow-[0_25px_55px_rgba(0,0,0,0.95)] transition-all duration-300">
+  <div class="w-full h-full relative overflow-hidden rounded-md bg-transparent">
+    
+    <img id="artepanel-pack-img-back" src="/img/surface.png" alt="Back" class="img-glow-transition absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none z-0" />
+    <img id="artepanel-pack-img" src="/img/surface.png" alt="Front" class="img-glow-transition absolute inset-0 w-full h-full object-cover pointer-events-auto z-10" />
+    <img id="artepanel-pack-img-raw" src="/img/surface.png" alt="Raw" class="img-glow-transition absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none z-[5]" />
+    
+    <div class="absolute inset-0 flex items-center justify-center p-0 z-20 pointer-events-none">
+        <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/25 stroke-[1.2] transition-all duration-500 origin-center">
+            <defs>
+                <path id="textPath-top" d="M 65,200 A 135,135 0 0,1 335,200" />
+                <path id="textPath-bottom" d="M 65,200 A 135,135 0 0,0 335,200" />
+            </defs>
+            <g class="origin-center">
+                <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="opacity-15 stroke-[1]" />
+                <path d="M 90,90 Q 200,125 310,90" class="opacity-15 stroke-[1]" />
+                <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="opacity-15 stroke-[1]" />
+                
+                <text id="z-dial" x="200" y="218" text-anchor="middle" class="fill-white font-black text-[45px] tracking-[0.35em] font-sans">8PU10</text>
+            </g>
+            <g id="laser-text-group" class="opacity-0 transition-opacity duration-500">
+                <text class="fill-white font-black text-[10px] tracking-[0.25em] uppercase transition-all duration-500">
+                    <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">MACROPULSOR FOCUS</textPath>
+                </text>
+                <text class="fill-white/60 font-black text-[10px] tracking-[0.25em] uppercase transition-all duration-500">
+                    <textPath id="artepanel-description" href="#textPath-bottom" startOffset="50%" text-anchor="middle">Enfoque y claridad cognitiva</textPath>
+                </text>
+            </g>
+        </svg>
+    </div>
   </div>
 </div>
 
-<script>
-  const initTacticalDial = () => {
-    const wheel = document.getElementById('hud-tactical-wheel');
-    const nodes = document.querySelectorAll('.dial-node');
-    const statusText = document.getElementById('dial-center-status');
-    const indexText = document.getElementById('dial-center-index');
-    if (!wheel || !statusText || !indexText) return;
-
-    const sections = [
-      { name: "VAULT", code: "00" },
-      { name: "BIORUSH", code: "01" },
-      { name: "FOTO.ART", code: "02" }
-    ];
-
-    nodes.forEach(node => {
-      node.addEventListener('click', (e) => {
-        const button = e.currentTarget as HTMLButtonElement;
-        const angle = button.getAttribute('data-angle');
-        const index = parseInt(button.getAttribute('data-index') || '0', 10);
-
-        if (angle !== null) {
-          const targetRotation = -parseInt(angle, 10);
-          wheel.style.transform = `rotate(${targetRotation}deg)`;
-          nodes.forEach(n => {
-            (n as HTMLButtonElement).style.transform = `rotate(${-targetRotation}deg) translateX(-50%)`;
-          });
-          statusText.innerText = sections[index].name;
-          indexText.innerText = `${sections[index].code} / 02`;
-        }
-      });
-    });
-  };
-  initTacticalDial();
-  document.addEventListener('astro:page-load', initTacticalDial);
-</script>
-
-<style>
-  .dial-node { transform-origin: top left; }
+<style is:global>
+  .img-glow-transition {
+      transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: filter, transform;
+  }
 </style>
