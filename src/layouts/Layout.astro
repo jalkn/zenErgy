@@ -8,11 +8,11 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
 	</head>
-	<body class="bg-black text-white font-mono antialiased selection:bg-cyan-500 selection:text-black">
+	<body class="bg-slate-950 text-white font-mono antialiased selection:bg-white selection:text-black">
 		<slot />
 	</body>
 </html>

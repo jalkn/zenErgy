@@ -4,11 +4,11 @@ set -e
 # =========================================================================
 # macOS Terminal Colors
 # =========================================================================
-CYAN='\033[0;36m'
-MAGENTA='\033[0;35m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-GRAY='\033[0;90m'
+CYAN='\033;036m'
+MAGENTA='\033;035m'
+GREEN='\033;032m'
+YELLOW='\033;033m'
+GRAY='\033;090m'
 NC='\033[0m' # No Color
 
 echo -e "${CYAN}=========================================${NC}"
@@ -81,11 +81,11 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
 	</head>
-	<body class="bg-black text-white font-mono antialiased selection:bg-cyan-500 selection:text-black">
+	<body class="bg-slate-950 text-white font-mono antialiased selection:bg-white selection:text-black">
 		<slot />
 	</body>
 </html>
@@ -100,8 +100,8 @@ import HeaderHud from '../components/HeaderHud.astro';
 import TacticalDial from '../components/TacticalDial.astro';
 import FooterHud from '../components/FooterHud.astro';
 ---
-<Layout title="Zenergia Core">
-	<main class="min-h-screen flex flex-col justify-between p-4 relative overflow-hidden">
+<Layout title="Zenergia Vault">
+	<main class="min-h-screen flex flex-col justify-between p-4 relative overflow-hidden bg-[radial-gradient(circle_at_center,rgba(3,7,18,1)_0%,rgba(5,5,8,1)_100%)]">
 		<HeaderHud />
 		<div class="flex-1 flex items-center justify-center my-8 z-10">
 			<TacticalDial />
@@ -116,28 +116,28 @@ echo -e "${GREEN}✔ Component injected aseptically: src/pages/index.astro${NC}"
 cat << 'HEADER_EOF' > src/components/HeaderHud.astro
 ---
 ---
-<header class="w-full border-b border-zinc-800 p-4 flex justify-between items-center bg-black/50 backdrop-blur-md">
+<header class="w-full border-b border-white/[0.05] p-4 flex justify-between items-center bg-black/40 backdrop-blur-md">
 	<div class="flex items-center gap-3">
-		<div class="w-3 h-3 rounded-full bg-cyan-500 animate-pulse"></div>
-		<span class="tracking-widest text-xs uppercase font-bold text-zinc-400">System: Active</span>
+		<div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
+		<span class="tracking-[0.3em] text-[9px] uppercase font-bold text-white/50">System: Active</span>
 	</div>
 	<div class="text-right">
-		<span class="text-cyan-400 text-xs tracking-wider uppercase font-bold">Zenergia Framework v3.5</span>
+		<span class="text-white text-[9px] tracking-[0.25em] uppercase font-black">Zenergia Core v3.5</span>
 	</div>
 </header>
 HEADER_EOF
 echo -e "${GREEN}✔ Component injected aseptically: src/components/HeaderHud.astro${NC}"
 
-# Tactical Dial Injection
+# Tactical Dial Injection (Quantum Engine Base-12 placeholders)
 cat << 'DIAL_EOF' > src/components/TacticalDial.astro
 ---
 ---
-<div class="relative w-80 h-80 flex items-center justify-center border border-zinc-800 rounded-full bg-zinc-950/30 backdrop-blur-sm">
-	<div class="absolute inset-4 border border-dashed border-zinc-700 rounded-full animate-[spin_60s_linear_infinite]"></div>
-	<div class="absolute inset-12 border border-cyan-500/30 rounded-full animate-[spin_20s_linear_infinite_reverse]"></div>
-	<div class="text-center z-10">
-		<h1 class="text-2xl font-black tracking-widest uppercase text-white mb-1">ZENERGIA</h1>
-		<p class="text-[10px] tracking-[0.3em] uppercase text-cyan-400 font-bold">Tech-Lab Engine</p>
+<div class="relative w-80 h-80 flex items-center justify-center border border-white/[0.05] rounded-full bg-black/20 backdrop-blur-xl shadow-[inset_0_0_40px_rgba(255,255,255,0.02)]">
+	<div class="absolute inset-4 border border-dashed border-white/10 rounded-full animate-[spin_120s_linear_infinite]"></div>
+	<div class="absolute inset-12 border border-white/5 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
+	<div class="text-center z-10 select-none">
+		<h1 class="text-xl font-black tracking-[0.4em] uppercase text-white mb-1">ZENERGIA</h1>
+		<p class="text-[8px] tracking-[0.3em] uppercase text-white/40 font-bold">Quantum Matrix</p>
 	</div>
 </div>
 DIAL_EOF
@@ -147,15 +147,15 @@ echo -e "${GREEN}✔ Component injected aseptically: src/components/TacticalDial
 cat << 'FOOTER_EOF' > src/components/FooterHud.astro
 ---
 ---
-<footer class="w-full border-t border-zinc-800 p-4 flex justify-between items-center text-[10px] text-zinc-500 tracking-wider uppercase">
-	<div>[ Location: Santa Elena, Med ]</div>
-	<div class="animate-pulse text-cyan-500/80 font-bold">[ Core Engine Sync'd ]</div>
+<footer class="w-full border-t border-white/[0.05] p-4 flex justify-between items-center text-[8px] text-white/40 tracking-[0.2em] uppercase">
+	<div>[ Location: Santa Elena ]</div>
+	<a href="https://wa.me/message/ARPA" class="hover:text-white transition-colors duration-300 font-bold tracking-[0.3em] text-white/60">[ Connect via WhatsApp ]</a>
 </footer>
 FOOTER_EOF
 echo -e "${GREEN}✔ Component injected aseptically: src/components/FooterHud.astro${NC}"
 
 # =========================================================================
-# 4. Environment Verification & Boot
+# 4. Environment Verification & Compilation
 # =========================================================================
 echo -e "\n${YELLOW}[4/5] Verifying local execution environment...${NC}"
 
@@ -169,7 +169,16 @@ fi
 echo -e "${CYAN}🔄 Synchronizing Astro dynamic TypeScript maps...${NC}"
 npx astro sync
 
-echo -e "\n${GRAY}Launching real-time development server...${NC}"
-echo -e "${GRAY}--------------------------------------------------------${NC}"
+echo -e "\n${CYAN}[5/5] Compiling Quantum Clock for Production Build...${NC}"
+npx astro build
 
-npx --no-install astro dev
+# =========================================================================
+# 5. Production Live Cloud Deployment
+# =========================================================================
+echo -e "\n${MAGENTA}🚀 Synchronizing clean assets directly to Google Cloud Storage...${NC}"
+gsutil -m rsync -R dist gs://vault.jako.world
+
+echo -e "\n${GREEN}========================================================${NC}"
+echo -e "${GREEN}✔ SYSTEM LIVE ON PRODUCTION CLOUD ARCHITECTURE${NC}"
+echo -e "${GREEN}🔗 Link: https://storage.googleapis.com/vault.jako.world/index.html${NC}"
+echo -e "${GREEN}========================================================${NC}"
